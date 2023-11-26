@@ -18,7 +18,7 @@ const TemplatesPage = () => {
                             <a href="https://apollo.primereact.org" className="flex-1 p-button p-component" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Preview</span>
                             </a>
-                            <a href="https://www.primefaces.org/layouts/apollo-react" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
+                            <a href="apollo" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" >
                                 <span className="p-button-label white-space-nowrap">Learn More</span>
                             </a>
                         </div>
