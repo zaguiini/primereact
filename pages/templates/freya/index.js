@@ -1,5 +1,5 @@
 import React from 'react';
-import ApolloPlayIcon from './ApolloPlayIcon';
+import FreyaPlayIcon from './FreyaPlayIcon';
 import TemplateYoutube from '@/components/templates/TemplateYoutube';
 import TemplateFeaturesType1 from '@/components/templates/TemplateFeaturesType1';
 import TemplateFeaturesType2 from '@/components/templates/TemplateFeaturesType2';
@@ -8,29 +8,12 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 
-const apolloFeatures1Data = [
-    {
-        src: "/images/templates/apollo/apollo-features1-feature1.png",
-        title: "Ready to Use Applications",
-        description: "Mail, File System, Tasks, Calendar, Blog and Chat are the sample applications to get started with ease."
-    },
-    {
-        src: "/images/templates/apollo/apollo-features1-feature2.png",
-        title: "E-Commerce Pages",
-        description: "Apollo offers E-commerce pages to kickstart your e-commerce project powered by PrimeBlocks."
-    },
-    {
-        src: "/images/templates/apollo/apollo-features1-feature3.png",
-        title: "Ready to Use Pages",
-        description: "Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app."
-    },
-]
 
 const apolloFeatures2Data = [
     {
         title: "Fully Responsive",
         description: "Apollo is crafted to provide optimal viewing and interaction experience for a wide range of devices.",
-        src: "/images/templates/apollo/apollo-features2-responsive.png"
+        src: "/images/templates/atlantis/atlantis-features2-responsive.png"
     },
     {
         title: "Cross Browser Compatible",
@@ -48,14 +31,14 @@ const apolloFeatures2Data = [
         src: "/images/templates/apollo/apollo-features2-customizable.png"
     },
     {
-        title: "Top Notch Quality",
-        description: "Superior standards with 100% compatibility for strict mode and linting tools.",
-        src: "/images/templates/apollo/apollo-features2-quality.png"
+        title: "Ready to Use Pages",
+        description: "Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app.",
+        src: "/images/templates/atlantis/atlantis-features2-ready.png"
     },
     {
         title: "Mobile Experience",
         description: "Touch optimized enhanced mobile experience with responsive design.",
-        src: "/images/templates/apollo/apollo-features2-mobile.png"
+        src: "/images/templates/atlantis/atlantis-features2-mobile.png"
     }
 ];
 
@@ -104,98 +87,90 @@ const animationFeaturesData1 = [
 const animationFeaturesData2 = [
     {
         id: 1,
-        title: "Light / Dark / Dim Modes",
-        description: "Apollo has 3 display modes to choose from; Light, Dim and Dark.",
-        src: "/images/templates/apollo/features-animation-darkmode.png"
+        title: "Light and Dark Modes",
+        description: "The stunning dark and light modes will impress your users.",
+        src: "/images/templates/atlantis/features-animation-darkmode.png"
     },
     {
         id: 2,
         title: "Component Themes",
-        description: "Apollo offers 24 built-in component themes and creating your own theme is a matter of defining couple of sass variables.",
-        src: "/images/templates/apollo/features-animation-component-themes.png"
+        description: "Atlantis offers 16 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.",
+        src: "/images/templates/atlantis/features-animation-component-themes.png"
     },
     {
         id: 3,
         title: "7 Menu Orientations",
         description: "Static, Overlay, Slim, Slim+, Reveal, Drawer and Horizontal are the available menu layouts depending on your preference.",
-        src: "/images/templates/apollo/features-animation-orientations.png",
+        src: "/images/templates/atlantis/features-animation-orientations.png",
         type: "inline-animation",
         inlineFeaturesData: [
             {
                 id: 1,
                 title: "Static",
-                src: "/images/templates/apollo/Static.png",
+                src: "/images/templates/atlantis/Static.png",
             },
             {
                 id: 2,
                 title: "Slim",
-                src: "/images/templates/apollo/Slim.png",
+                src: "/images/templates/atlantis/Slim.png",
             },
             {
                 id: 3,
                 title: "Reveal",
-                src: "/images/templates/apollo/Reveal.png",
+                src: "/images/templates/atlantis/Reveal.png",
             },
             {
                 id: 4,
                 title: "Horizontal",
-                src: "/images/templates/apollo/Horizontal.png",
+                src: "/images/templates/atlantis/Horizontal.png",
             },
             {
                 id: 5,
                 title: "Overlay",
-                src: "/images/templates/apollo/Overlay.png",
+                src: "/images/templates/atlantis/Overlay.png",
             },
             {
                 id: 6,
                 title: "Slim+",
-                src: "/images/templates/apollo/Slim+.png",
+                src: "/images/templates/atlantis/Slim+.png",
             },
             {
                 id: 7,
                 title: "Drawer",
-                src: "/images/templates/apollo/Drawer.png",
+                src: "/images/templates/atlantis/Drawer.png",
             },
         ],
     },
-    {
-        id: 4,
-        title: "Menu Themes",
-        description: "Stunning theming for the main menu with 3 alternatives; Color Scheme, Primary Color and Transparent.",
-        src: "/images/templates/apollo/features-animation-menu-themes.png"
-    },
 ]
 
-const ApolloSeparator = () => {
+const FreyaSeparator = () => {
     return (
         <TemplateSeparator separatorLogo={
-            <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
                 <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" fill="white" />
                 <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" stroke="#DFE7EF" />
-                <path d="M22.3576 34.2499L19.6471 28.2974L17.2754 34.2499H22.3576Z" fill="#212121" />
-                <path d="M27.8454 28.2974L30.5559 34.2499H25.4736L27.8454 28.2974Z" fill="#212121" />
-                <path d="M24.0043 10.25L12.001 34.187H16.0501L24.0048 17.1962L31.7995 34.187H36.009L24.0043 10.25Z" fill="#212121" />
+                <path d="M14 12H21.1333V16.5881L34.2105 14V20L21.1333 22.5881V24.5881L34.2105 22V28L21.1333 30.5881V36H14V12Z" fill="#212121" />
             </svg>
         } />
     )
 }
 
-const ApolloPage = () => {
+const FreyaPage = () => {
 
     return (
-        <div className='apollo'>
-            <div className='apollo-hero'>
-                <img className='apollo-hero-pattern' src='/images/templates/apollo/apollo-hero-pattern.png' alt='Apollo Pattern' />
-                <img className='apollo-hero-rectangle1' src='/images/templates/apollo/apollo-hero-rectangle1.png' alt='Apollo Pattern' />
-                <img className='apollo-hero-light' src='/images/templates/apollo/apollo-hero-light.png' alt='Apollo Pattern' />
-                <div className='apollo-hero-card'>
-                    <img className='apollo-hero-card-logo' src='/images/templates/apollo/apollo-hero-logo.svg' alt='Apollo Logo' />
+        <div className='freya'>
+            <div className='freya-hero'>
+                <img className='freya-hero-pattern' src='/images/templates/freya/freya-hero-pattern.png' alt='Apollo Pattern' />
+                <img className='freya-hero-rectangle1' src='/images/templates/freya/freya-hero-rectangle1.png' alt='Apollo Pattern' />
+                <img className='freya-hero-light' src='/images/templates/freya/freya-hero-light.png' alt='Apollo Pattern' />
+                <div className='freya-hero-card'>
+                    <img className='freya-hero-card-logo' src='/images/templates/freya/freya-hero-logo.svg' alt='Apollo Logo' />
                     <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
-                    <div className='apollo-hero-card-buttons'>
-                        <button className='apollo-hero-card-buttons-btn1'>Live Demo</button>
-                        <button className='apollo-hero-card-buttons-btn2'>Buy Now</button>
+                    <div className='freya-hero-card-buttons'>
+                        <button className='freya-hero-card-buttons-btn1'>Live Demo</button>
+                        <button className='freya-hero-card-buttons-btn2'>Buy Now</button>
                     </div>
-                    <div className='apollo-hero-card-links'>
+                    <div className='freya-hero-card-links'>
                         <a href='#'>
                             <i className="pi pi-github" style={{ fontSize: '1rem' }}></i>
                             <span>Get Support</span>
@@ -206,25 +181,23 @@ const ApolloPage = () => {
                         </a>
                     </div>
                 </div>
-                <img className='apollo-hero-dashboard1' src='/images/templates/apollo/apollo-hero-dashboard1.png' alt='Dashboard Image 1' />
-                <img className='apollo-hero-dashboard2' src='/images/templates/apollo/apollo-hero-dashboard2.png' alt='Dashboard Image 2' />
+                <img className='freya-hero-dashboard1' src='/images/templates/freya/freya-hero-dashboard1.png' alt='Dashboard Image 1' />
+                <img className='freya-hero-dashboard2' src='/images/templates/freya/freya-hero-dashboard2.png' alt='Dashboard Image 2' />
             </div>
-            <ApolloSeparator />
-            <TemplateYoutube playIcon={<ApolloPlayIcon />} imgSrc={"/images/templates/apollo/apollo-youtube-screen.png"} />
-            <ApolloSeparator />
+            <FreyaSeparator />
+            <TemplateYoutube playIcon={<FreyaPlayIcon />} imgSrc={"/images/templates/freya/freya-youtube-screen.png"} />
+            <FreyaSeparator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]}/>
-            <ApolloSeparator />
-            <TemplateFeaturesType1 featuresData={apolloFeatures1Data} />
-            <ApolloSeparator />
-            <TemplateConfiguration title='Angular with CLI' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
-            <ApolloSeparator />
-            <TemplateFeaturesAnimation featuresData={animationFeaturesData1} />
-            <ApolloSeparator />
+            <FreyaSeparator />
+            <TemplateConfiguration title='Vue.js App with No Configuration' configType='VUE' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
+            <FreyaSeparator />
             <TemplateFeaturesType2 featuresData={apolloFeatures2Data} />
-            <ApolloSeparator />
+            <FreyaSeparator />
+            <TemplateFeaturesAnimation featuresData={animationFeaturesData1} />
+            <FreyaSeparator />
             <TemplateRelated relatedData={apolloRelatedData} />
         </div>
     );
 };
 
-export default ApolloPage;
+export default FreyaPage;

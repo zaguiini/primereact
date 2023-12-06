@@ -1,18 +1,26 @@
 import React, { useRef } from 'react'
-import useAnimatedFeatures from './useAnimatedFeatures ';
-import ApolloFeaturesInline from './ApolloFeaturesInline';
+import useAnimatedFeatures from './useAnimatedFeatures';
+import TemplateFeaturesAnimationInline from './TemplateFeaturesAnimationInline';
 
-const ApolloFeaturesSection = ({ featuresData }) => {
+const TemplateFeaturesAnimation = ({ featuresData, title }) => {
     const animationRef = useRef(null)
     const { selectedID, handleClick } = useAnimatedFeatures(animationRef, featuresData.length);
-    
+
     return (
-        <div className='apollo-features-animation' ref={animationRef}>
-            <div className='template-features-animation' >
+        <div className='template-features-animation-outer'>
+            {!!title &&
+                <div className='template-features-animation-title'>
+                    {title.map((data, i) => (
+                        <h2 key={i}>{data}</h2>
+                    ))}
+                </div>}
+            <div className='template-features-animation' ref={animationRef}>
                 <div className='template-features-animation-left'>
                     {featuresData.map((data, i) => (
                         <div key={i} className={`template-features-animation-left-card ${!!(selectedID === data.id) && "template-features-animation-left-card-active"}`} onClick={() => handleClick(data.id)}>
-                            <div className='template-features-animation-left-card-order'>{i + 1}</div>
+                            <div className='template-features-animation-left-card-order'>
+                                0{i + 1}
+                            </div>
                             <div>
                                 <h5>{data.title}</h5>
                                 <p>{data.description}</p>
@@ -22,7 +30,7 @@ const ApolloFeaturesSection = ({ featuresData }) => {
                 </div>
                 <div className='template-features-animation-right'>
                     {featuresData[selectedID - 1]?.type === "inline-animation" ?
-                        <ApolloFeaturesInline inlineFeaturesData={featuresData[selectedID - 1]?.inlineFeaturesData} parentHandleClick={handleClick} parentID={selectedID}/>
+                        <TemplateFeaturesAnimationInline inlineFeaturesData={featuresData[selectedID - 1]?.inlineFeaturesData} parentHandleClick={handleClick} parentID={selectedID} />
                         : <img src={featuresData[selectedID - 1]?.src} alt='Animation Feature Image' />}
                 </div>
             </div>
@@ -30,4 +38,4 @@ const ApolloFeaturesSection = ({ featuresData }) => {
     )
 }
 
-export default ApolloFeaturesSection
+export default TemplateFeaturesAnimation

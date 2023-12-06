@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-       
-const useVisible = (element, rootMargin=0.2) => {
+
+const useVisible = (element, rootMargin = 0.2) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const useVisible = (element, rootMargin=0.2) => {
         }
 
         return () => {
-            if(observer && element.current){
+            if (observer && element.current) {
                 observer.unobserve(element.current)
             }
         }

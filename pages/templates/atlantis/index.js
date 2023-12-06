@@ -1,5 +1,5 @@
 import React from 'react';
-import ApolloPlayIcon from './ApolloPlayIcon';
+import AtlantisPlayIcon from './AtlantisPlayIcon';
 import TemplateYoutube from '@/components/templates/TemplateYoutube';
 import TemplateFeaturesType1 from '@/components/templates/TemplateFeaturesType1';
 import TemplateFeaturesType2 from '@/components/templates/TemplateFeaturesType2';
@@ -8,29 +8,12 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 
-const apolloFeatures1Data = [
-    {
-        src: "/images/templates/apollo/apollo-features1-feature1.png",
-        title: "Ready to Use Applications",
-        description: "Mail, File System, Tasks, Calendar, Blog and Chat are the sample applications to get started with ease."
-    },
-    {
-        src: "/images/templates/apollo/apollo-features1-feature2.png",
-        title: "E-Commerce Pages",
-        description: "Apollo offers E-commerce pages to kickstart your e-commerce project powered by PrimeBlocks."
-    },
-    {
-        src: "/images/templates/apollo/apollo-features1-feature3.png",
-        title: "Ready to Use Pages",
-        description: "Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app."
-    },
-]
 
 const apolloFeatures2Data = [
     {
         title: "Fully Responsive",
         description: "Apollo is crafted to provide optimal viewing and interaction experience for a wide range of devices.",
-        src: "/images/templates/apollo/apollo-features2-responsive.png"
+        src: "/images/templates/atlantis/atlantis-features2-responsive.png"
     },
     {
         title: "Cross Browser Compatible",
@@ -48,14 +31,14 @@ const apolloFeatures2Data = [
         src: "/images/templates/apollo/apollo-features2-customizable.png"
     },
     {
-        title: "Top Notch Quality",
-        description: "Superior standards with 100% compatibility for strict mode and linting tools.",
-        src: "/images/templates/apollo/apollo-features2-quality.png"
+        title: "Ready to Use Pages",
+        description: "Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app.",
+        src: "/images/templates/atlantis/atlantis-features2-ready.png"
     },
     {
         title: "Mobile Experience",
         description: "Touch optimized enhanced mobile experience with responsive design.",
-        src: "/images/templates/apollo/apollo-features2-mobile.png"
+        src: "/images/templates/atlantis/atlantis-features2-mobile.png"
     }
 ];
 
@@ -104,98 +87,90 @@ const animationFeaturesData1 = [
 const animationFeaturesData2 = [
     {
         id: 1,
-        title: "Light / Dark / Dim Modes",
-        description: "Apollo has 3 display modes to choose from; Light, Dim and Dark.",
-        src: "/images/templates/apollo/features-animation-darkmode.png"
+        title: "Light and Dark Modes",
+        description: "The stunning dark and light modes will impress your users.",
+        src: "/images/templates/atlantis/features-animation-darkmode.png"
     },
     {
         id: 2,
         title: "Component Themes",
-        description: "Apollo offers 24 built-in component themes and creating your own theme is a matter of defining couple of sass variables.",
-        src: "/images/templates/apollo/features-animation-component-themes.png"
+        description: "Atlantis offers 16 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.",
+        src: "/images/templates/atlantis/features-animation-component-themes.png"
     },
     {
         id: 3,
         title: "7 Menu Orientations",
         description: "Static, Overlay, Slim, Slim+, Reveal, Drawer and Horizontal are the available menu layouts depending on your preference.",
-        src: "/images/templates/apollo/features-animation-orientations.png",
+        src: "/images/templates/atlantis/features-animation-orientations.png",
         type: "inline-animation",
         inlineFeaturesData: [
             {
                 id: 1,
                 title: "Static",
-                src: "/images/templates/apollo/Static.png",
+                src: "/images/templates/atlantis/Static.png",
             },
             {
                 id: 2,
                 title: "Slim",
-                src: "/images/templates/apollo/Slim.png",
+                src: "/images/templates/atlantis/Slim.png",
             },
             {
                 id: 3,
                 title: "Reveal",
-                src: "/images/templates/apollo/Reveal.png",
+                src: "/images/templates/atlantis/Reveal.png",
             },
             {
                 id: 4,
                 title: "Horizontal",
-                src: "/images/templates/apollo/Horizontal.png",
+                src: "/images/templates/atlantis/Horizontal.png",
             },
             {
                 id: 5,
                 title: "Overlay",
-                src: "/images/templates/apollo/Overlay.png",
+                src: "/images/templates/atlantis/Overlay.png",
             },
             {
                 id: 6,
                 title: "Slim+",
-                src: "/images/templates/apollo/Slim+.png",
+                src: "/images/templates/atlantis/Slim+.png",
             },
             {
                 id: 7,
                 title: "Drawer",
-                src: "/images/templates/apollo/Drawer.png",
+                src: "/images/templates/atlantis/Drawer.png",
             },
         ],
     },
-    {
-        id: 4,
-        title: "Menu Themes",
-        description: "Stunning theming for the main menu with 3 alternatives; Color Scheme, Primary Color and Transparent.",
-        src: "/images/templates/apollo/features-animation-menu-themes.png"
-    },
 ]
 
-const ApolloSeparator = () => {
+const AtlantisSeperator = () => {
     return (
         <TemplateSeparator separatorLogo={
             <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" fill="white" />
-                <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" stroke="#DFE7EF" />
-                <path d="M22.3576 34.2499L19.6471 28.2974L17.2754 34.2499H22.3576Z" fill="#212121" />
-                <path d="M27.8454 28.2974L30.5559 34.2499H25.4736L27.8454 28.2974Z" fill="#212121" />
-                <path d="M24.0043 10.25L12.001 34.187H16.0501L24.0048 17.1962L31.7995 34.187H36.009L24.0043 10.25Z" fill="#212121" />
+                <rect x="0.5" y="1" width="47" height="47" rx="23.5" fill="white" />
+                <rect x="0.5" y="1" width="47" height="47" rx="23.5" stroke="#DFE7EF" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.736 16.7144C18.5426 24.1391 29.4206 24.1338 30.2244 16.7144C27.4389 16.4579 25.0833 14.6946 23.9802 12.25C22.8772 14.6946 20.5216 16.4579 17.736 16.7144ZM23.2804 23.6609C23.0374 26.3486 20.8981 28.6944 18.2461 29.186C14.6619 29.9314 11.1098 27.2517 10.792 23.6609C13.5776 23.4044 15.9332 21.6411 17.0362 19.1965C18.1312 21.6598 20.591 23.4338 23.2804 23.6609ZM30.2244 30.6073C29.904 33.7706 27.2252 36.25 23.9802 36.25C20.7353 36.25 18.0565 33.7706 17.736 30.6073C20.4255 30.3802 22.8852 28.6062 23.9802 26.1429C25.0752 28.6062 27.535 30.3802 30.2244 30.6073ZM37.1683 23.6609C36.8478 27.0219 33.7737 29.6108 30.3525 29.2768C27.436 29.0551 24.9362 26.5757 24.6798 23.6609C27.3693 23.4338 29.829 21.6598 30.924 19.1965C32.0271 21.6411 34.3827 23.4044 37.1683 23.6609Z" fill="#212121" />
             </svg>
         } />
     )
 }
 
-const ApolloPage = () => {
+const AtlantisPage = () => {
 
     return (
-        <div className='apollo'>
-            <div className='apollo-hero'>
-                <img className='apollo-hero-pattern' src='/images/templates/apollo/apollo-hero-pattern.png' alt='Apollo Pattern' />
-                <img className='apollo-hero-rectangle1' src='/images/templates/apollo/apollo-hero-rectangle1.png' alt='Apollo Pattern' />
-                <img className='apollo-hero-light' src='/images/templates/apollo/apollo-hero-light.png' alt='Apollo Pattern' />
-                <div className='apollo-hero-card'>
-                    <img className='apollo-hero-card-logo' src='/images/templates/apollo/apollo-hero-logo.svg' alt='Apollo Logo' />
+        <div className='atlantis'>
+            <div className='atlantis-hero'>
+                <img className='atlantis-hero-pattern' src='/images/templates/atlantis/atlantis-hero-pattern.png' alt='Apollo Pattern' />
+                <img className='atlantis-hero-rectangle1' src='/images/templates/atlantis/atlantis-hero-rectangle1.png' alt='Apollo Pattern' />
+                <img className='atlantis-hero-light' src='/images/templates/atlantis/atlantis-hero-light.png' alt='Apollo Pattern' />
+                <div className='atlantis-hero-card'>
+                    <img className='atlantis-hero-card-logo' src='/images/templates/atlantis/atlantis-hero-logo.svg' alt='Apollo Logo' />
                     <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
-                    <div className='apollo-hero-card-buttons'>
-                        <button className='apollo-hero-card-buttons-btn1'>Live Demo</button>
-                        <button className='apollo-hero-card-buttons-btn2'>Buy Now</button>
+                    <div className='atlantis-hero-card-buttons'>
+                        <button className='atlantis-hero-card-buttons-btn1'>Live Demo</button>
+                        <button className='atlantis-hero-card-buttons-btn2'>Buy Now</button>
                     </div>
-                    <div className='apollo-hero-card-links'>
+                    <div className='atlantis-hero-card-links'>
                         <a href='#'>
                             <i className="pi pi-github" style={{ fontSize: '1rem' }}></i>
                             <span>Get Support</span>
@@ -206,25 +181,23 @@ const ApolloPage = () => {
                         </a>
                     </div>
                 </div>
-                <img className='apollo-hero-dashboard1' src='/images/templates/apollo/apollo-hero-dashboard1.png' alt='Dashboard Image 1' />
-                <img className='apollo-hero-dashboard2' src='/images/templates/apollo/apollo-hero-dashboard2.png' alt='Dashboard Image 2' />
+                <img className='atlantis-hero-dashboard1' src='/images/templates/atlantis/atlantis-hero-dashboard1.png' alt='Dashboard Image 1' />
+                <img className='atlantis-hero-dashboard2' src='/images/templates/atlantis/atlantis-hero-dashboard2.png' alt='Dashboard Image 2' />
             </div>
-            <ApolloSeparator />
-            <TemplateYoutube playIcon={<ApolloPlayIcon />} imgSrc={"/images/templates/apollo/apollo-youtube-screen.png"} />
-            <ApolloSeparator />
+            <AtlantisSeperator />
+            <TemplateYoutube playIcon={<AtlantisPlayIcon />} imgSrc={"/images/templates/atlantis/atlantis-youtube-screen.png"} />
+            <AtlantisSeperator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]}/>
-            <ApolloSeparator />
-            <TemplateFeaturesType1 featuresData={apolloFeatures1Data} />
-            <ApolloSeparator />
-            <TemplateConfiguration title='Angular with CLI' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
-            <ApolloSeparator />
+            <AtlantisSeperator />
+            <TemplateConfiguration title='Vue.js App with No Configuration' configType='VUE' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
+            <AtlantisSeperator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData1} />
-            <ApolloSeparator />
+            <AtlantisSeperator />
             <TemplateFeaturesType2 featuresData={apolloFeatures2Data} />
-            <ApolloSeparator />
+            <AtlantisSeperator />
             <TemplateRelated relatedData={apolloRelatedData} />
         </div>
     );
 };
 
-export default ApolloPage;
+export default AtlantisPage;
