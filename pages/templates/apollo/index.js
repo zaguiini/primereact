@@ -7,6 +7,7 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
+import TemplateHero from '@/components/templates/TemplateHero';
 
 const apolloFeatures1Data = [
     {
@@ -183,36 +184,20 @@ const ApolloSeparator = () => {
 const ApolloPage = () => {
 
     return (
-        <div className='apollo'>
-            <div className='apollo-hero'>
-                <img className='apollo-hero-pattern' src='/images/templates/apollo/apollo-hero-pattern.png' alt='Apollo Pattern' />
-                <img className='apollo-hero-rectangle1' src='/images/templates/apollo/apollo-hero-rectangle1.png' alt='Apollo Pattern' />
-                <img className='apollo-hero-light' src='/images/templates/apollo/apollo-hero-light.png' alt='Apollo Pattern' />
-                <div className='apollo-hero-card'>
-                    <img className='apollo-hero-card-logo' src='/images/templates/apollo/apollo-hero-logo.svg' alt='Apollo Logo' />
-                    <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
-                    <div className='apollo-hero-card-buttons'>
-                        <button className='apollo-hero-card-buttons-btn1'>Live Demo</button>
-                        <button className='apollo-hero-card-buttons-btn2'>Buy Now</button>
-                    </div>
-                    <div className='apollo-hero-card-links'>
-                        <a href='#'>
-                            <i className="pi pi-github" style={{ fontSize: '1rem' }}></i>
-                            <span>Get Support</span>
-                        </a>
-                        <a href='#'>
-                            <i className="pi pi-book" style={{ fontSize: '1rem' }}></i>
-                            <span>Read Doc</span>
-                        </a>
-                    </div>
-                </div>
-                <img className='apollo-hero-dashboard1' src='/images/templates/apollo/apollo-hero-dashboard1.png' alt='Dashboard Image 1' />
-                <img className='apollo-hero-dashboard2' src='/images/templates/apollo/apollo-hero-dashboard2.png' alt='Dashboard Image 2' />
-            </div>
+        <div className='apollo template'>
+            <TemplateHero
+                pattern={"/images/templates/apollo/apollo-hero-pattern.png"}
+                rectangle={"/images/templates/apollo/apollo-hero-rectangle1.png"}
+                light={"/images/templates/apollo/apollo-hero-light.png"}
+                logo={"/images/templates/apollo/apollo-hero-logo.svg"}
+                dashboard1={'/images/templates/apollo/apollo-hero-dashboard1.png'}
+                dashboard2={'/images/templates/apollo/apollo-hero-dashboard2.png'}
+                liveHref={"https://apollo.primereact.org"}
+            />
             <ApolloSeparator />
             <TemplateYoutube playIcon={<ApolloPlayIcon />} imgSrc={"/images/templates/apollo/apollo-youtube-screen.png"} />
             <ApolloSeparator />
-            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]}/>
+            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the", "Apolla template gives you"]} />
             <ApolloSeparator />
             <TemplateFeaturesType1 featuresData={apolloFeatures1Data} />
             <ApolloSeparator />

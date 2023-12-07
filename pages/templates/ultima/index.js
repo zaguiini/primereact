@@ -7,6 +7,7 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
+import TemplateHero from '@/components/templates/TemplateHero';
 
 
 const apolloFeatures2Data = [
@@ -107,37 +108,37 @@ const animationFeaturesData2 = [
             {
                 id: 1,
                 title: "Static",
-                src: "/images/templates/atlantis/Static.png",
+                src: "/images/templates/ultima/Static.png",
             },
             {
                 id: 2,
                 title: "Slim",
-                src: "/images/templates/atlantis/Slim.png",
+                src: "/images/templates/ultima/Slim.png",
             },
             {
                 id: 3,
                 title: "Reveal",
-                src: "/images/templates/atlantis/Reveal.png",
+                src: "/images/templates/ultima/Reveal.png",
             },
             {
                 id: 4,
                 title: "Horizontal",
-                src: "/images/templates/atlantis/Horizontal.png",
+                src: "/images/templates/ultima/Horizontal.png",
             },
             {
                 id: 5,
                 title: "Overlay",
-                src: "/images/templates/atlantis/Overlay.png",
+                src: "/images/templates/ultima/Overlay.png",
             },
             {
                 id: 6,
                 title: "Slim+",
-                src: "/images/templates/atlantis/Slim+.png",
+                src: "/images/templates/ultima/Slim+.png",
             },
             {
                 id: 7,
                 title: "Drawer",
-                src: "/images/templates/atlantis/Drawer.png",
+                src: "/images/templates/ultima/Drawer.png",
             },
         ],
     },
@@ -158,32 +159,16 @@ const UltimaSeperator = () => {
 const UltimaPage = () => {
 
     return (
-        <div className='ultima'>
-            <div className='ultima-hero'>
-                <img className='ultima-hero-pattern' src='/images/templates/ultima/ultima-hero-pattern.png' alt='Apollo Pattern' />
-                <img className='ultima-hero-rectangle1' src='/images/templates/ultima/ultima-hero-rectangle1.png' alt='Apollo Pattern' />
-                <img className='ultima-hero-light' src='/images/templates/ultima/ultima-hero-light.png' alt='Apollo Pattern' />
-                <div className='ultima-hero-card'>
-                    <img className='atlantis-hero-card-logo' src='/images/templates/ultima/ultima-hero-logo.svg' alt='Apollo Logo' />
-                    <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
-                    <div className='ultima-hero-card-buttons'>
-                        <button className='ultima-hero-card-buttons-btn1'>Live Demo</button>
-                        <button className='ultima-hero-card-buttons-btn2'>Buy Now</button>
-                    </div>
-                    <div className='ultima-hero-card-links'>
-                        <a href='#'>
-                            <i className="pi pi-github" style={{ fontSize: '1rem' }}></i>
-                            <span>Get Support</span>
-                        </a>
-                        <a href='#'>
-                            <i className="pi pi-book" style={{ fontSize: '1rem' }}></i>
-                            <span>Read Doc</span>
-                        </a>
-                    </div>
-                </div>
-                <img className='ultima-hero-dashboard1' src='/images/templates/ultima/ultima-hero-dashboard1.png' alt='Dashboard Image 1' />
-                <img className='ultima-hero-dashboard2' src='/images/templates/ultima/ultima-hero-dashboard2.png' alt='Dashboard Image 2' />
-            </div>
+        <div className='ultima template'>
+            <TemplateHero
+                pattern={"/images/templates/ultima/ultima-hero-pattern.png"}
+                rectangle={"/images/templates/ultima/ultima-hero-rectangle1.png"}
+                light={"/images/templates/ultima/ultima-hero-light.png"}
+                logo={"/images/templates/ultima/ultima-hero-logo.svg"}
+                dashboard1={'/images/templates/ultima/ultima-hero-dashboard1.png'}
+                dashboard2={'/images/templates/ultima/ultima-hero-dashboard2.png'}
+                liveHref={"https://ultima.primereact.org"}
+            />
             <UltimaSeperator />
             <TemplateYoutube playIcon={<UltimaPlayIcon />} imgSrc={"/images/templates/ultima/ultima-youtube-screen.png"} />
             <UltimaSeperator />

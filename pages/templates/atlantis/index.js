@@ -7,6 +7,7 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
+import TemplateHero from '@/components/templates/TemplateHero';
 
 
 const apolloFeatures2Data = [
@@ -26,8 +27,8 @@ const apolloFeatures2Data = [
         src: "/images/templates/apollo/apollo-features2-lifetime.png"
     },
     {
-        title: "Customizable Design",
-        description: "Fully customizable with a mixture of Sass and CSS variables.",
+        title: "Full SaSS Support",
+        description: "Sass is utilized for both the application and components to provide simplicity and flexibility.",
         src: "/images/templates/apollo/apollo-features2-customizable.png"
     },
     {
@@ -45,7 +46,7 @@ const apolloFeatures2Data = [
 const apolloRelatedData = [
     {
         src: "/images/templates/related-atlantis.png",
-        href: ""
+        href: "/templates/atlantis"
     },
     {
         src: "/images/templates/related-avalon.png",
@@ -53,7 +54,7 @@ const apolloRelatedData = [
     },
     {
         src: "/images/templates/related-diamond.png",
-        href: ""
+        href: "/templates/diamond"
     },
 ]
 
@@ -158,32 +159,16 @@ const AtlantisSeperator = () => {
 const AtlantisPage = () => {
 
     return (
-        <div className='atlantis'>
-            <div className='atlantis-hero'>
-                <img className='atlantis-hero-pattern' src='/images/templates/atlantis/atlantis-hero-pattern.png' alt='Apollo Pattern' />
-                <img className='atlantis-hero-rectangle1' src='/images/templates/atlantis/atlantis-hero-rectangle1.png' alt='Apollo Pattern' />
-                <img className='atlantis-hero-light' src='/images/templates/atlantis/atlantis-hero-light.png' alt='Apollo Pattern' />
-                <div className='atlantis-hero-card'>
-                    <img className='atlantis-hero-card-logo' src='/images/templates/atlantis/atlantis-hero-logo.svg' alt='Apollo Logo' />
-                    <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
-                    <div className='atlantis-hero-card-buttons'>
-                        <button className='atlantis-hero-card-buttons-btn1'>Live Demo</button>
-                        <button className='atlantis-hero-card-buttons-btn2'>Buy Now</button>
-                    </div>
-                    <div className='atlantis-hero-card-links'>
-                        <a href='#'>
-                            <i className="pi pi-github" style={{ fontSize: '1rem' }}></i>
-                            <span>Get Support</span>
-                        </a>
-                        <a href='#'>
-                            <i className="pi pi-book" style={{ fontSize: '1rem' }}></i>
-                            <span>Read Doc</span>
-                        </a>
-                    </div>
-                </div>
-                <img className='atlantis-hero-dashboard1' src='/images/templates/atlantis/atlantis-hero-dashboard1.png' alt='Dashboard Image 1' />
-                <img className='atlantis-hero-dashboard2' src='/images/templates/atlantis/atlantis-hero-dashboard2.png' alt='Dashboard Image 2' />
-            </div>
+        <div className='atlantis template'>
+            <TemplateHero
+                pattern={"/images/templates/atlantis/atlantis-hero-pattern.png"}
+                rectangle={"/images/templates/atlantis/atlantis-hero-rectangle1.png"}
+                light={"/images/templates/atlantis/atlantis-hero-light.png"}
+                logo={"/images/templates/atlantis/atlantis-hero-logo.svg"}
+                dashboard1={'/images/templates/atlantis/atlantis-hero-dashboard1.png'}
+                dashboard2={'/images/templates/atlantis/atlantis-hero-dashboard2.png'}
+                liveHref={"https://www.primefaces.org/atlantis-react/"}
+            />
             <AtlantisSeperator />
             <TemplateYoutube playIcon={<AtlantisPlayIcon />} imgSrc={"/images/templates/atlantis/atlantis-youtube-screen.png"} />
             <AtlantisSeperator />

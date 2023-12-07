@@ -7,13 +7,14 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
+import TemplateHero from '@/components/templates/TemplateHero';
 
 
 const apolloFeatures2Data = [
     {
         title: "Fully Responsive",
         description: "Apollo is crafted to provide optimal viewing and interaction experience for a wide range of devices.",
-        src: "/images/templates/ultima/ultima-features2-responsive.png"
+        src: "/images/templates/verona/verona-features2-responsive.png"
     },
     {
         title: "Cross Browser Compatible",
@@ -33,12 +34,12 @@ const apolloFeatures2Data = [
     {
         title: "Ready to Use Pages",
         description: "Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app.",
-        src: "/images/templates/ultima/ultima-features2-ready.png"
+        src: "/images/templates/verona/verona-features2-ready.png"
     },
     {
         title: "Mobile Experience",
         description: "Touch optimized enhanced mobile experience with responsive design.",
-        src: "/images/templates/ultima/ultima-features2-mobile.png"
+        src: "/images/templates/verona/verona-features2-mobile.png"
     }
 ];
 
@@ -89,57 +90,48 @@ const animationFeaturesData2 = [
         id: 1,
         title: "Light and Dark Modes",
         description: "The stunning dark and light modes will impress your users.",
-        src: "/images/templates/ultima/features-animation-darkmode.png"
+        src: "/images/templates/verona/features-animation-darkmode.png"
     },
     {
         id: 2,
         title: "Component Themes",
-        description: "Atlantis offers 16 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.",
-        src: "/images/templates/ultima/features-animation-component-themes.png"
+        description: "Verona offers 20 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.",
+        src: "/images/templates/verona/features-animation-component-themes.png"
     },
     {
         id: 3,
         title: "7 Menu Orientations",
-        description: "Static, Overlay, Slim, Slim+, Reveal, Drawer and Horizontal are the available menu layouts depending on your preference.",
-        src: "/images/templates/atlantis/features-animation-orientations.png",
+        description: "Choose from Static and Slim menu orientations.",
+        src: "/images/templates/verona/features-animation-orientations.png",
         type: "inline-animation",
         inlineFeaturesData: [
             {
                 id: 1,
                 title: "Static",
-                src: "/images/templates/atlantis/Static.png",
+                src: "/images/templates/verona/Static.png",
             },
             {
                 id: 2,
                 title: "Slim",
-                src: "/images/templates/atlantis/Slim.png",
+                src: "/images/templates/verona/Slim.png",
             },
             {
                 id: 3,
-                title: "Reveal",
-                src: "/images/templates/atlantis/Reveal.png",
+                title: "Slim+",
+                src: "/images/templates/verona/Slim+.png",
             },
             {
                 id: 4,
-                title: "Horizontal",
-                src: "/images/templates/atlantis/Horizontal.png",
-            },
-            {
-                id: 5,
                 title: "Overlay",
-                src: "/images/templates/atlantis/Overlay.png",
-            },
-            {
-                id: 6,
-                title: "Slim+",
-                src: "/images/templates/atlantis/Slim+.png",
-            },
-            {
-                id: 7,
-                title: "Drawer",
-                src: "/images/templates/atlantis/Drawer.png",
+                src: "/images/templates/verona/Overlay.png",
             },
         ],
+    },
+    {
+        id: 4,
+        title: "Layout Themes",
+        description: "Verona offers 23 special layout themes featuring gorgeous gradients.",
+        src: "/images/templates/verona/features-animation-orientations.png"
     },
 ]
 
@@ -212,36 +204,20 @@ const VeronaSeperator = () => {
 const UltimaPage = () => {
 
     return (
-        <div className='verona'>
-            <div className='verona-hero'>
-                <img className='verona-hero-pattern' src='/images/templates/verona/verona-hero-pattern.png' alt='Apollo Pattern' />
-                <img className='verona-hero-rectangle1' src='/images/templates/verona/verona-hero-rectangle1.png' alt='Apollo Pattern' />
-                <img className='verona-hero-light' src='/images/templates/verona/verona-hero-light.png' alt='Apollo Pattern' />
-                <div className='verona-hero-card'>
-                    <img className='verona-hero-card-logo' src='/images/templates/verona/verona-hero-logo.svg' alt='Apollo Logo' />
-                    <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
-                    <div className='verona-hero-card-buttons'>
-                        <button className='verona-hero-card-buttons-btn1'>Live Demo</button>
-                        <button className='verona-hero-card-buttons-btn2'>Buy Now</button>
-                    </div>
-                    <div className='verona-hero-card-links'>
-                        <a href='#'>
-                            <i className="pi pi-github" style={{ fontSize: '1rem' }}></i>
-                            <span>Get Support</span>
-                        </a>
-                        <a href='#'>
-                            <i className="pi pi-book" style={{ fontSize: '1rem' }}></i>
-                            <span>Read Doc</span>
-                        </a>
-                    </div>
-                </div>
-                <img className='verona-hero-dashboard1' src='/images/templates/verona/verona-hero-dashboard1.png' alt='Dashboard Image 1' />
-                <img className='verona-hero-dashboard2' src='/images/templates/verona/verona-hero-dashboard2.png' alt='Dashboard Image 2' />
-            </div>
+        <div className='verona template'>
+            <TemplateHero
+                pattern={"/images/templates/verona/verona-hero-pattern.png"}
+                rectangle={"/images/templates/verona/verona-hero-rectangle1.png"}
+                light={"/images/templates/verona/verona-hero-light.png"}
+                logo={"/images/templates/verona/verona-hero-logo.svg"}
+                dashboard1={'/images/templates/verona/verona-hero-dashboard1.png'}
+                dashboard2={'/images/templates/verona/verona-hero-dashboard2.png'}
+                liveHref={""}
+            />
             <VeronaSeperator />
             <TemplateYoutube playIcon={<VeronaPlayIcon />} imgSrc={"/images/templates/verona/verona-youtube-screen.png"} />
             <VeronaSeperator />
-            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]}/>
+            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]} animationSeconds={4000}/>
             <VeronaSeperator />
             <TemplateConfiguration title='Vue.js App with No Configuration' configType='VUE' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
             <VeronaSeperator />

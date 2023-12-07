@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import useAnimatedFeatures from './useAnimatedFeatures';
 
-const TemplateFeaturesAnimationInline = ({ inlineFeaturesData, parentHandleClick, parentID }) => {
+const TemplateFeaturesAnimationInline = ({ inlineFeaturesData, parentHandleClick, parentID , inlineSeconds =1000 }) => {
     const animationInlineRef = useRef(null)
-    const { selectedID, handleClick } = useAnimatedFeatures(animationInlineRef, inlineFeaturesData.length, 1000);
+    const { selectedID, handleClick } = useAnimatedFeatures(animationInlineRef, inlineFeaturesData.length, inlineSeconds);
 
     const handleBtnClick = (id) => {
         handleClick(id)

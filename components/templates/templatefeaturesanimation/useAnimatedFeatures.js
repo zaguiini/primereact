@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import useVisible from "./useVisible";
 
-const useAnimatedFeatures = (animationRef, arrayLength, seconds = 7000) => {
+const useAnimatedFeatures = (animationRef, arrayLength, seconds = 5000) => {
     const [selectedID, setSelectedID] = useState(1);
     const [intervalIds, setIntervalIds] = useState([]);
     const isVisible = useVisible(animationRef);
