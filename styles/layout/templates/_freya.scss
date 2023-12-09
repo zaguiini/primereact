@@ -1,15 +1,6 @@
 .freya {
     .template {
         &-hero {
-            background: #084A42;
-
-            &-card {
-                border: 1px solid rgba(255, 255, 255, 0.24);
-                background: linear-gradient(180deg, rgba(18, 253, 225, 0.00) 0%, rgba(18, 253, 225, 0.50) 100%), rgba(255, 255, 255, 0.10);
-                box-shadow: 0px 2px 4px 0px rgba(255, 255, 255, 0.24) inset, 0px 48px 80px 0px rgba(0, 0, 0, 0.08), 0px -5px 13px -2px rgba(255, 255, 255, 0.55) inset;
-                backdrop-filter: blur(1.5px);
-            }
-
             &-dashboard1 {
                 z-index: 4;
                 position: absolute;
@@ -34,26 +25,8 @@
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                z-index: 2;
-            }
-
-            &-rectangle1 {
-                width: 69.6875rem;
-                height: 35.375rem;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
+                z-index: 10;
                 mix-blend-mode: screen;
-            }
-
-            &-light {
-                width: 25.25rem;
-                height: 4rem;
-                position: absolute;
-                top: 0;
-                left: 12rem;
-                z-index: 3;
             }
         }
     }
@@ -80,25 +53,6 @@
                 &-pattern {
                     width: 70rem;
                     height: 30rem;
-                }
-
-                &-rectangle1 {
-                    height: 49.125rem;
-                    left: 10rem;
-                    position: absolute;
-                    top: 0;
-                    left: -10.125rem;
-                    z-index: 1;
-                }
-
-                &-light {
-                    width: 25.25rem;
-                    height: 6rem;
-                    position: absolute;
-                    top: 0;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    z-index: 3;
                 }
             }
         }

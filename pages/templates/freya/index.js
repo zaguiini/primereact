@@ -7,7 +7,7 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
-import TemplateHero from '@/components/templates/TemplateHero';
+import TemplateHero from '@/components/templates/templateHero/TemplateHero';
 
 
 const apolloFeatures2Data = [
@@ -148,9 +148,9 @@ const FreyaSeparator = () => {
     return (
         <TemplateSeparator separatorLogo={
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
-                <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" fill="white" />
-                <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" stroke="#DFE7EF" />
-                <path d="M14 12H21.1333V16.5881L34.2105 14V20L21.1333 22.5881V24.5881L34.2105 22V28L21.1333 30.5881V36H14V12Z" fill="#212121" />
+                <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" fill="var(--surface-card)" />
+                <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" stroke="var(--surface-border)" />
+                <path d="M14 12H21.1333V16.5881L34.2105 14V20L21.1333 22.5881V24.5881L34.2105 22V28L21.1333 30.5881V36H14V12Z" fill="var(--surface-900)" />
             </svg>
         } />
     )

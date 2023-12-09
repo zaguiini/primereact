@@ -1,4 +1,6 @@
 import React from 'react'
+import TemplateHeroRectangle from './TemplateHeroRectangle'
+import TemplateHeroLight from './TemplateHeroLight'
 
 const TemplateHero = ({
     logo,
@@ -12,14 +14,14 @@ const TemplateHero = ({
     return (
         <div className='template-hero'>
             {!!pattern && <img className='template-hero-pattern' src={pattern} alt='Template Hero Pattern' />}
-            {!!rectangle && <img className='template-hero-rectangle1' src={rectangle} alt='Template Hero Rectangle' />}
-            {!!light && <img className='template-hero-light' src={light} alt='Template Hero Light' />}
+            {!!light && <TemplateHeroLight/>}
+            {!!rectangle && <TemplateHeroRectangle/>}
             <div className='template-hero-card'>
                 <img className='template-hero-card-logo' src={logo} alt='Template Hero Logo' />
                 <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
                 <div className='template-hero-card-buttons'>
-                    <a href={liveHref} target='_blank' className='template-hero-card-buttons-btn1'>Live Demo</a>
-                    <a href='https://www.primefaces.org/store/' target='_blank' className='template-hero-card-buttons-btn2'>Buy Now</a>
+                    <a href={liveHref} target='_blank' className='template-hero-card-buttons-btn1 p-button'>Live Demo</a>
+                    <a href='https://www.primefaces.org/store/' target='_blank' className='template-hero-card-buttons-btn2 p-button'>Buy Now</a>
                 </div>
                 <div className='template-hero-card-links'>
                     <a href='#'>

@@ -9,7 +9,7 @@
     &-youtube {
         &-outer {
             padding: 5rem 0;
-            background-color: var(--surface-0);
+            background-color: var(--surface-card);
             border-radius: 2rem;
         }
 
@@ -66,7 +66,10 @@
             box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.02);
             cursor: pointer;
             position: relative;
-
+            background-color: var(--primary-100);
+            padding: 1.88rem 1.88rem 0;
+            border-radius: 1.5rem;
+            overflow: hidden;
             &-blur {
                 width: 100%;
                 position: absolute;
@@ -76,25 +79,33 @@
                 z-index: 4;
                 backdrop-filter: blur(1.4px);
                 background: rgba(255, 255, 255, 0.06);
-                border-radius: 2rem;
+                border-radius: inherit;
             }
-
+            &:hover &-play svg{
+                transform: scale(1.6);
+            }
             &-play {
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
                 z-index: 5;
-
+                transform-origin: center;
+                
                 svg {
                     width: 180px;
                     height: 180px;
+                    transition: all 0.2s ease;
                 }
             }
 
             img {
                 width: 100%;
                 height: auto;
+                border-top-right-radius: 1rem;
+                border-top-left-radius: 1rem;
+                margin-bottom: -0.25rem;
+                box-shadow: 0px 0px 120px 0px rgba(0, 0, 0, 0.08);
             }
         }
     }
@@ -126,7 +137,8 @@
 
             &-screen {
                 width: 90%;
-
+                padding: 1.25rem 1.25rem 0;
+                border-radius: 1rem;
                 &-blur {
                     backdrop-filter: blur(0.5px);
                 }
@@ -136,6 +148,10 @@
                         width: 100px;
                         height: 100px;
                     }
+                }
+                img {
+                    border-top-right-radius: 0.5rem;
+                    border-top-left-radius: 0.5rem;
                 }
             }
         }
@@ -148,7 +164,7 @@
         &-outer {
             padding: 5rem 0;
             border-radius: 2rem;
-            background: var(--surface-0, #FFF);
+            background: var(--surface-card, #FFF);
         }
 
         display: flex;
@@ -159,7 +175,7 @@
         &-card {
             padding: 1.25rem;
             border-radius: 1.3125rem;
-            border: 1px solid var(--surface-200, #EEE);
+            border: 1px solid var(--surface-border, #EEE);
             background: var(--surface-0, #FFF);
             width: 21.125rem;
 
@@ -227,7 +243,7 @@
         &-outer {
             padding: 7rem 0;
             border-radius: 2rem;
-            background: var(--surface-0, #FFF);
+            background: var(--surface-card, #FFF);
         }
 
         margin: 0 auto;
@@ -242,7 +258,7 @@
             width: 25.625rem;
             padding: 1.25rem;
             border-radius: 1.3125rem;
-            border: 1px solid var(--surface-200);
+            border: 1px solid var(--surface-border);
             background: var(--surface-0);
 
             &-image {
@@ -327,7 +343,7 @@
         &-outer {
             padding: 5rem 0;
             border-radius: 2rem;
-            background: var(--surface-0, #FFF);
+            background: var(--surface-card, #FFF);
         }
 
         &-title {
@@ -345,7 +361,7 @@
 
             &-card {
                 border-radius: 1.3125rem;
-                border: 1px solid var(--surface-200, #EEE);
+                border: 1px solid var(--surface-border, #EEE);
                 background: var(--surface-0, #FFF);
                 padding: 1.25rem;
 
@@ -400,12 +416,12 @@
         &-outer {
             padding: 5rem 0;
             border-radius: 2rem;
-            background: var(--surface-0, #FFF);
+            background: var(--surface-card, #FFF);
         }
 
         padding: 2rem;
         border-radius: 1.75rem;
-        border: 1px solid var(--surface-200, #EEE);
+        border: 1px solid var(--surface-border, #EEE);
         background: var(--surface-0, #FFF);
         width: 49.25rem;
         margin: 0 auto;
@@ -540,7 +556,7 @@
     &-features-animation {
         &-outer {
             border-radius: 2rem;
-            background: var(--surface-0, #FFF);
+            background: var(--surface-card, #FFF);
             padding: 5rem 0;
         }
 
@@ -564,7 +580,7 @@
         margin: 0 auto;
         padding: 1.75rem;
         border-radius: 1.75rem;
-        border: 1px solid var(--surface-200, #EEE);
+        border: 1px solid var(--surface-border, #EEE);
         width: fit-content;
 
         &-left {
@@ -756,7 +772,7 @@
     &-hero {
         width: 100%;
         height: 36.25rem;
-        background: #1D1D1D;
+        background: var(--primary-600);
         border-radius: 2rem;
         position: relative;
         overflow: hidden;
@@ -769,7 +785,7 @@
             margin-top: 9.81rem;
             border-radius: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.24);
-            background: linear-gradient(180deg, rgba(170, 140, 255, 0.00) 0%, rgba(170, 140, 255, 0.80) 100%), rgba(255, 255, 255, 0.10);
+            background: linear-gradient(180deg, rgba(170, 140, 255, 0.00) 0%, var(--primary-600)/0.8 100%), rgba(255, 255, 255, 0.10);
             box-shadow: 0px 2px 4px 0px rgba(255, 255, 255, 0.24) inset, 0px 48px 80px 0px rgba(0, 0, 0, 0.08), 0px -5px 13px -2px rgba(255, 255, 255, 0.55) inset;
             backdrop-filter: blur(2px);
             padding: 2.25rem 1.75rem;
@@ -813,20 +829,11 @@
                     background: #212121;
 
                     &:hover {
-                        border-color: #2563EB;
-                        background-color: #2563EB;
+                        border-color: #383838;
+                        background-color: #383838;
                     }
                 }
 
-                &-btn2 {
-                    border: 1px solid #3B82F6;
-                    background: #3B82F6;
-
-                    &:hover {
-                        background-color: #2563EB;
-                        border-color: #2563EB;
-                    }
-                }
             }
 
             &-links {
@@ -850,7 +857,18 @@
                 }
             }
         }
-
+        &-rectangle{
+            position: absolute;
+            top: 0rem;
+            left: 0rem;
+            z-index: 4;
+        }
+        &-light{
+            position: absolute;
+            top: 0rem;
+            left: 6rem;
+            z-index: 5;
+        }
     }
 
 }
@@ -871,6 +889,14 @@
                 &-links {
                     justify-content: center;
                 }
+            }
+            &-rectangle{
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &-light{
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
 
