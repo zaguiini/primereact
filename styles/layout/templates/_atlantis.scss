@@ -2,32 +2,13 @@
 
     .template {
         &-hero {
-
-            &-dashboard1 {
-                z-index: 3;
-                position: absolute;
-                top: 2.02rem;
-                left: 60rem;
-                width: 37.875rem;
-                box-shadow: 0px 0px 43.64997px 0px rgba(0, 0, 0, 0.12);
-            }
-
-            &-dashboard2 {
-                z-index: 2;
-                position: absolute;
-                top: 2.02rem;
-                left: 42rem;
-                width: 37.875rem;
-                box-shadow: 0px 0px 43.64997px 0px rgba(0, 0, 0, 0.12);
-            }
-
             &-pattern {
                 width: 98rem;
                 height: 36rem;
                 position: absolute;
                 bottom: -0.75rem;
                 left: 2rem;
-                z-index: 12;
+                z-index: 6;
                 mix-blend-mode: overlay;
             }
         }
@@ -35,22 +16,25 @@
 
 }
 
-@include mobile {
+@media only screen and (max-width: 1200px) {
     .atlantis {
         .template{
             &-hero {
-                &-dashboard1 {
-                    top: 28.5rem;
-                    left: 12rem;
-                    width: 28rem;
+                &-pattern {
+                    width: 90rem;
+                    bottom: -5.75rem;
+                    left: 0.5rem;
                 }
-    
-                &-dashboard2 {
-                    top: 28.5rem;
-                    left: 1.5rem;
-                    width: 28rem;
-                }
-    
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .atlantis {
+        .template{
+            &-hero {
                 &-pattern {
                     width: 90rem;
                     bottom: 14.75rem;

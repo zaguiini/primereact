@@ -219,7 +219,7 @@ const UltimaPage = () => {
             <VeronaSeperator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]} animationSeconds={4000}/>
             <VeronaSeperator />
-            <TemplateConfiguration title='Vue.js App with No Configuration' configType='VUE' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
+            <TemplateConfiguration title='Vue.js App with No Configuration' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
             <VeronaSeperator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData1} />
             <VeronaSeperator />

@@ -3,7 +3,6 @@ import React from 'react'
 const TemplateConfiguration = ({
     title = "",
     description = "",
-    configType = "ANGULAR"
 }) => {
     return (
         <div className='template-configuration-outer'>
@@ -19,7 +18,7 @@ const TemplateConfiguration = ({
                         <p>&gt; ng new my-apollo-app</p>
                         <p>&gt; cd my-apollo-app</p>
                         <p>&gt; ng serve</p>
-                        <img className='template-configuration-screen-bottom-logo' src={configType==="VUE"?'/images/templates/vue-3d-logo.png':configType==="REACT"? '/images/templates/react-3d-logo.png':'/images/templates/angular-3d-logo.png'} alt='Angular 3D Logo' />
+                        <img className='template-configuration-screen-bottom-logo' src={'/images/templates/react-3d-logo.png'} alt='Angular 3D Logo' />
                     </div>
                 </div>
                 <h3 className='template-configuration-title'>{title}</h3>

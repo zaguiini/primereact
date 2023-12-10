@@ -2,31 +2,13 @@
     .template {
         &-hero {
 
-            &-dashboard1 {
-                z-index: 4;
-                position: absolute;
-                top: 2.02rem;
-                left: 60rem;
-                width: 37.875rem;
-                box-shadow: 0px 0px 43.64997px 0px rgba(0, 0, 0, 0.12);
-            }
-
-            &-dashboard2 {
-                z-index: 3;
-                position: absolute;
-                top: 2.02rem;
-                left: 42rem;
-                width: 37.875rem;
-                box-shadow: 0px 0px 43.64997px 0px rgba(0, 0, 0, 0.12);
-            }
-
             &-pattern {
                 width: 110rem;
                 height: auto;
                 position: absolute;
-                bottom: 0;
-                left: 0;
-                z-index: 21;
+                bottom: -2rem;
+                left: -1rem;
+                z-index: 6;
             }
 
         }
@@ -34,25 +16,30 @@
 
 }
 
-@include mobile {
+@media only screen and (max-width: 1200px) {
     .verona {
         .template {
             &-hero {
-                &-dashboard1 {
-                    top: 28.5rem;
-                    left: 12rem;
-                    width: 28rem;
-                }
-
-                &-dashboard2 {
-                    top: 28.5rem;
-                    left: 1.5rem;
-                    width: 28rem;
-                }
-
                 &-pattern {
                     width: 120rem;
                     left: -7.5rem;
+                    bottom: -10rem;
+                }
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .verona {
+        .template {
+            &-hero {
+
+                &-pattern {
+                    width: 124rem;
+                    left: -8.5rem;
+                    bottom: 0;
                 }
             }
         }

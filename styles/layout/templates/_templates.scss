@@ -70,6 +70,7 @@
             padding: 1.88rem 1.88rem 0;
             border-radius: 1.5rem;
             overflow: hidden;
+
             &-blur {
                 width: 100%;
                 position: absolute;
@@ -81,9 +82,11 @@
                 background: rgba(255, 255, 255, 0.06);
                 border-radius: inherit;
             }
-            &:hover &-play svg{
+
+            &:hover &-play svg {
                 transform: scale(1.6);
             }
+
             &-play {
                 position: absolute;
                 top: 50%;
@@ -91,7 +94,7 @@
                 transform: translateX(-50%) translateY(-50%);
                 z-index: 5;
                 transform-origin: center;
-                
+
                 svg {
                     width: 180px;
                     height: 180px;
@@ -111,7 +114,7 @@
     }
 }
 
-@include mobile {
+@media only screen and (max-width: 992px) {
     .template {
         &-youtube {
             &-outer {
@@ -139,6 +142,7 @@
                 width: 90%;
                 padding: 1.25rem 1.25rem 0;
                 border-radius: 1rem;
+
                 &-blur {
                     backdrop-filter: blur(0.5px);
                 }
@@ -149,6 +153,7 @@
                         height: 100px;
                     }
                 }
+
                 img {
                     border-top-right-radius: 0.5rem;
                     border-top-left-radius: 0.5rem;
@@ -162,12 +167,14 @@
 .template {
     &-features1 {
         &-outer {
-            padding: 5rem 0;
+            padding: 5rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
         }
 
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 1.5rem;
         margin: 0 auto;
         width: fit-content;
@@ -185,6 +192,7 @@
                 background: var(--surface-100, #FFF);
                 border-radius: 0.65625rem;
                 overflow: hidden;
+
                 img {
                     width: 100%;
                     border-radius: inherit;
@@ -214,34 +222,43 @@
     }
 }
 
-@include mobile {
+@media only screen and (max-width: 992px) {
     .template {
         &-features1 {
             &-outer {
-                padding: 1.5rem 0;
+                padding: 2rem 1.25rem;
                 border-radius: 1.25rem;
             }
 
-            width: 90%;
-            max-width: 24rem;
-
-            flex-direction: column;
-
             &-card {
                 padding: 1rem;
-                width: 100%;
                 border-radius: 1rem;
             }
         }
     }
 }
 
+@media only screen and (max-width: 576px) {
+    .template {
+        &-features1 {
+            &-outer {
+                padding: 1.5rem 1rem;
+            }
+
+            width: 98%;
+
+            &-card {
+                width: 100%;
+            }
+        }
+    }
+}
 
 // TEMPLATE FEATURES TYPE 2
 .template {
     &-features2 {
         &-outer {
-            padding: 7rem 0;
+            padding: 7rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
         }
@@ -250,23 +267,24 @@
         width: fit-content;
         display: flex;
         align-items: flex-start;
+        justify-content: center;
         flex-wrap: wrap;
-        width: 52.75rem;
+        width: fit-content;
         gap: 1.5rem;
 
         &-card {
-            width: 25.625rem;
+            width: 40%;
             padding: 1.25rem;
             border-radius: 1.3125rem;
             border: 1px solid var(--surface-border);
             background: var(--surface-0);
 
             &-image {
-                height: 15.125rem;
                 width: auto;
                 background: var(--surface-100);
                 border-radius: 0.65625rem;
-                img{
+
+                img {
                     border-radius: inherit;
                     width: 100%;
                     height: auto;
@@ -300,22 +318,20 @@
     }
 }
 
-@include mobile {
+@media only screen and (max-width: 992px) {
     .template {
         &-features2 {
             &-outer {
-                padding: 1.5rem 0;
+                padding: 2.5rem 1rem;
                 border-radius: 1.25rem;
             }
 
             width: 100%;
-            max-width: 40rem;
             align-items: center;
             justify-content: center;
 
             &-card {
-                width: 90%;
-                max-width: 24rem;
+                width: 40%;
                 padding: 1rem;
                 border-radius: 1rem;
 
@@ -326,12 +342,24 @@
                 }
 
                 &-withMargin {
-                    margin-top: 0;
+                    margin-top: 0rem;
                 }
-
+    
                 &-withoutMargin {
-                    margin-top: 0;
+                    margin-top: 0rem;
                 }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .template {
+        &-features2 {
+
+
+            &-card {
+                width: 90%;
             }
         }
     }
@@ -341,7 +369,7 @@
 .template {
     &-related {
         &-outer {
-            padding: 5rem 0;
+            padding: 5rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
         }
@@ -355,6 +383,9 @@
 
         &-slide {
             display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
             width: fit-content;
             margin: 3rem auto 0;
             gap: 1.5rem;
@@ -375,11 +406,11 @@
     }
 }
 
-@include mobile {
+@media only screen and (max-width: 992px) {
     .template {
         &-related {
             &-outer {
-                padding: 1.5rem 0;
+                padding: 2.5rem 1.25rem;
                 border-radius: 1.25rem;
             }
 
@@ -389,15 +420,15 @@
             }
 
             &-slide {
-                flex-direction: column;
                 gap: 2rem;
-                max-width: 24rem;
+
                 width: 90%;
                 margin: 2rem auto 0;
 
                 &-card {
                     border-radius: 1rem;
                     padding: 1rem;
+                    max-width: 24rem;
 
                     img {
                         width: 100%;
@@ -410,11 +441,32 @@
     }
 }
 
+@media only screen and (max-width: 576px) {
+    .template {
+        &-related {
+            &-outer {
+                padding: 1.5rem 1rem;
+            }
+
+            &-slide {
+                width: 98%;
+                max-width: 100%;
+                margin: 2rem auto 0;
+
+                &-card {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 // TEMPLATE CONFIGURATION
 .template {
     &-configuration {
         &-outer {
-            padding: 5rem 0;
+            padding: 5rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
         }
@@ -425,12 +477,6 @@
         background: var(--surface-0, #FFF);
         width: 49.25rem;
         margin: 0 auto;
-
-        @include mobile {
-            width: 21.9375rem;
-            padding: 1rem;
-            border-radius: 1rem;
-        }
 
         &-title {
             font-size: 1.53125rem;
@@ -503,29 +549,21 @@
                     position: absolute;
                     right: 1.5rem;
                     bottom: 1.38rem;
-
-                    @include mobile {
-                        width: 5.25rem;
-                        height: 5.25rem;
-                        right: 0.88rem;
-                        bottom: 0.88rem;
-                    }
                 }
             }
         }
     }
 }
 
-@include mobile {
+@media only screen and (max-width: 992px) {
     .template {
         &-configuration {
             &-outer {
-                padding: 1.5rem 0;
+                padding: 2.5rem 1.25rem;
                 border-radius: 1.25rem;
             }
 
-            width: 90%;
-            max-width: 24rem;
+            width: 80%;
             padding: 1rem;
             border-radius: 1rem;
 
@@ -539,6 +577,24 @@
                 &-bottom {
                     border-radius: 0rem 0rem 0.5rem 0.5rem;
 
+
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .template {
+        &-configuration {
+            &-outer {
+                padding: 1.5rem 1rem;
+            }
+
+            width: 98%;
+
+            &-screen {
+                &-bottom {
                     &-logo {
                         width: 5.25rem;
                         height: 5.25rem;
@@ -557,7 +613,7 @@
         &-outer {
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
-            padding: 5rem 0;
+            padding: 5rem 2rem;
         }
 
         &-title {
@@ -643,6 +699,7 @@
         &-right {
             width: 30rem;
             border-radius: 0.875rem;
+
             img {
                 width: 100%;
                 height: auto;
@@ -651,7 +708,6 @@
 
             &-inline {
                 width: 100%;
-                height: 100%;
                 border-radius: 0.75rem;
                 background: var(--surface-100);
                 position: relative;
@@ -662,14 +718,19 @@
 
                 &-image {
                     width: 90%;
-                    max-height: 22.25rem;
+                    height: 22.25rem;
                     overflow: hidden;
                     position: relative;
                     margin-top: 1.25rem;
                     border-radius: 0.5rem;
                     box-shadow: 0px 0px 48px 0px rgba(0, 0, 0, 0.08);
+                    overflow: hidden;
 
-                    img {}
+                    img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
                 }
 
                 &-tabs {
@@ -681,6 +742,7 @@
                     background: var(--surface-0);
                     padding: 0.25rem;
                     width: 90%;
+
                     button {
                         flex: 1;
                         width: 100%;
@@ -714,12 +776,27 @@
     }
 }
 
-@include mobile {
+@media only screen and (max-width: 1400px) {
+    .template {
+        &-features-animation {
+
+            &-left {
+                max-width: 24rem;
+            }
+
+            &-right {
+                max-width: 36rem;
+            }
+
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
     .template {
         &-features-animation {
             &-outer {
-                padding: 1.5rem 0;
-                border-radius: 1.25rem;
+                padding: 2.5rem 1.25rem;
             }
 
             &-title {
@@ -734,17 +811,56 @@
             gap: 1.31rem;
             padding: 1rem;
             border-radius: 1rem;
-            width: 90%;
-            max-width: 24rem;
+            width: 70%;
 
             &-left {
                 width: 100%;
+                max-width: 100%;
             }
 
             &-right {
                 border-radius: 0.48169rem;
                 width: 100%;
                 min-width: 0rem;
+                max-width: 100%;
+
+                &-inline {
+                    height: 18rem;
+
+                    &-image {
+                        width: 90%;
+                        margin: 0;
+                        height: auto;
+                    }
+
+                    &-tabs {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .template {
+        &-features-animation {
+            &-outer {
+                padding: 1.5rem 1rem;
+            }
+
+            width: 98%;
+
+            &-left {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            &-right {
+                border-radius: 0.48169rem;
+                width: 100%;
+                min-width: 0rem;
+
                 &-inline {
                     height: 18rem;
 
@@ -779,7 +895,7 @@
 
         &-card {
             position: relative;
-            z-index: 26;
+            z-index: 15;
             width: 29rem;
             margin-left: 10rem;
             margin-top: 9.81rem;
@@ -818,7 +934,6 @@
                     font-weight: 700;
                     line-height: 1.0625rem;
                     cursor: pointer;
-                    transition: all 0.15s ease;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -829,8 +944,8 @@
                     background: #212121;
 
                     &:hover {
-                        border-color: #383838;
-                        background-color: #383838;
+                        border-color: #444444;
+                        background-color: #444444;
                     }
                 }
 
@@ -857,23 +972,83 @@
                 }
             }
         }
-        &-rectangle{
+
+        &-rectangle {
             position: absolute;
             top: 0rem;
-            left: 0rem;
+            left: -8rem;
             z-index: 4;
+            height: 100%;
+            width: auto;
         }
-        &-light{
+
+        &-light {
             position: absolute;
-            top: 0rem;
+            top: -4rem;
             left: 6rem;
             z-index: 5;
+            
+        }
+
+        &-dashboard1 {
+            z-index: 9;
+            position: absolute;
+            top: 2.02rem;
+            left: 60rem;
+            width: 37.875rem;
+            box-shadow: 0px 0px 43.64997px 0px rgba(0, 0, 0, 0.12);
+            border-radius: 0.25rem;
+        }
+
+        &-dashboard2 {
+            z-index: 8;
+            position: absolute;
+            top: 2.02rem;
+            left: 42rem;
+            width: 37.875rem;
+            box-shadow: 0px 0px 43.64997px 0px rgba(0, 0, 0, 0.12);
+            border-radius: 0.25rem;
         }
     }
 
 }
 
-@include mobile {
+@media only screen and (max-width: 1200px) {
+    .template {
+        &-hero {
+            height: 32.25rem;
+            &-card {
+                margin-left: 3.5rem;
+                margin-top: 7.81rem;
+                padding: 2rem 1.5rem;
+                border-radius: 1.25rem;
+                width: 26.25rem;
+            }
+
+            &-rectangle {
+                left: -8rem;
+            }
+
+            &-light {
+                left: 2rem;
+            }
+
+            &-dashboard1 {
+                top: 2.5rem;
+                left: 44rem;
+                width: 36rem;
+            }
+
+            &-dashboard2 {
+                top: 2.5rem;
+                left: 32rem;
+                width: 36rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
     .template {
         &-hero {
             height: 53.25rem;
@@ -886,17 +1061,52 @@
                 margin-top: 0rem;
                 padding: 2rem 1.5rem;
                 border-radius: 1.25rem;
+
                 &-links {
                     justify-content: center;
                 }
             }
-            &-rectangle{
+
+            &-rectangle {
+                left: -2rem;
+                height: auto;
+                width: 80rem;
+            }
+
+            &-light {
                 left: 50%;
                 transform: translateX(-50%);
             }
-            &-light{
-                left: 50%;
-                transform: translateX(-50%);
+
+            &-dashboard1 {
+                top: 28.5rem;
+                left: 12rem;
+                width: 80%;
+            }
+
+            &-dashboard2 {
+                top: 28.5rem;
+                left: 1.5rem;
+                width: 80%;
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .template {
+        &-hero {
+            &-rectangle{
+                left: -10rem;
+            }
+
+            &-dashboard1 {
+                width: 36rem;
+            }
+
+            &-dashboard2 {
+                width: 36rem;
             }
         }
 
