@@ -6,23 +6,23 @@ const TemplateHeroLight = () => {
             <g filter="url(#filter0_f_1970_42395)">
                 <g filter="url(#filter1_f_1970_42395)">
                     <rect x="43" y="43" width="404" height="10" rx="5" fill="var(--primary-100)" />
-                    <rect x="38.5" y="38.5" width="413" height="19" rx="9.5" stroke="var(--primary-200)" strokeWidth="9" />
+                    <rect x="38.5" y="38.5" width="413" height="19" rx="9.5" stroke="var(--primary-50)" strokeWidth="9" />
                 </g>
                 <g filter="url(#filter2_f_1970_42395)">
                     <rect x="98" y="52" width="294" height="10" rx="5" fill="var(--primary-100)" />
-                    <rect x="93.5" y="47.5" width="303" height="19" rx="9.5" stroke="var(--primary-200)" strokeWidth="9" />
+                    <rect x="93.5" y="47.5" width="303" height="19" rx="9.5" stroke="var(--primary-50)" strokeWidth="9" />
                 </g>
                 <g filter="url(#filter3_f_1970_42395)">
                     <rect x="144" y="60" width="202" height="10" rx="5" fill="var(--primary-100)" />
-                    <rect x="139.5" y="55.5" width="211" height="19" rx="9.5" stroke="var(--primary-200)" strokeWidth="9" />
+                    <rect x="139.5" y="55.5" width="211" height="19" rx="9.5" stroke="var(--primary-50)" strokeWidth="9" />
                 </g>
                 <g filter="url(#filter4_f_1970_42395)">
                     <rect x="182" y="75" width="126" height="10" rx="5" fill="var(--primary-100)" />
-                    <rect x="177.5" y="70.5" width="135" height="19" rx="9.5" stroke="var(--primary-200)" strokeWidth="9" />
+                    <rect x="177.5" y="70.5" width="135" height="19" rx="9.5" stroke="var(--primary-50)" strokeWidth="9" />
                 </g>
                 <g filter="url(#filter5_f_1970_42395)">
                     <rect x="212" y="90" width="66" height="10" rx="5" fill="var(--primary-100)" />
-                    <rect x="207.5" y="85.5" width="75" height="19" rx="9.5" stroke="var(--primary-200)" strokeWidth="9" />
+                    <rect x="207.5" y="85.5" width="75" height="19" rx="9.5" stroke="var(--primary-50)" strokeWidth="9" />
                 </g>
             </g>
             <defs>
