@@ -17,11 +17,12 @@ const TemplateFeaturesAnimation = ({ featuresData, title , animationSeconds = 50
             <div className='template-features-animation' ref={animationRef}>
                 <div className='template-features-animation-left'>
                     {featuresData.map((data, i) => (
-                        <div key={i} className={`template-features-animation-left-card ${!!(selectedID === data.id) && "template-features-animation-left-card-active"}`} onClick={() => handleClick(data.id)}>
+                        <div key={i} className={`template-features-animation-left-card ${(selectedID === data.id) ? "template-features-animation-left-card-active" :""}`} onClick={() => handleClick(data.id)}>
                             <div className='template-features-animation-left-card-order'>
-                                0{i + 1}
+                                <span>{(i+1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}</span>
+                                <span>{(i+1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })}</span>
                             </div>
-                            <div>
+                            <div className='template-features-animation-left-card-content'>
                                 <h5>{data.title}</h5>
                                 <p>{data.description}</p>
                             </div>
