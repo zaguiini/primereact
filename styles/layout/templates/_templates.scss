@@ -715,6 +715,7 @@
 
             &-inline {
                 width: 100%;
+                padding: 2rem 0;
                 border-radius: 0.75rem;
                 background: var(--surface-100);
                 position: relative;
@@ -725,18 +726,14 @@
 
                 &-image {
                     width: 90%;
-                    height: 22.25rem;
                     overflow: hidden;
                     position: relative;
                     margin-top: 1.25rem;
                     border-radius: 0.5rem;
                     box-shadow: 0px 0px 48px 0px rgba(0, 0, 0, 0.08);
-                    overflow: hidden;
 
                     img {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
+                        max-height: 24rem;
                     }
                 }
 
@@ -783,18 +780,32 @@
     }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1440px) {
     .template {
         &-features-animation {
 
             &-left {
-                max-width: 24rem;
+                width: 40%;
             }
 
             &-right {
-                max-width: 36rem;
+                width: 60%;
+
+                &-inline{
+                    &-image{
+                        width: 92%;
+                    }   
+                    &-tabs{
+                        width: 92%;
+    
+                        button{
+                            padding: 0.21875rem 0.25rem;
+                        }
+                    }
+                }
             }
 
+            
         }
     }
 }
@@ -832,8 +843,8 @@
                 max-width: 100%;
 
                 &-inline {
-                    height: 18rem;
-
+                    height: fit-content;
+                    padding: 2rem 0;
                     &-image {
                         width: 90%;
                         margin: 0;
@@ -858,30 +869,7 @@
 
             width: 98%;
 
-            &-left {
-                width: 100%;
-                max-width: 100%;
-            }
 
-            &-right {
-                border-radius: 0.48169rem;
-                width: 100%;
-                min-width: 0rem;
-
-                &-inline {
-                    height: 18rem;
-
-                    &-image {
-                        width: 90%;
-                        margin: 0;
-                        height: auto;
-                    }
-
-                    &-tabs {
-                        display: none;
-                    }
-                }
-            }
         }
     }
 }
@@ -1020,7 +1008,7 @@
 
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1440px) {
     .template {
         &-hero {
             height: 32.25rem;
