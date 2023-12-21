@@ -264,16 +264,23 @@
         }
 
         margin: 0 auto;
-        width: fit-content;
+        width: 70%;
+        max-width: 52.75rem;
         display: flex;
-        align-items: flex-start;
         justify-content: center;
         flex-wrap: wrap;
-        width: fit-content;
         gap: 1.5rem;
-
+        &-col{
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            flex: 1;
+            &:last-child{
+                margin-top: 7.5rem;
+            }
+        }
         &-card {
-            width: 40%;
+            width: 100%;
             padding: 1.25rem;
             border-radius: 1.3125rem;
             border: 1px solid var(--surface-border);
@@ -289,14 +296,6 @@
                     width: 100%;
                     height: auto;
                 }
-            }
-
-            &-withMargin {
-                margin-top: 7.81rem;
-            }
-
-            &-withoutMargin {
-                margin-top: -7.81rem;
             }
 
             h2 {
@@ -325,13 +324,12 @@
                 padding: 2.5rem 1rem;
                 border-radius: 1.25rem;
             }
-
+            max-width: 100%;
             width: 100%;
             align-items: center;
             justify-content: center;
 
             &-card {
-                width: 40%;
                 padding: 1rem;
                 border-radius: 1rem;
 
@@ -352,15 +350,24 @@
         }
     }
 }
-
 @media only screen and (max-width: 768px) {
     .template {
         &-features2 {
-
-
-            &-card {
-                width: 90%;
+            width: 70%;
+            flex-direction: column;
+            &-col{
+                &:last-child{
+                    margin-top: 0rem;
+                }
             }
+        }
+    }
+}
+@media only screen and (max-width: 576px) {
+    .template {
+        &-features2 {
+            flex-direction: column;
+            width: 100%;
         }
     }
 }
@@ -527,7 +534,7 @@
 
             &-bottom {
                 padding: 1.5rem;
-                background: var(--surface-900, #212121);
+                background: #212121;
                 border-bottom-left-radius: inherit;
                 border-bottom-right-radius: inherit;
                 display: flex;
@@ -536,7 +543,7 @@
                 position: relative;
 
                 p {
-                    color: var(--surface-0, #FFF);
+                    color: #FFF;
                     font-size: 0.875rem;
                     font-weight: 400;
                     line-height: 1.0625rem;

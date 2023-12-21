@@ -9,7 +9,7 @@ const TemplateHeroRectangle = () => {
                 </g>
                 <defs>
                     <filter id="filter0_f_956_37561" x="-363" y="-296" width="1515" height="966" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                         <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_956_37561" />
                     </filter>

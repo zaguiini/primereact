@@ -7,8 +7,8 @@ export default () => (
             <path d="M103.062 84.7896C104.085 85.5904 104.085 87.1386 103.062 87.9394L85.3123 101.834C83.9995 102.862 82.0795 101.926 82.0795 100.259L82.0795 72.47C82.0795 70.8028 83.9995 69.8674 85.3123 70.8951L103.062 84.7896Z" fill="var(--primary-400)" />
         </g>
         <defs>
-            <filter id="filter0_d_918_28251" x="0" y="0" width="180" height="180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter0_d_918_28251" x="0" y="0" width="180" height="180" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                 <feOffset dy="4" />
                 <feGaussianBlur stdDeviation="25" />

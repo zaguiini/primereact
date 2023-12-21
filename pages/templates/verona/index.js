@@ -139,16 +139,16 @@ const VeronaSeperator = () => {
     return (
         <TemplateSeparator separatorLogo={
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
-                <g clip-path="url(#clip0_987_15401)">
+                <g clipPath="url(#clip0_987_15401)">
                     <rect y="0.25" width="48" height="48" rx="24" fill="var(--surface-card)" />
                     <g filter="url(#filter0_dd_987_15401)">
                         <circle cx="24" cy="24" r="11.5" stroke="var(--surface-border)" />
                     </g>
-                    <path d="M33.5642 18.0857H14.8584V18.2232H33.5642V18.0857Z" fill="var(--surface-900)" fill-opacity="0.5" />
-                    <path d="M35.077 21.7993H12.9326V21.9369H35.077V21.7993Z" fill="var(--surface-900)" fill-opacity="0.5" />
+                    <path d="M33.5642 18.0857H14.8584V18.2232H33.5642V18.0857Z" fill="var(--surface-900)" fillOpacity="0.5" />
+                    <path d="M35.077 21.7993H12.9326V21.9369H35.077V21.7993Z" fill="var(--surface-900)" fillOpacity="0.5" />
                     <path d="M34.9394 25.5129H13.3452V25.6505H34.9394V25.5129Z" fill="var(--surface-900)" />
                     <path d="M33.9768 29.2266H14.4458V29.3641H33.9768V29.2266Z" fill="var(--surface-900)" />
-                    <path d="M22.9547 12.4471L22.834 12.375L14.0757 28.5054L14.1964 28.5775L22.9547 12.4471Z" fill="var(--surface-900)" fill-opacity="0.5" />
+                    <path d="M22.9547 12.4471L22.834 12.375L14.0757 28.5054L14.1964 28.5775L22.9547 12.4471Z" fill="var(--surface-900)" fillOpacity="0.5" />
                     <path d="M26.8757 12.8025L26.7551 12.7302L16.4265 31.7024L16.5214 31.7932L26.8757 12.8025Z" fill="var(--surface-900)" />
                     <path d="M30.1539 14.3382L30.0337 14.2654L19.3041 33.7536L19.4244 33.8264L30.1539 14.3382Z" fill="var(--surface-900)" />
                     <path d="M32.6656 17.4603L32.5459 17.3865L22.8027 34.7793L22.9225 34.8531L32.6656 17.4603Z" fill="var(--surface-900)" />
@@ -159,13 +159,13 @@ const VeronaSeperator = () => {
                         <mask id="path-15-inside-1_987_15401" fill="white">
                             <path d="M36 24C36 30.6274 30.6274 36 24 36C17.3726 36 12 30.6274 12 24C12 17.3726 17.3726 12 24 12C30.6274 12 36 17.3726 36 24ZM13.2 24C13.2 29.9647 18.0353 34.8 24 34.8C29.9647 34.8 34.8 29.9647 34.8 24C34.8 18.0353 29.9647 13.2 24 13.2C18.0353 13.2 13.2 18.0353 13.2 24Z" />
                         </mask>
-                        <path d="M36 24C36 30.6274 30.6274 36 24 36C17.3726 36 12 30.6274 12 24C12 17.3726 17.3726 12 24 12C30.6274 12 36 17.3726 36 24ZM13.2 24C13.2 29.9647 18.0353 34.8 24 34.8C29.9647 34.8 34.8 29.9647 34.8 24C34.8 18.0353 29.9647 13.2 24 13.2C18.0353 13.2 13.2 18.0353 13.2 24Z" stroke="var(--surface-900)" stroke-width="2" mask="url(#path-15-inside-1_987_15401)" />
+                        <path d="M36 24C36 30.6274 30.6274 36 24 36C17.3726 36 12 30.6274 12 24C12 17.3726 17.3726 12 24 12C30.6274 12 36 17.3726 36 24ZM13.2 24C13.2 29.9647 18.0353 34.8 24 34.8C29.9647 34.8 34.8 29.9647 34.8 24C34.8 18.0353 29.9647 13.2 24 13.2C18.0353 13.2 13.2 18.0353 13.2 24Z" stroke="var(--surface-900)" strokeWidth="2" mask="url(#path-15-inside-1_987_15401)" />
                     </g>
                 </g>
                 <rect x="0.5" y="0.75" width="47" height="47" rx="23.5" stroke="var(--surface-border)" />
                 <defs>
-                    <filter id="filter0_dd_987_15401" x="-145.042" y="-40.3475" width="338.085" height="338.085" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <filter id="filter0_dd_987_15401" x="-145.042" y="-40.3475" width="338.085" height="338.085" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                         <feOffset dy="104.695" />
                         <feGaussianBlur stdDeviation="78.5212" />
@@ -178,8 +178,8 @@ const VeronaSeperator = () => {
                         <feBlend mode="normal" in2="effect1_dropShadow_987_15401" result="effect2_dropShadow_987_15401" />
                         <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_987_15401" result="shape" />
                     </filter>
-                    <filter id="filter1_dd_987_15401" x="-145.042" y="-40.3475" width="338.085" height="338.085" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <filter id="filter1_dd_987_15401" x="-145.042" y="-40.3475" width="338.085" height="338.085" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
                         <feOffset dy="104.695" />
                         <feGaussianBlur stdDeviation="78.5212" />
