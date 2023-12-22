@@ -8,6 +8,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
+import FreyaLogo from './FreyaLogo';
 
 
 const apolloFeatures2Data = [
@@ -164,7 +165,7 @@ const FreyaPage = () => {
                 pattern={"/images/templates/freya/freya-hero-pattern.png"}
                 rectangle={"/images/templates/freya/freya-hero-rectangle1.png"}
                 light={"/images/templates/freya/freya-hero-light.png"}
-                logo={"/images/templates/freya/freya-hero-logo.svg"}
+                logo={<FreyaLogo/>}
                 dashboard1={'/images/templates/freya/freya-hero-dashboard1.png'}
                 dashboard2={'/images/templates/freya/freya-hero-dashboard2.png'}
                 liveHref={"https://www.primefaces.org/freya-react/"}

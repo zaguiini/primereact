@@ -17,7 +17,7 @@ const TemplateHero = ({
             {!!light && <TemplateHeroLight/>}
             {!!rectangle && <TemplateHeroRectangle/>}
             <div className='template-hero-card'>
-                <img className='template-hero-card-logo' src={logo} alt='Template Hero Logo' />
+                <div className='template-hero-card-logo'>{logo}</div>
                 <p>Angular CLI template with mode options, menu layouts, sample apps, pre-made pages, and 24 PrimeNG themes.</p>
                 <div className='template-hero-card-buttons'>
                     <a href={liveHref} target='_blank' className='template-hero-card-buttons-btn1 p-button'>Live Demo</a>

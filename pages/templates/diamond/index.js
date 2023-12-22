@@ -8,6 +8,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
+import DiamondLogo from './DiamondLogo';
 
 
 const apolloFeatures2Data = [
@@ -176,7 +177,7 @@ const DiamondPage = () => {
         <div className='diamond template'>
             <TemplateHero
                 pattern={"/images/templates/diamond/diamond-hero-pattern.png"}
-                logo={"/images/templates/diamond/diamond-hero-logo.svg"}
+                logo={<DiamondLogo/>}
                 dashboard1={'/images/templates/diamond/diamond-hero-dashboard1.png'}
                 dashboard2={'/images/templates/diamond/diamond-hero-dashboard2.png'}
                 liveHref={"https://diamond.primereact.org"}

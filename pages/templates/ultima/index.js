@@ -8,6 +8,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
+import UltimaLogo from './UltimaLogo';
 
 
 const apolloFeatures2Data = [
@@ -164,7 +165,7 @@ const UltimaPage = () => {
                 pattern={"/images/templates/ultima/ultima-hero-pattern.png"}
                 rectangle={"/images/templates/ultima/ultima-hero-rectangle1.png"}
                 light={"/images/templates/ultima/ultima-hero-light.png"}
-                logo={"/images/templates/ultima/ultima-hero-logo.svg"}
+                logo={<UltimaLogo/>}
                 dashboard1={'/images/templates/ultima/ultima-hero-dashboard1.png'}
                 dashboard2={'/images/templates/ultima/ultima-hero-dashboard2.png'}
                 liveHref={"https://ultima.primereact.org"}

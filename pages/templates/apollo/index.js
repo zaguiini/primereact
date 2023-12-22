@@ -8,6 +8,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
+import ApolloLogo from './ApolloLogo';
 
 const apolloFeatures1Data = [
     {
@@ -189,7 +190,7 @@ const ApolloPage = () => {
                 pattern={"/images/templates/apollo/apollo-hero-pattern.png"}
                 rectangle={"/images/templates/apollo/apollo-hero-rectangle1.png"}
                 light={"/images/templates/apollo/apollo-hero-light.png"}
-                logo={"/images/templates/apollo/apollo-hero-logo.svg"}
+                logo={<ApolloLogo/>}
                 dashboard1={'/images/templates/apollo/apollo-hero-dashboard1.png'}
                 dashboard2={'/images/templates/apollo/apollo-hero-dashboard2.png'}
                 liveHref={"https://apollo.primereact.org"}

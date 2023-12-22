@@ -8,6 +8,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
+import AtlantisLogo from './AtlantisLogo';
 
 
 const apolloFeatures2Data = [
@@ -164,7 +165,7 @@ const AtlantisPage = () => {
                 pattern={"/images/templates/atlantis/atlantis-hero-pattern.png"}
                 rectangle={"/images/templates/atlantis/atlantis-hero-rectangle1.png"}
                 light={"/images/templates/atlantis/atlantis-hero-light.png"}
-                logo={"/images/templates/atlantis/atlantis-hero-logo.svg"}
+                logo={<AtlantisLogo/>}
                 dashboard1={'/images/templates/atlantis/atlantis-hero-dashboard1.png'}
                 dashboard2={'/images/templates/atlantis/atlantis-hero-dashboard2.png'}
                 liveHref={"https://www.primefaces.org/atlantis-react/"}

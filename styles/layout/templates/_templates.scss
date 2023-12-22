@@ -681,18 +681,18 @@
 
                 &:hover &-order {
 
-                    span {
-                        &:nth-child(2) {
-                            animation: FeaturesOrderAnimation 2.5s ease-in-out ;
+                    div {
+                        &:nth-child(3) {
+                            animation: FeaturesOrderAnimation 2.5s ease-in-out;
                             color: var(--primary-400);
                         }
                     }
                 }
 
                 &-active &-order {
-                    span {
-                        &:nth-child(2) {
-                            animation: FeaturesOrderAnimation 2.5s ease-in-out ;
+                    div {
+                        &:nth-child(3) {
+                            animation: FeaturesOrderAnimation 2.5s ease-in-out;
                             color: var(--primary-400);
                         }
                     }
@@ -705,7 +705,7 @@
                     position: relative;
                     transition: all 0.2s ease;
 
-                    span {
+                    div {
                         font-size: 2.5rem;
                         font-weight: 700;
                         position: absolute;
@@ -714,21 +714,24 @@
 
                         &:nth-child(1) {
                             color: transparent;
-                            -webkit-text-stroke: 0.75px var(--primary-400);
+                            -webkit-text-stroke: 1.2px var(--primary-400);
                         }
 
                         &:nth-child(2) {
-                            
-                            color: transparent;
+                            color: var(--surface-card);
 
+                        }
+                        &:nth-child(3) {
+                            color: transparent;
                         }
                     }
                 }
 
-                
 
-                &-content{
+
+                &-content {
                     flex: 1;
+
                     h5 {
                         color: var(--surface-900, var(--color-surface-900, #212121));
                         font-size: 1.09375rem;
@@ -736,7 +739,7 @@
                         line-height: 1.3125rem;
                         margin: 0;
                     }
-    
+
                     p {
                         color: var(--surface-600, #757575);
                         font-size: 0.875rem;
@@ -744,9 +747,9 @@
                         line-height: 1.3125rem;
                         margin: 0.38rem 0 0;
                     }
-                    
+
                 }
-            }   
+            }
         }
 
         &-right {
@@ -827,22 +830,26 @@
 }
 
 @keyframes FeaturesOrderAnimation {
-    0%{
+    0% {
         clip-path: polygon(0% 100%, 15% 100%, 32% 100%, 54% 100%, 70% 100%, 84% 100%, 100% 100%,
-        100% 100%, 0% 100%);
+                100% 100%, 0% 100%);
     }
-    20%{
+
+    20% {
         clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%,
                 100% 100%, 0% 100%);
     }
+
     40% {
         clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
     }
-    60%{
+
+    60% {
         clip-path: polygon(0 51%, 14% 31%, 33% 42%, 49% 53%, 68% 55%, 85% 50%, 100% 60%, 100% 100%, 0 100%);
     }
-    100%{
-        clip-path: polygon(0 0, 15% 0, 37% 0, 53% 0, 68% 0, 84% 0, 100% 0, 100% 100%, 0 100%);
+
+    100% {
+        clip-path: polygon(0 0, 18% 0, 39% 0, 53% 0, 62% 0, 87% 0, 100% 0, 100% 100%, 0 100%);
     }
 }
 
@@ -971,10 +978,15 @@
 
             &-logo {
                 height: 2.5rem;
+
+                svg {
+                    height: 100%;
+                    width: auto;
+                }
             }
 
             p {
-                color: #FFF;
+                color: var(--surface-0);
                 font-size: 0.875rem;
                 font-weight: 400;
                 line-height: normal;
@@ -992,7 +1004,7 @@
                     height: 2.5rem;
                     flex: 1;
                     border-radius: 3rem;
-                    color: #fff;
+
                     font-size: 0.875rem;
                     font-weight: 700;
                     line-height: 1.0625rem;
@@ -1005,11 +1017,16 @@
                 &-btn1 {
                     border: 1px solid #212121;
                     background: #212121;
+                    color: #fff;
 
                     &:hover {
                         border-color: #444444;
                         background-color: #444444;
                     }
+                }
+
+                &-btn2 {
+                    color: var(--surface-0);
                 }
 
             }
@@ -1024,7 +1041,7 @@
                     display: flex;
                     align-items: flex-end;
                     gap: 0.5rem;
-                    color: #fff;
+                    color: var(--surface-0);
 
                     span {
                         font-size: 0.75rem;

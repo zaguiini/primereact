@@ -8,6 +8,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation/TemplateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
+import VeronaLogo from './VeronaLogo';
 
 
 const apolloFeatures2Data = [
@@ -209,7 +210,7 @@ const UltimaPage = () => {
                 pattern={"/images/templates/verona/verona-hero-pattern.png"}
                 rectangle={"/images/templates/verona/verona-hero-rectangle1.png"}
                 light={"/images/templates/verona/verona-hero-light.png"}
-                logo={"/images/templates/verona/verona-hero-logo.svg"}
+                logo={<VeronaLogo/>}
                 dashboard1={'/images/templates/verona/verona-hero-dashboard1.png'}
                 dashboard2={'/images/templates/verona/verona-hero-dashboard2.png'}
                 liveHref={""}
