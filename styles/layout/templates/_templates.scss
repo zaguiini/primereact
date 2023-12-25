@@ -713,7 +713,7 @@
                         left: 0;
 
                         &:nth-child(1) {
-                            color: transparent;
+                            color: var(--primary-400);
                             -webkit-text-stroke: 1.2px var(--primary-400);
                         }
 

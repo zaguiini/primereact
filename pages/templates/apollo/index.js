@@ -198,7 +198,7 @@ const ApolloPage = () => {
             <ApolloSeparator />
             <TemplateYoutube playIcon={<ApolloPlayIcon />} imgSrc={"/images/templates/apollo/apollo-youtube-screen.png"} />
             <ApolloSeparator />
-            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the", "Apolla template gives you"]} />
+            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the", "Apollo template gives you"]} />
             <ApolloSeparator />
             <TemplateFeaturesType1 featuresData={apolloFeatures1Data} />
             <ApolloSeparator />

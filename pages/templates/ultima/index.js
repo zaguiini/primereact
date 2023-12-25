@@ -14,7 +14,7 @@ import UltimaLogo from './UltimaLogo';
 const apolloFeatures2Data = [
     {
         title: "Fully Responsive",
-        description: "Apollo is crafted to provide optimal viewing and interaction experience for a wide range of devices.",
+        description: "Ultima is crafted to provide optimal viewing and interaction experience for a wide range of devices.",
         src: "/images/templates/ultima/ultima-features2-responsive.png"
     },
     {
@@ -24,7 +24,7 @@ const apolloFeatures2Data = [
     },
     {
         title: "Lifetime Support",
-        description: "Apollo has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.",
+        description: "Ultima has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.",
         src: "/images/templates/apollo/apollo-features2-lifetime.png"
     },
     {
@@ -75,13 +75,13 @@ const animationFeaturesData1 = [
     {
         id: 3,
         title: "PrimeIcons",
-        description: "Apollo ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.",
+        description: "Ultima ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.",
         src: "/images/templates/apollo/features-animation-icons.png"
     },
     {
         id: 4,
         title: "Figma File",
-        description: "Apollo uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Apollo Figma file as they are available in PrimeOne for Figma only.",
+        description: "Ultima uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Ultima Figma file as they are available in PrimeOne for Figma only.",
         src: "/images/templates/apollo/features-animation-figma.png"
     },
 ]
@@ -173,9 +173,9 @@ const UltimaPage = () => {
             <UltimaSeperator />
             <TemplateYoutube playIcon={<UltimaPlayIcon />} imgSrc={"/images/templates/ultima/ultima-youtube-screen.png"} />
             <UltimaSeperator />
-            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Apolla template gives you"]}/>
+            <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={["Features that the","Ultima template gives you"]}/>
             <UltimaSeperator />
-            <TemplateConfiguration title='Vue.js App with No Configuration' description='Apollo is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
+            <TemplateConfiguration title='Vue.js App with No Configuration' description='Ultima is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support' />
             <UltimaSeperator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData1} />
             <UltimaSeperator />
