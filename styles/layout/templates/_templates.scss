@@ -682,6 +682,10 @@
                 &:hover &-order {
 
                     div {
+                        &:nth-child(2) {
+                            color: var(--surface-100);
+
+                        }
                         &:nth-child(3) {
                             animation: FeaturesOrderAnimation 2.5s ease-in-out;
                             color: var(--primary-400);
@@ -691,6 +695,10 @@
 
                 &-active &-order {
                     div {
+                        &:nth-child(2) {
+                            color: var(--surface-100);
+
+                        }
                         &:nth-child(3) {
                             animation: FeaturesOrderAnimation 2.5s ease-in-out;
                             color: var(--primary-400);
@@ -716,10 +724,9 @@
                             color: var(--primary-400);
                             -webkit-text-stroke: 1.2px var(--primary-400);
                         }
-
                         &:nth-child(2) {
                             color: var(--surface-card);
-
+                            transition: all 0.2s ease;
                         }
                         &:nth-child(3) {
                             color: transparent;
