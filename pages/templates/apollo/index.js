@@ -170,8 +170,8 @@ const animationFeaturesData2 = [
 const templateHeroData = {
     logo: <ApolloLogo />,
     pattern: '/images/templates/apollo/apollo-hero-pattern.png',
-    // rectangle: '/images/templates/apollo/apollo-hero-rectangle1.png',
-    // light: '/images/templates/apollo/apollo-hero-light.png',
+    rectangle: '/images/templates/apollo/apollo-hero-rectangle1.png',
+    light: '/images/templates/apollo/apollo-hero-light.png',
     dashboard1: '/images/templates/apollo/apollo-hero-dashboard1.png',
     dashboard2: '/images/templates/apollo/apollo-hero-dashboard2.png',
     description: 'Application template for React based on the popular NextJS framework. with light-dim-dark modes, four menu layouts, various menu themes, sample apps, ready to use template pages and 24 PrimeReact themes.',
