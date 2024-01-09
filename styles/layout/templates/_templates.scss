@@ -7,7 +7,7 @@
 // TEMPLATE YOUTUBE
 .template {
     &-youtube {
-        &-outer {
+        &-wrapper {
             padding: 5rem 0;
             background-color: var(--surface-card);
             border-radius: 2rem;
@@ -117,7 +117,7 @@
 @media only screen and (max-width: 992px) {
     .template {
         &-youtube {
-            &-outer {
+            &-wrapper {
                 padding: 3rem 0 1.5rem;
                 border-radius: 1.25rem;
             }
@@ -165,8 +165,8 @@
 
 // TEMPLATE FEATURES TYPE 1
 .template {
-    &-features1 {
-        &-outer {
+    &-features-horizontal {
+        &-wrapper {
             padding: 5rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
@@ -180,11 +180,11 @@
         width: fit-content;
 
         &-card {
+            width: 21.125rem;
             padding: 1.25rem;
             border-radius: 1.3125rem;
             border: 1px solid var(--surface-border, #EEE);
             background: var(--surface-0, #FFF);
-            width: 21.125rem;
 
             &-top {
                 width: 100%;
@@ -224,8 +224,8 @@
 
 @media only screen and (max-width: 992px) {
     .template {
-        &-features1 {
-            &-outer {
+        &-features-horizontal {
+            &-wrapper {
                 padding: 2rem 1.25rem;
                 border-radius: 1.25rem;
             }
@@ -240,8 +240,8 @@
 
 @media only screen and (max-width: 576px) {
     .template {
-        &-features1 {
-            &-outer {
+        &-features-horizontal {
+            &-wrapper {
                 padding: 1.5rem 1rem;
             }
 
@@ -256,8 +256,8 @@
 
 // TEMPLATE FEATURES TYPE 2
 .template {
-    &-features2 {
-        &-outer {
+    &-features-vertical {
+        &-wrapper {
             padding: 7rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
@@ -322,8 +322,8 @@
 
 @media only screen and (max-width: 992px) {
     .template {
-        &-features2 {
-            &-outer {
+        &-features-vertical {
+            &-wrapper {
                 padding: 2.5rem 1rem;
                 border-radius: 1.25rem;
             }
@@ -357,7 +357,7 @@
 
 @media only screen and (max-width: 768px) {
     .template {
-        &-features2 {
+        &-features-vertical {
             width: 70%;
             flex-direction: column;
 
@@ -372,7 +372,7 @@
 
 @media only screen and (max-width: 576px) {
     .template {
-        &-features2 {
+        &-features-vertical {
             flex-direction: column;
             width: 100%;
         }
@@ -382,7 +382,7 @@
 // TEMPLATE RELATED
 .template {
     &-related {
-        &-outer {
+        &-wrapper {
             padding: 5rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
@@ -423,7 +423,7 @@
 @media only screen and (max-width: 992px) {
     .template {
         &-related {
-            &-outer {
+            &-wrapper {
                 padding: 2.5rem 1.25rem;
                 border-radius: 1.25rem;
             }
@@ -458,7 +458,7 @@
 @media only screen and (max-width: 576px) {
     .template {
         &-related {
-            &-outer {
+            &-wrapper {
                 padding: 1.5rem 1rem;
             }
 
@@ -479,7 +479,7 @@
 // TEMPLATE CONFIGURATION
 .template {
     &-configuration {
-        &-outer {
+        &-wrapper {
             padding: 5rem 2rem;
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
@@ -572,7 +572,7 @@
 @media only screen and (max-width: 992px) {
     .template {
         &-configuration {
-            &-outer {
+            &-wrapper {
                 padding: 2.5rem 1.25rem;
                 border-radius: 1.25rem;
             }
@@ -601,7 +601,7 @@
 @media only screen and (max-width: 576px) {
     .template {
         &-configuration {
-            &-outer {
+            &-wrapper {
                 padding: 1.5rem 1rem;
             }
 
@@ -624,7 +624,7 @@
 // TEMPLATE FEATURES ANIMATION
 .template {
     &-features-animation {
-        &-outer {
+        &-wrapper {
             border-radius: 2rem;
             background: var(--surface-card, #FFF);
             padding: 5rem 2rem;
@@ -894,7 +894,7 @@
 @media only screen and (max-width: 992px) {
     .template {
         &-features-animation {
-            &-outer {
+            &-wrapper {
                 padding: 2.5rem 1.25rem;
             }
 
@@ -945,7 +945,7 @@
 @media only screen and (max-width: 576px) {
     .template {
         &-features-animation {
-            &-outer {
+            &-wrapper {
                 padding: 1.5rem 1rem;
             }
 
@@ -983,6 +983,10 @@
             backdrop-filter: blur(2px);
             padding: 2.25rem 1.75rem;
 
+            * {
+                color: #fff;
+            }
+
             &-logo {
                 height: 2.5rem;
 
@@ -993,7 +997,6 @@
             }
 
             p {
-                color: var(--surface-0);
                 font-size: 0.875rem;
                 font-weight: 400;
                 line-height: normal;
@@ -1024,7 +1027,6 @@
                 &-btn1 {
                     border: 1px solid #212121;
                     background: #212121;
-                    color: #fff;
 
                     &:hover {
                         border-color: #444444;
@@ -1033,7 +1035,13 @@
                 }
 
                 &-btn2 {
-                    color: var(--surface-0);
+                    background-color: var(--cyan-500);
+                    border-color: var(--cyan-500);
+
+                    &:hover {
+                        background-color: var(--cyan-600);
+                        border-color: var(--cyan-600);
+                    }
                 }
 
             }
@@ -1199,4 +1207,42 @@
         }
 
     }
+}
+
+// TEMPALTE SEPERATOR
+.template {
+    &-seperator {
+        gap: 1.5rem; 
+        width: 100%;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+
+        &::before {
+            content: '';
+            flex: 1;
+            height: 1px; 
+            background-color: var(--surface-border)
+        }
+
+        &::after {
+            content: '';
+            flex: 1;
+            height: 1px; 
+            background-color: var(--surface-border)
+        }
+
+        &-icon {
+            width: 3rem;
+            height: 3rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border: 1px solid var(--surface-border); 
+            border-radius: 100%;
+            background-color: var(--surface-0);
+        }
+    }
+
+
 }
