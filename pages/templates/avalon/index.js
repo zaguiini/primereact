@@ -5,14 +5,14 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
-import DiamondLogo from './DiamondLogo';
 import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation';
+import AvalonLogo from './AvalonLogo';
 
 const apolloFeatures2Data = [
     {
         title: 'Fully Responsive',
         description: 'Diamond is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
-        src: '/images/templates/diamond/diamond-features2-responsive.png'
+        src: '/images/templates/avalon/avalon-features2-responsive.png'
     },
     {
         title: 'Cross Browser Compatible',
@@ -30,14 +30,14 @@ const apolloFeatures2Data = [
         src: '/images/templates/apollo/apollo-features2-customizable.png'
     },
     {
-        title: 'Ready to Use Pages',
-        description: 'Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app.',
-        src: '/images/templates/diamond/diamond-features2-ready.png'
+        title: 'Top Notch Quality',
+        description: 'Superior standards with 100% compatibility for strict mode and linting tools.',
+        src: '/images/templates/apollo/apollo-features2-quality.png'
     },
     {
         title: 'Mobile Experience',
         description: 'Touch optimized enhanced mobile experience with responsive design.',
-        src: '/images/templates/diamond/diamond-features2-mobile.png'
+        src: '/images/templates/avalon/avalon-features2-mobile.png'
     }
 ];
 
@@ -88,64 +88,64 @@ const animationFeaturesData2 = [
     {
         id: 1,
         title: 'Light and Dark Modes',
-        description: 'The stunning dark and light modes will impress your users.',
-        src: '/images/templates/diamond/features-animation-darkmode.png'
+        description: 'Avalon offers you 2 uniquely designed layout modes to choose from; Light and Dark.',
+        src: '/images/templates/avalon/features-animation-darkmode.png'
     },
     {
         id: 2,
-        title: 'Component Themes',
-        description: 'Verona offers 20 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.',
-        src: '/images/templates/diamond/features-animation-component-themes.png'
+        title: 'Component 15 Beautiful Themes',
+        description: 'Avalon offers 15 built-in themes and creating your own theme is a matter of defining couple of SaSS variables.',
+        src: '/images/templates/avalon/features-animation-component-themes.png'
     },
     {
         id: 3,
-        title: '7 Menu Orientations',
-        description: 'Choose from Static and Slim menu orientations.',
+        title: '4 Menu Orientations',
+        description: 'Avalon has 7 menu layouts to choose from; Static, Overlay, Slim, Slim+, Reveal, Drawer and Horizontal with Light and Dark options.',
         src: '/images/templates/diamond/features-animation-orientations.png',
         type: 'inline-animation',
         inlineFeaturesData: [
             {
                 id: 1,
                 title: 'Static',
-                src: '/images/templates/diamond/Static.png'
+                src: '/images/templates/avalon/Static.png'
             },
             {
                 id: 2,
                 title: 'Slim',
-                src: '/images/templates/diamond/Slim.png'
+                src: '/images/templates/avalon/Slim.png'
             },
             {
                 id: 3,
-                title: 'Horizontal',
-                src: '/images/templates/diamond/Horizontal.png'
+                title: 'Reveal',
+                src: '/images/templates/avalon/Reveal.png'
             },
             {
                 id: 4,
-                title: 'Drawer',
-                src: '/images/templates/diamond/Drawer.png'
+                title: 'Horizontal',
+                src: '/images/templates/avalon/Horizontal.png'
             },
             {
                 id: 5,
                 title: 'Overlay',
-                src: '/images/templates/diamond/Overlay.png'
+                src: '/images/templates/avalon/Overlay.png'
             },
             {
                 id: 6,
-                title: 'Compact',
-                src: '/images/templates/diamond/Compact.png'
+                title: 'Slim+',
+                src: '/images/templates/avalon/Slim+.png'
             },
             {
                 id: 7,
-                title: 'Reveal',
-                src: '/images/templates/diamond/Reveal.png'
-            }
+                title: 'Drawer',
+                src: '/images/templates/avalon/Drawer.png'
+            },
         ]
     },
     {
         id: 4,
         title: 'Layout Themes',
-        description: 'Verona offers 23 special layout themes featuring gorgeous gradients.',
-        src: '/images/templates/diamond/features-animation-orientations.png'
+        description: 'Avalon comes with 11 layout themes guaranteeing an enviable design.',
+        src: '/images/templates/avalon/features-animation-menu-themes.png'
     }
 ];
 
@@ -172,33 +172,33 @@ const DiamondSeperator = () => {
 };
 
 const templateHeroData = {
-    logo: <DiamondLogo />,
-    pattern: '/images/templates/diamond/diamond-hero-pattern.png',
-    dashboard1: '/images/templates/diamond/diamond-hero-dashboard1.png',
-    dashboard2: '/images/templates/diamond/diamond-hero-dashboard2.png',
-    description: 'Diamond is a beautiful Vue.js admin template with a modern look and feel optimized for creating Vue apps.',
+    logo: <AvalonLogo />,
+    pattern: '/images/templates/avalon/avalon-hero-pattern.png',
+    light: true,
+    rectangle:true,
+    dashboard1: '/images/templates/avalon/avalon-hero-dashboard1.png',
+    dashboard2: '/images/templates/avalon/avalon-hero-dashboard2.png',
+    description: 'Welcome the new Avalon, elegantly designed with its new bootstrap theme and colors, offering 5 menu layouts with light and dark modes. ',
     liveHref: 'https://diamond.primereact.org',
     docHref: 'https://diamond.primereact.org/documentation'
 };
 
-const DiamondPage = () => {
+const AvalonPage = () => {
     const featuresAnimationTitle = (
         <h2>
             Features that the <br />
-            Diamond template gives you
+            Avalon template gives you
         </h2>
     );
 
     return (
-        <div className="diamond template">
+        <div className="avalon template">
             <TemplateHero {...templateHeroData} />
-            <DiamondSeperator />
-            <TemplateYoutube imgSrc={'/images/templates/diamond/diamond-youtube-screen.png'} />
             <DiamondSeperator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} />
             <DiamondSeperator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
+                title="Next.js App with No Configuration"
                 description="Diamond is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <DiamondSeperator />
@@ -211,4 +211,4 @@ const DiamondPage = () => {
     );
 };
 
-export default DiamondPage;
+export default AvalonPage;

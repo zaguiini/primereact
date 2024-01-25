@@ -3,10 +3,10 @@ import TemplateYoutube from '@/components/templates/TemplateYoutube';
 import TemplateFeatures from '@/components/templates/TemplateFeatures';
 import TemplateConfiguration from '@/components/templates/TemplateConfiguration';
 import TemplateRelated from '@/components/templates/TemplateRelated';
-import TemplateFeaturesAnimation from '@/components/templates/templateFeaturesAnimation';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
 import ApolloLogo from './ApolloLogo';
+import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation';
 
 const apolloRelatedData = [
     {

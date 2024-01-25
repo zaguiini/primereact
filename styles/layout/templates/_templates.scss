@@ -761,8 +761,9 @@
 
         &-right {
             width: 30rem;
+            height: fit-content;
             border-radius: 0.875rem;
-
+            background-color: var(--surface-100);
             img {
                 width: 100%;
                 height: auto;
