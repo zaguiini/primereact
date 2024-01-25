@@ -18,6 +18,13 @@
                 opacity: 0.75;
             }
         }
+        &-separator {
+            &-icon {
+                width: 7rem;
+                height: 3.5rem; 
+                border-radius: 99px;
+            }
+        }
     }
 
 }

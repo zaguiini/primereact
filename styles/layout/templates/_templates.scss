@@ -1212,9 +1212,9 @@
     }
 }
 
-// TEMPALTE SEPERATOR
+// TEMPALTE SEPARATOR
 .template {
-    &-seperator {
+    &-separator {
         gap: 1.5rem; 
         width: 100%;
         display: flex; 
@@ -1243,7 +1243,7 @@
             justify-content: center;
             border: 1px solid var(--surface-border); 
             border-radius: 100%;
-            background-color: var(--surface-0);
+            background-color: var(--surface-card);
         }
     }
 
