@@ -43,16 +43,16 @@ const apolloFeatures2Data = [
 
 const apolloRelatedData = [
     {
-        src: '/images/templates/related-atlantis.png',
-        href: '/templates/atlantis'
+        src: '/images/templates/freya-react.jpg',
+        href: '/templates/freya'
     },
     {
-        src: '/images/templates/related-avalon.png',
-        href: ''
+        src: '/images/templates/serenity-react.jpg',
+        href: 'https://www.primefaces.org/layouts/serenity-react'
     },
     {
-        src: '/images/templates/related-diamond.png',
-        href: '/templates/diamond'
+        src: '/images/templates/roma-react.jpg',
+        href: 'https://www.primefaces.org/layouts/roma-react'
     }
 ];
 
@@ -80,7 +80,7 @@ const animationFeaturesData1 = [
         title: 'Figma File',
         description:
             'Atlantis uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Atlantis Figma file as they are available in PrimeOne for Figma only.',
-        src: '/images/templates/apollo/features-animation-figma.png'
+        src: '/images/templates/atlantis/features-animation-figma.png'
     }
 ];
 
@@ -148,8 +148,8 @@ const templateHeroData = {
     pattern: '/images/templates/atlantis/atlantis-hero-pattern.png',
     rectangle: '/images/templates/atlantis/atlantis-hero-rectangle1.png',
     light: '/images/templates/atlantis/atlantis-hero-light.png',
-    dashboard1: '/images/templates/atlantis/atlantis-hero-dashboard1.png',
-    dashboard2: '/images/templates/atlantis/atlantis-hero-dashboard2.png',
+    dashboard1: '/images/templates/atlantis/atlantis-hero-dashboard1.jpg',
+    dashboard2: '/images/templates/atlantis/atlantis-hero-dashboard2.jpg',
     description: 'Atlantis is a beautiful React.js admin template with a modern look and feel optimized for creating React apps.',
     liveHref: 'https://www.primefaces.org/atlantis-react/',
     docHref: 'https://www.primefaces.org/atlantis-react/documentation/'

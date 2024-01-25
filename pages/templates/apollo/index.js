@@ -10,16 +10,16 @@ import TemplateFeaturesAnimation from '@/components/templates/templateFeaturesAn
 
 const apolloRelatedData = [
     {
-        src: '/images/templates/related-atlantis.png',
-        href: ''
+        src: '/images/templates/diamond-react.jpg',
+        href: '/templates/diamond'
     },
     {
-        src: '/images/templates/related-avalon.png',
-        href: ''
+        src: '/images/templates/avalon-react.jpg',
+        href: 'https://www.primefaces.org/layouts/avalon-react'
     },
     {
-        src: '/images/templates/related-diamond.png',
-        href: ''
+        src: '/images/templates/babylon-react.jpg',
+        href: 'https://www.primefaces.org/layouts/babylon-react'
     }
 ];
 

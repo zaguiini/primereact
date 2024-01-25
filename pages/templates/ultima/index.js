@@ -43,16 +43,16 @@ const apolloFeatures2Data = [
 
 const apolloRelatedData = [
     {
-        src: '/images/templates/related-atlantis.png',
-        href: ''
+        src: '/images/templates/serenity-react.jpg',
+        href: 'https://www.primefaces.org/layouts/serenity-react'
     },
     {
-        src: '/images/templates/related-avalon.png',
-        href: ''
+        src: '/images/templates/sapphire-react.jpg',
+        href: 'https://www.primefaces.org/layouts/sapphire-react'
     },
     {
-        src: '/images/templates/related-diamond.png',
-        href: ''
+        src: '/images/templates/babylon-react.jpg',
+        href: 'https://www.primefaces.org/layouts/babylon-react'
     }
 ];
 
@@ -80,7 +80,7 @@ const animationFeaturesData1 = [
         title: 'Figma File',
         description:
             'Ultima uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Ultima Figma file as they are available in PrimeOne for Figma only.',
-        src: '/images/templates/apollo/features-animation-figma.png'
+        src: '/images/templates/ultima/features-animation-figma.png'
     }
 ];
 
@@ -175,6 +175,7 @@ const UltimaPage = () => {
                 rectangle={'/images/templates/ultima/ultima-hero-rectangle1.png'}
                 light={'/images/templates/ultima/ultima-hero-light.png'}
                 logo={<UltimaLogo />}
+                description={'A highly customizable premium application template featuring 4 menu modes, 13 themes, light and dark modes. Based on material design language, it is fully responsive, touch optimized, built with SASS, CSS3 and HTML5.'}
                 dashboard1={'/images/templates/ultima/ultima-hero-dashboard1.png'}
                 dashboard2={'/images/templates/ultima/ultima-hero-dashboard2.png'}
                 liveHref={'https://ultima.primereact.org'}

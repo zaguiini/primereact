@@ -43,16 +43,16 @@ const apolloFeatures2Data = [
 
 const apolloRelatedData = [
     {
-        src: '/images/templates/related-atlantis.png',
-        href: ''
+        src: '/images/templates/freya-react.jpg',
+        href: '/templates/freya'
     },
     {
-        src: '/images/templates/related-avalon.png',
-        href: ''
+        src: '/images/templates/apollo-react.jpg',
+        href: '/templates/apollo'
     },
     {
-        src: '/images/templates/related-diamond.png',
-        href: ''
+        src: '/images/templates/atlantis-react.jpg',
+        href: '/templates/atlantis'
     }
 ];
 

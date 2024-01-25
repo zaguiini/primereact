@@ -43,16 +43,16 @@ const apolloFeatures2Data = [
 
 const apolloRelatedData = [
     {
-        src: '/images/templates/related-atlantis.png',
-        href: ''
+        src: '/images/templates/diamond-react.jpg',
+        href: '/templates/diamond'
     },
     {
-        src: '/images/templates/related-avalon.png',
-        href: ''
+        src: '/images/templates/babylon-react.jpg',
+        href: 'https://www.primefaces.org/layouts/babylon-react'
     },
     {
-        src: '/images/templates/related-diamond.png',
-        href: ''
+        src: '/images/templates/serenity-react.jpg',
+        href: 'https://www.primefaces.org/layouts/serenity-react'
     }
 ];
 
@@ -80,7 +80,7 @@ const animationFeaturesData1 = [
         title: 'Figma File',
         description:
             'Freya uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Freya Figma file as they are available in PrimeOne for Figma only.',
-        src: '/images/templates/apollo/features-animation-figma.png'
+        src: '/images/templates/freya/features-animation-figma.png'
     }
 ];
 

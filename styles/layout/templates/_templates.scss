@@ -542,7 +542,7 @@
 
             &-bottom {
                 padding: 1.5rem;
-                background: #212121;
+                background: var(--surface-900);
                 border-bottom-left-radius: inherit;
                 border-bottom-right-radius: inherit;
                 display: flex;
@@ -551,7 +551,7 @@
                 position: relative;
 
                 p {
-                    color: #FFF;
+                    color: var(--surface-0);
                     font-size: 0.875rem;
                     font-weight: 400;
                     line-height: 1.0625rem;
@@ -788,6 +788,7 @@
                     width: 90%;
                     overflow: hidden;
                     position: relative;
+                    display: flex;
                     margin-top: 1.25rem;
                     border-radius: 0.5rem;
                     box-shadow: 0px 0px 48px 0px rgba(0, 0, 0, 0.08);

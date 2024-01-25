@@ -43,16 +43,16 @@ const apolloFeatures2Data = [
 
 const apolloRelatedData = [
     {
-        src: '/images/templates/related-atlantis.png',
-        href: ''
+        src: '/images/templates/apollo-react.jpg',
+        href: '/templates/apollo'
     },
     {
-        src: '/images/templates/related-avalon.png',
-        href: ''
+        src: '/images/templates/avalon-react.jpg',
+        href: 'https://www.primefaces.org/layouts/avalon-react'
     },
     {
-        src: '/images/templates/related-diamond.png',
-        href: ''
+        src: '/images/templates/roma-react.jpg',
+        href: 'https://www.primefaces.org/layouts/roma-react'
     }
 ];
 
@@ -80,7 +80,7 @@ const animationFeaturesData1 = [
         title: 'Figma File',
         description:
             'Diamond uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Diamond Figma file as they are available in PrimeOne for Figma only.',
-        src: '/images/templates/apollo/features-animation-figma.png'
+        src: '/images/templates/diamond/features-animation-figma.png'
     }
 ];
 
