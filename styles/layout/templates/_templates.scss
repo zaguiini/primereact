@@ -192,11 +192,11 @@
                 background: var(--surface-100, #FFF);
                 border-radius: 0.65625rem;
                 overflow: hidden;
-                display: flex;
 
                 img {
                     width: 100%;
                     border-radius: inherit;
+                    margin-bottom: -0.2rem;
                 }
             }
 
@@ -293,7 +293,6 @@
                 width: auto;
                 background: var(--surface-100);
                 border-radius: 0.65625rem;
-                display: flex;
 
                 img {
                     border-radius: inherit;
@@ -765,8 +764,6 @@
             height: fit-content;
             border-radius: 0.875rem;
             background-color: var(--surface-100);
-            display: flex;
-
             img {
                 width: 100%;
                 height: auto;
