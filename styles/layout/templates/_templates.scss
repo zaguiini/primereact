@@ -987,9 +987,6 @@
             backdrop-filter: blur(2px);
             padding: 2.25rem 1.75rem;
 
-            * {
-                color: #fff;
-            }
 
             &-logo {
                 height: 2.5rem;
@@ -1005,6 +1002,7 @@
                 font-weight: 400;
                 line-height: normal;
                 margin: 1rem 0 0;
+                color: var(--surface-0);
             }
 
             &-buttons {
@@ -1031,7 +1029,7 @@
                 &-btn1 {
                     border: 1px solid #212121;
                     background: #212121;
-
+                    color: white;
                     &:hover {
                         border-color: #444444;
                         background-color: #444444;
@@ -1039,12 +1037,12 @@
                 }
 
                 &-btn2 {
-                    background-color: var(--cyan-500);
-                    border-color: var(--cyan-500);
+                    background-color: var(--primary-600);
+                    border-color: var(--primary-600);
 
                     &:hover {
-                        background-color: var(--cyan-600);
-                        border-color: var(--cyan-600);
+                        background-color: var(--primary-700);
+                        border-color: var(--primary-700);
                     }
                 }
 

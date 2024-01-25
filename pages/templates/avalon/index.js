@@ -5,7 +5,7 @@ import TemplateConfiguration from '@/components/templates/TemplateConfiguration'
 import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
-import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation';
+import TemplateFeaturesAnimation from '@/components/templates/templateFeaturesAnimation';
 import AvalonLogo from './AvalonLogo';
 
 const apolloFeatures2Data = [

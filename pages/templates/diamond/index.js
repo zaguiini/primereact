@@ -6,7 +6,7 @@ import TemplateRelated from '@/components/templates/TemplateRelated';
 import TemplateSeparator from '@/components/templates/TemplateSeparator';
 import TemplateHero from '@/components/templates/templateHero/TemplateHero';
 import DiamondLogo from './DiamondLogo';
-import TemplateFeaturesAnimation from '@/components/templates/templatefeaturesanimation';
+import TemplateFeaturesAnimation from '@/components/templates/templateFeaturesAnimation';
 
 const apolloFeatures2Data = [
     {
