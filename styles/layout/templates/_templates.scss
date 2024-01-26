@@ -652,7 +652,6 @@
         padding: 1.75rem;
         border-radius: 1.75rem;
         border: 1px solid var(--surface-border, #EEE);
-        width: fit-content;
 
         &-left {
             width: 100%;
@@ -687,6 +686,7 @@
                             color: var(--surface-100);
 
                         }
+
                         &:nth-child(3) {
                             animation: FeaturesOrderAnimation 2.5s ease-in-out;
                             color: var(--primary-400);
@@ -700,6 +700,7 @@
                             color: var(--surface-100);
 
                         }
+
                         &:nth-child(3) {
                             animation: FeaturesOrderAnimation 2.5s ease-in-out;
                             color: var(--primary-400);
@@ -725,10 +726,12 @@
                             color: var(--primary-400);
                             -webkit-text-stroke: 1.2px var(--primary-400);
                         }
+
                         &:nth-child(2) {
                             color: var(--surface-card);
                             transition: all 0.2s ease;
                         }
+
                         &:nth-child(3) {
                             color: transparent;
                         }
@@ -1031,6 +1034,7 @@
                     border: 1px solid #212121;
                     background: #212121;
                     color: white;
+
                     &:hover {
                         border-color: #444444;
                         background-color: #444444;
@@ -1038,8 +1042,8 @@
                 }
 
                 &-btn2 {
-                    background-color: var(--primary-600);
-                    border-color: var(--primary-600);
+                    background-color: var(--primary-500);
+                    border-color: var(--primary-500);
 
                     &:hover {
                         background-color: var(--primary-700);
@@ -1212,36 +1216,114 @@
     }
 }
 
+//TEMPLATE INTRO
+.template {
+    &-intro {
+        border-radius: 2rem;
+        background: var(--surface-card, #FFF);
+        padding: 5rem 2rem;
+
+        h2 {
+            color: var(--surface-900);
+            text-align: center;
+            font-size: 3.42857rem;
+            font-weight: 600;
+            line-height: 4rem;
+            margin: 0;
+        }
+
+        p {
+            color: var(--surface-900);
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            max-width: 50rem;
+            margin: 1.5rem auto 0;
+        }
+
+        &-image {
+            background-color: var(--surface-100);
+            max-width: 75rem;
+            margin: 3.5rem auto 0;
+            border-radius: 1.15rem;
+            display: flex;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 992px) {
+    .template {
+        &-intro {
+            padding: 2.5rem 1.25rem;
+
+            h2 {
+                font-size: 1.5rem;
+                line-height: normal;
+            }
+
+            p {
+                line-height: 1.5;
+                margin: 1rem auto 0;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .template {
+        &-intro {
+            padding: 3rem 1rem;
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            &-image {
+                margin: 1.5rem auto 0;
+            }
+        }
+    }
+}
+
+
 // TEMPALTE SEPARATOR
 .template {
     &-separator {
-        gap: 1.5rem; 
+        gap: 1.5rem;
         width: 100%;
-        display: flex; 
-        align-items: center; 
+        display: flex;
+        align-items: center;
         justify-content: center;
 
         &::before {
             content: '';
             flex: 1;
-            height: 1px; 
+            height: 1px;
             background-color: var(--surface-border)
         }
 
         &::after {
             content: '';
             flex: 1;
-            height: 1px; 
+            height: 1px;
             background-color: var(--surface-border)
         }
 
         &-icon {
             width: 3rem;
-            height: 3rem; 
-            display: flex; 
-            align-items: center; 
+            height: 3rem;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            border: 1px solid var(--surface-border); 
+            border: 1px solid var(--surface-border);
             border-radius: 100%;
             background-color: var(--surface-card);
         }
