@@ -11,8 +11,8 @@ import PoseidonLogo from './PoseidonLogo';
 const apolloFeatures2Data = [
     {
         title: 'Fully Responsive',
-        description: 'Diamond is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
-        src: '/images/templates/diamond/diamond-features2-responsive.png'
+        description: 'Atlantis is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
+        src: '/images/templates/poseidon/poseidon-features2-responsive.png'
     },
     {
         title: 'Cross Browser Compatible',
@@ -21,23 +21,23 @@ const apolloFeatures2Data = [
     },
     {
         title: 'Lifetime Support',
-        description: 'Diamond has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.',
+        description: 'Atlantis has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.',
         src: '/images/templates/apollo/apollo-features2-lifetime.png'
     },
     {
-        title: 'Customizable Design',
-        description: 'Fully customizable with a mixture of Sass and CSS variables.',
+        title: 'Full SaSS Support',
+        description: 'Sass is utilized for both the application and components to provide simplicity and flexibility.',
         src: '/images/templates/apollo/apollo-features2-customizable.png'
     },
     {
         title: 'Ready to Use Pages',
         description: 'Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app.',
-        src: '/images/templates/diamond/diamond-features2-ready.png'
+        src: '/images/templates/poseidon/poseidon-features2-ready.png'
     },
     {
         title: 'Mobile Experience',
         description: 'Touch optimized enhanced mobile experience with responsive design.',
-        src: '/images/templates/diamond/diamond-features2-mobile.png'
+        src: '/images/templates/poseidon/poseidon-features2-mobile.png'
     }
 ];
 
@@ -61,92 +61,59 @@ const animationFeaturesData1 = [
         id: 1,
         title: 'PrimeFlex CSS Utilities',
         description: 'PrimeFlex is a CSS utility library featuring various helpers such as a grid system, flexbox, spacing, elevation and more.',
-        src: '/images/templates/apollo/features-animation-utilities.png'
+        src: '/images/templates/babylon/features-animation-utilities.png'
     },
     {
         id: 2,
         title: 'PrimeBlocks',
         description: 'Fully compatible with PrimeBlocks, choose from the wide range of blocks and customize the way you like. Note that PrimeBlocks is not included in the template and requires a separate purchase.',
-        src: '/images/templates/apollo/features-animation-blocks.png'
+        src: '/images/templates/babylon/features-animation-blocks.png'
     },
     {
         id: 3,
         title: 'PrimeIcons',
-        description: 'Diamond ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
-        src: '/images/templates/apollo/features-animation-icons.png'
+        description: 'Atlantis ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
+        src: '/images/templates/babylon/features-animation-icons.png'
     },
-    {
-        id: 4,
-        title: 'Figma File',
-        description:
-            'Diamond uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Diamond Figma file as they are available in PrimeOne for Figma only.',
-        src: '/images/templates/diamond/features-animation-figma.png'
-    }
 ];
 
 const animationFeaturesData2 = [
     {
         id: 1,
-        title: 'Light and Dark Modes',
-        description: 'The stunning dark and light modes will impress your users.',
-        src: '/images/templates/diamond/features-animation-darkmode.png'
+        title: 'Light / Dim / Dark Modes',
+        description: 'Poseidon offers you 3 uniquely designed layout modes to choose from; Light, Dim, and Dark.',
+        src: '/images/templates/poseidon/features-animation-darkmode.png'
     },
     {
         id: 2,
         title: 'Component Themes',
-        description: 'Verona offers 20 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.',
-        src: '/images/templates/diamond/features-animation-component-themes.png'
+        description: 'Poseidon offers 12 built-in component themes with dark, light and dim options. Also if you wanna create your own theme you can do it by just defining couple SASS variables.',
+        src: '/images/templates/poseidon/features-animation-component-themes.png'
     },
     {
         id: 3,
-        title: '7 Menu Orientations',
-        description: 'Choose from Static and Slim menu orientations.',
-        src: '/images/templates/diamond/features-animation-orientations.png',
+        title: '3 Menu Orientations',
+        description: 'Poseidon has 3 menu layouts to choose from; Static, Overlay and Horizontal',
+        src: '/images/templates/poseidon/features-animation-orientations.png',
         type: 'inline-animation',
         inlineFeaturesData: [
             {
                 id: 1,
                 title: 'Static',
-                src: '/images/templates/diamond/Static.png'
+                src: '/images/templates/poseidon/Static.png'
             },
             {
                 id: 2,
-                title: 'Slim',
-                src: '/images/templates/diamond/Slim.png'
+                title: 'Overlay',
+                src: '/images/templates/poseidon/Overlay.png'
             },
             {
                 id: 3,
                 title: 'Horizontal',
-                src: '/images/templates/diamond/Horizontal.png'
+                src: '/images/templates/poseidon/Horizontal.png'
             },
-            {
-                id: 4,
-                title: 'Drawer',
-                src: '/images/templates/diamond/Drawer.png'
-            },
-            {
-                id: 5,
-                title: 'Overlay',
-                src: '/images/templates/diamond/Overlay.png'
-            },
-            {
-                id: 6,
-                title: 'Compact',
-                src: '/images/templates/diamond/Compact.png'
-            },
-            {
-                id: 7,
-                title: 'Reveal',
-                src: '/images/templates/diamond/Reveal.png'
-            }
         ]
     },
-    {
-        id: 4,
-        title: 'Layout Themes',
-        description: 'Verona offers 23 special layout themes featuring gorgeous gradients.',
-        src: '/images/templates/diamond/features-animation-orientations.png'
-    }
 ];
 
 const PoseidonSeparator = () => {
@@ -172,7 +139,7 @@ const templateHeroData = {
     pattern: '/images/templates/poseidon/poseidon-hero-pattern.png',
     dashboard1: '/images/templates/poseidon/poseidon-hero-dashboard1.png',
     dashboard2: '/images/templates/poseidon/poseidon-hero-dashboard2.png',
-    description: 'Diamond is a beautiful Vue.js admin template with a modern look and feel optimized for creating Vue apps.',
+    description: 'A modern and easy to use premium application template with various color schemes.Based on flat design language, it is fully responsive, touch optimized, built with SASS, CSS3 and HTML5.',
     liveHref: 'https://diamond.primereact.org',
     docHref: 'https://diamond.primereact.org/documentation'
 };
@@ -181,7 +148,7 @@ const PoseidonPage = () => {
     const featuresAnimationTitle = (
         <h2>
             Features that the <br />
-            Diamond template gives you
+            Poseidon template gives you
         </h2>
     );
 

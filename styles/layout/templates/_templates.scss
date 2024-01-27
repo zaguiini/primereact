@@ -973,7 +973,7 @@
     &-hero {
         width: 100%;
         height: 36.25rem;
-        background: var(--primary-600);
+        background: var(--primary-500);
         border-radius: 2rem;
         position: relative;
         overflow: hidden;
@@ -986,7 +986,7 @@
             margin-top: 9.81rem;
             border-radius: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.24);
-            background: linear-gradient(180deg, rgba(170, 140, 255, 0.00) 0%, var(--primary-600)/0.8 100%), rgba(255, 255, 255, 0.10);
+            background: linear-gradient(180deg, rgba(170, 140, 255, 0.00) 0%, var(--primary-400)/0.8 100%), rgba(255, 255, 255, 0.10);
             box-shadow: 0px 2px 4px 0px rgba(255, 255, 255, 0.24) inset, 0px 48px 80px 0px rgba(0, 0, 0, 0.08), 0px -5px 13px -2px rgba(255, 255, 255, 0.55) inset;
             backdrop-filter: blur(2px);
             padding: 2.25rem 1.75rem;
@@ -1042,8 +1042,8 @@
                 }
 
                 &-btn2 {
-                    background-color: var(--primary-500);
-                    border-color: var(--primary-500);
+                    background-color: var(--primary-600);
+                    border-color: var(--primary-600);
 
                     &:hover {
                         background-color: var(--primary-700);
@@ -1243,11 +1243,22 @@
         }
 
         &-image {
-            background-color: var(--surface-100);
+            position: relative;
+            background-color: var(--primary-600);
             max-width: 75rem;
             margin: 3.5rem auto 0;
             border-radius: 1.15rem;
             display: flex;
+
+            &::after{
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 5;
+                background-color: var(--primary-100);
+                opacity: 0.2;
+                border-radius: inherit;
+            }
 
             img {
                 width: 100%;

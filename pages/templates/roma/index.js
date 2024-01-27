@@ -8,6 +8,7 @@ import TemplateHero from '@/components/templates/templateHero/TemplateHero';
 import TemplateFeaturesAnimation from '@/components/templates/templateFeaturesAnimation';
 import RomaLogo from './RomaLogo';
 import RomaSeparator from './RomaSeparator';
+import TemplateIntro from '@/components/templates/TemplateIntro';
 
 const apolloFeatures2Data = [
     {
@@ -132,8 +133,6 @@ const animationFeaturesData2 = [
 const templateHeroData = {
     logo: <RomaLogo />,
     pattern: '/images/templates/roma/roma-hero-pattern.png',
-    light: true,
-    rectangle:true,
     dashboard1: '/images/templates/roma/roma-hero-dashboard1.png',
     dashboard2: '/images/templates/roma/roma-hero-dashboard2.png',
     description: 'A minimalist premium application template with a clean and simple design. Fully customizable with SASS variables and optimized for all devices with responsive design.',
@@ -150,8 +149,14 @@ const AvalonPage = () => {
     );
 
     return (
-        <div className="avalon template">
+        <div className="roma template">
             <TemplateHero {...templateHeroData} />
+            <RomaSeparator />
+            <TemplateIntro
+            title="1000+ Layout Variations"
+            description="Choose from various modern designs crafted by our team or create your own Roma experience with the ease of customization."
+            imageURL="/images/templates/roma/roma-intro.png"
+            />
             <RomaSeparator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} animationSeconds={3000}/>
             <RomaSeparator />

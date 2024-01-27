@@ -146,8 +146,6 @@ const animationFeaturesData2 = [
 const templateHeroData = {
     logo: <AtlantisLogo />,
     pattern: '/images/templates/atlantis/atlantis-hero-pattern.png',
-    rectangle: '/images/templates/atlantis/atlantis-hero-rectangle1.png',
-    light: '/images/templates/atlantis/atlantis-hero-light.png',
     dashboard1: '/images/templates/atlantis/atlantis-hero-dashboard1.jpg',
     dashboard2: '/images/templates/atlantis/atlantis-hero-dashboard2.jpg',
     description: 'Atlantis is a beautiful React.js admin template with a modern look and feel optimized for creating React apps.',

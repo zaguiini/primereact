@@ -145,8 +145,6 @@ const animationFeaturesData2 = [
 
 const templateHeroData = {
     pattern: '/images/templates/freya/freya-hero-pattern.png',
-    rectangle: '/images/templates/freya/freya-hero-rectangle1.png',
-    light: '/images/templates/freya/freya-hero-light.png',
     logo: <FreyaLogo />,
     dashboard1: '/images/templates/freya/freya-hero-dashboard1.png',
     dashboard2: '/images/templates/freya/freya-hero-dashboard2.png',
