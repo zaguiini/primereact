@@ -478,6 +478,18 @@
 }
 
 // TEMPLATE CONFIGURATION
+.layout-dark{
+    .template{
+        &-configuration{
+            &-screen{
+                &-bottom{
+                    background: var(--surface-900) !important;
+                }
+
+            }
+        }
+    }
+}
 .template {
     &-configuration {
         &-wrapper {
@@ -1256,7 +1268,7 @@
                 inset: 0;
                 z-index: 5;
                 background-color: var(--primary-100);
-                opacity: 0.2;
+                opacity: 0.15;
                 border-radius: inherit;
             }
 

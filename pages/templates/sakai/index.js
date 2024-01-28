@@ -17,7 +17,8 @@ const apolloFeatures2Data = [
     {
         title: 'Cross Browser Compatible',
         description: 'First class support for Firefox, Safari, Chrome and Edge.',
-        src: '/images/templates/apollo/apollo-features2-compatible.png'
+        src: '/images/templates/apollo/apollo-features2-compatible.png',
+        darkSrc: '/images/templates/apollo/apollo-features2-compatible-dark.png',
     },
     {
         title: 'Lifetime Support',
@@ -27,7 +28,8 @@ const apolloFeatures2Data = [
     {
         title: 'Full SaSS Support',
         description: 'Sass is utilized for both the application and components to provide simplicity and flexibility.',
-        src: '/images/templates/apollo/apollo-features2-customizable.png'
+        src: '/images/templates/apollo/apollo-features2-customizable.png',
+        darkSrc: '/images/templates/apollo/apollo-features2-customizable-dark.png'
     },
     {
         title: 'Mobile Experience',

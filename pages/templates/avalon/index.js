@@ -16,7 +16,8 @@ const apolloFeatures2Data = [
     {
         title: 'Cross Browser Compatible',
         description: 'First class support for Firefox, Safari, Chrome and Edge.',
-        src: '/images/templates/apollo/apollo-features2-compatible.png'
+        src: '/images/templates/apollo/apollo-features2-compatible.png',
+        darkSrc: '/images/templates/apollo/apollo-features2-compatible-dark.png',
     },
     {
         title: 'Lifetime Support',
@@ -26,12 +27,14 @@ const apolloFeatures2Data = [
     {
         title: 'Customizable Design',
         description: 'Fully customizable with a mixture of Sass and CSS variables.',
-        src: '/images/templates/apollo/apollo-features2-customizable.png'
+        src: '/images/templates/apollo/apollo-features2-customizable.png',
+        darkSrc: '/images/templates/apollo/apollo-features2-customizable-dark.png'
     },
     {
         title: 'Top Notch Quality',
         description: 'Superior standards with 100% compatibility for strict mode and linting tools.',
-        src: '/images/templates/apollo/apollo-features2-quality.png'
+        src: '/images/templates/apollo/apollo-features2-quality.png',
+        darkSrc: '/images/templates/apollo/apollo-features2-quality-dark.png'
     },
     {
         title: 'Mobile Experience',
