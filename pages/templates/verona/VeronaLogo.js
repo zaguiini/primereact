@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => (
     <svg width="142" height="40" viewBox="0 0 142 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_2008_66426)">
+        <g clipPath="url(#clip0_2008_66426)">
             <circle cx="20" cy="20" r="19" stroke="var(--surface-0)" strokeOpacity="0.87" strokeWidth="2" />
             <path d="M35.8259 10.0575H3.62061V10.3007H35.8259V10.0575Z" fill="var(--surface-0)" fillOpacity="0.5" />
             <path d="M38.196 16.2153H1.51099V16.4585H38.196V16.2153Z" fill="var(--surface-0)" fillOpacity="0.5" />

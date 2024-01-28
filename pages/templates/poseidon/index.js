@@ -124,8 +124,8 @@ const PoseidonSeparator = () => {
                     <path d="M11.0876 0L13.9043 2.1136L12.6009 3.85069L12.0386 3.42929L12.0363 13.583L16.231 15.1112L19.1018 1.34789L22.1539 4.382L21.3935 6.14085L20.4104 5.71186L17.8451 18.0106L12.0363 15.8953L12.0345 24H10.134L10.1358 15.886L4.30245 18.0106L1.74345 5.71186L0.450113 6.14085L0 4.382L3.05322 1.34691L5.91759 15.1112L10.1358 13.5737L10.1382 3.42619L9.57319 3.85069L8.26983 2.1136L11.0876 0Z" fill="url(#paint0_linear_1894_9038)" />
                     <defs>
                         <linearGradient id="paint0_linear_1894_9038" x1="1107.7" y1="0" x2="1107.7" y2="2400" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#5CACF4" />
-                            <stop offset="1" stop-color="#1B74C5" />
+                            <stop stopColor="var(--surface-900)" />
+                            <stop offset="1" stopColor="var(--surface-900)" />
                         </linearGradient>
                     </defs>
                 </svg>
