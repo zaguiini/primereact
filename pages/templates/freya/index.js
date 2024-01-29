@@ -50,7 +50,7 @@ const apolloRelatedData = [
     },
     {
         src: '/images/templates/babylon-react.jpg',
-        href: 'https://www.primefaces.org/layouts/babylon-react'
+        href: '/templates/babylon'
     },
     {
         src: '/images/templates/serenity-react.jpg',
@@ -90,13 +90,13 @@ const animationFeaturesData2 = [
     {
         id: 1,
         title: 'Light and Dark Modes',
-        description: 'The stunning dark and light modes will impress your users.',
+        description: 'Impress your users with the Light and Dark modes.',
         src: '/images/templates/freya/features-animation-darkmode.png'
     },
     {
         id: 2,
         title: 'Component Themes',
-        description: 'Atlantis offers 16 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.',
+        description: 'Freya offers 16 built-in component themes with dark and light options. Also if you wanna create your own theme you can do it by just defining couple SASS variables.',
         src: '/images/templates/freya/features-animation-component-themes.png'
     },
     {
@@ -184,7 +184,7 @@ const FreyaPage = () => {
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} />
             <FreyaSeparator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
+                title="Next.js App with No Configuration"
                 description="Freya is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <FreyaSeparator />

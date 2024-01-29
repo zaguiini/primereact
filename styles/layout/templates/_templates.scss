@@ -589,7 +589,13 @@
                 padding: 2.5rem 1.25rem;
                 border-radius: 1.25rem;
             }
-
+            &-title {
+                font-size: 1.25rem;
+            }
+            &-description {
+                font-size: 0.85rem;
+                line-height: 1.25rem;
+            }
             width: 80%;
             padding: 1rem;
             border-radius: 1rem;

@@ -33,7 +33,7 @@ const apolloFeatures2Data = [
     },
     {
         title: 'Ready to Use Pages',
-        description: 'Landing, login, invoice, help, user management and error pages are provided as template pages to get started with building your app.',
+        description: 'Everything is ready for you to start and build your app in no time. Landing, login, invoice, help, and error pages are provided as template pages.',
         src: '/images/templates/ultima/ultima-features2-ready.png'
     },
     {
@@ -54,7 +54,7 @@ const apolloRelatedData = [
     },
     {
         src: '/images/templates/babylon-react.jpg',
-        href: 'https://www.primefaces.org/layouts/babylon-react'
+        href: '/templates/babylon'
     }
 ];
 
@@ -90,13 +90,13 @@ const animationFeaturesData2 = [
     {
         id: 1,
         title: 'Light and Dark Modes',
-        description: 'The stunning dark and light modes will impress your users.',
+        description: 'Ultima offers you 2 uniquely designed layout modes to choose from; Light and Dark.',
         src: '/images/templates/ultima/features-animation-darkmode.png'
     },
     {
         id: 2,
         title: 'Component Themes',
-        description: 'Atlantis offers 16 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.',
+        description: 'Ultima offers 17 built-in component themes with dark and light options. Also if you wanna create your own theme you can do it by just defining couple SASS variables.',
         src: '/images/templates/ultima/features-animation-component-themes.png'
     },
     {
@@ -188,7 +188,7 @@ const UltimaPage = () => {
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} />
             <UltimaSeperator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
+                title="Next.js App with No Configuration"
                 description="Ultima is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <UltimaSeperator />

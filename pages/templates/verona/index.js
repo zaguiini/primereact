@@ -81,7 +81,7 @@ const animationFeaturesData1 = [
         id: 4,
         title: 'Figma File',
         description:
-            'Verona uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Verona Figma file as they are available in PrimeOne for Figma only.',
+            <>Verona uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Verona Figma file as they are available in PrimeOne for Figma only.</>,
         src: '/images/templates/apollo/features-animation-figma.png'
     }
 ];
@@ -188,6 +188,7 @@ const VeronaPage = () => {
                 pattern={'/images/templates/verona/verona-hero-pattern.png'}
                 rectangle={'/images/templates/verona/verona-hero-rectangle1.png'}
                 light={'/images/templates/verona/verona-hero-light.png'}
+                description={'Prepare to be amazed by the remastered Verona for PrimeReact featuring a new gorgeous dark mode for the entire layout, 2 menu modes, reusable css widgets, utilities, modern icons and many more.'}
                 logo={<VeronaLogo />}
                 dashboard1={'/images/templates/verona/verona-hero-dashboard1.png'}
                 dashboard2={'/images/templates/verona/verona-hero-dashboard2.png'}
@@ -199,7 +200,7 @@ const VeronaPage = () => {
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} animationSeconds={4000} />
             <VeronaSeperator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
+                title="Next.js App with No Configuration"
                 description="Verona is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <VeronaSeperator />

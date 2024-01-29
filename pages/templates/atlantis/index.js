@@ -54,7 +54,7 @@ const apolloRelatedData = [
     },
     {
         src: '/images/templates/roma-react.jpg',
-        href: 'https://www.primefaces.org/layouts/roma-react'
+        href: '/templates/roma'
     }
 ];
 
@@ -150,7 +150,7 @@ const templateHeroData = {
     pattern: '/images/templates/atlantis/atlantis-hero-pattern.png',
     dashboard1: '/images/templates/atlantis/atlantis-hero-dashboard1.jpg',
     dashboard2: '/images/templates/atlantis/atlantis-hero-dashboard2.jpg',
-    description: 'Atlantis is a beautiful React.js admin template with a modern look and feel optimized for creating React apps.',
+    description: 'Prepare to be amazed by the remastered Atlantis for PrimeReact featuring a new gorgeous dark mode for the entire layout, 5 menu modes, reusable css widgets, utilities, modern icons and many more.',
     liveHref: 'https://www.primefaces.org/atlantis-react/',
     docHref: 'https://www.primefaces.org/atlantis-react/documentation/'
 };
@@ -189,7 +189,7 @@ const AtlantisPage = () => {
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} />
             <AtlantisSeperator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
+                title="Next.js App with No Configuration"
                 description="Atlantis is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <AtlantisSeperator />

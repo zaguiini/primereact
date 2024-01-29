@@ -50,11 +50,11 @@ const apolloRelatedData = [
     },
     {
         src: '/images/templates/avalon-react.jpg',
-        href: 'https://www.primefaces.org/layouts/avalon-react'
+        href: '/templates/avalon'
     },
     {
         src: '/images/templates/roma-react.jpg',
-        href: 'https://www.primefaces.org/layouts/roma-react'
+        href: '/templates/roma'
     }
 ];
 

@@ -33,7 +33,7 @@ const TemplatesPage = () => {
                             <a href="https://sakai.primereact.org" className="flex-1 p-button p-component" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Preview</span>
                             </a>
-                            <a href="https://github.com/primefaces/sakai-react" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
+                            <a href="sakai" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Download</span>
                             </a>
                         </div>
@@ -138,7 +138,7 @@ const TemplatesPage = () => {
                             <a href="https://www.primefaces.org/babylon-react" className="flex-1 p-button p-component" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Preview</span>
                             </a>
-                            <a href="https://www.primefaces.org/layouts/babylon-react" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
+                            <a href="babylon" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Learn More</span>
                             </a>
                         </div>
@@ -153,7 +153,7 @@ const TemplatesPage = () => {
                             <a href="https://avalon.primereact.org" className="flex-1 p-button p-component" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Preview</span>
                             </a>
-                            <a href="https://www.primefaces.org/layouts/avalon-react" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
+                            <a href="avalon" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Learn More</span>
                             </a>
                         </div>
@@ -168,7 +168,7 @@ const TemplatesPage = () => {
                             <a href="https://www.primefaces.org/roma-react" className="flex-1 p-button p-component" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Preview</span>
                             </a>
-                            <a href="https://www.primefaces.org/layouts/roma-react" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
+                            <a href="roma" className="flex-1 p-button p-component p-button-outlined" rel="noopener noreferrer" target="_blank">
                                 <span className="p-button-label white-space-nowrap">Learn More</span>
                             </a>
                         </div>

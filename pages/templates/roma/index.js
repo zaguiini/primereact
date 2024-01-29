@@ -24,7 +24,7 @@ const apolloFeatures2Data = [
     },
     {
         title: 'Lifetime Support',
-        description: 'Diamond has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.',
+        description: 'Roma has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.',
         src: '/images/templates/apollo/apollo-features2-lifetime.png'
     },
     {
@@ -35,7 +35,7 @@ const apolloFeatures2Data = [
     },
     {
         title: 'Ready to Use Applications',
-        description: 'Mail, File System, Tasks, Calendar, Blog and Chat are the sample applications to get started with ease.',
+        description: 'Landing, login and error pages are provided as template pages to get started with building your app in no time.',
         src: '/images/templates/roma/roma-features2-ready.png'
     },
     {
@@ -76,7 +76,7 @@ const animationFeaturesData1 = [
     {
         id: 3,
         title: 'PrimeIcons',
-        description: 'Diamond ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
+        description: 'Roma ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
         src: '/images/templates/babylon/features-animation-icons.png'
     },
 ];
@@ -85,19 +85,19 @@ const animationFeaturesData2 = [
     {
         id: 1,
         title: 'Light and Dark Modes',
-        description: 'Avalon offers you 2 uniquely designed layout modes to choose from; Light and Dark.',
+        description: 'Roma offers you 2 uniquely designed layout modes to choose from; Light and Dark.',
         src: '/images/templates/roma/features-animation-darkmode.png'
     },
     {
         id: 2,
         title: 'Component 15 Beautiful Themes',
-        description: 'Avalon offers 15 built-in themes and creating your own theme is a matter of defining couple of SaSS variables.',
+        description: 'Roma offers 15 built-in themes and creating your own theme is a matter of defining couple of SaSS variables.',
         src: '/images/templates/roma/features-animation-component-themes.png'
     },
     {
         id: 3,
         title: '4 Menu Orientations',
-        description: 'Avalon has 7 menu layouts to choose from; Static, Overlay, Slim, Slim+, Reveal, Drawer and Horizontal with Light and Dark options.',
+        description: 'Roma has 4 menu layouts to choose from; Static, Overlay, Horizontal and Slim with Light and Dark options.',
         src: '/images/templates/diamond/features-animation-orientations.png',
         type: 'inline-animation',
         inlineFeaturesData: [
@@ -146,7 +146,7 @@ const AvalonPage = () => {
     const featuresAnimationTitle = (
         <h2>
             Features that the <br />
-            Avalon template gives you
+            Roma template gives you
         </h2>
     );
 

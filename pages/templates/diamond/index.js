@@ -50,11 +50,11 @@ const apolloRelatedData = [
     },
     {
         src: '/images/templates/avalon-react.jpg',
-        href: 'https://www.primefaces.org/layouts/avalon-react'
+        href: '/templates/avalon'
     },
     {
         src: '/images/templates/roma-react.jpg',
-        href: 'https://www.primefaces.org/layouts/roma-react'
+        href: '/templates/roma'
     }
 ];
 
@@ -90,13 +90,13 @@ const animationFeaturesData2 = [
     {
         id: 1,
         title: 'Light and Dark Modes',
-        description: 'The stunning dark and light modes will impress your users.',
+        description: 'Diamond has 3 display modes to choose from; Light, Dim and Dark.',
         src: '/images/templates/diamond/features-animation-darkmode.png'
     },
     {
         id: 2,
         title: 'Component Themes',
-        description: 'Verona offers 20 built-in component themes with dark and light options. You are also free to create you own theme by defining couple SASS variables.',
+        description: 'Diamond offers 30 built-in component themes and creating your own theme is a matter of defining couple of sass variables.',
         src: '/images/templates/diamond/features-animation-component-themes.png'
     },
     {
@@ -146,7 +146,7 @@ const animationFeaturesData2 = [
     {
         id: 4,
         title: 'Layout Themes',
-        description: 'Verona offers 23 special layout themes featuring gorgeous gradients.',
+        description: 'Stunning theming options for the main menu in light color scheme.',
         src: '/images/templates/diamond/features-animation-orientations.png'
     }
 ];
@@ -178,7 +178,7 @@ const templateHeroData = {
     pattern: '/images/templates/diamond/diamond-hero-pattern.png',
     dashboard1: '/images/templates/diamond/diamond-hero-dashboard1.png',
     dashboard2: '/images/templates/diamond/diamond-hero-dashboard2.png',
-    description: 'Diamond is a beautiful Vue.js admin template with a modern look and feel optimized for creating Vue apps.',
+    description: 'An amazing application template for React based on the popular NextJS framework. with light-dim-dark modes, four menu layouts, various menu themes, sample apps, ready to use template pages and 30 PrimeReact themes.',
     liveHref: 'https://diamond.primereact.org',
     docHref: 'https://diamond.primereact.org/documentation'
 };
@@ -200,7 +200,7 @@ const DiamondPage = () => {
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} />
             <DiamondSeperator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
+                title="Next.js App with No Configuration"
                 description="Diamond is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <DiamondSeperator />

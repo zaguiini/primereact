@@ -10,7 +10,7 @@ import AvalonSeparator from './AvalonSeparator';
 const apolloFeatures2Data = [
     {
         title: 'Fully Responsive',
-        description: 'Diamond is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
+        description: 'Avalon is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
         src: '/images/templates/avalon/avalon-features2-responsive.png'
     },
     {
@@ -46,7 +46,7 @@ const apolloFeatures2Data = [
 const apolloRelatedData = [
     {
         src: '/images/templates/babylon-react.jpg',
-        href: 'https://www.primefaces.org/layouts/babylon-react'
+        href: '/templates/babylon'
     },
     {
         src: '/images/templates/apollo-react.jpg',
@@ -54,7 +54,7 @@ const apolloRelatedData = [
     },
     {
         src: '/images/templates/roma-react.jpg',
-        href: 'https://www.primefaces.org/layouts/roma-react'
+        href: '/templates/roma'
     }
 ];
 
@@ -74,14 +74,14 @@ const animationFeaturesData1 = [
     {
         id: 3,
         title: 'PrimeIcons',
-        description: 'Diamond ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
+        description: 'Avalon ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
         src: '/images/templates/apollo/features-animation-icons.png'
     },
     {
         id: 4,
         title: 'Figma File',
         description:
-            'Diamond uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Diamond Figma file as they are available in PrimeOne for Figma only.',
+            'Avalon uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can preview the Figma file before the purchase. Note that PrimeVue UI components are excluded from the Diamond Figma file as they are available in PrimeOne for Figma only.',
         src: '/images/templates/avalon/features-animation-figma.png'
     }
 ];
@@ -177,7 +177,7 @@ const templateHeroData = {
     rectangle:true,
     dashboard1: '/images/templates/avalon/avalon-hero-dashboard1.png',
     dashboard2: '/images/templates/avalon/avalon-hero-dashboard2.png',
-    description: 'Welcome the new Avalon, elegantly designed with its new bootstrap theme and colors, offering 5 menu layouts with light and dark modes. ',
+    description: 'A modern and easy to use premium application template with highly customizable layout features. Based on a bootstrap styling, it is fully responsive, touch optimized, built with SASS, CSS3 and HTML5.',
     liveHref: 'https://diamond.primereact.org',
     docHref: 'https://diamond.primereact.org/documentation'
 };

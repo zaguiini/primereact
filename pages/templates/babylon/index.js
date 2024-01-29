@@ -12,7 +12,7 @@ import TemplateIntro from '@/components/templates/TemplateIntro';
 const apolloFeatures2Data = [
     {
         title: 'Fully Responsive',
-        description: 'Atlantis is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
+        description: 'Babylon is crafted to provide optimal viewing and interaction experience for a wide range of devices.',
         src: '/images/templates/babylon/babylon-features2-responsive.png'
     },
     {
@@ -23,7 +23,7 @@ const apolloFeatures2Data = [
     },
     {
         title: 'Lifetime Support',
-        description: 'Atlantis has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.',
+        description: 'Babylon has a dedicated forum where lifetime support is delivered by engineers at PrimeTek in a timely manner.',
         src: '/images/templates/apollo/apollo-features2-lifetime.png'
     },
     {
@@ -75,7 +75,7 @@ const animationFeaturesData1 = [
     {
         id: 3,
         title: 'PrimeIcons',
-        description: 'Atlantis ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
+        description: 'Babylon ships with PrimeIcons, PrimeTek’s modern icon library including a wide range of icons for your applications.',
         src: '/images/templates/babylon/features-animation-icons.png'
     },
 ];
@@ -136,7 +136,7 @@ const templateHeroData = {
     pattern: '/images/templates/babylon/babylon-hero-pattern.png',
     dashboard1: '/images/templates/babylon/babylon-hero-dashboard1.png',
     dashboard2: '/images/templates/babylon/babylon-hero-dashboard2.png',
-    description: 'A modern and easy to use premium application template with various color schemes.Based on flat design language, it is fully responsive, touch optimized, built with SASS, CSS3 and HTML5.',
+    description: 'An elegant premium application template with a beautiful design. Fully customizable with SASS variables and optimized for all devices with responsive design.',
     liveHref: 'https://www.primefaces.org/atlantis-react/',
     docHref: 'https://www.primefaces.org/atlantis-react/documentation/'
 };
@@ -187,8 +187,8 @@ const BabylonPage = () => {
             <TemplateFeaturesAnimation featuresData={animationFeaturesData2} title={featuresAnimationTitle} />
             <BabylonSeparator />
             <TemplateConfiguration
-                title="Vue.js App with No Configuration"
-                description="Atlantis is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
+                title="Next.js App with No Configuration"
+                description="Babylon is powered by Angular CLI to get started in no time following the best practices like service based component interaction modular design and strict mode support"
             />
             <BabylonSeparator />
             <TemplateFeaturesAnimation featuresData={animationFeaturesData1} />
