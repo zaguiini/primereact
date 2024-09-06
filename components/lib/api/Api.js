@@ -5,9 +5,27 @@ import { addLocale, ariaLabel, locale, localeOption, localeOptions, updateLocale
 import { MessageSeverity } from './MessageSeverity';
 import { PrimeIcons } from './PrimeIcons';
 import PrimeReact from './PrimeReact';
-import { SortOrder } from './SortOrder';
 import { PrimeReactContext, PrimeReactProvider } from './PrimeReactContext';
+import PrimeStyleSheet from './PrimeStyleSheet';
+import { SortOrder } from './SortOrder';
 
 export default PrimeReact;
 
-export { locale, addLocale, ariaLabel, localeOption, localeOptions, updateLocaleOption, updateLocaleOptions, PrimeIcons, MessageSeverity, FilterMatchMode, FilterOperator, FilterService, SortOrder, PrimeReactProvider, PrimeReactContext };
+export {
+    addLocale,
+    ariaLabel,
+    FilterMatchMode,
+    FilterOperator,
+    FilterService,
+    locale,
+    localeOption,
+    localeOptions,
+    MessageSeverity,
+    PrimeIcons,
+    PrimeReactContext,
+    PrimeReactProvider,
+    PrimeStyleSheet,
+    SortOrder,
+    updateLocaleOption,
+    updateLocaleOptions
+};

@@ -8,7 +8,7 @@ const GetStartedSection = () => {
     return (
         <section className="landing-getstarted flex flex-column  align-items-center justify-content-center mt-8 z-1">
             <div className="flex flex-column md:flex-row align-items-center justify-content-center">
-                <Link href="/installation">
+                <Link legacyBehavior href="/installation">
                     <a className="linkbox active font-semibold py-3 px-4 fadeinleft animation-duration-2000 animation-ease-out">
                         Get Started <i className="pi pi-arrow-right ml-3" />
                     </a>

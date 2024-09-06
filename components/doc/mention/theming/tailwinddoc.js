@@ -12,7 +12,7 @@ const TRANSITIONS = {
         leaveActiveClass: 'transition-opacity duration-150 ease-linear',
         leaveToClass: 'opacity-0'
     }
-};        
+};
 
 const Tailwind = {
     mention: {
@@ -36,7 +36,7 @@ export default function UnstyledDemo() {
     const [value, setValue] = useState('');
     const [customers, setCustomers] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
-    
+
     useEffect(() => {
         CustomerService.getCustomersSmall().then(data => {
             data.forEach(d => d['nickname'] = \`\${d.name.replace(/\\s+/g, '').toLowerCase()}_\${d.id}\`);
@@ -79,7 +79,7 @@ export default function UnstyledDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Mention value={value} onChange={(e) => setValue(e.target.value)} suggestions={suggestions} onSearch={onSearch} field="nickname" 
+            <Mention value={value} onChange={(e) => setValue(e.target.value)} suggestions={suggestions} onSearch={onSearch} field="nickname"
                 placeholder="Enter @ to mention people" rows={5} cols={40} itemTemplate={itemTemplate} />
         </div>
     )
@@ -91,7 +91,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

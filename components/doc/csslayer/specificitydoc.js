@@ -78,7 +78,11 @@ export function SpecificityDemo() {
             </div>
             <DocSectionCode code={code} hideToggleCode hideStackBlitz />
             <p>
-                Layers also make it possible to use CSS Modules, view the <Link href="/theming/#cssmodules">CSS Modules</Link> guide for examples.
+                Layers also make it possible to use CSS Modules, view the{' '}
+                <Link legacyBehavior href="/theming/#cssmodules">
+                    CSS Modules
+                </Link>{' '}
+                guide for examples.
             </p>
         </DocSectionText>
     );

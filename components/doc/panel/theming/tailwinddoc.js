@@ -50,7 +50,7 @@ const Tailwind = {
 
     const code2 = {
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Panel } from 'primereact/panel';
 
 export default function UnstyledDemo() {
@@ -58,9 +58,9 @@ export default function UnstyledDemo() {
         <div className="card">
             <Panel header="Header">
                 <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
             </Panel>
@@ -75,7 +75,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

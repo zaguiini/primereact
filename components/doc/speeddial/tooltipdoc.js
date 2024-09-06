@@ -186,7 +186,11 @@ export default function TooltipDoc() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Items display a tooltip on hober when a standalone <Link href="/tooltip">Tooltip</Link> is present with a target that matches the items.
+                    Items display a tooltip on hober when a standalone{' '}
+                    <Link legacyBehavior href="/tooltip">
+                        Tooltip
+                    </Link>{' '}
+                    is present with a target that matches the items.
                 </p>
             </DocSectionText>
             <div className="card">

@@ -20,7 +20,7 @@ export function DocSectionText(props) {
     const content = (
         <>
             {label}
-            <Link href={router.basePath + router.pathname + '#' + id} target="_self">
+            <Link legacyBehavior href={router.basePath + router.pathname + '#' + id} target="_self">
                 <a id={id} onClick={onClick}>
                     #
                 </a>

@@ -1,4 +1,3 @@
-import { DevelopmentSection } from '@/components/doc/common/developmentsection';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 
 import Link from 'next/link';
@@ -15,7 +14,11 @@ export function AccessibilityDoc() {
                 overriding the default role.
             </p>
             <p>
-                Closable inplace components displays a button with an <i>aria-label</i> that refers to the <i>aria.close</i> property of the <Link href="/locale">locale</Link> API by default, you may use
+                Closable inplace components displays a button with an <i>aria-label</i> that refers to the <i>aria.close</i> property of the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API by default, you may use
                 <i>closeButtonProps</i> to customize the element and override the default <i>aria-label</i>.
             </p>
 

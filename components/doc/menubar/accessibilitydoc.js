@@ -14,8 +14,11 @@ export function AccessibilityDoc() {
 
             <p>
                 In mobile viewports, a menu icon appears with a <i>button</i> role along with <i>aria-haspopup</i>, <i>aria-expanded</i> and <i>aria-controls</i> to manage the relation between the overlay menubar and the button. The value to describe
-                the button can be defined <i>aria-label</i> or <i>aria-labelledby</i> specified using <i>buttonProps</i>, by default <i>navigation</i> key of the <i>aria</i> property from the <Link href="/locale">locale</Link> API as the{' '}
-                <i>aria-label</i>.
+                the button can be defined <i>aria-label</i> or <i>aria-labelledby</i> specified using <i>buttonProps</i>, by default <i>navigation</i> key of the <i>aria</i> property from the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API as the <i>aria-label</i>.
             </p>
 
             <h3>Keyboard Support</h3>

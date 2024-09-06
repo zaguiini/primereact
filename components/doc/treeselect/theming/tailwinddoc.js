@@ -51,14 +51,14 @@ import { NodeService } from './service/NodeService';
 export default function UnstyledDemo() {
     const [nodes, setNodes] = useState(null);
     const [selectedNodeKey, setSelectedNodeKey] = useState(null);
-    
+
     useEffect(() => {
         NodeService.getTreeNodes().then((data) => setNodes(data));
     }, []);
 
     return (
         <div className="card flex justify-center">
-            <TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes} 
+            <TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes}
                 className="md:w-20rem w-full" placeholder="Select Item"></TreeSelect>
         </div>
     );
@@ -71,7 +71,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

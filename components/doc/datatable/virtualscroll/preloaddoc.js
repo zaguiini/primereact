@@ -1,11 +1,11 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import Link from 'next/link';
-import { CarService } from '../../../../service/CarService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 import { useState } from 'react';
+import { CarService } from '../../../../service/CarService';
 
 export function PreloadVirtualScrollDoc(props) {
     const [cars, setCars] = useState([]);
@@ -92,7 +92,10 @@ export default function PreloadVirtualScrollDemo() {
             <DocSectionText {...props}>
                 <p>
                     Virtual Scrolling is an efficient way to render large amount data. Usage is similar to regular scrolling with the addition of <i>virtualScrollerOptions</i> property to define a fixed <i>itemSize</i>. Internally,{' '}
-                    <Link href="/virtualscroller">VirtualScroller</Link> component is utilized so refer to the API of VirtualScroller for more information about the available options.
+                    <Link legacyBehavior href="/virtualscroller">
+                        VirtualScroller
+                    </Link>{' '}
+                    component is utilized so refer to the API of VirtualScroller for more information about the available options.
                 </p>
                 <p>
                     In this example, <strong>100000</strong> preloaded records are rendered by the Table.

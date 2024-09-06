@@ -85,7 +85,7 @@ export function FloatLabelDoc(props) {
     const code = {
         basic: `
 <FloatLabel>
-    <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries} 
+    <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries}
         optionLabel="cname" optionGroupLabel="name" optionGroupChildren={['states', 'cities']}
         className="w-full md:w-14rem" breakpoint="767px" style={{ minWidth: '14rem' }} />
     <label htmlFor="cs-city">City</label>
@@ -178,7 +178,7 @@ export default function FloatLabelDemo() {
     return (
         <div className="card flex justify-content-center">
             <FloatLabel>
-                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries} 
+                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries}
                     optionLabel="cname" optionGroupLabel="name" optionGroupChildren={['states', 'cities']}
                     className="w-full md:w-14rem" breakpoint="767px" style={{ minWidth: '14rem' }} />
                 <label htmlFor="cs-city">City</label>
@@ -290,7 +290,7 @@ export default function FloatLabelDemo() {
     return (
         <div className="card flex justify-content-center">
             <FloatLabel>
-                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e: CascadeSelectChangeEvent) => setSelectedCity(e.value)} options={countries} 
+                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e: CascadeSelectChangeEvent) => setSelectedCity(e.value)} options={countries}
                     optionLabel="cname" optionGroupLabel="name" optionGroupChildren={['states', 'cities']}
                     className="w-full md:w-14rem" breakpoint="767px" style={{ minWidth: '14rem' }} />
                 <label htmlFor="cs-city">City</label>
@@ -305,7 +305,11 @@ export default function FloatLabelDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    A floating label appears on top of the input field when focused. Visit <Link href="/floatlabel">FloatLabel</Link> documentation for more information.
+                    A floating label appears on top of the input field when focused. Visit{' '}
+                    <Link legacyBehavior href="/floatlabel">
+                        FloatLabel
+                    </Link>{' '}
+                    documentation for more information.
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">

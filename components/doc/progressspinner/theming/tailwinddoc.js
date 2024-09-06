@@ -5,7 +5,7 @@ import Link from 'next/link';
 export function TailwindDoc(props) {
     const code = {
         basic: `
-const Tailwind = {          
+const Tailwind = {
     global: {
         css: \`
         .progress-spinner-circle {
@@ -20,7 +20,7 @@ const Tailwind = {
                 stroke-dasharray: 1, 200;
                 stroke-dashoffset: 0;
             }
-            
+
             50% {
                 stroke-dasharray: 89, 200;
                 stroke-dashoffset: -35px;
@@ -45,7 +45,7 @@ const Tailwind = {
             }
         }
     \`
-    },        
+    },
     progressspinner: {
         root: {
             className: classNames('relative mx-auto w-28 h-28 inline-block', 'before:block before:pt-full')
@@ -77,7 +77,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

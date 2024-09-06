@@ -262,7 +262,11 @@ export default function PaginationDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Pagination is enabled with the <i>paginator</i> and <i>rows</i> properties. Refer to the <Link href="/paginator">Paginator</Link> for more information about customizing the paginator.
+                    Pagination is enabled with the <i>paginator</i> and <i>rows</i> properties. Refer to the{' '}
+                    <Link legacyBehavior href="/paginator">
+                        Paginator
+                    </Link>{' '}
+                    for more information about customizing the paginator.
                 </p>
             </DocSectionText>
             <div className="card">

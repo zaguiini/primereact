@@ -15,7 +15,7 @@ export function ExampleDoc(props) {
 />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Button } from 'primereact/button';
 
 export default function ExampleDemo() {
@@ -33,7 +33,7 @@ export default function ExampleDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Button } from 'primereact/button';
 
 export default function ExampleDemo() {
@@ -56,8 +56,11 @@ export default function ExampleDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Here is a sample that provides a style using PrimeFlex CSS library. Before beginning, head over to the pass through section <Link href="/button">button</Link> documentation to learn more about the components internals. We'll be
-                    using the <i>root</i>, <i>label</i> and <i>icon</i> elements to add a custom style.
+                    Here is a sample that provides a style using PrimeFlex CSS library. Before beginning, head over to the pass through section{' '}
+                    <Link legacyBehavior href="/button">
+                        button
+                    </Link>{' '}
+                    documentation to learn more about the components internals. We'll be using the <i>root</i>, <i>label</i> and <i>icon</i> elements to add a custom style.
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">

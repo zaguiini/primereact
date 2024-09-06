@@ -1,29 +1,14 @@
+import { addClass, classNames, isNotEmpty, mergeProps, removeClass } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
+import { ComponentProvider } from '../component/Component.context';
 import { KeyFilter } from '../keyfilter/KeyFilter';
 import { Tooltip } from '../tooltip/Tooltip';
-import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
-import { InputTextBase } from './InputTextBase';
+import { useInputText } from './InputText.base';
 
 export const InputText = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = InputTextBase.getProps(inProps, context);
-
-        const { ptm, cx, isUnstyled } = InputTextBase.setMetaData({
-            props,
-            ...props.__parentMetadata,
-            context: {
-                disabled: props.disabled,
-                iconPosition: props.iconPosition
-            }
-        });
-
-        useHandleStyle(InputTextBase.css, isUnstyled, { name: 'inputtext', styled: true });
-        const elementRef = React.useRef(ref);
+    React.forwardRef((inProps, inRef) => {
+        const inputtext = useInputText(inProps, inRef);
+        const { props, attrs, ptm, cx, ref } = inputtext;
 
         const onKeyDown = (event) => {
             props.onKeyDown && props.onKeyDown(event);
@@ -52,7 +37,7 @@ export const InputText = React.memo(
             props.onInput && props.onInput(event, validatePattern);
 
             // for uncontrolled changes
-            ObjectUtils.isNotEmpty(target.value) ? DomHandler.addClass(target, 'p-filled') : DomHandler.removeClass(target, 'p-filled');
+            isNotEmpty(target.value) ? addClass(target, 'p-filled') : removeClass(target, 'p-filled');
         };
 
         const onPaste = (event) => {
@@ -63,30 +48,26 @@ export const InputText = React.memo(
             }
         };
 
-        React.useEffect(() => {
-            ObjectUtils.combinedRefs(elementRef, ref);
-        }, [elementRef, ref]);
-
-        const isFilled = React.useMemo(() => ObjectUtils.isNotEmpty(props.value) || ObjectUtils.isNotEmpty(props.defaultValue), [props.value, props.defaultValue]);
-        const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
+        const isFilled = React.useMemo(() => isNotEmpty(props.value) || isNotEmpty(props.defaultValue), [props.value, props.defaultValue]);
+        const hasTooltip = isNotEmpty(props.tooltip);
 
         const rootProps = mergeProps(
             {
-                className: classNames(props.className, cx('root', { context, isFilled })),
-                onBeforeInput: onBeforeInput,
-                onInput: onInput,
-                onKeyDown: onKeyDown,
-                onPaste: onPaste
+                className: classNames(props.className, cx('root')),
+                onBeforeInput,
+                onInput,
+                onKeyDown,
+                onPaste
             },
-            InputTextBase.getOtherProps(props),
+            attrs,
             ptm('root')
         );
 
         return (
-            <>
-                <input ref={elementRef} {...rootProps} />
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            <ComponentProvider value={inputtext}>
+                <input ref={ref} {...rootProps} />
+                {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+            </ComponentProvider>
         );
     })
 );

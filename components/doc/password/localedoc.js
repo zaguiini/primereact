@@ -36,7 +36,7 @@ export default function LocaleDemo() {
 
     return (
         <div className="card flex justify-content-center">
-            <Password value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} 
+            <Password value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
                 promptLabel="Choose a password" weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password"/>
         </div>
     )
@@ -49,7 +49,11 @@ export default function LocaleDemo() {
             <DocSectionText {...props}>
                 <p>
                     Labels are translated at component level by <i>promptLabel</i>, <i>weakLabel</i>, <i>mediumLabel</i> and <i>strongLabel</i> properties. In order to apply global translations for all Password components in the application, refer to
-                    the <Link href="/locale">Locale API</Link>.
+                    the{' '}
+                    <Link legacyBehavior href="/locale">
+                        Locale API
+                    </Link>
+                    .
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">

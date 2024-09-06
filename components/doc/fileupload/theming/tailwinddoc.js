@@ -46,7 +46,7 @@ import React from 'react';
 import { FileUpload } from 'primereact/fileupload';
 
 export default function UnstyledDemo() {
-        
+
     return (
         <div className="card">
             <FileUpload name="demo[]" url={'/api/upload'} multiple accept="image/*" maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} />
@@ -61,7 +61,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

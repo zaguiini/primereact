@@ -89,7 +89,7 @@ export default function Topbar(props) {
         <div ref={containerElement} className="layout-topbar">
             <div className="layout-topbar-inner">
                 <div className="layout-topbar-logo-container">
-                    <Link href="/">
+                    <Link legacyBehavior href="/">
                         <a className="layout-topbar-logo" aria-label="PrimeReact logo">
                             <svg width="146" height="35" viewBox="0 0 146 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -133,7 +133,7 @@ export default function Topbar(props) {
                             </svg>
                         </a>
                     </Link>
-                    <Link href="/" aria-label="PrimeReact logo">
+                    <Link legacyBehavior href="/" aria-label="PrimeReact logo">
                         <a className="layout-topbar-icon">
                             <svg width="32" height="35" viewBox="0 0 32 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_2642_813" className="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="35">

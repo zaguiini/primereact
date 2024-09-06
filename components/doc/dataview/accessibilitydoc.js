@@ -8,11 +8,19 @@ export function AccessibilityDoc() {
             <h3>Screen Reader</h3>
             <p>
                 The container element that wraps the layout options buttons has a <i>group</i> role whereas each button element uses <i>button</i> role and <i>aria-pressed</i> is updated depending on selection state. Values to describe the buttons
-                are derived from the <i>aria.listView</i> and <i>aria.gridView</i> properties of the <Link href="/locale">locale</Link> API respectively.
+                are derived from the <i>aria.listView</i> and <i>aria.gridView</i> properties of the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API respectively.
             </p>
 
             <p>
-                Refer to <Link href="/paginator">paginator</Link> accessibility documentation for the paginator of the component.
+                Refer to{' '}
+                <Link legacyBehavior href="/paginator">
+                    paginator
+                </Link>{' '}
+                accessibility documentation for the paginator of the component.
             </p>
 
             <h3>Keyboard Support</h3>

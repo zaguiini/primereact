@@ -15,7 +15,7 @@ export function BasicDoc(props) {
 
     const code = {
         basic: `
-<TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes} 
+<TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes}
     className="md:w-20rem w-full" placeholder="Select Item"></TreeSelect>
         `,
         javascript: `
@@ -26,14 +26,14 @@ import { NodeService } from './service/NodeService';
 export default function BasicDemo() {
     const [nodes, setNodes] = useState(null);
     const [selectedNodeKey, setSelectedNodeKey] = useState(null);
-    
+
     useEffect(() => {
         NodeService.getTreeNodes().then((data) => setNodes(data));
     }, []);
 
     return (
         <div className="card flex justify-content-center">
-            <TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes} 
+            <TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes}
                 className="md:w-20rem w-full" placeholder="Select Item"></TreeSelect>
         </div>
     );
@@ -48,14 +48,14 @@ import { NodeService } from './service/NodeService';
 export default function BasicDemo() {
     const [nodes, setNodes] = useState<TreeNode[] | null>(null);
     const [selectedNodeKey, setSelectedNodeKey] = useState<string>(null);
-    
+
     useEffect(() => {
         NodeService.getTreeNodes().then((data) => setNodes(data));
     }, []);
 
     return (
         <div className="card flex justify-content-center">
-            <TreeSelect value={selectedNodeKey} options={nodes} onChange={(e : TreeSelectChangeEvent) => setSelectedNodeKey(e.value)} 
+            <TreeSelect value={selectedNodeKey} options={nodes} onChange={(e : TreeSelectChangeEvent) => setSelectedNodeKey(e.value)}
                 className="md:w-20rem w-full" placeholder="Select Item"></TreeSelect>
         </div>
     );
@@ -96,8 +96,11 @@ export default function BasicDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    TreeSelect is used as a controlled component with <i>value</i> and <i>onChange</i> properties along with an <i>options</i> collection. Internally <Link href="tree">Tree</Link> component is used so the options model is based on
-                    TreeNode API.
+                    TreeSelect is used as a controlled component with <i>value</i> and <i>onChange</i> properties along with an <i>options</i> collection. Internally{' '}
+                    <Link legacyBehavior href="tree">
+                        Tree
+                    </Link>{' '}
+                    component is used so the options model is based on TreeNode API.
                 </p>
                 <p>
                     In single selection mode, value binding should be the <i>key</i> value of a node.

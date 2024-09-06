@@ -14,13 +14,20 @@ export function AccessibilityDoc() {
 
             <p>
                 Built-in checkbox and radiobutton components for row selection use <i>checkbox</i> and <i>radiobutton</i> roles respectively with <i>aria-checked</i> state attribute. The label to describe them is retrieved from the
-                <i>aria.selectRow</i> and <i>aria.unselectRow</i> properties of the <Link href="/locale">locale</Link> API. Similarly header checkbox uses <i>selectAll</i> and <i>unselectAll</i> keys. When a row is selected, <i>aria-selected</i> is
-                set to true on a row.
+                <i>aria.selectRow</i> and <i>aria.unselectRow</i> properties of the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API. Similarly header checkbox uses <i>selectAll</i> and <i>unselectAll</i> keys. When a row is selected, <i>aria-selected</i> is set to true on a row.
             </p>
 
             <p>
                 The element to expand or collapse a row is a <i>button</i> with <i>aria-expanded</i> and <i>aria-controls</i> properties. Value to describe the buttons is derived from <i>aria.expandRow</i> and <i>aria.collapseRow</i> properties of
-                the <Link href="/locale">locale</Link> API.
+                the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API.
             </p>
 
             <p>
@@ -38,7 +45,11 @@ export function AccessibilityDoc() {
             </p>
 
             <p>
-                Paginator is a standalone component used inside the DataTable, refer to the <Link href="/paginator">paginator</Link> for more information about the accessibility features.
+                Paginator is a standalone component used inside the DataTable, refer to the{' '}
+                <Link legacyBehavior href="/paginator">
+                    paginator
+                </Link>{' '}
+                for more information about the accessibility features.
             </p>
 
             <h4>Sortable Headers Keyboard Support</h4>

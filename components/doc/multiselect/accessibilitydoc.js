@@ -25,7 +25,11 @@ export function AccessibilityDoc() {
 
             <p>
                 Checkbox component at the header uses a hidden native checkbox element internally that is only visible to screen readers. Value to read is defined with the <i>selectAll</i> and <i>unselectAll</i> keys of the <i>aria</i> property from
-                the <Link href="/locale">locale</Link> API.
+                the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API.
             </p>
 
             <p>
@@ -33,7 +37,11 @@ export function AccessibilityDoc() {
             </p>
 
             <p>
-                Close button uses <i>close</i> key of the <i>aria</i> property from the <Link href="/locale">locale</Link> API as the <i>aria-label</i> by default, this can be overriden with the <i>closeButtonProps</i>.
+                Close button uses <i>close</i> key of the <i>aria</i> property from the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API as the <i>aria-label</i> by default, this can be overriden with the <i>closeButtonProps</i>.
             </p>
 
             <DocSectionCode code={code} hideToggleCode import hideStackBlitz />

@@ -5,7 +5,7 @@ import Link from 'next/link';
 export function TailwindDoc(props) {
     const code = {
         basic: `
-const Tailwind = {    
+const Tailwind = {
     galleria: {
         root: 'flex flex-col',
         content: 'flex flex-col',
@@ -130,7 +130,7 @@ export default function UnstyleDemo() {
 
     return (
         <div className="card">
-            <Galleria value={images} responsiveOptions={responsiveOptions} numVisible={5} style={{ maxWidth: '640px' }} 
+            <Galleria value={images} responsiveOptions={responsiveOptions} numVisible={5} style={{ maxWidth: '640px' }}
                 item={itemTemplate} thumbnail={thumbnailTemplate} />
         </div>
     )
@@ -143,7 +143,10 @@ export default function UnstyleDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

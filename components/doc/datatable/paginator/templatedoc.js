@@ -1,12 +1,12 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Button } from '@/components/lib/button/Button';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CustomerService } from '../../../../service/CustomerService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function PaginatorTemplateDoc(props) {
     const [customers, setCustomers] = useState([]);
@@ -141,8 +141,11 @@ export default function PaginatorTemplateDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Paginator UI is customized using the <i>paginatorTemplate</i> property. Each element can also be customized further with your own UI to replace the default one, refer to the <Link href="/paginator">Paginator</Link> component for
-                    more information about the advanced customization options.
+                    Paginator UI is customized using the <i>paginatorTemplate</i> property. Each element can also be customized further with your own UI to replace the default one, refer to the{' '}
+                    <Link legacyBehavior href="/paginator">
+                        Paginator
+                    </Link>{' '}
+                    component for more information about the advanced customization options.
                 </p>
             </DocSectionText>
             <DeferredDemo onLoad={loadDemoData}>

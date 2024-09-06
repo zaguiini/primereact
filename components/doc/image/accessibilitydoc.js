@@ -7,7 +7,11 @@ export function AccessibilityDoc() {
         <DocSectionText id="accessibility" label="Accessibility">
             <h3>Screen Reader</h3>
             <p>
-                The preview button is a native <i>button</i> element with an <i>aria-label</i> that refers to the <i>aria.zoomImage</i> property of the <Link href="/locale">locale</Link> API by default, with <i>previewButtonProps</i>
+                The preview button is a native <i>button</i> element with an <i>aria-label</i> that refers to the <i>aria.zoomImage</i> property of the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API by default, with <i>previewButtonProps</i>
                 you may use your own aria roles and attributes as any valid attribute is passed to the button element implicitly.
             </p>
 
@@ -16,7 +20,11 @@ export function AccessibilityDoc() {
             </p>
 
             <p>
-                Button controls use <i>aria.rotateRight</i>, <i>aria.rotateLeft</i>, <i>aria.zoomIn</i>, <i>aria.zoomOut</i> and <i>aria.close</i> from the <Link href="/locale">locale</Link> API as <i>aria-label</i>.
+                Button controls use <i>aria.rotateRight</i>, <i>aria.rotateLeft</i>, <i>aria.zoomIn</i>, <i>aria.zoomOut</i> and <i>aria.close</i> from the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API as <i>aria-label</i>.
             </p>
 
             <h3>ButtonBar Keyboard Support</h3>

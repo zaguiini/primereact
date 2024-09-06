@@ -6,7 +6,11 @@ export function StyleDoc() {
         <>
             <DocSectionText id="style" label="Style">
                 <p>
-                    Following is the list of structural style classes, for theming classes visit <Link href="/theming">theming</Link> page.
+                    Following is the list of structural style classes, for theming classes visit{' '}
+                    <Link legacyBehavior href="/theming">
+                        theming
+                    </Link>{' '}
+                    page.
                 </p>
             </DocSectionText>
             <div className="doc-tablewrapper">

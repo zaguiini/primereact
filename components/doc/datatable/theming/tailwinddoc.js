@@ -556,12 +556,12 @@ export default function UnstyledDemo() {
 
     return (
         <div className="card">
-            <DataTable value={customers} paginator showGridlines rows={10} loading={loading} dataKey="id" 
+            <DataTable value={customers} paginator showGridlines rows={10} loading={loading} dataKey="id"
                     filters={filters} globalFilterFields={['name', 'country.name', 'representative.name', 'balance', 'status']} header={header}
                     emptyMessage="No customers found.">
                 <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
                 <Column header="Country" filterField="country.name" style={{ minWidth: '12rem' }} body={countryBodyTemplate}
-                    filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} 
+                    filter filterPlaceholder="Search by country" filterClear={filterClearTemplate}
                     filterApply={filterApplyTemplate} filterFooter={filterFooterTemplate} />
                 <Column header="Agent" filterField="representative" showFilterMatchModes={false} filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '14rem' }}
                     body={representativeBodyTemplate} filter filterElement={representativeFilterTemplate} />
@@ -582,7 +582,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

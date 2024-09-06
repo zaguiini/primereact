@@ -22,7 +22,11 @@ export function AccessibilityDoc() {
             <p>Editable cells use custom templating so you need to manage aria roles and attributes manually if required.</p>
 
             <p>
-                Paginator is a standalone component used inside the TreeTable, refer to the <Link href="/paginator">paginator</Link> for more information about the accessibility features.
+                Paginator is a standalone component used inside the TreeTable, refer to the{' '}
+                <Link legacyBehavior href="/paginator">
+                    paginator
+                </Link>{' '}
+                for more information about the accessibility features.
             </p>
 
             <h3>Sortable Headers Keyboard Support</h3>

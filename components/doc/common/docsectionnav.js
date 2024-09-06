@@ -84,7 +84,7 @@ export function DocSectionNav({ docs = [] }) {
         return (
             <li key={id} className={classNames('navbar-item', { 'active-navbar-item': activeId === id })}>
                 <div className="navbar-item-content">
-                    <Link href={href}>
+                    <Link legacyBehavior href={href}>
                         <button className="px-link" onClick={() => onClick(id)} title={label}>
                             {label}
                         </button>

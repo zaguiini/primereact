@@ -43,7 +43,7 @@ const [bindOverlayListener, unbindOverlayListener] = useOverlayListener({
 });
         `,
         javascript: `
-import React, { useState, useRef, useEffect } from 'react'; 
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { useOverlayScrollListener } from 'primereact/hooks';
 
@@ -91,7 +91,7 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React, { useState, useRef, useEffect } from 'react'; 
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { useOverlayScrollListener } from 'primereact/hooks';
 
@@ -144,8 +144,19 @@ export default function BasicDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    This hook combines the features of <Link href="/hooks/useclickotside">useClickOutside</Link>, <Link href="/hooks/useoverlayscrollistener">useOverlayScrollListener</Link> and{' '}
-                    <Link href="/hooks/useresizelistener">useResizeListener</Link> to handle popups positioned relative to another element.
+                    This hook combines the features of{' '}
+                    <Link legacyBehavior href="/hooks/useclickotside">
+                        useClickOutside
+                    </Link>
+                    ,{' '}
+                    <Link legacyBehavior href="/hooks/useoverlayscrollistener">
+                        useOverlayScrollListener
+                    </Link>{' '}
+                    and{' '}
+                    <Link legacyBehavior href="/hooks/useresizelistener">
+                        useResizeListener
+                    </Link>{' '}
+                    to handle popups positioned relative to another element.
                 </p>
             </DocSectionText>
             <div className="card flex flex-column justify-content-center align-items-center gap-2">

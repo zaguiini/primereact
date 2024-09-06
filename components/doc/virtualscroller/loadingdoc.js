@@ -71,7 +71,7 @@ export default function LoadingDemo() {
         );
     };
 
-    return ( 
+    return (
         <div className="card flex flex-wrap justify-content-center gap-5">
             <div>
                 <span className="font-bold block mb-2">Modal</span>
@@ -118,7 +118,7 @@ export default function LoadingDemo() {
         );
     };
 
-    return ( 
+    return (
         <div className="card flex flex-wrap justify-content-center gap-5">
             <div>
                 <span className="font-bold block mb-2">Modal</span>
@@ -138,7 +138,11 @@ export default function LoadingDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Busy state is enabled by adding <i>showLoader</i> property which blocks the UI with a modal by default. Alternatively, <i>loadingTemplate</i> can be used to customize items e.g. with <Link href="/skeleton">Skeleton</Link>.
+                    Busy state is enabled by adding <i>showLoader</i> property which blocks the UI with a modal by default. Alternatively, <i>loadingTemplate</i> can be used to customize items e.g. with{' '}
+                    <Link legacyBehavior href="/skeleton">
+                        Skeleton
+                    </Link>
+                    .
                 </p>
             </DocSectionText>
             <div className="card flex flex-wrap justify-content-center gap-5">

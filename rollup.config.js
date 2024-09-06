@@ -382,7 +382,9 @@ function addPackageJson() {
     },
     "dependencies": {
         "@types/react-transition-group": "^4.4.1",
-        "react-transition-group": "^4.4.1"
+        "react-transition-group": "^4.4.1",
+        "@primeuix/utils": "^0.0.6",
+        "@primeuix/styled": "^0.0.6"
     },
     "sideEffects": [
         "**/*.css"

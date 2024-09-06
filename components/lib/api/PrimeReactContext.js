@@ -122,7 +122,8 @@ export const PrimeReactProvider = (props) => {
         filterMatchModeOptions,
         setFilterMatchModeOptions,
         unstyled,
-        setUnstyled
+        setUnstyled,
+        sheet: props.sheet
     };
 
     return <PrimeReactContext.Provider value={value}>{props.children}</PrimeReactContext.Provider>;

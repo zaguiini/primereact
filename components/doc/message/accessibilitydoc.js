@@ -11,7 +11,11 @@ export function AccessibilityDoc() {
             </p>
 
             <p>
-                Close element is a <i>button</i> with an <i>aria-label</i> that refers to the <i>aria.close</i> property of the <Link href="/locale">locale</Link> API by default, you may use
+                Close element is a <i>button</i> with an <i>aria-label</i> that refers to the <i>aria.close</i> property of the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API by default, you may use
                 <i>closeButtonProps</i> to customize the element and override the default <i>aria-label</i>.
             </p>
 

@@ -27,7 +27,11 @@ export default function MyApp({ Component }) {
         <>
             <DocSectionText {...props}>
                 <p>
-                    To start with, Ripple needs to be enabled globally. See the <Link href="/configuration/#ripple">Configuration API</Link> for details.
+                    To start with, Ripple needs to be enabled globally. See the{' '}
+                    <Link legacyBehavior href="/configuration/#ripple">
+                        Configuration API
+                    </Link>{' '}
+                    for details.
                 </p>
             </DocSectionText>
             <DocSectionCode code={code} hideToggleCode import hideStackBlitz />

@@ -11,7 +11,11 @@ export function AccessibilityDoc() {
 
             <h3>Keyboard Support</h3>
             <p>
-                Interactive elements of the uploader are buttons, visit the <Link href="/button#accessibility">Button</Link> accessibility section for more information.
+                Interactive elements of the uploader are buttons, visit the{' '}
+                <Link legacyBehavior href="/button#accessibility">
+                    Button
+                </Link>{' '}
+                accessibility section for more information.
             </p>
         </DocSectionText>
     );

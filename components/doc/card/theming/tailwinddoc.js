@@ -30,7 +30,7 @@ const Tailwind = {
 
     const code2 = {
         javascript: `
-import React from 'react';  
+import React from 'react';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 
@@ -49,7 +49,7 @@ export default function UnstyledDemo() {
         <div className="card flex justify-content-center">
             <Card title="Advanced Card" subTitle="Card Subtitle" footer={footer} header={header} className="md:w-25rem">
                 <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae 
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                     numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                 </p>
             </Card>
@@ -64,7 +64,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

@@ -45,7 +45,11 @@ export default function KeyFilterDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Chips has built-in key filtering support to block certain keys, refer to <Link href="/keyfilter">keyfilter</Link> page for more information.
+                    Chips has built-in key filtering support to block certain keys, refer to{' '}
+                    <Link legacyBehavior href="/keyfilter">
+                        keyfilter
+                    </Link>{' '}
+                    page for more information.
                 </p>
             </DocSectionText>
             <div className="card p-fluid">

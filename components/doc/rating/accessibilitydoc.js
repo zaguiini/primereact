@@ -7,8 +7,11 @@ export function AccessibilityDoc() {
         <DocSectionText id="accessibility" label="Accessibility">
             <h3>Screen Reader</h3>
             <p>
-                Rating component internally uses radio buttons that are only visible to screen readers. The value to read for item is retrieved from the <Link href="/locale">locale</Link> API via <i>star</i> and <i>stars</i> of the <i>aria</i>{' '}
-                property.
+                Rating component internally uses radio buttons that are only visible to screen readers. The value to read for item is retrieved from the{' '}
+                <Link legacyBehavior href="/locale">
+                    locale
+                </Link>{' '}
+                API via <i>star</i> and <i>stars</i> of the <i>aria</i> property.
             </p>
 
             <h3>Keyboard Support</h3>

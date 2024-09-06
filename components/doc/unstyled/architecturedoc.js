@@ -11,8 +11,11 @@ export function ArchitectureDoc(props) {
                     to the root element and the CSS is not included in the page.
                 </p>
                 <p>
-                    The second part is custom styling as components are displayed as transparent without their styles. <Link href="/passthrough">Pass Through Props</Link> feature is the key of since it also supports a global configuration to create
-                    themes in unstyled mode. In fact, the upcoming Tailwind theme is basically a custom <i>pt</i> configuration.
+                    The second part is custom styling as components are displayed as transparent without their styles.{' '}
+                    <Link legacyBehavior href="/passthrough">
+                        Pass Through Props
+                    </Link>{' '}
+                    feature is the key of since it also supports a global configuration to create themes in unstyled mode. In fact, the upcoming Tailwind theme is basically a custom <i>pt</i> configuration.
                 </p>
             </DocSectionText>
         </>

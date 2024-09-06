@@ -70,7 +70,7 @@ const Tailwind = {
 
     const code2 = {
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Timeline } from 'primereact/timeline';
 
 export default function UnstyledDemo() {
@@ -80,7 +80,7 @@ export default function UnstyledDemo() {
         { status: 'Shipped', date: '15/10/2020 16:15', icon: 'pi pi-shopping-cart', color: '#FF9800' },
         { status: 'Delivered', date: '16/10/2020 10:00', icon: 'pi pi-check', color: '#607D8B' }
     ];
-        
+
     return (
         <div className="card flex flex-wrap gap-6">
             <Timeline value={events} content={(item) => item.status} className="w-full md:w-20rem" />
@@ -97,7 +97,10 @@ export default function UnstyledDemo() {
             <DocSectionText {...props}>
                 <p>
                     PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
+                    <Link legacyBehavior href="/tailwind">
+                        Tailwind Customization
+                    </Link>{' '}
+                    section for an example.
                 </p>
                 <DocSectionCode code={code} hideToggleCode import hideStackBlitz />
                 <p>A playground sample with the pre-built Tailwind theme.</p>

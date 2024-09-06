@@ -85,8 +85,11 @@ export default function LocaleDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Locale based settings such as labels, dateFormat and firstDayOfWeek are derived from the global <Link href="/locale">Locale</Link> configuration. In case, a certain calendar needs to be customized, <i>locale</i> property can be
-                    used to override the global setting.
+                    Locale based settings such as labels, dateFormat and firstDayOfWeek are derived from the global{' '}
+                    <Link legacyBehavior href="/locale">
+                        Locale
+                    </Link>{' '}
+                    configuration. In case, a certain calendar needs to be customized, <i>locale</i> property can be used to override the global setting.
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">

@@ -304,7 +304,11 @@ export default function BasicDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    While data is being loaded. <Link href="/skeleton">Skeleton</Link> component may be used to indicate the busy state.
+                    While data is being loaded.{' '}
+                    <Link legacyBehavior href="/skeleton">
+                        Skeleton
+                    </Link>{' '}
+                    component may be used to indicate the busy state.
                 </p>
             </DocSectionText>
             <div className="card">

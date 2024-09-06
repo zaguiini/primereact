@@ -114,7 +114,7 @@ const HeroSection = () => {
                         Elevate your web applications with PrimeReact's comprehensive suite of customizable, feature-rich UI components. With PrimeReact, turning your development vision into reality has never been easier.
                     </p>
                     <div className="flex align-items-center gap-3">
-                        <Link href="/installation">
+                        <Link legacyBehavior href="/installation">
                             <a className="linkbox active font-semibold py-3 px-4">
                                 <span>Get Started</span>
                                 <i className="pi pi-arrow-right ml-3" />

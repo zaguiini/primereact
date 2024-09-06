@@ -15,14 +15,14 @@ changeTheme(currentTheme: string, newTheme: string, linkElementId: string, callb
 
     const code2 = {
         basic: `
-<link id="theme-link" rel="stylesheet" href="/themes/lara-light-blue/theme.css">
+<Link legacyBehavior id="theme-link" rel="stylesheet" href="/themes/lara-light-blue/theme.css">
         `
     };
 
     const code3 = {
         basic: `
 <Head>
-    <link id="theme-link" rel="stylesheet" href="/themes/lara-light-blue/theme.css">
+    <Link legacyBehavior id="theme-link" rel="stylesheet" href="/themes/lara-light-blue/theme.css">
 </Head>
         `
     };

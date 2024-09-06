@@ -75,7 +75,11 @@ const animationFeaturesData1 = [
             <>
                 Verona uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can{' '}
                 <a href="https://www.figma.com/file/PgQXX4HXMPeCkT74tGajod/Preview-%7C-Verona-2022?node-id=1303%3A750">preview the Figma file</a> before the purchase. Note that PrimeReact UI components are excluded from the Verona Figma file as they
-                are available in <Link href="/uikit">PrimeOne for Figma</Link> only.
+                are available in{' '}
+                <Link legacyBehavior href="/uikit">
+                    PrimeOne for Figma
+                </Link>{' '}
+                only.
             </>
         ),
         src: 'https://primefaces.org/cdn/primereact/images/templates/verona/features-animation-figma.png'

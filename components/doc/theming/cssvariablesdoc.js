@@ -6,7 +6,11 @@ export function CSSVariablesDoc(props) {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Each PrimeReact theme exports numerous CSS variables, refer to <Link href="/colors">Colors</Link> page for more details.
+                    Each PrimeReact theme exports numerous CSS variables, refer to{' '}
+                    <Link legacyBehavior href="/colors">
+                        Colors
+                    </Link>{' '}
+                    page for more details.
                 </p>
             </DocSectionText>
         </>

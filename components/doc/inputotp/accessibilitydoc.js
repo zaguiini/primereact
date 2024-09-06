@@ -1,4 +1,3 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import Link from 'next/link';
 
@@ -7,7 +6,11 @@ export function AccessibilityDoc() {
         <DocSectionText id="accessibility" label="Accessibility">
             <h3>Screen Reader</h3>
             <p>
-                Input OTP uses a set of InputText components, refer to the <Link href="/inputtext">InputText</Link> component for more information about the screen reader support.
+                Input OTP uses a set of InputText components, refer to the{' '}
+                <Link legacyBehavior href="/inputtext">
+                    InputText
+                </Link>{' '}
+                component for more information about the screen reader support.
             </p>
 
             <h3>Keyboard Support</h3>

@@ -100,7 +100,10 @@ export default function VirtualScrollDemo() {
             <DocSectionText {...props}>
                 <p>
                     VirtualScroller is used to render a long list of options efficiently like 100K records in this demo. The configuration is done with <i>virtualScrollerOptions</i> property, refer to the{' '}
-                    <Link href="/virtualscroller">VirtualScroller</Link> for more information about the available options as it is used internally by MultiSelect.
+                    <Link legacyBehavior href="/virtualscroller">
+                        VirtualScroller
+                    </Link>{' '}
+                    for more information about the available options as it is used internally by MultiSelect.
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">

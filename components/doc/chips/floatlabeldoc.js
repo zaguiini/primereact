@@ -57,7 +57,11 @@ export default function FloatLabelDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    A floating label appears on top of the input field when focused. Visit <Link href="/floatlabel">FloatLabel</Link> documentation for more information.
+                    A floating label appears on top of the input field when focused. Visit{' '}
+                    <Link legacyBehavior href="/floatlabel">
+                        FloatLabel
+                    </Link>{' '}
+                    documentation for more information.
                 </p>
             </DocSectionText>
             <div className="card p-fluid">
