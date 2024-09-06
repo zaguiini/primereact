@@ -1,6 +1,7 @@
+import { dt, Theme } from '@primeuix/styled';
 import PrimeReact from '../api/Api';
 import { useMountEffect, useStyle, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ObjectUtils, classNames, mergeProps } from '../utils/Utils';
+import { classNames, mergeProps, ObjectUtils } from '../utils/Utils';
 
 const baseStyle = `
 .p-hidden-accessible {
@@ -606,14 +607,14 @@ const _useDefaultPT = (callback, key, params) => {
 
 export const useHandleStyle = (styles, _isUnstyled = () => {}, config) => {
     const { name, styled = false, hostName = '' } = config;
-
     const globalCSS = _useGlobalPT(getOptionValue, 'global.css', ComponentBase.cParams);
     const componentName = ObjectUtils.toFlatCase(name);
 
-    const { load: loadBaseStyle } = useStyle(baseStyle, { name: 'base', manual: true });
-    const { load: loadCommonStyle } = useStyle(commonStyle, { name: 'common', manual: true });
-    const { load: loadGlobalStyle } = useStyle(globalCSS, { name: 'global', manual: true });
-    const { load } = useStyle(styles, { name: name, manual: true });
+    //const { load: loadBaseStyle } = useStyle(baseStyle, { name: 'base', manual: true });
+    //const { load: loadCommonStyle } = useStyle(commonStyle, { name: 'common', manual: true });
+    //const { load: loadGlobalStyle } = useStyle(globalCSS, { name: 'global', manual: true });
+    const { load } = useStyle(styles?.styles, { name: name, manual: true });
+    const { load: BaseStyleload } = useStyle(undefined, { manual: true });
 
     const hook = (hookName) => {
         if (!hostName) {
@@ -625,11 +626,94 @@ export const useHandleStyle = (styles, _isUnstyled = () => {}, config) => {
         }
     };
 
+    const _loadStyles = () => {
+        const _load = () => {
+            // @todo
+            //if (!Base.isStyleNameLoaded('base')) {
+                //BaseStyle.loadCSS(this.$styleOptions);
+              //  this._loadGlobalStyles();
+
+                //Base.setLoadedStyleName('base');
+            //}
+
+            _loadThemeStyles();
+        };
+
+        _load();
+        _themeChangeListener(_load);
+    };
+
+    const _loadCoreStyles = () => {
+        //if (!Base.isStyleNameLoaded(this.$style?.name) && this.$style?.name) {
+            //BaseComponentStyle.loadCSS(this.$styleOptions);
+            //this.$options.style && this.$style.loadCSS(this.$styleOptions);
+
+          //  Base.setLoadedStyleName(this.$style.name);
+        //}
+    };
+
+    const _loadGlobalStyles = () => {
+        /*
+         * @todo Add self custom css support;
+         * <Panel :pt="{ css: `...` }" .../>
+         *
+         * const selfCSS = this._getPTClassValue(this.pt, 'css', this.$params);
+         * const defaultCSS = this._getPTClassValue(this.defaultPT, 'css', this.$params);
+         * const mergedCSS = mergeProps(selfCSS, defaultCSS);
+         * isNotEmpty(mergedCSS?.class) && this.$css.loadCustomStyle(mergedCSS?.class);
+         */
+
+        //const globalCSS = _useGlobalPT(this._getOptionValue, 'global.css', this.$params);
+
+        //ObjectUtils.isNotEmpty(globalCSS) && BaseStyle.load(globalCSS, { name: 'global', ...this.$styleOptions });
+    };
+
+    const _loadThemeStyles = () => {
+        if (_isUnstyled()) return;
+
+        // common
+        if (!Theme.isStyleNameLoaded('common')) {
+            const { primitive, semantic } = Theme.getCommon(name) || {};
+
+            BaseStyleload(primitive?.css, { name: 'primitive-variables' });
+            BaseStyleload(semantic?.css, { name: 'semantic-variables' });
+            //BaseStyleload(styles.theme, { name: 'global-style' });
+
+            Theme.setLoadedStyleName('common');
+        }
+
+        // component
+        if (!Theme.isStyleNameLoaded(name)) {
+            const { css } = Theme.getComponent(name) || {};
+
+            BaseStyleload(css, { name: `${name}-variables` });
+            BaseStyleload(Theme.transformCSS(name, ObjectUtils.getJSXElement(styles?.theme, { dt })), { name: `${name}-style` });
+
+            Theme.setLoadedStyleName(name);
+        }
+
+        // layer order
+        /*if (!Theme.isStyleNameLoaded('layer-order')) {
+            const layerOrder = this.$style?.getLayerOrderThemeCSS?.();
+
+            BaseStyle.load(layerOrder, { name: 'layer-order', first: true, ...this.$styleOptions });
+
+            Theme.setLoadedStyleName('layer-order');
+        }*/
+    };
+
+    const _themeChangeListener = (callback = () => {}) => {
+        //Base.clearLoadedStyleNames();
+        //ThemeService.on('theme:change', callback);
+    };
+
     hook('useMountEffect');
     useMountEffect(() => {
-        loadBaseStyle();
-        loadGlobalStyle();
-        loadCommonStyle();
+        //loadBaseStyle();
+        //loadGlobalStyle();
+        //loadCommonStyle();
+        _loadStyles();
+        //_loadCoreStyles();
 
         if (!styled) {
             load();

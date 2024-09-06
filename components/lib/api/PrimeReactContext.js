@@ -1,3 +1,4 @@
+import { Theme } from '@primeuix/styled';
 import React, { useState } from 'react';
 import { FilterMatchMode } from './FilterMatchMode';
 import PrimeReact from './PrimeReact';
@@ -7,6 +8,7 @@ export const PrimeReactContext = React.createContext();
 export const PrimeReactProvider = (props) => {
     const propsValue = props.value || {};
 
+    const [theme, setTheme] = useState(propsValue.theme);
     const [ripple, setRipple] = useState(propsValue.ripple || false);
     const [inputStyle, setInputStyle] = useState(propsValue.inputStyle || 'outlined');
     const [locale, setLocale] = useState(propsValue.locale || 'en');
@@ -64,6 +66,8 @@ export const PrimeReactProvider = (props) => {
         linkElement.parentNode?.replaceChild(newLinkElement, linkElement);
     };
 
+    Theme.setTheme(theme);
+
     /**
      * @deprecated
      */
@@ -86,6 +90,8 @@ export const PrimeReactProvider = (props) => {
     }, [locale]);
 
     const value = {
+        theme,
+        setTheme,
         changeTheme,
         ripple,
         setRipple,

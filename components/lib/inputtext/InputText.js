@@ -22,7 +22,7 @@ export const InputText = React.memo(
             }
         });
 
-        useHandleStyle(InputTextBase.css.styles, isUnstyled, { name: 'inputtext', styled: true });
+        useHandleStyle(InputTextBase.css, isUnstyled, { name: 'inputtext', styled: true });
         const elementRef = React.useRef(ref);
 
         const onKeyDown = (event) => {

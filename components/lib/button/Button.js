@@ -26,7 +26,7 @@ export const Button = React.memo(
 
         const { ptm, cx, isUnstyled } = ButtonBase.setMetaData(metaData);
 
-        useHandleStyle(ButtonBase.css.styles, isUnstyled, { name: 'button', styled: true });
+        useHandleStyle(ButtonBase.css, isUnstyled, { name: 'button', styled: true });
 
         const elementRef = React.useRef(ref);
 

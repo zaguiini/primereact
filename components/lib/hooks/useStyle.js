@@ -35,7 +35,7 @@ export const useStyle = (css, options = {}) => {
         isLoaded && css !== newCSS && (styleRef.current.textContent = newCSS);
     };
 
-    const load = () => {
+    const load = (_css, options) => {
         if (!document || isLoaded) {
             return;
         }
@@ -59,13 +59,13 @@ export const useStyle = (css, options = {}) => {
             styleContainer.appendChild(styleRef.current);
 
             if (name) {
-                styleRef.current.setAttribute('data-primereact-style-id', name);
+                styleRef.current.setAttribute('data-primereact-style-id', options?.name || name);
             }
         }
 
-        styleRef.current.textContent = css;
+        styleRef.current.textContent = _css || css;
 
-        setIsLoaded(true);
+        //setIsLoaded(true);
     };
 
     const unload = () => {

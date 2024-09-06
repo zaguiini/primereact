@@ -2,6 +2,7 @@ import { GTagManager } from '@/components/analytics/analytics';
 import AppContentContext from '@/components/layout/appcontentcontext';
 import Layout from '@/components/layout/layout';
 import { PrimeReactProvider } from '@/components/lib/api/PrimeReactContext';
+import Aura from '@/components/lib/themes/aura';
 import { switchTheme } from '@/components/utils/utils';
 import '@docsearch/css';
 import 'primeflex/primeflex.css';
@@ -52,7 +53,10 @@ export default function MyApp({ Component, pageProps }) {
     };
 
     const primereactConfig = {
-        ripple: true
+        ripple: true,
+        theme: {
+            preset: Aura
+        }
     };
 
     return (

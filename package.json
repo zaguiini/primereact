@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@docsearch/react": "3.6.1",
+        "@primeuix/styled": "^0.0.5",
         "chart.js": "4.4.4",
         "file-saver": "2.0.5",
         "fs-extra": "^11.2.0",
