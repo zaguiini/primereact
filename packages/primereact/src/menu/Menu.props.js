@@ -1,0 +1,22 @@
+export const defaultProps = {
+    __TYPE: 'Menu',
+    id: null,
+    ariaLabel: null,
+    ariaLabelledBy: null,
+    tabIndex: 0,
+    model: null,
+    popup: false,
+    popupAlignment: 'left',
+    style: null,
+    className: null,
+    autoZIndex: true,
+    baseZIndex: 0,
+    appendTo: null,
+    onFocus: null,
+    onBlur: null,
+    transitionOptions: null,
+    onShow: null,
+    onHide: null,
+    children: undefined,
+    closeOnEscape: true
+};

@@ -1,4 +1,3 @@
-
 const theme = ({ dt }) => `
 .p-badge {
     display: inline-flex;

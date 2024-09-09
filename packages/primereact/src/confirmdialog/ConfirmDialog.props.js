@@ -1,0 +1,23 @@
+export const defaultProps = {
+    __TYPE: 'ConfirmDialog',
+    accept: null,
+    acceptClassName: null,
+    acceptIcon: null,
+    acceptLabel: null,
+    appendTo: null,
+    breakpoints: null,
+    children: undefined,
+    className: null,
+    content: null,
+    defaultFocus: 'accept',
+    footer: null,
+    icon: null,
+    message: null,
+    onHide: null,
+    reject: null,
+    rejectClassName: null,
+    rejectIcon: null,
+    rejectLabel: null,
+    tagKey: undefined,
+    visible: undefined
+};
