@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+        "@/components/*": ["components/*"],
+        "@/service/*": ["service/*"],
+        "@/data/*": ["data/*"],
+        "@/assets/*": ["assets/*"],
+        "primereact": ["../../packages/primereact/src"],
+        "@primereact/hooks": ["../../packages/hooks/src"],
+        "@primereact/themes/aura": ["../../packages/themes/src/presets/aura"],
+        "@primereact/themes/lara": ["../../packages/themes/src/presets/lara"],
+        "@primereact/themes/nora": ["../../packages/themes/src/presets/nora"],
+        "@primereact/themes": ["../../packages/themes/src"]
+    }
+  },
+  "exclude": ["./node_modules"]
+}

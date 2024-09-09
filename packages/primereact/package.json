@@ -1,0 +1,72 @@
+{
+    "name": "primereact",
+    "version": "12.0.0",
+    "author": "PrimeTek Informatics",
+    "description": "PrimeReact is an open source UI library for React featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support. In addition, it integrates with PrimeBlock, which has 470+ ready to use UI blocks to build spectacular applications in no time.",
+    "homepage": "https://primereact.org/",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/primefaces/primereact.git",
+        "directory": "packages/primereact"
+    },
+    "bugs": {
+        "url": "https://github.com/primefaces/primereact/issues"
+    },
+    "keywords": [
+        "primereact",
+        "react",
+        "ui library",
+        "component library",
+        "material",
+        "bootstrap",
+        "fluent",
+        "tailwind",
+        "unstyled",
+        "passthrough"
+    ],
+    "unpkg": "umd/primereact.min.js",
+    "jsdelivr": "umd/primereact.min.js",
+    "exports": {
+        "./badge": "./src/badge/Badge.js",
+        "./button": "./src/button/Button.js",
+        "./inputtext": "./src/inputtext/InputText.js",
+        "./keyfilter": "./src/keyfilter/KeyFilter.js",
+        "./panel": "./src/panel/Panel.js",
+        "./portal": "./src/portal/Portal.js",
+        "./ripple": "./src/ripple/Ripple.js",
+        "./tooltip": "./src/tooltip/Tooltip.js",
+        "./utils": "./src/utils/Utils.js",
+        "./*": "./*"
+    },
+    "publishConfig": {
+        "exports": {
+            "./*": {
+                "types": "./*/index.d.ts",
+                "import": "./*/index.mjs"
+            }
+        },
+        "directory": "dist",
+        "linkDirectory": false,
+        "access": "public"
+    },
+    "scripts": {
+        "build": "NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
+        "build:package": "pnpm run build:prebuild && pnpm run build:api && rollup -c && pnpm run build:postbuild",
+        "build:api": "node ./scripts/build-api.js",
+        "build:prebuild": "node ./scripts/prebuild.mjs",
+        "build:postbuild": "node ./scripts/postbuild.mjs",
+        "dev:link": "pnpm link --global && npm link"
+    },
+    "dependencies": {
+        "@primeuix/styled": "^0.0.6",
+        "@primeuix/utils": "^0.0.6",
+        "@primereact/core": "workspace:*",
+        "@primereact/hooks": "workspace:*",
+        "@primereact/icons": "workspace:*",
+        "@primereact/styles": "workspace:*"
+    },
+    "engines": {
+        "node": ">=12.11.0"
+    }
+}

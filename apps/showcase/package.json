@@ -1,0 +1,32 @@
+{
+    "name": "showcase",
+    "version": "12.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@primereact/hooks": "workspace:*",
+        "@primereact/themes": "workspace:*",
+        "@primeuix/styled": "^0.0.6",
+        "@primeuix/utils": "^0.0.6",
+        "next": "14.2.8",
+        "primereact": "workspace:*",
+        "@docsearch/react": "3.6.1"
+    },
+    "devDependencies": {
+        "@stackblitz/sdk": "1.11.0",
+        "@types/node": "22.5.4",
+        "eslint-config-next": "^14.2.8",
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        "tailwindcss-primeui": "^0.3.2",
+        "primeicons": "^7.0.0",
+        "quill": "^1.3.7",
+        "chart.js": "3.3.2",
+        "sass": "^1.49.8"
+    }
+}

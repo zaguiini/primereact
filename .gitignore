@@ -1,11 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
-/vscode
-/.vscode
 /idea
 /.idea
 /.sass-cache
@@ -19,11 +17,12 @@
 tsconfig.tsbuildinfo
 
 # production
-/dist
+dist
 /build
 
 # misc
 .DS_Store
+**/.DS_Store
 *.pem
 *.code-workspace
 
@@ -40,7 +39,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# next version
-/apps
-/packages

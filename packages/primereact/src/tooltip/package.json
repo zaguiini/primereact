@@ -1,0 +1,6 @@
+{
+    "main": "./Tooltip.js",
+    "module": "./Tooltip.js",
+    "types": "./Tooltip.d.ts",
+    "sideEffects": false
+}
