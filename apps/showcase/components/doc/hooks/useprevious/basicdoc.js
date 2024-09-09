@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { usePrevious } from '@/components/lib/hooks/Hooks';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function BasicDoc(props) {
@@ -24,7 +24,7 @@ export default function BasicDemo() {
 
     return (
         <div className="card flex flex-col items-center">
-            <InputText value={value} className="mb-6" 
+            <InputText value={value} className="mb-6"
                 onChange={(e) => setValue(e.target.value)} />
             <div className="flex flex-col items-start flex-wrap gap-4 text-xl">
                 <span>
@@ -49,7 +49,7 @@ export default function BasicDemo() {
 
     return (
         <div className="card flex flex-col items-center">
-            <InputText value={value} className="mb-6" 
+            <InputText value={value} className="mb-6"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
             <div className="flex flex-col items-start flex-wrap gap-4 text-xl">
                 <span>

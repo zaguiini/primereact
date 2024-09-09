@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { IconField } from '@/components/lib/iconfield/IconField';
 import { InputIcon } from '@/components/lib/inputicon/InputIcon';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function BasicDoc(props) {
     const code = {

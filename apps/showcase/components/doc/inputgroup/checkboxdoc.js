@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Checkbox } from '@/components/lib/checkbox/Checkbox';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function CheckboxDoc(props) {

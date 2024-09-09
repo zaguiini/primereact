@@ -1,14 +1,14 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import { Dropdown } from '@/components/lib/dropdown/Dropdown';
 import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { Tag } from '@/components/lib/tag/Tag';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 import { ProductService } from '../../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function RowEditDoc(props) {
     const [products, setProducts] = useState(null);

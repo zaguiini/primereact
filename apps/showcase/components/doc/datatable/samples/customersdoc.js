@@ -9,12 +9,12 @@ import { Dropdown } from '@/components/lib/dropdown/Dropdown';
 import { IconField } from '@/components/lib/iconfield/IconField';
 import { InputIcon } from '@/components/lib/inputicon/InputIcon';
 import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { MultiSelect } from '@/components/lib/multiselect/MultiSelect';
 import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
 import { Slider } from '@/components/lib/slider/Slider';
 import { Tag } from '@/components/lib/tag/Tag';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import React, { useState } from 'react';
 import { CustomerService } from '../../../../service/CustomerService';
 

@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function RegexDoc(props) {
     const code = {
@@ -9,7 +9,7 @@ export function RegexDoc(props) {
 <InputText keyfilter={/^[^<>*!]+$/}  />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 
 export default function RegexDemo() {
@@ -32,7 +32,7 @@ export default function RegexDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 
 export default function RegexDemo() {

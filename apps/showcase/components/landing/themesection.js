@@ -3,12 +3,12 @@ import { FilterMatchMode, FilterOperator } from '@/components/lib/api/Api';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import { useUpdateEffect } from '@/components/lib/hooks/useUpdateEffect';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
 import { Tag } from '@/components/lib/tag/Tag';
 import { classNames } from '@/components/lib/utils/Utils';
 import { CustomerService } from '@/service/CustomerService';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import React, { useContext, useEffect, useState } from 'react';
 
 const ThemeSection = () => {

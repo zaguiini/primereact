@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { Slider } from '@/components/lib/slider/Slider';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function InputDoc(props) {

@@ -1,6 +1,7 @@
+'use client';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function DisabledDoc(props) {
     const code = {
@@ -8,7 +9,7 @@ export function DisabledDoc(props) {
 <InputText disabled placeholder="Disabled" />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from "primereact/inputtext";
 
 export default function DisabledDemo() {
@@ -20,7 +21,7 @@ export default function DisabledDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from "primereact/inputtext";
 
 export default function DisabledDemo() {

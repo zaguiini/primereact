@@ -1,8 +1,9 @@
+'use client';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { FloatLabel } from '@/components/lib/floatlabel/FloatLabel';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import Link from 'next/link';
+import { FloatLabel } from 'primereact/floatlabel';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function FloatLabelDoc(props) {

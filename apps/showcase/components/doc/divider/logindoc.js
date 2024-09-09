@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Divider } from '@/components/lib/divider/Divider';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 
 export function LoginDoc(props) {
     const code = {

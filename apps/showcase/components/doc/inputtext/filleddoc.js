@@ -1,6 +1,7 @@
+'use client';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function FilledDoc(props) {

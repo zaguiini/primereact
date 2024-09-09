@@ -1,3 +1,4 @@
+'use client';
 import { PrimeReactContext } from '@primereact/core/config';
 import { removeStyleTag } from '@primeuix/utils';
 import { useContext, useEffect, useRef, useState } from 'react';

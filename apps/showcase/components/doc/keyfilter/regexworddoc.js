@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function RegexWordDoc(props) {
@@ -32,7 +32,7 @@ export function RegexWordDoc(props) {
 <InputText id="numkeys" keyfilter={/^[+]?(\d{1,12})?$/} validateOnly onInput={validateInput} />
         `,
         javascript: `
-import React, { useState }  from 'react'; 
+import React, { useState }  from 'react';
 import { InputText } from 'primereact/inputtext';
 
 export default function RegexDemo() {
@@ -72,7 +72,7 @@ export default function RegexDemo() {
 }
         `,
         typescript: `
-import React, { useState }  from 'react'; 
+import React, { useState }  from 'react';
 import { InputText } from 'primereact/inputtext';
 
 export default function RegexDemo() {

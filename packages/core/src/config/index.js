@@ -1,3 +1,4 @@
+'use client'; // @todo: remove this
 import { FilterMatchMode } from '@primereact/core/api';
 import { Theme } from '@primeuix/styled';
 import React, { useState } from 'react';

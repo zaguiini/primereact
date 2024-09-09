@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function PresetsDoc(props) {
     const code = {
@@ -16,7 +16,7 @@ export function PresetsDoc(props) {
 <InputText keyfilter="email" />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 
 export default function PresetsDemo() {
@@ -87,7 +87,7 @@ export default function PresetsDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 
 export default function PresetsDemo() {

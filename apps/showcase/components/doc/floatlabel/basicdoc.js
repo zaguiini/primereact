@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { FloatLabel } from '@/components/lib/floatlabel/FloatLabel';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 export function BasicDoc(props) {

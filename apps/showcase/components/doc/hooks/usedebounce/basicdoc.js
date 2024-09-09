@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { useDebounce } from '@/components/lib/hooks/Hooks';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function BasicDoc(props) {
     const [inputValue, debouncedValue, setInputValue] = useDebounce('', 400);
@@ -14,7 +14,7 @@ export function BasicDoc(props) {
 </span>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import { useDebounce } from 'primereact/hooks';
 
@@ -32,7 +32,7 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import { useDebounce } from 'primereact/hooks';
 

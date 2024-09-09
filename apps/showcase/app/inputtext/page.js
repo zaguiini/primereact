@@ -1,6 +1,13 @@
 import { DocComponent } from '@/components/doc/common/doccomponent';
+import { AccessibilityDoc } from '@/components/doc/inputtext/accessibilitydoc';
 import { BasicDoc } from '@/components/doc/inputtext/basicdoc';
+import { DisabledDoc } from '@/components/doc/inputtext/disableddoc';
+import { FilledDoc } from '@/components/doc/inputtext/filleddoc';
+import { HelpTextDoc } from '@/components/doc/inputtext/helptextdoc';
 import { ImportDoc } from '@/components/doc/inputtext/importdoc';
+import { InvalidDoc } from '@/components/doc/inputtext/invaliddoc';
+import { KeyFilterDoc } from '@/components/doc/inputtext/keyfilterdoc';
+import { SizesDoc } from '@/components/doc/inputtext/sizesdoc';
 
 const InputTextDemo = () => {
     const docs = [
@@ -13,8 +20,8 @@ const InputTextDemo = () => {
             id: 'basic',
             label: 'Basic',
             component: BasicDoc
-        }
-        /*{
+        },
+        {
             id: 'keyfilter',
             label: 'Key Filter',
             component: KeyFilterDoc
@@ -29,11 +36,11 @@ const InputTextDemo = () => {
             label: 'Help Text',
             component: HelpTextDoc
         },
-        {
+        /*{
             id: 'floatlabel',
             label: 'Float Label',
             component: FloatLabelDoc
-        },
+        },*/
         {
             id: 'filled',
             label: 'Filled',
@@ -53,7 +60,7 @@ const InputTextDemo = () => {
             id: 'accessibility',
             label: 'Accessibility',
             component: AccessibilityDoc
-        }*/
+        }
     ];
     const ptDocs = [
         /*{

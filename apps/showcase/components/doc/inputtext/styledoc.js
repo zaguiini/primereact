@@ -1,3 +1,4 @@
+'use client';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import Link from 'next/link';
 

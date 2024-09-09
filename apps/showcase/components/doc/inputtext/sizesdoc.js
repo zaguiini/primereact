@@ -1,6 +1,7 @@
+'use client';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function SizesDoc(props) {
     const code = {
@@ -10,7 +11,7 @@ export function SizesDoc(props) {
 <InputText type="text" className="p-inputtext-lg" placeholder="Large" />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from "primereact/inputtext";
 
 export default function SizesDemo() {
@@ -24,7 +25,7 @@ export default function SizesDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from "primereact/inputtext";
 
 export default function SizesDemo() {

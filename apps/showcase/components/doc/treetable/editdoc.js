@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { TreeTable } from '@/components/lib/treetable/TreeTable';
+import { InputText } from 'primereact/inputtext';
 import { useEffect, useState } from 'react';
 import { NodeService } from '../../../service/NodeService';
 

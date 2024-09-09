@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { Message } from '@/components/lib/message/Message';
+import { InputText } from 'primereact/inputtext';
 
 export function ValidationDoc(props) {
     const code = {
@@ -18,7 +18,7 @@ export function ValidationDoc(props) {
 </div>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Message } from 'primereact/message';
 import { InputText } from 'primereact/inputtext';
 
@@ -40,7 +40,7 @@ export default function ValidationDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Message } from 'primereact/message';
 import { InputText } from 'primereact/inputtext';
 

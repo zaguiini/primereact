@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 
 export function BasicDoc(props) {
     const code = {
@@ -25,7 +25,7 @@ export function BasicDoc(props) {
 </div>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 
@@ -54,7 +54,7 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 

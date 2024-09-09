@@ -2,13 +2,13 @@ import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Divider } from '@/components/lib/divider/Divider';
 import { Dropdown } from '@/components/lib/dropdown/Dropdown';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { Paginator } from '@/components/lib/paginator/Paginator';
 import { Ripple } from '@/components/lib/ripple/Ripple';
 import { Slider } from '@/components/lib/slider/Slider';
 import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import React, { useState } from 'react';
 
 export function TemplateDoc(props) {

@@ -1,5 +1,5 @@
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
+import { InputText } from 'primereact/inputtext';
 import { useEffect, useState } from 'react';
 import { IconService } from '../../../service/IconService';
 

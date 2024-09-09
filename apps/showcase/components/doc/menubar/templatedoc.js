@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
-import { Menubar } from '@/components/lib/menubar/Menubar';
 import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Badge } from '@/components/lib/badge/Badge';
+import { Menubar } from '@/components/lib/menubar/Menubar';
+import { InputText } from 'primereact/inputtext';
 
 export function TemplateDoc(props) {
     const itemRenderer = (item) => (
@@ -93,7 +93,7 @@ import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { Badge } from 'primereact/badge';
-import { Avatar } from 'primereact/avatar';  
+import { Avatar } from 'primereact/avatar';
 
 export default function TemplateDemo() {
     const itemRenderer = (item) => (
@@ -187,7 +187,7 @@ import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { MenuItem } from 'primereact/menuitem';
 import { Badge } from 'primereact/badge';
-import { Avatar } from 'primereact/avatar';  
+import { Avatar } from 'primereact/avatar';
 
 export default function TemplateDemo() {
     const itemRenderer = (item) => (

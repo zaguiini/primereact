@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { StyleClass } from '@/components/lib/styleclass/StyleClass';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import { useRef } from 'react';
 
 export function ToggleClassDoc(props) {

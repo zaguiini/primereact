@@ -7,7 +7,6 @@ import { Dialog } from '@/components/lib/dialog/Dialog';
 import { IconField } from '@/components/lib/iconfield/IconField';
 import { InputIcon } from '@/components/lib/inputicon/InputIcon';
 import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
-import { InputText } from '@/components/lib/inputtext/InputText';
 import { InputTextarea } from '@/components/lib/inputtextarea/InputTextarea';
 import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
 import { Rating } from '@/components/lib/rating/Rating';
@@ -16,6 +15,7 @@ import { Toast } from '@/components/lib/toast/Toast';
 import { Toolbar } from '@/components/lib/toolbar/Toolbar';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import React, { useRef, useState } from 'react';
 import { ProductService } from '../../../../service/ProductService';
 
