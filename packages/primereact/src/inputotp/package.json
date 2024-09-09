@@ -1,0 +1,6 @@
+{
+    "main": "./InputOtp.js",
+    "module": "./InputOtp.js",
+    "types": "./InputOtp.d.ts",
+    "sideEffects": false
+}

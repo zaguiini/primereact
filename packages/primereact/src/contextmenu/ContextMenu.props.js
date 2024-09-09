@@ -1,0 +1,23 @@
+export const defaultProps = {
+    __TYPE: 'ContextMenu',
+    id: null,
+    ariaLabel: null,
+    ariaLabelledby: null,
+    model: null,
+    style: null,
+    className: null,
+    global: false,
+    autoZIndex: true,
+    baseZIndex: 0,
+    tabIndex: 0,
+    breakpoint: undefined,
+    scrollHeight: '400px',
+    appendTo: null,
+    transitionOptions: null,
+    onFocus: null,
+    onBlur: null,
+    onShow: null,
+    onHide: null,
+    submenuIcon: null,
+    children: undefined
+};

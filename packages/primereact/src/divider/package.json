@@ -1,0 +1,6 @@
+{
+    "main": "./Divider.js",
+    "module": "./Divider.js",
+    "types": "./Divider.d.ts",
+    "sideEffects": false
+}

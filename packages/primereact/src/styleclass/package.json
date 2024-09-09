@@ -1,0 +1,6 @@
+{
+    "main": "./StyleClass.js",
+    "module": "./StyleClass.js",
+    "types": "./StyleClass.d.ts",
+    "sideEffects": false
+}

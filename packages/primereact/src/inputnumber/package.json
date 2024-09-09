@@ -1,0 +1,6 @@
+{
+    "main": "./InputNumber.js",
+    "module": "./InputNumber.js",
+    "types": "./InputNumber.d.ts",
+    "sideEffects": false
+}

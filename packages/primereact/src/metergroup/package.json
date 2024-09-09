@@ -1,0 +1,6 @@
+{
+    "main": "./MeterGroup.js",
+    "module": "./MeterGroup.js",
+    "types": "./MeterGroup.d.ts",
+    "sideEffects": false
+}

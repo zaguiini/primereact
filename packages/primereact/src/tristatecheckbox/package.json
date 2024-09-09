@@ -1,0 +1,6 @@
+{
+    "main": "./TriStateCheckbox.js",
+    "module": "./TriStateCheckbox.js",
+    "types": "./TriStateCheckbox.d.ts",
+    "sideEffects": false
+}

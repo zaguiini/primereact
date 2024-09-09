@@ -1,0 +1,6 @@
+{
+    "main": "./OverlayService.js",
+    "module": "./OverlayService.js",
+    "types": "./OverlayService.d.ts",
+    "sideEffects": false
+}

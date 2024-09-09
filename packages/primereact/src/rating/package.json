@@ -1,0 +1,6 @@
+{
+    "main": "./Rating.js",
+    "module": "./Rating.js",
+    "types": "./Rating.d.ts",
+    "sideEffects": false
+}

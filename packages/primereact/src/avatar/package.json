@@ -1,0 +1,6 @@
+{
+    "main": "./Avatar.js",
+    "module": "./Avatar.js",
+    "types": "./Avatar.d.ts",
+    "sideEffects": false
+}

@@ -1,0 +1,6 @@
+{
+    "main": "./Tree.js",
+    "module": "./Tree.js",
+    "types": "./Tree.d.ts",
+    "sideEffects": false
+}

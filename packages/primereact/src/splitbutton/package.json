@@ -1,0 +1,6 @@
+{
+    "main": "./SplitButton.js",
+    "module": "./SplitButton.js",
+    "types": "./SplitButton.d.ts",
+    "sideEffects": false
+}

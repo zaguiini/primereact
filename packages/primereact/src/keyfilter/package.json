@@ -1,0 +1,6 @@
+{
+    "main": "./KeyFilter.js",
+    "module": "./KeyFilter.js",
+    "types": "./KeyFilterOptions.d.ts",
+    "sideEffects": false
+}

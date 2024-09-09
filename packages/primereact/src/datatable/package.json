@@ -1,0 +1,6 @@
+{
+    "main": "./DataTable.js",
+    "module": "./DataTable.js",
+    "types": "./DataTable.d.ts",
+    "sideEffects": false
+}

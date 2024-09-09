@@ -1,0 +1,6 @@
+{
+    "main": "./Dropdown.js",
+    "module": "./Dropdown.js",
+    "types": "./Dropdown.d.ts",
+    "sideEffects": false
+}

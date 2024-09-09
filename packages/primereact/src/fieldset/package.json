@@ -1,0 +1,6 @@
+{
+    "main": "./Fieldset.js",
+    "module": "./Fieldset.js",
+    "types": "./Fieldset.d.ts",
+    "sideEffects": false
+}

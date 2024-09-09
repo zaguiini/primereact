@@ -1,0 +1,4 @@
+{
+    "types": "./TreeNode.d.ts",
+    "sideEffects": false
+}

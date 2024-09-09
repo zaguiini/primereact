@@ -1,0 +1,6 @@
+{
+    "main": "./PickList.js",
+    "module": "./PickList.js",
+    "types": "./PickList.d.ts",
+    "sideEffects": false
+}

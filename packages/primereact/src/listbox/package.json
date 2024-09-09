@@ -1,0 +1,6 @@
+{
+    "main": "./ListBox.js",
+    "module": "./ListBox.js",
+    "types": "./ListBox.d.ts",
+    "sideEffects": false
+}

@@ -1,0 +1,6 @@
+{
+    "main": "./TabView.js",
+    "module": "./TabView.js",
+    "types": "./TabView.d.ts",
+    "sideEffects": false
+}

@@ -1,0 +1,6 @@
+{
+    "main": "./SlideMenu.js",
+    "module": "./SlideMenu.js",
+    "types": "./SlideMenu.d.ts",
+    "sideEffects": false
+}

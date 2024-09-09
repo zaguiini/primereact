@@ -1,0 +1,6 @@
+{
+    "main": "./Carousel.js",
+    "module": "./Carousel.js",
+    "types": "./Carousel.d.ts",
+    "sideEffects": false
+}

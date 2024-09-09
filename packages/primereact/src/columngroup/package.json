@@ -1,0 +1,6 @@
+{
+    "main": "./ColumnGroup.js",
+    "module": "./ColumnGroup.js",
+    "types": "./ColumnGroup.d.ts",
+    "sideEffects": false
+}

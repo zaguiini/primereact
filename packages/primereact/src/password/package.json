@@ -1,0 +1,6 @@
+{
+    "main": "./Password.js",
+    "module": "./Password.js",
+    "types": "./Password.d.ts",
+    "sideEffects": false
+}

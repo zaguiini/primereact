@@ -1,0 +1,6 @@
+{
+    "main": "./Chip.js",
+    "module": "./Chip.js",
+    "types": "./Chip.d.ts",
+    "sideEffects": false
+}
