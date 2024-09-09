@@ -1,6 +1,0 @@
-{
-    "main": "./OrganizationChart.js",
-    "module": "./OrganizationChart.js",
-    "types": "./OrganizationChart.d.ts",
-    "sideEffects": false
-}

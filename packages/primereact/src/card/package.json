@@ -1,6 +1,0 @@
-{
-    "main": "./Card.js",
-    "module": "./Card.js",
-    "types": "./Card.d.ts",
-    "sideEffects": false
-}

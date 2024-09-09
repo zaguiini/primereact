@@ -1,6 +1,0 @@
-{
-    "main": "./DataScroller.js",
-    "module": "./DataScroller.js",
-    "types": "./DataScroller.d.ts",
-    "sideEffects": false
-}

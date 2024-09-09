@@ -1,6 +1,0 @@
-{
-    "main": "./ConfirmPopup.js",
-    "module": "./ConfirmPopup.js",
-    "types": "./ConfirmPopup.d.ts",
-    "sideEffects": false
-}

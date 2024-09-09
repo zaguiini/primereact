@@ -1,6 +1,0 @@
-{
-    "main": "./Terminal.js",
-    "module": "./Terminal.js",
-    "types": "./Terminal.d.ts",
-    "sideEffects": false
-}

@@ -1,6 +1,0 @@
-{
-    "main": "./Sidebar.js",
-    "module": "./Sidebar.js",
-    "types": "./Sidebar.d.ts",
-    "sideEffects": false
-}

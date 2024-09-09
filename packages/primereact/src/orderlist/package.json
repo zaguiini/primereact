@@ -1,6 +1,0 @@
-{
-    "main": "./OrderList.js",
-    "module": "./OrderList.js",
-    "types": "./OrderList.d.ts",
-    "sideEffects": false
-}

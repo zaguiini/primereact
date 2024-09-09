@@ -1,6 +1,0 @@
-{
-    "main": "./PanelMenu.js",
-    "module": "./PanelMenu.js",
-    "types": "./PanelMenu.d.ts",
-    "sideEffects": false
-}

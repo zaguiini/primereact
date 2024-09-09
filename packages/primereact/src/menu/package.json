@@ -1,6 +1,0 @@
-{
-    "main": "./Menu.js",
-    "module": "./Menu.js",
-    "types": "./Menu.d.ts",
-    "sideEffects": false
-}

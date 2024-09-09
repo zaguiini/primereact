@@ -1,6 +1,0 @@
-{
-    "main": "./InputSwitch.js",
-    "module": "./InputSwitch.js",
-    "types": "./InputSwitch.d.ts",
-    "sideEffects": false
-}

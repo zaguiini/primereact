@@ -1,6 +1,0 @@
-{
-    "main": "./Toast.js",
-    "module": "./Toast.js",
-    "types": "./Toast.d.ts",
-    "sideEffects": false
-}

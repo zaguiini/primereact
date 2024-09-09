@@ -1,6 +1,0 @@
-{
-    "main": "./BreadCrumb.js",
-    "module": "./BreadCrumb.js",
-    "types": "./BreadCrumb.d.ts",
-    "sideEffects": false
-}

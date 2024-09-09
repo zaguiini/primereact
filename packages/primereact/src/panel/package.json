@@ -1,6 +1,0 @@
-{
-    "main": "./Panel.js",
-    "module": "./Panel.js",
-    "types": "./Panel.d.ts",
-    "sideEffects": false
-}

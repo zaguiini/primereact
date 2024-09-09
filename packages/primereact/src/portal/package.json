@@ -1,6 +1,0 @@
-{
-    "main": "./Portal.js",
-    "module": "./Portal.js",
-    "types": "./Portal.d.ts",
-    "sideEffects": false
-}

@@ -1,6 +1,0 @@
-{
-    "main": "./AvatarGroup.js",
-    "module": "./AvatarGroup.js",
-    "types": "./AvatarGroup.d.ts",
-    "sideEffects": false
-}

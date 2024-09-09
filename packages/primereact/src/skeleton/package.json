@@ -1,6 +1,0 @@
-{
-    "main": "./Skeleton.js",
-    "module": "./Skeleton.js",
-    "types": "./Skeleton.d.ts",
-    "sideEffects": false
-}

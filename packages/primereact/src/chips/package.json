@@ -1,6 +1,0 @@
-{
-    "main": "./Chips.js",
-    "module": "./Chips.js",
-    "types": "./Chips.d.ts",
-    "sideEffects": false
-}

@@ -1,6 +1,0 @@
-{
-    "main": "./Mention.js",
-    "module": "./Mention.js",
-    "types": "./Mention.d.ts",
-    "sideEffects": false
-}

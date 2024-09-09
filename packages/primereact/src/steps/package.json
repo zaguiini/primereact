@@ -1,6 +1,0 @@
-{
-    "main": "./Steps.js",
-    "module": "./Steps.js",
-    "types": "./Steps.d.ts",
-    "sideEffects": false
-}

@@ -1,6 +1,0 @@
-{
-    "main": "./Tag.js",
-    "module": "./Tag.js",
-    "types": "./Tag.d.ts",
-    "sideEffects": false
-}

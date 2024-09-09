@@ -1,6 +1,0 @@
-{
-    "main": "./InputText.js",
-    "module": "./InputText.js",
-    "types": "./InputText.d.ts",
-    "sideEffects": false
-}

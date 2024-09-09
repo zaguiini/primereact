@@ -1,6 +1,0 @@
-{
-    "main": "./OverlayPanel.js",
-    "module": "./OverlayPanel.js",
-    "types": "./OverlayPanel.d.ts",
-    "sideEffects": false
-}

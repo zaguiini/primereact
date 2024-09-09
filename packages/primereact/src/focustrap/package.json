@@ -1,6 +1,0 @@
-{
-    "main": "./FocusTrap.js",
-    "module": "./FocusTrap.js",
-    "types": "./FocusTrap.d.ts",
-    "sideEffects": false
-}

@@ -1,6 +1,0 @@
-{
-    "main": "./Row.js",
-    "module": "./Row.js",
-    "types": "./Row.d.ts",
-    "sideEffects": false
-}

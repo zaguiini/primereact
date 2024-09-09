@@ -1,6 +1,0 @@
-{
-    "main": "./MultiSelect.js",
-    "module": "./MultiSelect.js",
-    "types": "./MultiSelect.d.ts",
-    "sideEffects": false
-}

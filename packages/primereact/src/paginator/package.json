@@ -1,6 +1,0 @@
-{
-    "main": "./Paginator.js",
-    "module": "./Paginator.js",
-    "types": "./Paginator.d.ts",
-    "sideEffects": false
-}

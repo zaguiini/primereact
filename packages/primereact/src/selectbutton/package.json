@@ -1,6 +1,0 @@
-{
-    "main": "./SelectButton.js",
-    "module": "./SelectButton.js",
-    "types": "./SelectButton.d.ts",
-    "sideEffects": false
-}

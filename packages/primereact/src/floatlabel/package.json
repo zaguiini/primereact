@@ -1,6 +1,0 @@
-{
-    "main": "./FloatLabel.js",
-    "module": "./FloatLabel.js",
-    "types": "./FloatLabel.d.ts",
-    "sideEffects": false
-}

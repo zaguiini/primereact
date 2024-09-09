@@ -1,6 +1,0 @@
-{
-    "main": "./BlockUI.js",
-    "module": "./BlockUI.js",
-    "types": "./BlockUI.d.ts",
-    "sideEffects": false
-}

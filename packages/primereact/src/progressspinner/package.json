@@ -1,6 +1,0 @@
-{
-    "main": "./ProgressSpinner.js",
-    "module": "./ProgressSpinner.js",
-    "types": "./ProgressSpinner.d.ts",
-    "sideEffects": false
-}

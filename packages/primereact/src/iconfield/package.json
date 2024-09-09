@@ -1,6 +1,0 @@
-{
-    "main": "./IconField.js",
-    "module": "./IconField.js",
-    "types": "./IconField.d.ts",
-    "sideEffects": false
-}

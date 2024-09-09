@@ -1,6 +1,0 @@
-{
-    "main": "./Dock.js",
-    "module": "./Dock.js",
-    "types": "./Dock.d.ts",
-    "sideEffects": false
-}

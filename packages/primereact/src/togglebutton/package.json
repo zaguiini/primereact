@@ -1,6 +1,0 @@
-{
-    "main": "./ToggleButton.js",
-    "module": "./ToggleButton.js",
-    "types": "./ToggleButton.d.ts",
-    "sideEffects": false
-}

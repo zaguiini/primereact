@@ -1,6 +1,0 @@
-{
-    "main": "./CSSTransition.js",
-    "module": "./CSSTransition.js",
-    "types": "./CSSTransition.d.ts",
-    "sideEffects": false
-}

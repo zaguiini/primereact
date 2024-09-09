@@ -1,6 +1,0 @@
-{
-    "main": "./Chart.js",
-    "module": "./Chart.js",
-    "types": "./Chart.d.ts",
-    "sideEffects": false
-}

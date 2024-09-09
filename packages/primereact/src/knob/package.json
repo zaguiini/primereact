@@ -1,6 +1,0 @@
-{
-    "main": "./Knob.js",
-    "module": "./Knob.js",
-    "types": "./Knob.d.ts",
-    "sideEffects": false
-}

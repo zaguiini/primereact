@@ -1,6 +1,0 @@
-{
-    "main": "./MultiStateCheckbox.js",
-    "module": "./MultiStateCheckbox.js",
-    "types": "./MultiStateCheckbox.d.ts",
-    "sideEffects": false
-}

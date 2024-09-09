@@ -1,6 +1,0 @@
-{
-    "main": "./SpeedDial.js",
-    "module": "./SpeedDial.js",
-    "types": "./SpeedDial.d.ts",
-    "sideEffects": false
-}

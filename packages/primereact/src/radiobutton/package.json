@@ -1,6 +1,0 @@
-{
-    "main": "./RadioButton.js",
-    "module": "./RadioButton.js",
-    "types": "./RadioButton.d.ts",
-    "sideEffects": false
-}

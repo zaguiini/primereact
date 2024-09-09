@@ -1,6 +1,0 @@
-{
-    "main": "./Image.js",
-    "module": "./Image.js",
-    "types": "./Image.d.ts",
-    "sideEffects": false
-}
