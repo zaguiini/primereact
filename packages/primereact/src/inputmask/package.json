@@ -1,7 +1,6 @@
 {
-    "main": "./inputmask.cjs.js",
-    "module": "./inputmask.esm.js",
-    "unpkg": "./inputmask.min.js",
-    "types": "./inputmask.d.ts",
+    "main": "./InputMask.js",
+    "module": "./InputMask.js",
+    "types": "./InputMask.d.ts",
     "sideEffects": false
 }

@@ -1,7 +1,6 @@
 {
-    "main": "./chart.cjs.js",
-    "module": "./chart.esm.js",
-    "unpkg": "./chart.min.js",
-    "types": "./chart.d.ts",
+    "main": "./Chart.js",
+    "module": "./Chart.js",
+    "types": "./Chart.d.ts",
     "sideEffects": false
 }

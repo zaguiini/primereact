@@ -1,7 +1,6 @@
 {
-    "main": "./togglebutton.cjs.js",
-    "module": "./togglebutton.esm.js",
-    "unpkg": "./togglebutton.min.js",
-    "types": "./togglebutton.d.ts",
+    "main": "./ToggleButton.js",
+    "module": "./ToggleButton.js",
+    "types": "./ToggleButton.d.ts",
     "sideEffects": false
 }

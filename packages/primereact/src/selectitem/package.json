@@ -1,4 +1,4 @@
 {
-    "types": "./selectitem.d.ts",
+    "types": "./Selectitem.d.ts",
     "sideEffects": false
 }

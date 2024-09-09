@@ -1,7 +1,6 @@
 {
-    "main": "./inputicon.cjs.js",
-    "module": "./inputicon.esm.js",
-    "unpkg": "./inputicon.min.js",
-    "types": "./inputicon.d.ts",
+    "main": "./InputIcon.js",
+    "module": "./InputIcon.js",
+    "types": "./InputIcon.d.ts",
     "sideEffects": false
 }

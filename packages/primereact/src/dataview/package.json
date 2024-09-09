@@ -1,7 +1,6 @@
 {
-    "main": "./dataview.cjs.js",
-    "module": "./dataview.esm.js",
-    "unpkg": "./dataview.min.js",
-    "types": "./dataview.d.ts",
+    "main": "./DataView.js",
+    "module": "./DataView.js",
+    "types": "./DataView.d.ts",
     "sideEffects": false
 }

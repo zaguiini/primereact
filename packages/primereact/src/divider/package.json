@@ -1,7 +1,6 @@
 {
-    "main": "./divider.cjs.js",
-    "module": "./divider.esm.js",
-    "unpkg": "./divider.min.js",
-    "types": "./divider.d.ts",
+    "main": "./Divider.js",
+    "module": "./Divider.js",
+    "types": "./Divider.d.ts",
     "sideEffects": false
 }

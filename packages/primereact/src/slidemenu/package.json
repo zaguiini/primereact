@@ -1,7 +1,6 @@
 {
-    "main": "./slidemenu.cjs.js",
-    "module": "./slidemenu.esm.js",
-    "unpkg": "./slidemenu.min.js",
-    "types": "./slidemenu.d.ts",
+    "main": "./SlideMenu.js",
+    "module": "./SlideMenu.js",
+    "types": "./SlideMenu.d.ts",
     "sideEffects": false
 }

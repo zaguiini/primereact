@@ -1,7 +1,6 @@
 {
-    "main": "./csstransition.cjs.js",
-    "module": "./csstransition.esm.js",
-    "unpkg": "./csstransition.min.js",
-    "types": "./csstransition.d.ts",
+    "main": "./CSSTransition.js",
+    "module": "./CSSTransition.js",
+    "types": "./CSSTransition.d.ts",
     "sideEffects": false
 }

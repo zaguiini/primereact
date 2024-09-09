@@ -1,7 +1,6 @@
 {
-    "main": "./focustrap.cjs.js",
-    "module": "./focustrap.esm.js",
-    "unpkg": "./focustrap.min.js",
-    "types": "./focustrap.d.ts",
+    "main": "./FocusTrap.js",
+    "module": "./FocusTrap.js",
+    "types": "./FocusTrap.d.ts",
     "sideEffects": false
 }

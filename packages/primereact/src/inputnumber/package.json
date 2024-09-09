@@ -1,7 +1,6 @@
 {
-    "main": "./inputnumber.cjs.js",
-    "module": "./inputnumber.esm.js",
-    "unpkg": "./inputnumber.min.js",
-    "types": "./inputnumber.d.ts",
+    "main": "./InputNumber.js",
+    "module": "./InputNumber.js",
+    "types": "./InputNumber.d.ts",
     "sideEffects": false
 }

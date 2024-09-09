@@ -1,7 +1,6 @@
 {
-    "main": "./datatable.cjs.js",
-    "module": "./datatable.esm.js",
-    "unpkg": "./datatable.min.js",
-    "types": "./datatable.d.ts",
+    "main": "./DataTable.js",
+    "module": "./DataTable.js",
+    "types": "./DataTable.d.ts",
     "sideEffects": false
 }

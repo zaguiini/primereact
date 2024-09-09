@@ -1,7 +1,6 @@
 {
-    "main": "./inputotp.cjs.js",
-    "module": "./inputotp.esm.js",
-    "unpkg": "./inputotp.min.js",
-    "types": "./inputotp.d.ts",
+    "main": "./InputOtp.js",
+    "module": "./InputOtp.js",
+    "types": "./InputOtp.d.ts",
     "sideEffects": false
 }

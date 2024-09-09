@@ -1,7 +1,6 @@
 {
-    "main": "./selectbutton.cjs.js",
-    "module": "./selectbutton.esm.js",
-    "unpkg": "./selectbutton.min.js",
-    "types": "./selectbutton.d.ts",
+    "main": "./SelectButton.js",
+    "module": "./SelectButton.js",
+    "types": "./SelectButton.d.ts",
     "sideEffects": false
 }

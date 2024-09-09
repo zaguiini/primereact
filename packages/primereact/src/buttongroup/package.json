@@ -1,7 +1,6 @@
 {
-    "main": "./buttongroup.cjs.js",
-    "module": "./buttongroup.esm.js",
-    "unpkg": "./buttongroup.min.js",
-    "types": "./buttongroup.d.ts",
+    "main": "./ButtonGroup.js",
+    "module": "./ButtonGroup.js",
+    "types": "./ButtonGroup.d.ts",
     "sideEffects": false
 }

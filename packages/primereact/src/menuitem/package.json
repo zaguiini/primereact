@@ -1,4 +1,4 @@
 {
-    "types": "./menuitem.d.ts",
+    "types": "./Menuitem.d.ts",
     "sideEffects": false
 }

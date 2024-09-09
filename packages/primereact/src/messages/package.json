@@ -1,7 +1,6 @@
 {
-    "main": "./messages.cjs.js",
-    "module": "./messages.esm.js",
-    "unpkg": "./messages.min.js",
-    "types": "./messages.d.ts",
+    "main": "./Messages.js",
+    "module": "./Messages.js",
+    "types": "./Messages.d.ts",
     "sideEffects": false
 }

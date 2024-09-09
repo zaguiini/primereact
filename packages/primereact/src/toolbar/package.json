@@ -1,7 +1,6 @@
 {
-    "main": "./toolbar.cjs.js",
-    "module": "./toolbar.esm.js",
-    "unpkg": "./toolbar.min.js",
-    "types": "./toolbar.d.ts",
+    "main": "./Toolbar.js",
+    "module": "./Toolbar.js",
+    "types": "./Toolbar.d.ts",
     "sideEffects": false
 }

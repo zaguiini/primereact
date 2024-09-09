@@ -1,7 +1,6 @@
 {
-    "main": "./slider.cjs.js",
-    "module": "./slider.esm.js",
-    "unpkg": "./slider.min.js",
-    "types": "./slider.d.ts",
+    "main": "./Slider.js",
+    "module": "./Slider.js",
+    "types": "./Slider.d.ts",
     "sideEffects": false
 }

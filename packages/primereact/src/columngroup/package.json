@@ -1,7 +1,6 @@
 {
-    "main": "./columngroup.cjs.js",
-    "module": "./columngroup.esm.js",
-    "unpkg": "./columngroup.min.js",
-    "types": "./columngroup.d.ts",
+    "main": "./ColumnGroup.js",
+    "module": "./ColumnGroup.js",
+    "types": "./ColumnGroup.d.ts",
     "sideEffects": false
 }

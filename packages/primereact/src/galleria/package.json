@@ -1,7 +1,6 @@
 {
-    "main": "./galleria.cjs.js",
-    "module": "./galleria.esm.js",
-    "unpkg": "./galleria.min.js",
-    "types": "./galleria.d.ts",
+    "main": "./Galleria.js",
+    "module": "./Galleria.js",
+    "types": "./Galleria.d.ts",
     "sideEffects": false
 }

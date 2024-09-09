@@ -1,7 +1,6 @@
 {
-    "main": "./multiselect.cjs.js",
-    "module": "./multiselect.esm.js",
-    "unpkg": "./multiselect.min.js",
-    "types": "./multiselect.d.ts",
+    "main": "./MultiSelect.js",
+    "module": "./MultiSelect.js",
+    "types": "./MultiSelect.d.ts",
     "sideEffects": false
 }

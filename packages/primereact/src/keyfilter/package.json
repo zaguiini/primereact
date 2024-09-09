@@ -1,7 +1,6 @@
 {
-    "main": "./keyfilter.cjs.js",
-    "module": "./keyfilter.esm.js",
-    "unpkg": "./keyfilter.min.js",
-    "types": "./keyfilteroptions.d.ts",
+    "main": "./KeyFilter.js",
+    "module": "./KeyFilter.js",
+    "types": "./KeyFilterOptions.d.ts",
     "sideEffects": false
 }

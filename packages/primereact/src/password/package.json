@@ -1,7 +1,6 @@
 {
-    "main": "./password.cjs.js",
-    "module": "./password.esm.js",
-    "unpkg": "./password.min.js",
-    "types": "./password.d.ts",
+    "main": "./Password.js",
+    "module": "./Password.js",
+    "types": "./Password.d.ts",
     "sideEffects": false
 }

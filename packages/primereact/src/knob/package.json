@@ -1,7 +1,6 @@
 {
-    "main": "./knob.cjs.js",
-    "module": "./knob.esm.js",
-    "unpkg": "./knob.min.js",
-    "types": "./knob.d.ts",
+    "main": "./Knob.js",
+    "module": "./Knob.js",
+    "types": "./Knob.d.ts",
     "sideEffects": false
 }

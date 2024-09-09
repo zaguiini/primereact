@@ -1,7 +1,6 @@
 {
-    "main": "./organizationchart.cjs.js",
-    "module": "./organizationchart.esm.js",
-    "unpkg": "./organizationchart.min.js",
-    "types": "./organizationchart.d.ts",
+    "main": "./OrganizationChart.js",
+    "module": "./OrganizationChart.js",
+    "types": "./OrganizationChart.d.ts",
     "sideEffects": false
 }

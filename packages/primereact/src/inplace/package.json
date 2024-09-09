@@ -1,7 +1,6 @@
 {
-    "main": "./inplace.cjs.js",
-    "module": "./inplace.esm.js",
-    "unpkg": "./inplace.min.js",
-    "types": "./inplace.d.ts",
+    "main": "./Inplace.js",
+    "module": "./Inplace.js",
+    "types": "./Inplace.d.ts",
     "sideEffects": false
 }
