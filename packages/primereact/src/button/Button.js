@@ -11,7 +11,7 @@ import { useButton } from './Button.base';
 export const Button = React.memo(
     React.forwardRef((inProps, inRef) => {
         const button = useButton(inProps, inRef);
-        const { props, attrs, ptm, cx, ref } = button;
+        const { props, ptm, ptmi, cx, ref } = button;
         const disabled = props.disabled || props.loading;
 
         if (props.visible === false) {
@@ -100,8 +100,7 @@ export const Button = React.memo(
                 className: classNames(props.className, cx('root', { size, disabled })),
                 disabled: disabled
             },
-            attrs,
-            ptm('root')
+            ptmi('root')
         );
 
         return (

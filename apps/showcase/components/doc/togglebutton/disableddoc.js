@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ToggleButton } from '@/components/lib/togglebutton/ToggleButton';
+import { ToggleButton } from 'primereact/togglebutton';
 import { useState } from 'react';
 
 export function DisabledDoc(props) {

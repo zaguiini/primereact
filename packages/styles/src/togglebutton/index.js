@@ -1,4 +1,3 @@
-
 const theme = ({ dt }) => `
 .p-togglebutton {
     display: inline-flex;
@@ -101,10 +100,10 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: ({ instance, props }) => [
+    root: ({ props }) => [
         'p-togglebutton p-component',
         {
-            'p-togglebutton-checked': instance.active,
+            'p-togglebutton-checked': props.checked,
             'p-invalid': props.invalid
         }
     ],

@@ -1,32 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
+import { Ripple } from 'primereact/ripple';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Ripple } from '../ripple/Ripple';
-import { Tooltip } from '../tooltip/Tooltip';
-import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
-import { ToggleButtonBase } from './ToggleButtonBase';
+import { useToggleButton } from './ToggleButton.base';
 
 export const ToggleButton = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ToggleButtonBase.getProps(inProps, context);
-        const elementRef = React.useRef(null);
-        const { ptm, cx, isUnstyled } = ToggleButtonBase.setMetaData({
-            props
-        });
+    React.forwardRef((inProps, inRef) => {
+        const togglebutton = useToggleButton(inProps, inRef);
+        const { props, attrs, ptm, ptmi, cx, ref } = togglebutton;
 
-        useHandleStyle(ToggleButtonBase.css.styles, isUnstyled, { name: 'togglebutton' });
-
-        const hasLabel = props.onLabel && props.onLabel.length > 0 && props.offLabel && props.offLabel.length > 0;
-        const hasIcon = props.onIcon && props.offIcon;
+        const hasLabel = isNotEmpty(props.onLabel) && isNotEmpty(props.offLabel);
         const label = hasLabel ? (props.checked ? props.onLabel : props.offLabel) : '&nbsp;';
-        const icon = props.checked ? props.onIcon : props.offIcon;
+        const hasTooltip = isNotEmpty(props.tooltip);
 
-        const toggle = (e) => {
-            if (!props.disabled && props.onChange && !props.readonly) {
-                props.onChange({
+        const onChange = (e) => {
+            if (!props.disabled && !props.readonly) {
+                props.onChange?.({
                     originalEvent: e,
                     value: !props.checked,
                     stopPropagation: () => {
@@ -36,7 +26,7 @@ export const ToggleButton = React.memo(
                         e.preventDefault();
                     },
                     target: {
-                        name: props.name,
+                        name: attrs.name,
                         id: props.id,
                         value: !props.checked
                     }
@@ -44,112 +34,89 @@ export const ToggleButton = React.memo(
             }
         };
 
-        const onKeyDown = (event) => {
-            if (event.keyCode === 32) {
-                toggle(event);
-                event.preventDefault();
-            }
+        const getPTOptions = (key) => {
+            const _ptm = key === 'root' ? ptmi : ptm;
+
+            return _ptm(key, {
+                context: {
+                    active: props.checked,
+                    disabled: props.disabled
+                }
+            });
         };
 
-        const onFocus = (event) => {
-            props?.onFocus?.(event);
-        };
+        const createLabel = () => {
+            const labelProps = mergeProps(
+                {
+                    className: cx('label')
+                },
+                getPTOptions('label')
+            );
 
-        const onBlur = (event) => {
-            props?.onBlur?.(event);
+            return <span {...labelProps}>{label}</span>;
         };
 
         const createIcon = () => {
-            if (hasIcon) {
+            if (props.onIcon || props.offIcon) {
                 const iconProps = mergeProps(
                     {
-                        className: cx('icon', { label })
+                        className: classNames(props.checked ? props.onIcon : props.offIcon, cx('icon'))
                     },
-                    ptm('icon')
+                    getPTOptions('icon')
                 );
 
-                return IconUtils.getJSXIcon(icon, { ...iconProps }, { props });
+                return <span {...iconProps} />;
             }
 
             return null;
         };
 
-        React.useImperativeHandle(ref, () => ({
-            props,
-            focus: () => DomHandler.focusFirstElement(elementRef.current),
-            getElement: () => elementRef.current
-        }));
+        const createContent = () => {
+            const contentProps = mergeProps(
+                {
+                    className: cx('content')
+                },
+                getPTOptions('content')
+            );
 
-        useMountEffect(() => {
-            if (props.autoFocus) {
-                DomHandler.focusFirstElement(elementRef.current);
-            }
-        });
+            const icon = createIcon();
+            const label = createLabel();
 
-        const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
-        const tabIndex = props.disabled ? -1 : props.tabIndex;
-        const iconElement = createIcon();
+            return (
+                <span {...contentProps}>
+                    {icon}
+                    {label}
+                </span>
+            );
+        };
 
-        const labelProps = mergeProps(
-            {
-                className: cx('label')
-            },
-            ptm('label')
-        );
+        const content = props.children || createContent();
 
         const rootProps = mergeProps(
             {
-                ref: elementRef,
-                id: props.id,
-                className: classNames(props.className, cx('root', { hasIcon, hasLabel })),
-                'data-p-highlight': props.checked,
-                'data-p-disabled': props.disabled
-            },
-            ToggleButtonBase.getOtherProps(props),
-            ptm('root')
-        );
-
-        const inputProps = mergeProps(
-            {
-                id: props.inputId,
-                className: cx('input'),
+                ref,
+                type: 'button',
                 style: props.style,
-                onChange: toggle,
-                onFocus: onFocus,
-                onBlur: onBlur,
-                onKeyDown: onKeyDown,
-                tabIndex: tabIndex,
-                role: 'switch',
-                type: 'checkbox',
-                'aria-pressed': props.checked,
-                'aria-invalid': props.invalid,
+                className: classNames(cx('root'), props.className),
                 disabled: props.disabled,
-                readOnly: props.readonly,
-                value: props.checked,
-                checked: props.checked
+                'aria-pressed': props.checked,
+                onClick: onChange
             },
-            ptm('input')
-        );
-
-        const boxProps = mergeProps(
+            getPTOptions('root'),
             {
-                className: cx('box', { hasIcon, hasLabel })
-            },
-            ptm('box')
+                'data-p-checked': props.checked,
+                'data-p-disabled': props.disabled
+            }
         );
 
         return (
-            <>
-                <div {...rootProps}>
-                    <input {...inputProps} />
-                    <div {...boxProps}>
-                        {iconElement}
-                        <span {...labelProps}>{label}</span>
-                        <Ripple />
-                    </div>
-                </div>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            <ComponentProvider value={togglebutton}>
+                <button {...rootProps}>
+                    {content}
+                    <Ripple />
+                </button>
+                {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+            </ComponentProvider>
         );
     })
 );

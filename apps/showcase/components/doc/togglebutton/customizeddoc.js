@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ToggleButton } from '@/components/lib/togglebutton/ToggleButton';
+import { ToggleButton } from 'primereact/togglebutton';
 import { useState } from 'react';
 
 export function CustomizedDoc(props) {
@@ -8,7 +8,7 @@ export function CustomizedDoc(props) {
 
     const code = {
         basic: `
-<ToggleButton onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" 
+<ToggleButton onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times"
     checked={checked} onChange={(e) => setChecked(e.value)} />
         `,
         javascript: `
@@ -20,7 +20,7 @@ export default function CustomizedDemo() {
 
     return (
         <div className="card flex justify-center">
-            <ToggleButton onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" 
+            <ToggleButton onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times"
                 checked={checked} onChange={(e) => setChecked(e.value)} className="w-36" />
         </div>
     );
@@ -35,7 +35,7 @@ export default function CustomizedDemo() {
 
     return (
         <div className="card flex justify-center">
-            <ToggleButton onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" 
+            <ToggleButton onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times"
                 checked={checked} onChange={(e:  ToggleButtonChangeEvent) => setChecked(e.value)} className="w-36" />
         </div>
     );

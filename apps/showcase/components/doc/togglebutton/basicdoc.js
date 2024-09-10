@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ToggleButton } from '@/components/lib/togglebutton/ToggleButton';
+import { ToggleButton } from 'primereact/togglebutton';
 import { useState } from 'react';
 
 export function BasicDoc(props) {
@@ -48,7 +48,7 @@ export default function BasicDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <ToggleButton checked={checked} onChange={(e) => setChecked(e.value)} className="w-32" />
+                <ToggleButton checked={checked} onChange={(e) => setChecked(e.value)} className="w-24" onLabel="On" offLabel="Off" />
             </div>
             <DocSectionCode code={code} />
         </>
