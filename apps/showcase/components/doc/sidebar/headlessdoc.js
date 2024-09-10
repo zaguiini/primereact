@@ -2,9 +2,9 @@ import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Ripple } from '@/components/lib/ripple/Ripple';
 import { Sidebar } from '@/components/lib/sidebar/Sidebar';
-import { StyleClass } from '@/components/lib/styleclass/StyleClass';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
+import { StyleClass } from 'primereact/styleclass';
 import { useRef, useState } from 'react';
 
 export function HeadlessDoc(props) {

@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { StyleClass } from '@/components/lib/styleclass/StyleClass';
 import { Button } from 'primereact/button';
+import { StyleClass } from 'primereact/styleclass';
 import { useRef } from 'react';
 
 export function AnimationDoc(props) {

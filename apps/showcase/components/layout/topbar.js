@@ -1,4 +1,4 @@
-//import { StyleClass } from '@/components/lib/styleclass/StyleClass';
+//import { StyleClass } from 'primereact/styleclass';
 import { classNames } from '@primeuix/utils';
 import pkg from 'package.json';
 

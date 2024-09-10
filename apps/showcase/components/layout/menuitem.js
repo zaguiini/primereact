@@ -1,5 +1,5 @@
 import { Badge } from 'primereact/badge';
-//import { StyleClass } from '@/components/lib/styleclass/StyleClass';
+//import { StyleClass } from 'primereact/styleclass';
 import { classNames } from '@primeuix/utils';
 import Link from 'next/link';
 //import { useRouter } from 'next/router';

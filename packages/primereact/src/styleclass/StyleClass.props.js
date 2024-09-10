@@ -2,7 +2,6 @@ export const defaultProps = {
     __TYPE: 'StyleClass',
     nodeRef: null,
     selector: null,
-    enterClassName: null,
     enterFromClassName: null,
     enterActiveClassName: null,
     enterToClassName: null,
@@ -10,6 +9,7 @@ export const defaultProps = {
     leaveFromClassName: null,
     leaveActiveClassName: null,
     leaveToClassName: null,
+    hiddenClassName: null,
     hideOnOutsideClick: false,
     toggleClassName: null,
     children: undefined

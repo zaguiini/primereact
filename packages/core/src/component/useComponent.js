@@ -18,10 +18,26 @@ export const useComponent = ({ props, attrs, state, style }, inRef) => {
         ...stx
     };
 
-    React.useImperativeHandle(ref, () => ({
+    // @todo: refactor for styleclass
+    /*React.useImperativeHandle(ref, () => ({
         instance,
         getElement: () => ref.current
-    }));
+    }));*/
+
+    React.useEffect(() => {
+        // @todo: move to utils (maybe: @primeuix/utils)
+        const combinedRefs = (innerRef, forwardRef) => {
+            if (innerRef && forwardRef) {
+                if (typeof forwardRef === 'function') {
+                    forwardRef(innerRef.current);
+                } else {
+                    forwardRef.current = innerRef.current;
+                }
+            }
+        };
+
+        combinedRefs(ref, inRef);
+    }, [ref, inRef]);
 
     return instance;
 };

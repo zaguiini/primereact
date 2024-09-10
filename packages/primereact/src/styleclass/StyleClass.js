@@ -1,29 +1,29 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { addClass, hasClass, removeClass } from '@primeuix/utils';
+import { ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useEventListener, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { DomHandler, ObjectUtils } from '../utils/Utils';
-import { StyleClassBase } from './StyleClassBase';
+import { useStyleClass } from './StyleClass.base';
 
-export const StyleClass = React.forwardRef((inProps, ref) => {
-    const context = React.useContext(PrimeReactContext);
-    const props = StyleClassBase.getProps(inProps, context);
+export const StyleClass = React.forwardRef((inProps, inRef) => {
+    const styleclass = useStyleClass(inProps, inRef);
+    const { props, ref } = styleclass;
 
     const targetRef = React.useRef(null);
     const animating = React.useRef(false);
-    const elementRef = React.useRef(null);
 
     const [bindTargetEnterListener, unbindTargetEnterListener] = useEventListener({
         type: 'animationend',
         listener: () => {
-            DomHandler.removeClass(targetRef.current, props.enterActiveClassName);
+            removeClass(targetRef.current, props.enterActiveClassName);
 
             if (props.enterToClassName) {
-                DomHandler.addClass(targetRef.current, props.enterToClassName);
+                addClass(targetRef.current, props.enterToClassName);
             }
 
             unbindTargetEnterListener();
 
-            if (props.enterActiveClassName === 'slidedown') {
+            if (props.enterActiveClassName.includes('slidedown')) {
                 targetRef.current.style.maxHeight = '';
             }
 
@@ -34,10 +34,10 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
     const [bindTargetLeaveListener, unbindTargetLeaveListener] = useEventListener({
         type: 'animationend',
         listener: () => {
-            DomHandler.removeClass(targetRef.current, props.leaveActiveClassName);
+            removeClass(targetRef.current, props.leaveActiveClassName);
 
             if (props.leaveToClassName) {
-                DomHandler.addClass(targetRef.current, props.leaveToClassName);
+                addClass(targetRef.current, props.leaveToClassName);
             }
 
             unbindTargetLeaveListener();
@@ -63,13 +63,13 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
             targetRef.current = resolveTarget();
 
             if (props.toggleClassName) {
-                if (DomHandler.hasClass(targetRef.current, props.toggleClassName)) {
-                    DomHandler.removeClass(targetRef.current, props.toggleClassName);
+                if (hasClass(targetRef.current, props.toggleClassName)) {
+                    removeClass(targetRef.current, props.toggleClassName);
                 } else {
-                    DomHandler.addClass(targetRef.current, props.toggleClassName);
+                    addClass(targetRef.current, props.toggleClassName);
                 }
             } else {
-                DomHandler.isVisible(targetRef.current) ? leave() : enter();
+                isVisible(targetRef.current) ? leave() : enter();
             }
         }
     });
@@ -81,72 +81,52 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
 
                 if (props.enterActiveClassName === 'slidedown') {
                     targetRef.current.style.height = '0px';
-                    DomHandler.removeClass(targetRef.current, 'hidden');
+                    removeClass(targetRef.current, props.hiddenClassName || props.enterFromClassName);
                     targetRef.current.style.maxHeight = targetRef.current.scrollHeight + 'px';
-                    DomHandler.addClass(targetRef.current, 'hidden');
+                    addClass(targetRef.current, props.hiddenClassName || props.enterActiveClassName);
                     targetRef.current.style.height = '';
                 }
 
-                DomHandler.addClass(targetRef.current, props.enterActiveClassName);
-
-                // enterClassName will be deprecated, use enterFromClassName
-                if (props.enterClassName) {
-                    DomHandler.removeClass(targetRef.current, props.enterClassName);
-                }
+                addClass(targetRef.current, props.enterActiveClassName);
 
                 if (props.enterFromClassName) {
-                    DomHandler.removeClass(targetRef.current, props.enterFromClassName);
+                    removeClass(targetRef.current, props.enterFromClassName);
                 }
 
                 bindTargetEnterListener({ target: targetRef.current });
             }
         } else {
-            // enterClassName will be deprecated, use enterFromClassName
-            if (props.enterClassName) {
-                DomHandler.removeClass(targetRef.current, props.enterClassName);
-            }
-
             if (props.enterFromClassName) {
-                DomHandler.removeClass(targetRef.current, props.enterFromClassName);
+                removeClass(targetRef.current, props.enterFromClassName);
             }
 
             if (props.enterToClassName) {
-                DomHandler.addClass(targetRef.current, props.enterToClassName);
+                addClass(targetRef.current, props.enterToClassName);
             }
         }
 
-        bindDocumentClickListener({ target: elementRef.current && elementRef.current.ownerDocument });
+        bindDocumentClickListener({ target: ref.current && ref.current.ownerDocument });
     };
 
     const leave = () => {
         if (props.leaveActiveClassName) {
             if (!animating.current) {
                 animating.current = true;
-                DomHandler.addClass(targetRef.current, props.leaveActiveClassName);
-
-                // leaveClassName will be deprecated, use leaveFromClassName
-                if (props.leaveClassName) {
-                    DomHandler.removeClass(targetRef.current, props.leaveClassName);
-                }
+                addClass(targetRef.current, props.leaveActiveClassName);
 
                 if (props.leaveFromClassName) {
-                    DomHandler.removeClass(targetRef.current, props.leaveFromClassName);
+                    removeClass(targetRef.current, props.leaveFromClassName);
                 }
 
                 bindTargetLeaveListener({ target: targetRef.current });
             }
         } else {
-            // leaveClassName will be deprecated, use leaveFromClassName
-            if (props.leaveClassName) {
-                DomHandler.removeClass(targetRef.current, props.leaveClassName);
-            }
-
             if (props.leaveFromClassName) {
-                DomHandler.removeClass(targetRef.current, props.leaveFromClassName);
+                removeClass(targetRef.current, props.leaveFromClassName);
             }
 
             if (props.leaveToClassName) {
-                DomHandler.addClass(targetRef.current, props.leaveToClassName);
+                addClass(targetRef.current, props.leaveToClassName);
             }
         }
 
@@ -162,16 +142,16 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
 
         switch (props.selector) {
             case '@next':
-                return elementRef.current && elementRef.current.nextElementSibling;
+                return ref.current && ref.current.nextElementSibling;
 
             case '@prev':
-                return elementRef.current && elementRef.current.previousElementSibling;
+                return ref.current && ref.current.previousElementSibling;
 
             case '@parent':
-                return elementRef.current && elementRef.current.parentElement;
+                return ref.current && ref.current.parentElement;
 
             case '@grandparent':
-                return elementRef.current && elementRef.current.parentElement.parentElement;
+                return ref.current && ref.current.parentElement.parentElement;
 
             default:
                 return document.querySelector(props.selector);
@@ -180,8 +160,10 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
 
     const init = () => {
         Promise.resolve().then(() => {
-            elementRef.current = ObjectUtils.getRefElement(props.nodeRef);
-            bindClickListener({ target: elementRef.current });
+            // @todo: refactor useImperativeHandle method in useComponent
+            ref.current = ObjectUtils.getRefElement(props.nodeRef);
+            ref.current?.setAttribute('data-pd-styleclass', true);
+            bindClickListener({ target: ref.current });
         });
     };
 
@@ -196,12 +178,10 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
     };
 
     const isOutsideClick = (event) => {
-        return !elementRef.current.isSameNode(event.target) && !elementRef.current.contains(event.target) && !targetRef.current.contains(event.target);
+        return !ref.current.isSameNode(event.target) && !ref.current.contains(event.target) && !targetRef.current.contains(event.target);
     };
 
     React.useImperativeHandle(ref, () => ({
-        props,
-        getElement: () => elementRef.current,
         getTarget: () => targetRef.current
     }));
 
@@ -221,7 +201,7 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
         destroy();
     });
 
-    return props.children;
+    return <ComponentProvider value={styleclass}>{props.children}</ComponentProvider>;
 });
 
 StyleClass.displayName = 'StyleClass';
