@@ -25,6 +25,7 @@ const Base = {
     }
 };
 
+// @todo: use @primereact/styles/base
 const BaseStyle = {
     theme: ({ dt }) => `
 * {
@@ -275,7 +276,7 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
 
         $style.load(primitive?.css, { name: 'primitive-variables' });
         $style.load(semantic?.css, { name: 'semantic-variables' });
-        //$style.loadTheme(BaseStyle?.theme, { name: 'global-style' }); // @todo
+        $style._loadTheme(BaseStyle?.theme, { name: 'global-style' }); // @todo
 
         Theme.setLoadedStyleName('common');
         //}

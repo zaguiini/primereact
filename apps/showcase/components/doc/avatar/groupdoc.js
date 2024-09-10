@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
-import { AvatarGroup } from '@/components/lib/avatargroup/AvatarGroup';
+import { Avatar } from 'primereact/avatar';
+import { AvatarGroup } from 'primereact/avatargroup';
 
 export function GroupDoc(props) {
     const code = {
@@ -17,7 +17,7 @@ export function GroupDoc(props) {
 
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Avatar } from 'primereact/avatar';
 import { AvatarGroup } from 'primereact/avatargroup';
 import { Badge } from 'primereact/badge';
@@ -39,7 +39,7 @@ export default function GroupDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Avatar } from 'primereact/avatar';
 import { AvatarGroup } from 'primereact/avatargroup';
 import { Badge } from 'primereact/badge';

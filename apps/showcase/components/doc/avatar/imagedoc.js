@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
-import { Badge } from 'primereact/badge';
+import { Avatar } from 'primereact/avatar';
+import { OverlayBadge } from 'primereact/overlaybadge';
 
 export function ImageDoc(props) {
     const code = {
@@ -100,9 +100,9 @@ export default function ImageDemo() {
 
                     <div className="flex-auto">
                         <h5>Badge</h5>
-                        <Avatar className="p-overlay-badge" image="https://primefaces.org/cdn/primereact/images/organization/walter.jpg" size="xlarge">
-                            <Badge value="4" severity="danger" />
-                        </Avatar>
+                        <OverlayBadge value="4" severity="danger" className="inline-flex">
+                            <Avatar className="p-overlay-badge" image="https://primefaces.org/cdn/primereact/images/organization/walter.jpg" size="xlarge" />
+                        </OverlayBadge>
                     </div>
 
                     <div className="flex-auto">

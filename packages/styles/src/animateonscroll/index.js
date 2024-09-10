@@ -1,4 +1,3 @@
-
 export const style = {
-    name: 'animateonscroll-directive'
+    name: 'animateonscroll'
 };

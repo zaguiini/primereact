@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { MegaMenu } from '@/components/lib/megamenu/MegaMenu';
 import { Ripple } from '@/components/lib/primereact.all';
+import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 
 export function TemplateDoc(props) {

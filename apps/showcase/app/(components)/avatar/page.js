@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/avatar/accessibilitydoc';
 import { GroupDoc } from '@/components/doc/avatar/groupdoc';
 import { IconDoc } from '@/components/doc/avatar/icondoc';

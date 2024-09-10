@@ -25,6 +25,10 @@ export const withComponentStyle = (callback) => {
             loadTheme(options = {}) {
                 return this.load(theme, options, (computedStyle) => Theme.transformCSS(options.name || name, computedStyle));
             },
+            _loadTheme(css, options = {}) {
+                // @todo: remove
+                return this.load(css, options, (computedStyle) => Theme.transformCSS(options.name || name, computedStyle));
+            },
             getCommonTheme(params) {
                 return Theme.getCommon(name, params);
             },

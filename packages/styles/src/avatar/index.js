@@ -1,3 +1,4 @@
+import { isNotEmpty } from "@primeuix/utils";
 
 const theme = ({ dt }) => `
 .p-avatar {
@@ -67,10 +68,10 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: ({ props }) => [
+    root: ({ props, state }) => [
         'p-avatar p-component',
         {
-            'p-avatar-image': props.image != null,
+            'p-avatar-image': isNotEmpty(props.image) && !state.imageFailed,
             'p-avatar-circle': props.shape === 'circle',
             'p-avatar-lg': props.size === 'large',
             'p-avatar-xl': props.size === 'xlarge'

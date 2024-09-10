@@ -1,31 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
+import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
-import { AvatarBase } from './AvatarBase';
+import { useAvatar } from './Avatar.base';
 
-export const Avatar = React.forwardRef((inProps, ref) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = AvatarBase.getProps(inProps, context);
-
-    const elementRef = React.useRef(null);
+export const Avatar = React.forwardRef((inProps, inRef) => {
     const [imageFailed, setImageFailed] = React.useState(false);
-    const [nested, setNested] = React.useState(false);
+    const state = {
+        imageFailed
+    };
 
-    const { ptm, cx, isUnstyled } = AvatarBase.setMetaData({
-        props,
-        state: {
-            imageFailed: imageFailed,
-            nested
-        }
-    });
-
-    useHandleStyle(AvatarBase.css.styles, isUnstyled, { name: 'avatar' });
+    const avatar = useAvatar(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = avatar;
 
     const createContent = () => {
-        if (ObjectUtils.isNotEmpty(props.image) && !imageFailed) {
+        if (isNotEmpty(props.image) && !imageFailed) {
             const imageProps = mergeProps(
                 {
                     src: props.image,
@@ -45,6 +34,7 @@ export const Avatar = React.forwardRef((inProps, ref) => {
 
             return <span {...labelProps}>{props.label}</span>;
         } else if (props.icon) {
+            // @todo: Add templating support
             const iconProps = mergeProps(
                 {
                     className: cx('icon')
@@ -73,34 +63,22 @@ export const Avatar = React.forwardRef((inProps, ref) => {
         props.onImageError && props.onImageError(event);
     };
 
-    React.useEffect(() => {
-        const nested = DomHandler.isAttributeEquals(elementRef.current.parentElement, 'data-pc-name', 'avatargroup');
-
-        setNested(nested);
-    }, []);
-
-    React.useImperativeHandle(ref, () => ({
-        props,
-        getElement: () => elementRef.current
-    }));
-
     const rootProps = mergeProps(
         {
-            ref: elementRef,
+            ref,
             style: props.style,
-            className: classNames(props.className, cx('root', { imageFailed }))
+            className: classNames(props.className, cx('root'))
         },
-        AvatarBase.getOtherProps(props),
-        ptm('root')
+        ptmi('root')
     );
 
-    const content = props.template ? ObjectUtils.getJSXElement(props.template, props) : createContent();
+    // @todo: use <Component is>
+    const content = props.children ? resolve(props.children, props) : createContent();
 
     return (
-        <div {...rootProps}>
-            {content}
-            {props.children}
-        </div>
+        <ComponentProvider value={avatar}>
+            <div {...rootProps}>{content}</div>
+        </ComponentProvider>
     );
 });
 

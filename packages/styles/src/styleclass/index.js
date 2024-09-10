@@ -1,4 +1,3 @@
-
 export const style = {
-    name: 'styleclass-directive'
+    name: 'styleclass'
 };

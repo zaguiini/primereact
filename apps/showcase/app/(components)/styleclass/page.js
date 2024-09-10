@@ -1,3 +1,4 @@
+'use client';
 import { DocComponent } from '@/components/doc/common/doccomponent';
 import { AnimationDoc } from '@/components/doc/styleclass/animationdoc';
 import { ImportDoc } from '@/components/doc/styleclass/importdoc';

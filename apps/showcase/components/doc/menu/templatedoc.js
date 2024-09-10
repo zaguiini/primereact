@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Menu } from '@/components/lib/menu/Menu';
 import { classNames } from '@/components/lib/utils/Utils';
+import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 
 export function TemplateDoc(props) {

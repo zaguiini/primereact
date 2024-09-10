@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Toast } from '@/components/lib/toast/Toast';
+import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { useRef, useState } from 'react';
 
@@ -56,7 +56,7 @@ toastBC.current.show({
         javascript: `
 import React, { useState, useRef } from 'react';
 import { Button } from 'primereact/button';
-import { Avatar } from '@/components/lib/avatar/Avatar';
+import { Avatar } from 'primereact/avatar';
 import { Toast } from 'primereact/toast';
 
 export default function TemplateDemo() {
@@ -101,7 +101,7 @@ export default function TemplateDemo() {
         typescript: `
 import React, { useState, useRef } from 'react';
 import { Button } from 'primereact/button';
-import { Avatar } from '@/components/lib/avatar/Avatar';
+import { Avatar } from 'primereact/avatar';
 import { Toast } from 'primereact/toast';
 
 export default function TemplateDemo() {

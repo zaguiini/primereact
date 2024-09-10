@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { TabPanel, TabView } from '@/components/lib/tabview/TabView';
+import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 
 export function TemplateDoc(props) {

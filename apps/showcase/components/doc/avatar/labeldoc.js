@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
-import { Badge } from 'primereact/badge';
+import { Avatar } from 'primereact/avatar';
+import { OverlayBadge } from 'primereact/overlaybadge';
 
 export function LabelDoc(props) {
     const code = {
@@ -108,9 +108,9 @@ export default function LabelDemo() {
 
                     <div className="flex-auto">
                         <h5>Badge</h5>
-                        <Avatar label="U" size="xlarge" className="p-overlay-badge">
-                            <Badge value="4" />
-                        </Avatar>
+                        <OverlayBadge value="4" severity="danger" className="inline-flex">
+                            <Avatar label="U" size="xlarge" />
+                        </OverlayBadge>
                     </div>
                 </div>
             </div>
