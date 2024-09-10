@@ -6,7 +6,7 @@ import { useBadge } from './Badge.base';
 export const Badge = React.memo(
     React.forwardRef((inProps, inRef) => {
         const badge = useBadge(inProps, inRef);
-        const { props, attrs, ptm, cx, ref } = badge;
+        const { props, ptmi, cx, ref } = badge;
 
         const rootProps = mergeProps(
             {
@@ -14,8 +14,7 @@ export const Badge = React.memo(
                 style: props.style,
                 className: classNames(props.className, cx('root'))
             },
-            attrs,
-            ptm('root')
+            ptmi('root')
         );
 
         return (
