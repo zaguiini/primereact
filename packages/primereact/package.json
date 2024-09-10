@@ -33,6 +33,7 @@
         "./avatar": "./src/avatar/Avatar.js",
         "./avatargroup": "./src/avatargroup/AvatarGroup.js",
         "./styleclass": "./src/styleclass/StyleClass.js",
+        "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
         "./inputtext": "./src/inputtext/InputText.js",
         "./keyfilter": "./src/keyfilter/KeyFilter.js",

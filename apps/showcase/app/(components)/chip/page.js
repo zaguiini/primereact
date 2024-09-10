@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/chip/accessibilitydoc';
 import { BasicDoc } from '@/components/doc/chip/basicdoc';
 import { IconDoc } from '@/components/doc/chip/icondoc';

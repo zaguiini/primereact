@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Chip } from '../../../components/lib/chip/Chip';
+import { Chip } from 'primereact/chip';
 
 export function TemplateDoc(props) {
     const content = (

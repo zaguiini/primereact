@@ -1,23 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { TimesCircleIcon } from '@primereact/icons/timescircle';
+import { classNames, mergeProps } from '@primeuix/utils';
+import { IconUtils, ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { TimesCircleIcon } from '../icons/timescircle';
-import { classNames, IconUtils, ObjectUtils, UniqueComponentId } from '../utils/Utils';
-import { ChipBase } from './ChipBase';
+import { useChip } from './Chip.base';
 
 export const Chip = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ChipBase.getProps(inProps, context);
-        const elementRef = React.useRef(null);
+    React.forwardRef((inProps, inRef) => {
         const [visibleState, setVisibleState] = React.useState(true);
-        const { ptm, cx, isUnstyled } = ChipBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(ChipBase.css.styles, isUnstyled, { name: 'chip' });
+        const state = {
+            visible: visibleState
+        };
+        const chip = useChip(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = chip;
 
         const onKeyDown = (event) => {
             if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.code === 'Backspace') {
@@ -39,29 +34,17 @@ export const Chip = React.memo(
         const createContent = () => {
             let content = [];
 
-            const removeIconProps = mergeProps(
-                {
-                    role: 'button',
-                    tabIndex: 0,
-                    className: cx('removeIcon'),
-                    onClick: close,
-                    onKeyDown
-                },
-                ptm('removeIcon')
-            );
-
-            const icon = props.removeIcon || <TimesCircleIcon {...removeIconProps} key={UniqueComponentId('removeIcon')} />;
-
             if (props.image) {
                 const imageProps = mergeProps(
                     {
+                        className: cx('image'),
                         src: props.image,
                         onError: props.onImageError
                     },
                     ptm('image')
                 );
 
-                content.push(<img alt={props.imageAlt} {...imageProps} />);
+                content.push(<img alt={props.imageAlt} {...imageProps} key="image" />);
             } else if (props.icon) {
                 const chipIconProps = mergeProps(
                     {
@@ -70,7 +53,7 @@ export const Chip = React.memo(
                     ptm('icon')
                 );
 
-                content.push(IconUtils.getJSXIcon(props.icon, { ...chipIconProps }, { props }));
+                content.push(<React.Fragment key="icon">{IconUtils.getJSXIcon(props.icon, { ...chipIconProps }, { props })}</React.Fragment>);
             }
 
             if (props.label) {
@@ -82,42 +65,51 @@ export const Chip = React.memo(
                 );
 
                 content.push(
-                    <span {...labelProps} key="label">
+                    <div {...labelProps} key="label">
                         {props.label}
-                    </span>
+                    </div>
                 );
             }
 
             if (props.removable) {
-                content.push(IconUtils.getJSXIcon(icon, { ...removeIconProps }, { props }));
+                const removeIconProps = mergeProps(
+                    {
+                        role: 'button',
+                        tabIndex: 0,
+                        className: cx('removeIcon'),
+                        onClick: close,
+                        onKeyDown
+                    },
+                    ptm('removeIcon')
+                );
+
+                const icon = props.removeIcon || <TimesCircleIcon {...removeIconProps} />;
+
+                content.push(<React.Fragment key="removeIcon">{IconUtils.getJSXIcon(icon, { ...removeIconProps }, { props })}</React.Fragment>);
             }
 
             return content;
         };
 
         const createElement = () => {
-            const content = props.template ? ObjectUtils.getJSXElement(props.template, props) : createContent();
+            const content = props.children ? ObjectUtils.getJSXElement(props.children, props) : createContent();
 
             const rootProps = mergeProps(
                 {
-                    ref: elementRef,
+                    ref,
                     style: props.style,
                     className: classNames(props.className, cx('root')),
                     'aria-label': props.label
                 },
-                ChipBase.getOtherProps(props),
-                ptm('root')
+                ptmi('root')
             );
 
             return <div {...rootProps}>{content}</div>;
         };
 
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getElement: () => elementRef.current
-        }));
+        const element = visibleState ? createElement() : null;
 
-        return visibleState && createElement();
+        return <ComponentProvider value={chip}>{element}</ComponentProvider>;
     })
 );
 
