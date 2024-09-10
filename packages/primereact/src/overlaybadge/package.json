@@ -1,0 +1,6 @@
+{
+    "main": "./OverlayBadge.js",
+    "module": "./OverlayBadge.js",
+    "types": "./OverlayBadge.d.ts",
+    "sideEffects": false
+}
