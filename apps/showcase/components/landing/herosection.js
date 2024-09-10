@@ -1,5 +1,4 @@
 import AppContentContext from '@/components/layout/appcontentcontext';
-import { Badge } from '@/components/lib/badge/Badge';
 import { Calendar } from '@/components/lib/calendar/Calendar';
 import { Chart } from '@/components/lib/chart/Chart';
 import { Chip } from '@/components/lib/chip/Chip';
@@ -11,6 +10,7 @@ import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
 import { Slider } from '@/components/lib/slider/Slider';
 import { TabMenu } from '@/components/lib/tabmenu/TabMenu';
 import Link from 'next/link';
+import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { useContext, useEffect, useState } from 'react';
 

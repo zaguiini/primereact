@@ -18,7 +18,10 @@ export const useComponent = ({ props, attrs, state, style }, inRef) => {
         ...stx
     };
 
-    React.useImperativeHandle(ref, () => instance);
+    React.useImperativeHandle(ref, () => ({
+        instance,
+        getElement: () => ref.current
+    }));
 
     return instance;
 };

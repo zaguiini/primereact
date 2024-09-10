@@ -1,3 +1,5 @@
+import { isEmpty, isNotEmpty } from '@primeuix/utils';
+
 const theme = ({ dt }) => `
 .p-badge {
     display: inline-flex;
@@ -76,20 +78,15 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: ({ props, instance }) => [
+    root: ({ props }) => [
         'p-badge p-component',
         {
             'p-badge-circle': isNotEmpty(props.value) && String(props.value).length === 1,
-            'p-badge-dot': isEmpty(props.value) && !instance.$slots.default,
+            'p-badge-dot': isEmpty(props.value) && !props.children,
             'p-badge-sm': props.size === 'small',
             'p-badge-lg': props.size === 'large',
             'p-badge-xl': props.size === 'xlarge',
-            'p-badge-info': props.severity === 'info',
-            'p-badge-success': props.severity === 'success',
-            'p-badge-warn': props.severity === 'warn',
-            'p-badge-danger': props.severity === 'danger',
-            'p-badge-secondary': props.severity === 'secondary',
-            'p-badge-contrast': props.severity === 'contrast'
+            [`p-badge-${props.severity}`]: props.severity !== null
         }
     ]
 };

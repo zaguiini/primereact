@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { ContextMenu } from '@/components/lib/contextmenu/ContextMenu';
-import { useState, useRef, useEffect } from 'react';
 import { ProductService } from '@/service/ProductService';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
+import { useEffect, useRef, useState } from 'react';
 
 export function TemplateDoc(props) {
     const [products, setProducts] = useState([]);
@@ -274,11 +274,7 @@ export default function TemplateDemo() {
             <div className="card flex md:justify-center">
                 <ul className="m-0 p-0 list-none border border-surface rounded-border p-4 flex flex-col gap-2 w-full md:w-[30rem]">
                     {products.map((product) => (
-                        <li
-                            key={product.id}
-                            className={`p-2 hover:bg-emphasis rounded-border border border-transparent transition-all duration-200 ${selectedId === product.id && 'border-primary'}`}
-                            onContextMenu={(e) => onRightClick(e, product.id)}
-                        >
+                        <li key={product.id} className={`p-2 hover:bg-emphasis rounded-border border border-transparent transition-all duration-200 ${selectedId === product.id && 'border-primary'}`} onContextMenu={(e) => onRightClick(e, product.id)}>
                             <div className="flex flex-wrap p-2 items-center gap-4">
                                 <img className="w-16 shadow shrink-0 rounded-border" src={`/images/product/${product.image}`} alt="product.name" />
                                 <div className="flex-1 flex flex-col gap-1">

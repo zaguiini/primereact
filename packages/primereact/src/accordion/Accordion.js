@@ -1,39 +1,29 @@
+import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
 import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
+import { useMountEffect } from '../hooks/Hooks';
 import { ChevronDownIcon } from '../icons/chevrondown';
 import { ChevronRightIcon } from '../icons/chevronright';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
-import { AccordionBase, AccordionTabBase } from './AccordionBase';
+import { useAccordion } from './Accordion.base';
 
 export const AccordionTab = () => {};
 
-export const Accordion = React.forwardRef((inProps, ref) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = AccordionBase.getProps(inProps, context);
-    const [idState, setIdState] = React.useState(props.id);
+export const Accordion = React.forwardRef((inProps, inRef) => {
+    const [idState, setIdState] = React.useState(props.inProps);
     const [activeIndexState, setActiveIndexState] = React.useState(props.activeIndex);
     const elementRef = React.useRef(null);
     const activeIndex = props.onTabChange ? props.activeIndex : activeIndexState;
     const count = React.Children.count(props.children);
-    const metaData = {
-        props,
-        state: {
-            id: idState,
-            activeIndex: activeIndexState
-        }
+    const state = {
+        id: idState,
+        activeIndex: activeIndexState
     };
 
-    const { ptm, ptmo, cx, isUnstyled } = AccordionBase.setMetaData({
-        ...metaData
-    });
+    const accordion = useAccordion(inProps, inRef, state);
+    const { props, attrs, ptm, cx, ref } = accordion;
 
-    useHandleStyle(AccordionBase.css.styles, isUnstyled, { name: 'accordion' });
-
-    const getTabProp = (tab, name) => AccordionTabBase.getCProp(tab, name);
+    const getTabProp = (tab, name) => tab.props[name]; //AccordionTabBase.getCProp(tab, name);
 
     const getTabPT = (tab, key, index) => {
         const tabMetaData = {
@@ -334,7 +324,7 @@ export const Accordion = React.forwardRef((inProps, ref) => {
             className: classNames(props.className, cx('root')),
             style: props.style
         },
-        AccordionBase.getOtherProps(props),
+        attrs,
         ptm('root')
     );
 

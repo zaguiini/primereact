@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Avatar } from '@/components/lib/avatar/Avatar';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
 
 export function ImageDoc(props) {
     const code = {
@@ -17,7 +17,7 @@ export function ImageDoc(props) {
 <Avatar image={"https://www.gravatar.com/avatar/05dfd4b41340d09cae045235eb0893c3?d=mp"} className="flex items-center justify-center mr-2" size="xlarge" />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 
@@ -49,7 +49,7 @@ export default function ImageDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 

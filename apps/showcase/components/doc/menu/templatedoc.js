@@ -3,7 +3,7 @@ import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Menu } from '@/components/lib/menu/Menu';
 import { classNames } from '@/components/lib/utils/Utils';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
 
 export function TemplateDoc(props) {
     const itemRenderer = (item) => (
@@ -122,7 +122,7 @@ export function TemplateDoc(props) {
 <Menu model={items} className="w-full md:w-60"  />
 `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Menu } from 'primereact/menu';
 import { badge } from 'primereact/badge';
 import { Avatar } from 'primereact/avatar';
@@ -242,7 +242,7 @@ export default function TemplateDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
 import { Badge } from 'primereact/badge';

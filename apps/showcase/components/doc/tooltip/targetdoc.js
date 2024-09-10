@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Badge } from '@/components/lib/badge/Badge';
 import { Tooltip } from '@/components/lib/tooltip/Tooltip';
+import { Badge } from 'primereact/badge';
 
 export function TargetDoc(props) {
     const code = {

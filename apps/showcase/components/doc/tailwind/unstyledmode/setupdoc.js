@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
 
 export function SetupDoc(props) {
     const code1 = {
@@ -31,7 +31,7 @@ return(
         <App />
     </PrimeReactProvider>
 )
- 
+
 `
     };
 
@@ -46,7 +46,7 @@ return(
         <App />
     </PrimeReactProvider>
 )
- 
+
 `
     };
 
@@ -61,7 +61,7 @@ return(
         <App />
     </PrimeReactProvider>
 )
- 
+
 `
     };
 
@@ -70,7 +70,7 @@ return(
 import { PrimeReactProvider } from "primereact/api";
 
 export default function MyApp({ Component, pageProps }) {
-    
+
     //My Design System with Tailwind
     const MyDesignSystem = {
         inputtext: {
@@ -116,7 +116,7 @@ export default function MyApp({ Component, pageProps }) {
                 )
             },
             transition: TRANSITIONS.toggleable
-        } 
+        }
     };
 
     return (
@@ -125,7 +125,7 @@ export default function MyApp({ Component, pageProps }) {
         </PrimeReactProvider>
     );
 }
- 
+
 `
     };
 

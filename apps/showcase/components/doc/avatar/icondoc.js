@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Avatar } from '@/components/lib/avatar/Avatar';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
 
 export function IconDoc(props) {
     const code = {
@@ -19,7 +19,7 @@ export function IconDoc(props) {
 </Avatar>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 
@@ -53,7 +53,7 @@ export default function IconDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 

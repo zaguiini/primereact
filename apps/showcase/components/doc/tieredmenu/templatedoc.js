@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { TieredMenu } from '@/components/lib/tieredmenu/TieredMenu';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
 
 export function TemplateDoc(props) {
     const itemRenderer = (item) => (

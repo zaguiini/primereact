@@ -1,12 +1,5 @@
-import { classNames, isEmpty, isNotEmpty } from '@primeuix/utils';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
-import AppContentContext from '../../layout/appcontentcontext';
-import { DocSectionText } from './docsectiontext';
-
 const DocApiTable = (props) => {
-    const appContentContext = useContext(AppContentContext);
+    /*const appContentContext = useContext(AppContentContext);
 
     const { id, data, name, description, allowLink = true } = props;
     const isPT = id.startsWith('pt.');
@@ -173,7 +166,7 @@ const DocApiTable = (props) => {
                 </div>
             </React.Fragment>
         );
-    }
+    }*/
 
     return null;
 };

@@ -1,10 +1,9 @@
 export const defaultProps = {
     __TYPE: 'Badge',
-    __parentMetadata: null,
+    style: null,
+    className: null,
     value: null,
     severity: null,
     size: null,
-    style: null,
-    className: null,
     children: undefined
 };

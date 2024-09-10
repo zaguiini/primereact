@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Badge } from '@/components/lib/badge/Badge';
+import { OverlayBadge } from 'primereact/overlaybadge';
 
 export function PositionDoc(props) {
     const code = {
@@ -65,15 +65,15 @@ export default function PositionDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex flex-wrap justify-center gap-6">
-                <i className="pi pi-bell p-overlay-badge" style={{ fontSize: '2rem' }}>
-                    <Badge value="2" />
-                </i>
-                <i className="pi pi-calendar p-overlay-badge" style={{ fontSize: '2rem' }}>
-                    <Badge value="5+" severity="danger" />
-                </i>
-                <i className="pi pi-envelope p-overlay-badge" style={{ fontSize: '2rem' }}>
-                    <Badge severity="danger" />
-                </i>
+                <OverlayBadge value="2">
+                    <i className="pi pi-bell" style={{ fontSize: '2rem' }} />
+                </OverlayBadge>
+                <OverlayBadge value="4" severity="danger">
+                    <i className="pi pi-calendar" style={{ fontSize: '2rem' }} />
+                </OverlayBadge>
+                <OverlayBadge severity="danger">
+                    <i className="pi pi-envelope" style={{ fontSize: '2rem' }} />
+                </OverlayBadge>
             </div>
             <DocSectionCode code={code} />
         </>

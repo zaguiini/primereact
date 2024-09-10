@@ -8,7 +8,7 @@ import { useInputText } from './InputText.base';
 export const InputText = React.memo(
     React.forwardRef((inProps, inRef) => {
         const inputtext = useInputText(inProps, inRef);
-        const { props, attrs, ptm, cx, ref } = inputtext;
+        const { props, ptm, ptmi, cx, ref } = inputtext;
 
         const onKeyDown = (event) => {
             props.onKeyDown && props.onKeyDown(event);
@@ -59,8 +59,7 @@ export const InputText = React.memo(
                 onKeyDown,
                 onPaste
             },
-            attrs,
-            ptm('root')
+            ptmi('root')
         );
 
         return (

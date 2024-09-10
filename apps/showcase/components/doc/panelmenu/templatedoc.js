@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { PanelMenu } from '@/components/lib/panelmenu/PanelMenu';
-import { Badge } from '@/components/lib/badge/Badge';
+import { Badge } from 'primereact/badge';
 
 export function TemplateDoc(props) {
     const itemRenderer = (item, options) => (
@@ -90,10 +90,10 @@ export function TemplateDoc(props) {
 
     const code = {
         basic: `
-<PanelMenu model={items} className="w-full md:w-80" />   
+<PanelMenu model={items} className="w-full md:w-80" />
 `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { PanelMenu } from 'primereact/panelmenu';
 import { Badge } from 'primereact/badge';
 
@@ -190,7 +190,7 @@ export default function TemplateDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { PanelMenu } from 'primereact/panelmenu';
 import { MenuItem } from 'primereact/menuitem';
 import { Badge } from 'primereact/badge';
