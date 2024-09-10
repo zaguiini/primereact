@@ -30,6 +30,8 @@
     "exports": {
         "./badge": "./src/badge/Badge.js",
         "./overlaybadge": "./src/overlaybadge/OverlayBadge.js",
+        "./avatar": "./src/avatar/Avatar.js",
+        "./avatargroup": "./src/avatargroup/AvatarGroup.js",
         "./button": "./src/button/Button.js",
         "./inputtext": "./src/inputtext/InputText.js",
         "./keyfilter": "./src/keyfilter/KeyFilter.js",

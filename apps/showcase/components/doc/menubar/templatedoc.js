@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Menubar } from '@/components/lib/menubar/Menubar';
+import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 import { InputText } from 'primereact/inputtext';
 

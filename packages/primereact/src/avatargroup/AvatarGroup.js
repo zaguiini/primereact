@@ -1,39 +1,26 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { classNames } from '../utils/Utils';
-import { AvatarGroupBase } from './AvatarGroupBase';
+import { useAvatarGroup } from './AvatarGroup.base';
 
-export const AvatarGroup = React.forwardRef((inProps, ref) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = AvatarGroupBase.getProps(inProps, context);
-
-    const { ptm, cx, isUnstyled } = AvatarGroupBase.setMetaData({
-        props
-    });
-
-    useHandleStyle(AvatarGroupBase.css.styles, isUnstyled, { name: 'avatargroup' });
-
-    const elementRef = React.useRef(null);
-
-    React.useImperativeHandle(ref, () => ({
-        props,
-        getElement: () => elementRef.current
-    }));
+export const AvatarGroup = React.forwardRef((inProps, inRef) => {
+    const avatargroup = useAvatarGroup(inProps, inRef);
+    const { props, ptmi, cx, ref } = avatargroup;
 
     const rootProps = mergeProps(
         {
-            ref: elementRef,
+            ref,
             style: props.style,
             className: classNames(props.className, cx('root'))
         },
-        AvatarGroupBase.getOtherProps(props),
-        ptm('root')
+        ptmi('root')
     );
 
-    return <div {...rootProps}>{props.children}</div>;
+    return (
+        <ComponentProvider value={avatargroup}>
+            <div {...rootProps}>{props.children}</div>
+        </ComponentProvider>
+    );
 });
 
 AvatarGroup.displayName = 'AvatarGroup';

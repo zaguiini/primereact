@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
-import { Badge } from 'primereact/badge';
+import { Avatar } from 'primereact/avatar';
+import { OverlayBadge } from 'primereact/overlaybadge';
 
 export function IconDoc(props) {
     const code = {
@@ -113,9 +113,9 @@ export default function IconDemo() {
 
                     <div className="flex-auto">
                         <h5>Badge</h5>
-                        <Avatar className="p-overlay-badge" icon="pi pi-user" size="xlarge">
-                            <Badge value="4" />
-                        </Avatar>
+                        <OverlayBadge value="4" severity="danger" className="inline-flex">
+                            <Avatar icon="pi pi-user" size="xlarge" />
+                        </OverlayBadge>
                     </div>
                 </div>
             </div>

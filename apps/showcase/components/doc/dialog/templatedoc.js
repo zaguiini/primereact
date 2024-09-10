@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Dialog } from '@/components/lib/dialog/Dialog';
+import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { useState } from 'react';
 
@@ -37,7 +37,7 @@ export function TemplateDoc(props) {
 import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import { Avatar } from '@/components/lib/avatar/Avatar';
+import { Avatar } from 'primereact/avatar';
 
 export default function TemplateDemo() {
     const [visible, setVisible] = useState(false);
@@ -72,7 +72,7 @@ export default function TemplateDemo() {
 import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import { Avatar } from '@/components/lib/avatar/Avatar';
+import { Avatar } from 'primereact/avatar';
 
 export default function TemplateDemo() {
     const [visible, setVisible] = useState<boolean>(false);

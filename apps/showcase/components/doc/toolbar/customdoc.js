@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Toolbar } from '@/components/lib/toolbar/Toolbar';
-import { Avatar } from '@/components/lib/avatar/Avatar';
+import { Avatar } from 'primereact/avatar';
 import React from 'react';
 
 export function CustomDoc(props) {

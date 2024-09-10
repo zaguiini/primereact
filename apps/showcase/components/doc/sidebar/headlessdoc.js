@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Avatar } from '@/components/lib/avatar/Avatar';
 import { Ripple } from '@/components/lib/ripple/Ripple';
 import { Sidebar } from '@/components/lib/sidebar/Sidebar';
 import { StyleClass } from '@/components/lib/styleclass/StyleClass';
+import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { useRef, useState } from 'react';
 
