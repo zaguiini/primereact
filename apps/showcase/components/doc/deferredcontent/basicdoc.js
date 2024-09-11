@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { DeferredContent } from '@/components/lib/deferredcontent/DeferredContent';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function BasicDoc(props) {

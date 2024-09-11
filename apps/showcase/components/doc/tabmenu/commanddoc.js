@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { TabMenu } from '@/components/lib/tabmenu/TabMenu';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function CommandDoc(props) {
@@ -44,7 +44,7 @@ export function CommandDoc(props) {
 <TabMenu model={items} />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { TabMenu } from 'primereact/tabmenu';
 
 export default function CommandDemo() {
@@ -89,7 +89,7 @@ export default function CommandDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { TabMenu } from 'primereact/tabmenu';
 import { MenuItem } from 'primereact/menuitem';
 

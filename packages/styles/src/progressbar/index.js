@@ -117,11 +117,10 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: ({ instance }) => [
+    root: ({ props }) => [
         'p-progressbar p-component',
         {
-            'p-progressbar-determinate': instance.determinate,
-            'p-progressbar-indeterminate': instance.indeterminate
+            [`p-progressbar-${props.mode}`]: !!props.mode
         }
     ],
     value: 'p-progressbar-value',

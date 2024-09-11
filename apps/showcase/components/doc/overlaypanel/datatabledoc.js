@@ -3,8 +3,8 @@ import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import { OverlayPanel } from '@/components/lib/overlaypanel/OverlayPanel';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 import { useEffect, useRef, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 

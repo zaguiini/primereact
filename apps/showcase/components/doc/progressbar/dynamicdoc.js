@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
-import { Toast } from '@/components/lib/toast/Toast';
+import { ProgressBar } from 'primereact/progressbar';
+import { Toast } from 'primereact/toast';
 import { useEffect, useRef, useState } from 'react';
 
 export function DynamicDoc(props) {

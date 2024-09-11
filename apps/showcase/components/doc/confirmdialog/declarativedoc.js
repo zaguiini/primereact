@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { ConfirmDialog } from '@/components/lib/confirmdialog/ConfirmDialog';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 import { useRef, useState } from 'react';
 
 export function DeclarativeDoc(props) {

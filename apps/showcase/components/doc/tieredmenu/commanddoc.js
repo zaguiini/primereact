@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { TieredMenu } from '@/components/lib/tieredmenu/TieredMenu';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
-import { Toast } from '@/components/lib/toast/Toast';
 
 export function CommandDoc(props) {
     const toast = useRef(null);

@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { useUpdateEffect } from '@/components/lib/hooks/Hooks';
-import { Toast } from '@/components/lib/toast/Toast';
 import { InputText } from 'primereact/inputtext';
+import { Toast } from 'primereact/toast';
 import { useRef, useState } from 'react';
 
 export function BasicDoc(props) {

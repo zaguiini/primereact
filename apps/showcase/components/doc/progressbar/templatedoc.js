@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
+import { ProgressBar } from 'primereact/progressbar';
 import React from 'react';
 
 export function TemplateDoc(props) {
@@ -66,7 +66,9 @@ export default function TemplateDemo() {
                 </p>
             </DocSectionText>
             <div className="card">
-                <ProgressBar value={40} displayValueTemplate={valueTemplate} />
+                <ProgressBar value={40}>
+                    40/<b>100</b>
+                </ProgressBar>
             </div>
             <DocSectionCode code={code} />
         </>

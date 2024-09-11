@@ -1,11 +1,11 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Toast } from '@/components/lib/toast/Toast';
-import { useEffect, useRef, useState } from 'react';
+import { Toast } from 'primereact/toast';
+import { useRef, useState } from 'react';
 import { ProductService } from '../../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function CellSelectEventsDoc(props) {
     const [products, setProducts] = useState([]);

@@ -1,11 +1,11 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Toast } from '@/components/lib/toast/Toast';
-import { useEffect, useRef, useState } from 'react';
+import { Toast } from 'primereact/toast';
+import { useRef, useState } from 'react';
 import { ProductService } from '../../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function RowSelectEventsDoc(props) {
     const [products, setProducts] = useState([]);
@@ -112,7 +112,7 @@ export default function RowSelectEventsDemo() {
     return (
         <div className="card">
             <Toast ref={toast} />
-            <DataTable value={products} selectionMode="single" selection={selectedProduct!} 
+            <DataTable value={products} selectionMode="single" selection={selectedProduct!}
                         onSelectionChange={(e) => setSelectedProduct(e.value)}  dataKey="id" onRowSelect={onRowSelect} onRowUnselect={onRowUnselect} metaKeySelection={false} tableStyle={{ minWidth: '50rem' }}>
                 <Column field="code" header="Code"></Column>
                 <Column field="name" header="Name"></Column>

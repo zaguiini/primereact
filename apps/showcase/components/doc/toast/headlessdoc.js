@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Button } from 'primereact/button';
+import { ProgressBar } from 'primereact/progressbar';
+import { Toast } from 'primereact/toast';
 import { useRef, useState } from 'react';
 
 export function HeadlessDoc(props) {

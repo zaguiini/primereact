@@ -3,9 +3,9 @@ import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Checkbox } from '@/components/lib/checkbox/Checkbox';
 import { Dialog } from '@/components/lib/dialog/Dialog';
 import { GMap } from '@/components/lib/gmap/GMap';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { Toast } from 'primereact/toast';
 import { useEffect, useRef, useState } from 'react';
 
 export function GMapDoc(props) {

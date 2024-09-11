@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { FileUpload } from '@/components/lib/fileupload/FileUpload';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function AutoDoc(props) {
@@ -27,12 +27,12 @@ export default function AutoDemo() {
     const onUpload = () => {
         toast.current.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
     };
-        
+
     return (
         <div className="card flex justify-center">
             <Toast ref={toast}></Toast>
             <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*" maxFileSize={1000000} onUpload={onUpload} auto chooseLabel="Browse" />
-        </div>  
+        </div>
     )
 }
         `,
@@ -47,12 +47,12 @@ export default function AutoDemo() {
     const onUpload = () => {
         toast.current.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
     };
-        
+
     return (
         <div className="card flex justify-center">
             <Toast ref={toast}></Toast>
             <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*" maxFileSize={1000000} onUpload={onUpload} auto chooseLabel="Browse" />
-        </div>  
+        </div>
     )
 }
         `

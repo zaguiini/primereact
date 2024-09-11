@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Menubar } from '@/components/lib/menubar/Menubar';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function CommandDoc(props) {
@@ -62,10 +62,10 @@ export function CommandDoc(props) {
     const code = {
         basic: `
 <Menubar model={items} />
-<Toast ref={toast} />  
+<Toast ref={toast} />
 `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Menubar } from 'primereact/menubar';
 
 export default function CommandDemo() {
@@ -132,7 +132,7 @@ export default function CommandDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import { MenuItem } from 'primereact/menuitem';
 
@@ -190,7 +190,7 @@ export default function CommandDemo() {
             ]
         }
     ];
-    
+
     return (
         <div className="card">
             <Menubar model={items} />

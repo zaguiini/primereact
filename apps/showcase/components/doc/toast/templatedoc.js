@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 import { useRef, useState } from 'react';
 
 export function TemplateDoc(props) {

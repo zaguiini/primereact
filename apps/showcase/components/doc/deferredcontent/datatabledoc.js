@@ -3,7 +3,7 @@ import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import { DeferredContent } from '@/components/lib/deferredcontent/DeferredContent';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 
@@ -94,7 +94,7 @@ export default function DataTableDemo() {
 }
         `,
         data: `
-/* ProductService */        
+/* ProductService */
 {
     id: '1000',
     code: 'f230fh0g3',

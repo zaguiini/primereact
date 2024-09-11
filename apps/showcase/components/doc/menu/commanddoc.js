@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Menu } from '@/components/lib/menu/Menu';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function CommandDoc(props) {
@@ -29,7 +29,7 @@ export function CommandDoc(props) {
 <Toast ref={toast} />
 `,
         javascript: `
-import React, { useRef } from 'react'; 
+import React, { useRef } from 'react';
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
 
@@ -59,7 +59,7 @@ export default function CommandDemo() {
 }
         `,
         typescript: `
-import React, { useRef } from 'react'; 
+import React, { useRef } from 'react';
 import { Menu } from 'primereact/menu';
 import { MenuItem } from 'primereact/menuitem';
 import { Toast } from 'primereact/toast';

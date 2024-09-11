@@ -2,7 +2,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { useMountEffect } from '@/components/lib/hooks/Hooks';
-import { Toast } from '@/components/lib/toast/Toast';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function BasicDoc(props) {
@@ -19,7 +19,7 @@ useMountEffect(() => {
 });
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { useMountEffect } from 'primereact/hooks';
 import { Toast } from 'primereact/toast';
 
@@ -41,7 +41,7 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { useMountEffect } from 'primereact/hooks';
 import { Toast } from 'primereact/toast';
 

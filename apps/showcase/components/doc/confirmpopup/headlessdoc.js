@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { ConfirmPopup, confirmPopup } from '@/components/lib/confirmpopup/ConfirmPopup';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function HeadlessDoc(props) {

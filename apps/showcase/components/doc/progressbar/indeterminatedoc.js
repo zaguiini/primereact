@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
+import { ProgressBar } from 'primereact/progressbar';
 
 export function IndeterminateDoc(props) {
     const code = {

@@ -1,47 +1,43 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { classNames } from '../utils/Utils';
-import { ProgressBarBase } from './ProgressBarBase';
+import { useProgressBar } from './ProgressBar.base';
 
 export const ProgressBar = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ProgressBarBase.getProps(inProps, context);
-        const { ptm, cx, isUnstyled } = ProgressBarBase.setMetaData({
-            props,
-            ...props.__parentMetadata
-        });
-
-        useHandleStyle(ProgressBarBase.css.styles, isUnstyled, { name: 'progressbar' });
-        const elementRef = React.useRef(null);
+    React.forwardRef((inProps, inRef) => {
+        const progressbar = useProgressBar(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = progressbar;
 
         const createLabel = () => {
-            if (props.showValue && props.value != null) {
-                const label = props.displayValueTemplate ? props.displayValueTemplate(props.value) : props.value + props.unit;
+            if (props.showValue && isNotEmpty(props.value)) {
+                const labelProps = mergeProps(
+                    {
+                        className: cx('label')
+                    },
+                    ptm('label')
+                );
 
-                return label;
+                const label = props.children || props.value + props.unit;
+
+                return <div {...labelProps}>{label}</div>;
             }
 
             return null;
         };
 
+        const createIndeterminate = () => {
+            const valueProps = mergeProps(
+                {
+                    className: cx('value')
+                },
+                ptm('value')
+            );
+
+            return <div {...valueProps} />;
+        };
+
         const createDeterminate = () => {
             const label = createLabel();
-            const rootProps = mergeProps(
-                {
-                    className: classNames(props.className, cx('root')),
-                    style: props.style,
-                    role: 'progressbar',
-                    'aria-valuemin': '0',
-                    'aria-valuenow': props.value,
-                    'aria-valuemax': '100'
-                },
-                ProgressBarBase.getOtherProps(props),
-                ptm('root')
-            );
             const valueProps = mergeProps(
                 {
                     className: cx('value'),
@@ -50,70 +46,29 @@ export const ProgressBar = React.memo(
                 ptm('value')
             );
 
-            const labelProps = mergeProps(
-                {
-                    className: cx('label')
-                },
-                ptm('label')
-            );
-
-            return (
-                <div id={props.id} ref={elementRef} {...rootProps}>
-                    <div {...valueProps}>{label != null && <div {...labelProps}>{label}</div>}</div>
-                </div>
-            );
+            return <div {...valueProps}>{label}</div>;
         };
 
-        const createIndeterminate = () => {
-            const rootProps = mergeProps(
-                {
-                    className: classNames(props.className, cx('root')),
-                    style: props.style,
-                    role: 'progressbar',
-                    'aria-valuemin': '0',
-                    'aria-valuenow': props.value,
-                    'aria-valuemax': '100'
-                },
-                ProgressBarBase.getOtherProps(props),
-                ptm('root')
-            );
+        const content = props.mode === 'determinate' ? createDeterminate() : props.mode === 'indeterminate' ? createIndeterminate() : null;
 
-            const containerProps = mergeProps(
-                {
-                    className: cx('container')
-                },
-                ptm('container')
-            );
+        const rootProps = mergeProps(
+            {
+                ref,
+                style: props.style,
+                className: classNames(cx('root'), props.className),
+                role: 'progressbar',
+                'aria-valuemin': '0',
+                'aria-valuenow': props.value,
+                'aria-valuemax': '100'
+            },
+            ptmi('root')
+        );
 
-            const valueProps = mergeProps(
-                {
-                    className: cx('value'),
-                    style: { backgroundColor: props.color }
-                },
-                ptm('value')
-            );
-
-            return (
-                <div id={props.id} ref={elementRef} {...rootProps}>
-                    <div {...containerProps}>
-                        <div {...valueProps} />
-                    </div>
-                </div>
-            );
-        };
-
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getElement: () => elementRef.current
-        }));
-
-        if (props.mode === 'determinate') {
-            return createDeterminate();
-        } else if (props.mode === 'indeterminate') {
-            return createIndeterminate();
-        }
-
-        throw new Error(props.mode + " is not a valid mode for the ProgressBar. Valid values are 'determinate' and 'indeterminate'");
+        return (
+            <ComponentProvider value={progressbar}>
+                <div {...rootProps}>{content}</div>
+            </ComponentProvider>
+        );
     })
 );
 

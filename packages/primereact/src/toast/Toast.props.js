@@ -1,9 +1,9 @@
 export const defaultProps = {
     __TYPE: 'Toast',
     id: null,
+    style: null,
     className: null,
     content: null,
-    style: null,
     baseZIndex: 0,
     position: 'top-right',
     transitionOptions: null,

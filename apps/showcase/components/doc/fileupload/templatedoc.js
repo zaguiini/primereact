@@ -1,11 +1,11 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { FileUpload } from '@/components/lib/fileupload/FileUpload';
-import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import { Button } from 'primereact/button';
+import { ProgressBar } from 'primereact/progressbar';
 import { Tag } from 'primereact/tag';
+import { Toast } from 'primereact/toast';
 import { useRef, useState } from 'react';
 
 export function TemplateDoc(props) {

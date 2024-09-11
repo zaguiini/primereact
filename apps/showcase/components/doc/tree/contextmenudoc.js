@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { ContextMenu } from '@/components/lib/contextmenu/ContextMenu';
-import { Toast } from '@/components/lib/toast/Toast';
 import { Tree } from '@/components/lib/tree/Tree';
 import Link from 'next/link';
+import { Toast } from 'primereact/toast';
 import { useEffect, useRef, useState } from 'react';
 import { NodeService } from '../../../service/NodeService';
 
@@ -48,8 +48,8 @@ export function ContextMenuDoc(props) {
 
 <ContextMenu model={menu} ref={cm} />
 
-<Tree value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)} 
-    contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)} 
+<Tree value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)}
+    contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)}
     onContextMenu={(e) => cm.current.show(e.originalEvent)} className="w-full md:w-[30rem]" />
         `,
         javascript: `
@@ -94,12 +94,12 @@ export default function ContextMenuDemo() {
     return (
         <>
             <Toast ref={toast} />
-            
+
             <ContextMenu model={menu} ref={cm} />
 
             <div className="card flex justify-center">
-                <Tree value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)} 
-                    contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)} 
+                <Tree value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)}
+                    contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)}
                     onContextMenu={(e) => cm.current.show(e.originalEvent)} className="w-full md:w-[30rem]" />
             </div>
         </>
@@ -153,8 +153,8 @@ export default function ContextMenuDemo() {
             <ContextMenu model={menu} ref={cm} />
 
             <div className="card flex justify-center">
-                <Tree value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)} 
-                    contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)} 
+                <Tree value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)}
+                    contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)}
                     onContextMenu={(e) => cm.current.show(e.originalEvent)} className="w-full md:w-[30rem]" />
             </div>
         </>

@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { SpeedDial } from '@/components/lib/speeddial/SpeedDial';
-import { Toast } from '@/components/lib/toast/Toast';
 import { useRouter } from 'next/router';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
 
 export function CircleDoc(props) {

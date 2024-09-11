@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { PanelMenu } from '@/components/lib/panelmenu/PanelMenu';
+import { Toast } from 'primereact/toast';
 import { useRef } from 'react';
-import { Toast } from '@/components/lib/toast/Toast';
 
 export function CommandDoc(props) {
     const toast = useRef(null);
@@ -65,11 +65,11 @@ export function CommandDoc(props) {
     ];
     const code = {
         basic: `
-<PanelMenu model={items} className="w-full md:w-80" />   
+<PanelMenu model={items} className="w-full md:w-80" />
 <Toast ref={toast} />
 `,
         javascript: `
-import React, { useRef } from 'react'; 
+import React, { useRef } from 'react';
 import { PanelMenu } from 'primereact/panelmenu';
 import { Toast } from 'primereact/toast';
 
@@ -141,7 +141,7 @@ export default function CommandDemo() {
 }
         `,
         typescript: `
-import React, { useRef } from 'react'; 
+import React, { useRef } from 'react';
 import { PanelMenu } from 'primereact/panelmenu';
 import { MenuItem } from 'primereact/menuitem';
 import { Toast } from 'primereact/toast';
