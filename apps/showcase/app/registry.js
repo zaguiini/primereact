@@ -1,13 +1,13 @@
 'use client';
 
 import Layout from '@/components/layout/layout';
-import { Providers } from '@/components/providers';
+import { PresetContext } from '@/components/providers/presetProvider';
 import { PrimeReactProvider, PrimeStyleSheet } from '@primereact/core/config';
-import Aura from '@primereact/themes/aura';
 import { useServerInsertedHTML } from 'next/navigation';
 import React from 'react';
 
 export default function StyleRegistry({ children }) {
+    const { preset } = React.useContext(PresetContext);
     const [styledStyleSheet] = React.useState(() => new PrimeStyleSheet());
 
     useServerInsertedHTML(() => {
@@ -20,15 +20,13 @@ export default function StyleRegistry({ children }) {
 
     const value = {
         theme: {
-            preset: Aura
+            preset: preset
         }
     };
 
     return (
         <PrimeReactProvider value={value} sheet={styledStyleSheet}>
-            <Providers>
-                <Layout>{children}</Layout>
-            </Providers>
+            <Layout>{children}</Layout>
         </PrimeReactProvider>
     );
 }

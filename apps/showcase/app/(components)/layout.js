@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import 'primeicons/primeicons.css';
 import '../globals.css';
 // @todo: check this package
+import { Providers } from '@/components/providers';
 import StyleRegistry from '../registry';
 
 const geistSans = localFont({
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
     return (
         <html>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <StyleRegistry>{children}</StyleRegistry>
+                <Providers>
+                    <StyleRegistry>{children}</StyleRegistry>
+                </Providers>
             </body>
         </html>
     );

@@ -7,14 +7,9 @@ const { Provider, Consumer: PresetConsumer } = PresetContext;
 
 const { primaryColors, surfaceColors } = colorPresets;
 
-const defaultPreset = {
-    name: 'aura',
-    config: Aura
-};
-
 const PresetProvider = ({ children }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [preset, setPreset] = useState(defaultPreset);
+    const [preset, setPreset] = useState(Aura);
     const [ripple, setRipple] = useState(false);
     const [currentPrimaryColor, setCurrentPrimaryColor] = useState(primaryColors[8]);
     const [currentSurfaceColor, setCurrentSurfaceColor] = useState(surfaceColors[0]);
@@ -58,9 +53,15 @@ const PresetProvider = ({ children }) => {
     };
 
     const applyTheme = (type, colors) => {
-        Object.keys(colors).forEach((color) => {
-            document.documentElement.style.setProperty(`--${type}-${color}`, colors[color]);
-        });
+        const newPreset = { ...preset };
+
+        if (!newPreset.semantic) {
+            newPreset.semantic = {};
+        }
+
+        newPreset.semantic[type] = colors;
+
+        setPreset(newPreset);
     };
 
     const updatePrimaryColors = (colorName) => {

@@ -130,17 +130,17 @@ export default {
         iconSize: '1rem',
         anchorGutter: '2px',
         primary: {
-            50: '{emerald.50}',
-            100: '{emerald.100}',
-            200: '{emerald.200}',
-            300: '{emerald.300}',
-            400: '{emerald.400}',
-            500: '{emerald.500}',
-            600: '{emerald.600}',
-            700: '{emerald.700}',
-            800: '{emerald.800}',
-            900: '{emerald.900}',
-            950: '{emerald.950}'
+            50: '{cyan.50}',
+            100: '{cyan.100}',
+            200: '{cyan.200}',
+            300: '{cyan.300}',
+            400: '{cyan.400}',
+            500: '{cyan.500}',
+            600: '{cyan.600}',
+            700: '{cyan.700}',
+            800: '{cyan.800}',
+            900: '{cyan.900}',
+            950: '{cyan.950}'
         },
         formField: {
             paddingX: '0.75rem',
