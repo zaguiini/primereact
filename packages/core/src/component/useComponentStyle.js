@@ -235,7 +235,7 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
         };
 
         _load();
-        _themeChangeListener(_load);
+        //_themeChangeListener(_load);
     };
 
     const _loadCoreStyles = () => {
