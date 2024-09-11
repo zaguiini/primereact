@@ -1,0 +1,6 @@
+{
+    "main": "./Fluid.js",
+    "module": "./Fluid.js",
+    "types": "./Fluid.d.ts",
+    "sideEffects": false
+}
