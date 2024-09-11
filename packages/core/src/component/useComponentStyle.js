@@ -187,14 +187,15 @@ function useCSS(cssMap = {}) {
         config?.sheet?._styles?.forEach((value, key) => {
             const styleElement = document.head.querySelector(`style[data-primereact-style-id="${key}"]`) || document.createElement('style');
 
-            //if (!styleElement.isConnected) {
-            //setAttributes(styleElement, value.styleOptions);
-            value.first ? document.head.prepend(styleElement) : document.head.appendChild(styleElement);
-            setAttribute(styleElement, 'data-primereact-style-id', key);
+            if (!styleElement.isConnected) {
+                //setAttributes(styleElement, value.styleOptions);
+                value.first ? document.head.prepend(styleElement) : document.head.appendChild(styleElement);
+                setAttribute(styleElement, 'data-primereact-style-id', key);
+                //styleRef.current.onload = (event: React.ReactEventHandler<HTMLStyleElement>) => onStyleLoaded?.(event, { name: styleNameRef.current });
+                //onStyleMounted?.(styleNameRef.current);
+            }
+
             styleElement.textContent = value.css;
-            //styleRef.current.onload = (event: React.ReactEventHandler<HTMLStyleElement>) => onStyleLoaded?.(event, { name: styleNameRef.current });
-            //onStyleMounted?.(styleNameRef.current);
-            //}
         });
     });
     //return rule;
@@ -271,34 +272,34 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
     const _loadThemeStyles = () => {
         if ($isUnstyled) return;
         // common
-        //if (!Theme.isStyleNameLoaded('common')) {
-        const { primitive, semantic } = $style?.getCommonTheme() || {}; // @todo
+        if (!Theme.isStyleNameLoaded('common')) {
+            const { primitive, semantic } = $style?.getCommonTheme() || {}; // @todo
 
-        $style.load(primitive?.css, { name: 'primitive-variables' });
-        $style.load(semantic?.css, { name: 'semantic-variables' });
-        $style._loadTheme(BaseStyle?.theme, { name: 'global-style' }); // @todo
+            $style.load(primitive?.css, { name: 'primitive-variables' });
+            $style.load(semantic?.css, { name: 'semantic-variables' });
+            $style._loadTheme(BaseStyle?.theme, { name: 'global-style' }); // @todo
 
-        Theme.setLoadedStyleName('common');
-        //}
+            Theme.setLoadedStyleName('common');
+        }
 
         // component
-        //if (!Theme.isStyleNameLoaded(style?.name) && style?.name) {
-        const { css } = $style?.getComponentTheme?.() || {};
+        if (!Theme.isStyleNameLoaded(style?.name) && style?.name) {
+            const { css } = $style?.getComponentTheme?.() || {};
 
-        $style?.load(css, { name: `${style?.name}-variables` });
-        $style?.loadTheme({ name: `${style?.name}-style` });
+            $style?.load(css, { name: `${style?.name}-variables` });
+            $style?.loadTheme({ name: `${style?.name}-style` });
 
-        Theme.setLoadedStyleName(style?.name);
-        //}
+            Theme.setLoadedStyleName(style?.name);
+        }
 
         // layer order
-        //if (!Theme.isStyleNameLoaded('layer-order')) {
-        const layerOrder = $style?.getLayerOrderThemeCSS?.();
+        if (!Theme.isStyleNameLoaded('layer-order')) {
+            const layerOrder = $style?.getLayerOrderThemeCSS?.();
 
-        $style.load(layerOrder, { name: 'layer-order', first: true });
+            $style.load(layerOrder, { name: 'layer-order', first: true });
 
-        Theme.setLoadedStyleName('layer-order');
-        //}
+            Theme.setLoadedStyleName('layer-order');
+        }
     };
 
     const _themeChangeListener = (callback = () => {}) => {
