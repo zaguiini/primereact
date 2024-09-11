@@ -20,7 +20,7 @@ export default function StyleRegistry({ children }) {
 
     const value = {
         theme: {
-            preset: preset
+            preset: preset.config
         }
     };
 

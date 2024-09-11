@@ -1,5 +1,7 @@
 import colorPresets from '@/components/utils/colorPresets.json';
 import Aura from '@primereact/themes/aura';
+import Lara from '@primereact/themes/lara';
+import Nora from '@primereact/themes/nora';
 import { createContext, useState } from 'react';
 
 const PresetContext = createContext();
@@ -9,21 +11,27 @@ const { primaryColors, surfaceColors } = colorPresets;
 
 const PresetProvider = ({ children }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [preset, setPreset] = useState(Aura);
+    const [preset, setPreset] = useState({
+        name: 'aura',
+        config: Aura
+    });
     const [ripple, setRipple] = useState(false);
     const [currentPrimaryColor, setCurrentPrimaryColor] = useState(primaryColors[0]);
-    const [currentSurfaceColor, setCurrentSurfaceColor] = useState(surfaceColors[0]);
+    const [currentSurfaceColor, setCurrentSurfaceColor] = useState(surfaceColors[2]);
 
     const changePreset = (newValue) => {
         const presetName = newValue.toLowerCase();
 
         switch (presetName) {
-            case 'wind':
-                setPreset({ name: 'wind', config: Wind });
+            case 'nora':
+                setPreset({ name: 'nora', config: Nora });
                 break;
             case 'lara':
-            default:
                 setPreset({ name: 'lara', config: Lara });
+                break;
+            case 'aura':
+            default:
+                setPreset({ name: 'aura', config: Aura });
                 break;
         }
     };
