@@ -1,10 +1,10 @@
 export const defaultProps = {
     __TYPE: 'Tag',
+    style: null,
+    className: null,
     value: null,
     severity: null,
     rounded: false,
     icon: null,
-    style: null,
-    className: null,
     children: undefined
 };

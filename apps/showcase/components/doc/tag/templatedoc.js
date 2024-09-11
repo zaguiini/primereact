@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tag } from '@/components/lib/tag/Tag';
+import { Tag } from 'primereact/tag';
 
 export function TemplateDoc(props) {
     const code = {
@@ -55,11 +55,10 @@ export default function TemplateDemo() {
                 <p>Children of the component are passed as the content for templating.</p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <Tag style={{ background: 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)' }}>
-                    <div className="flex items-center gap-2">
-                        <img alt="Country" src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" className="flag flag-it" style={{ width: '18px' }} />
+                <Tag style={{ border: '2px solid var(--border-color)', background: 'transparent', color: 'var(--text-color)' }}>
+                    <div className="flex items-center gap-2 px-1">
+                        <img alt="Country" src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" class="flag flag-it" style={{ width: '18px' }} />
                         <span className="text-base">Italy</span>
-                        <i className="pi pi-times text-xs" />
                     </div>
                 </Tag>
             </div>

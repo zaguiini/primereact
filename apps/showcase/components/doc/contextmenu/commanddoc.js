@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { ContextMenu } from '@/components/lib/contextmenu/ContextMenu';
-import { useState, useRef } from 'react';
 import { Toast } from '@/components/lib/toast/Toast';
-import { Tag } from '@/components/lib/tag/Tag';
+import { Tag } from 'primereact/tag';
+import { useRef, useState } from 'react';
 
 export function CommandDoc(props) {
     const cm = useRef(null);

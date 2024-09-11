@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Carousel } from '@/components/lib/carousel/Carousel';
-import { Tag } from '@/components/lib/tag/Tag';
 import { Button } from 'primereact/button';
+import { Tag } from 'primereact/tag';
 import { useEffect, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 

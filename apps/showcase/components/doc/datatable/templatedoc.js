@@ -4,8 +4,8 @@ import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
 import { Rating } from '@/components/lib/rating/Rating';
-import { Tag } from '@/components/lib/tag/Tag';
 import { Button } from 'primereact/button';
+import { Tag } from 'primereact/tag';
 import { useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 

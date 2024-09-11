@@ -8,8 +8,8 @@ import { Dropdown } from '@/components/lib/dropdown/Dropdown';
 import { IconField } from '@/components/lib/iconfield/IconField';
 import { InputIcon } from '@/components/lib/inputicon/InputIcon';
 import { MultiSelect } from '@/components/lib/multiselect/MultiSelect';
-import { Tag } from '@/components/lib/tag/Tag';
 import { InputText } from 'primereact/inputtext';
+import { Tag } from 'primereact/tag';
 import { useState } from 'react';
 import { CustomerService } from '../../../service/CustomerService';
 

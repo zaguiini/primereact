@@ -2,9 +2,9 @@ import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { DataView, DataViewLayoutOptions } from '@/components/lib/dataview/DataView';
 import { Rating } from '@/components/lib/rating/Rating';
-import { Tag } from '@/components/lib/tag/Tag';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
+import { Tag } from 'primereact/tag';
 import { useEffect, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 

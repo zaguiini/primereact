@@ -1,3 +1,4 @@
+import '@/assets/styles/flags.css';
 import '@/assets/styles/layout/layout.scss';
 import '@/assets/styles/tailwind/main.css';
 import localFont from 'next/font/local';

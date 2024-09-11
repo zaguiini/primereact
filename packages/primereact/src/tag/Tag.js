@@ -1,21 +1,12 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, mergeProps } from '@primeuix/utils';
+import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { IconUtils, classNames } from '../utils/Utils';
-import { TagBase } from './TagBase';
+import { useTag } from './Tag.base';
 
-export const Tag = React.forwardRef((inProps, ref) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = TagBase.getProps(inProps, context);
-    const { ptm, cx, isUnstyled } = TagBase.setMetaData({
-        props
-    });
-
-    useHandleStyle(TagBase.css.styles, isUnstyled, { name: 'tag' });
-
-    const elementRef = React.useRef(null);
+export const Tag = React.forwardRef((inProps, inRef) => {
+    const tag = useTag(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = tag;
 
     const iconProps = mergeProps(
         {
@@ -24,36 +15,32 @@ export const Tag = React.forwardRef((inProps, ref) => {
         ptm('icon')
     );
 
-    const icon = IconUtils.getJSXIcon(props.icon, { ...iconProps }, { props });
-
-    React.useImperativeHandle(ref, () => ({
-        props,
-        getElement: () => elementRef.current
-    }));
+    const labelProps = mergeProps(
+        {
+            className: cx('label')
+        },
+        ptm('label')
+    );
 
     const rootProps = mergeProps(
         {
-            ref: elementRef,
-            className: classNames(props.className, cx('root')),
-            style: props.style
+            ref,
+            style: props.style,
+            className: classNames(cx('root'), props.className)
         },
-        TagBase.getOtherProps(props),
-        ptm('root')
+        ptmi('root')
     );
 
-    const valueProps = mergeProps(
-        {
-            className: cx('value')
-        },
-        ptm('value')
-    );
+    const icon = IconUtils.getJSXIcon(props.icon, { ...iconProps }, { props });
+    const label = props.children || (props.value && <span {...labelProps}>{props.value}</span>);
 
     return (
-        <span {...rootProps}>
-            {icon}
-            <span {...valueProps}>{props.value}</span>
-            <span>{props.children}</span>
-        </span>
+        <ComponentProvider value={tag}>
+            <span {...rootProps}>
+                {icon}
+                {label}
+            </span>
+        </ComponentProvider>
     );
 });
 

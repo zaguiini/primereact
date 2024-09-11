@@ -12,11 +12,11 @@ import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
 import { MultiSelect } from '@/components/lib/multiselect/MultiSelect';
 import { ProgressBar } from '@/components/lib/progressbar/ProgressBar';
 import { Slider } from '@/components/lib/slider/Slider';
-import { Tag } from '@/components/lib/tag/Tag';
 import { TriStateCheckbox } from '@/components/lib/tristatecheckbox/TriStateCheckbox';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { Tag } from 'primereact/tag';
 import React, { useState } from 'react';
 import { CustomerService } from '../../../../service/CustomerService';
 

@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tag } from '@/components/lib/tag/Tag';
+import { Tag } from 'primereact/tag';
 
 export function PillDoc(props) {
     const code = {

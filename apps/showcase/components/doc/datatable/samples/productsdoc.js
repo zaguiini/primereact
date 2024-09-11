@@ -10,12 +10,12 @@ import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
 import { InputTextarea } from '@/components/lib/inputtextarea/InputTextarea';
 import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
 import { Rating } from '@/components/lib/rating/Rating';
-import { Tag } from '@/components/lib/tag/Tag';
 import { Toast } from '@/components/lib/toast/Toast';
 import { Toolbar } from '@/components/lib/toolbar/Toolbar';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { Tag } from 'primereact/tag';
 import React, { useRef, useState } from 'react';
 import { ProductService } from '../../../../service/ProductService';
 

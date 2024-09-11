@@ -1,11 +1,11 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Tag } from '@/components/lib/tag/Tag';
-import React, { useEffect, useState } from 'react';
+import { Tag } from 'primereact/tag';
+import React, { useState } from 'react';
 import { CustomerService } from '../../../../service/CustomerService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function ExpandableRowGroupDoc(props) {
     const [customers, setCustomers] = useState([]);
