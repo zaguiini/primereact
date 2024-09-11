@@ -1,6 +1,8 @@
 export const defaultProps = {
     __TYPE: 'SelectButton',
     id: null,
+    style: null,
+    className: null,
     value: null,
     options: null,
     optionLabel: null,
@@ -9,15 +11,14 @@ export const defaultProps = {
     tabIndex: null,
     multiple: false,
     invalid: false,
-    unselectable: true,
+    //unselectable: true,
     allowEmpty: true,
     disabled: false,
-    style: null,
-    className: null,
     dataKey: null,
     tooltip: null,
     tooltipOptions: null,
-    itemTemplate: null,
+    //itemTemplate: null,
+    optionTemplate: null,
     onChange: null,
     children: undefined
 };

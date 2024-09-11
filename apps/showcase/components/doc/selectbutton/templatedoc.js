@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
+import { SelectButton } from 'primereact/selectbutton';
 import { useState } from 'react';
 
 export function TemplateDoc(props) {
@@ -79,12 +79,12 @@ export default function TemplateDemo() {
         <>
             <DocSectionText {...props}>
                 <p>
-                    Options support templating using the <i>itemTemplate</i> property that references a function to render the content. Notice the usage of <i>optionLabel</i>, although not rendered visually, it is still required to be used as the
+                    Options support templating using the <i>optionTemplate</i> property that references a function to render the content. Notice the usage of <i>optionLabel</i>, although not rendered visually, it is still required to be used as the
                     list key.
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <SelectButton value={value} onChange={(e) => setValue(e.value)} itemTemplate={justifyTemplate} optionLabel="value" options={justifyOptions} />
+                <SelectButton value={value} onChange={(e) => setValue(e.value)} optionTemplate={justifyTemplate} optionLabel="value" options={justifyOptions} />
             </div>
             <DocSectionCode code={code} />
         </>

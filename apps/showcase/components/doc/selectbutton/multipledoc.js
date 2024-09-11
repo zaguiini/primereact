@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
+import { SelectButton } from 'primereact/selectbutton';
 import { useState } from 'react';
 
 export function MultipleDoc(props) {
@@ -26,7 +26,7 @@ export default function MultipleDemo() {
         { name: 'Option 2', value: 2 },
         { name: 'Option 3', value: 3 }
     ];
-    
+
     return (
         <div className="card flex justify-center">
             <SelectButton value={value} onChange={(e) => setValue(e.value)} optionLabel="name" options={items} multiple />
@@ -50,7 +50,7 @@ export default function MultipleDemo() {
         {name: 'Option 2', value: 2},
         {name: 'Option 3', value: 3}
     ];
-    
+
     return (
         <div className="card flex justify-center">
             <SelectButton value={value} onChange={(e: SelectButtonChangeEvent) => setValue(e.value)} optionLabel="name" options={items} multiple />

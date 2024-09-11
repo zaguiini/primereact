@@ -3,9 +3,9 @@ import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { IconField } from '@/components/lib/iconfield/IconField';
 import { InputIcon } from '@/components/lib/inputicon/InputIcon';
-import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
 import { TreeTable } from '@/components/lib/treetable/TreeTable';
 import { InputText } from 'primereact/inputtext';
+import { SelectButton } from 'primereact/selectbutton';
 import { useEffect, useState } from 'react';
 import { NodeService } from '../../../service/NodeService';
 
