@@ -1,5 +1,4 @@
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
-import { classNames } from '@primeuix/utils';
 import * as React from 'react';
 import { useRipple } from './Ripple.base';
 
@@ -7,7 +6,7 @@ export const Ripple = React.memo(
     React.forwardRef((inProps, inRef) => {
         const [isMounted, setMounted] = React.useState(false);
         const ripple = useRipple(inProps, inRef);
-        const { props, attrs, ptm, cx, ref } = ripple;
+        const { props, ptmi, cx, ref } = ripple;
         const inkRef = React.useRef(null);
         const targetRef = React.useRef(null);
         // @todo
@@ -105,10 +104,9 @@ export const Ripple = React.memo(
         const rootProps = mergeProps(
             {
                 'aria-hidden': true,
-                className: classNames(cx('root'))
+                className: cx('root')
             },
-            attrs,
-            ptm('root')
+            ptmi('root')
         );
 
         return <span role="presentation" ref={inkRef} {...rootProps} onAnimationEnd={onAnimationEnd} />;
