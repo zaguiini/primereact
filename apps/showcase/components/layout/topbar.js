@@ -1,6 +1,7 @@
 //import { StyleClass } from 'primereact/styleclass';
 import { classNames } from '@primeuix/utils';
 import pkg from 'package.json';
+import PresetMenu from './presetMenu';
 
 export default function Topbar(props) {
     const versions = [
@@ -102,14 +103,17 @@ export default function Topbar(props) {
                         </a>
                     </li>
                     <li>
-                        <button type="button" className="topbar-item">
-                            <i className={classNames('pi text-700', { 'pi-moon': props.dark, 'pi-sun': !props.dark })} />
+                        <button type="button" className="topbar-item" onClick={() => props?.toggleDarkMode?.()}>
+                            <i className={classNames('pi', { 'pi-moon': props?.isDarkMode, 'pi-sun': !props?.isDarkMode })}></i>
                         </button>
                     </li>
-                    <li>
-                        <button type="button" className="topbar-item config-item">
+                    <li className="relative">
+                        {/* <StyleClass nodeRef={configRef} selector="@next" enterClassName="hidden" enterActiveClassName="scalein" leaveToClassName="hidden" leaveActiveClassName="fadeout" hideOnOutsideClick> */}
+                        <button type="button" className="topbar-item">
                             <i className="pi pi-palette"></i>
                         </button>
+                        {/* </StyleClass> */}
+                        <PresetMenu />
                     </li>
                     <li>
                         <button type="button" style={{ maxWidth: '8rem' }} className="topbar-item version-item">

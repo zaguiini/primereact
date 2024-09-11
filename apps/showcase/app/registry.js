@@ -1,5 +1,7 @@
 'use client';
+
 import Layout from '@/components/layout/layout';
+import { Providers } from '@/components/providers';
 import { PrimeReactProvider, PrimeStyleSheet } from '@primereact/core/config';
 import Aura from '@primereact/themes/aura';
 import { useServerInsertedHTML } from 'next/navigation';
@@ -24,7 +26,9 @@ export default function StyleRegistry({ children }) {
 
     return (
         <PrimeReactProvider value={value} sheet={styledStyleSheet}>
-            <Layout>{children}</Layout>
+            <Providers>
+                <Layout>{children}</Layout>
+            </Providers>
         </PrimeReactProvider>
     );
 }
