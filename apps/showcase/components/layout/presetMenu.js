@@ -53,6 +53,7 @@ const PresetMenu = () => {
             <SelectButton value={preset.name} onChange={(e) => changePreset(e.value)} optionLabel="name" options={items} allowEmpty={false} />
             <div className="flex justify-between items-center gap-2 w-full pt-4 pb-2 border-t border-surface-200 dark:border-surface-700">
                 <span className="text-black dark:text-surface-0 text-sm font-medium m-0">Ripple Effect</span>
+                <input type="checkbox" name="Ripple" value="ripple" onChange={(e) => setRipple(e.target.checked)} checked={ripple} />
                 {/* <InputSwitch checked={ripple} onChange={(e) => setRipple(e.value)} /> */}
             </div>
         </div>
