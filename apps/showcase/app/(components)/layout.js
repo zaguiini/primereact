@@ -2,9 +2,8 @@ import '@/assets/styles/layout/layout.scss';
 import '@/assets/styles/tailwind/main.css';
 import localFont from 'next/font/local';
 import 'primeicons/primeicons.css';
-// import './globals.css';
+import '../globals.css';
 // @todo: check this package
-//import { StyleRegistry } from 'styled-jsx';
 import StyleRegistry from '../registry';
 
 const geistSans = localFont({
@@ -25,7 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <StyleRegistry>{children}</StyleRegistry>
             </body>

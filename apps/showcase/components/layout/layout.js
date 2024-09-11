@@ -1,5 +1,4 @@
 'use client';
-import Config from '@/components/layout/config';
 import Footer from '@/components/layout/footer';
 import Menu from '@/components/layout/menu';
 import Topbar from '@/components/layout/topbar';
@@ -9,35 +8,25 @@ import Head from 'next/head';
 //import { useRouter } from 'next/router';
 import { PrimeReactContext } from '@primereact/core/config';
 import { useContext, useState } from 'react';
+import { NewsContext } from '../providers/newsProvider';
+import { PresetContext } from '../providers/presetProvider';
 
 export default function Layout({ children }) {
     const [sidebarActive, setSidebarActive] = useState(false);
-    const [configActive, setConfigActive] = useState(false);
+    // const [configActive, setConfigActive] = useState(false);
     const { ripple, inputStyle } = useContext(PrimeReactContext);
-    const { theme, darkMode, newsActive, changeTheme } = {}; //useContext(AppContentContext);
+    const { isNewsActive } = useContext(NewsContext);
+    const { isDarkMode, toggleDarkMode } = useContext(PresetContext);
+
     //const router = useRouter();
 
     const wrapperClassName = classNames('layout-wrapper', {
-        'layout-news-active': newsActive,
+        'layout-news-active': isNewsActive,
         'p-input-filled': inputStyle === 'filled',
         'p-ripple-disabled': ripple === false,
-        'layout-dark': darkMode,
-        'layout-light': !darkMode
+        'layout-dark': isDarkMode,
+        'layout-light': !isDarkMode
     });
-
-    const toggleDarkMode = () => {
-        let newTheme = null;
-
-        if (darkMode) {
-            newTheme = theme.replace('dark', 'light');
-        } else if (theme.includes('light') && theme !== 'fluent-light') {
-            newTheme = theme.replace('light', 'dark');
-        } else {
-            newTheme = 'lara-dark-cyan';
-        }
-
-        changeTheme(newTheme, !darkMode);
-    };
 
     /*useEffect(() => {
         const handleRouteChangeComplete = (l) => {
@@ -52,7 +41,7 @@ export default function Layout({ children }) {
     }, []);*/ // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className={wrapperClassName} data-p-theme={theme}>
+        <div className={wrapperClassName}>
             <Head>
                 <title>PrimeReact - React UI Component Library</title>
                 <meta charSet="UTF-8" />
@@ -72,9 +61,8 @@ export default function Layout({ children }) {
                 <link rel="icon" href="https://primefaces.org/cdn/primereact/images/favicon.ico" type="image/x-icon" />
             </Head>
             <NewsSection />
-            <Topbar showConfigurator showMenuButton onMenuButtonClick={() => setSidebarActive(true)} onConfigButtonClick={() => setConfigActive(true)} onDarkSwitchClick={toggleDarkMode} />
+            <Topbar showConfigurator showMenuButton onMenuButtonClick={() => setSidebarActive(true)} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
             <div className={classNames('layout-mask', { 'layout-mask-active': sidebarActive })} onClick={() => setSidebarActive(false)} />
-            <Config active={configActive} onHide={() => setConfigActive(false)} onDarkSwitchClick={toggleDarkMode} />
             <div className="layout-content">
                 <Menu active={sidebarActive} />
                 <div className="layout-content-slot">{children}</div>
