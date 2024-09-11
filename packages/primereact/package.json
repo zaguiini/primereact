@@ -33,6 +33,7 @@
         "./avatar": "./src/avatar/Avatar.js",
         "./avatargroup": "./src/avatargroup/AvatarGroup.js",
         "./styleclass": "./src/styleclass/StyleClass.js",
+        "./selectbutton": "./src/selectbutton/SelectButton.js",
         "./togglebutton": "./src/togglebutton/ToggleButton.js",
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",

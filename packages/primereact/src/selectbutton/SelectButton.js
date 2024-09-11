@@ -1,45 +1,35 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, equals, getFirstFocusableElement, isFunction, isNotEmpty, mergeProps, resolveFieldData } from '@primeuix/utils';
+import { ToggleButton } from 'primereact/togglebutton';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { Tooltip } from '../tooltip/Tooltip';
-import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
-import { SelectButtonBase } from './SelectButtonBase';
-import { SelectButtonItem } from './SelectButtonItem';
+import { useSelectButton } from './SelectButton.base';
 
 export const SelectButton = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = SelectButtonBase.getProps(inProps, context);
+    React.forwardRef((inProps, inRef) => {
+        const selectbutton = useSelectButton(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = selectbutton;
 
-        const [focusedIndex, setFocusedIndex] = React.useState(0);
-        const elementRef = React.useRef(null);
+        const equalityKey = props.optionValue ? null : props.dataKey;
 
-        const { ptm, cx, isUnstyled } = SelectButtonBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(SelectButtonBase.css.styles, isUnstyled, { name: 'selectbutton', styled: true });
-
-        const onOptionClick = (event) => {
-            if (props.disabled || isOptionDisabled(event.option)) {
+        const onOptionSelect = (event, option, index) => {
+            if (props.disabled || isOptionDisabled(option)) {
                 return;
             }
 
-            let selected = isSelected(event.option);
+            let selected = isSelected(option);
 
-            if (selected && !(props.unselectable && props.allowEmpty)) {
+            if (selected && !props.allowEmpty) {
                 return;
             }
 
-            let optionValue = getOptionValue(event.option);
+            let optionValue = getOptionValue(option);
             let newValue;
 
             if (props.multiple) {
                 let currentValue = props.value ? [...props.value] : [];
 
-                newValue = selected ? currentValue.filter((val) => !ObjectUtils.equals(val, optionValue, props.dataKey)) : [...currentValue, optionValue];
+                newValue = selected ? currentValue.filter((val) => !equals(val, optionValue, equalityKey)) : [...currentValue, optionValue];
             } else {
                 newValue = selected ? null : optionValue;
             }
@@ -64,16 +54,16 @@ export const SelectButton = React.memo(
         };
 
         const getOptionLabel = (option) => {
-            return props.optionLabel ? ObjectUtils.resolveFieldData(option, props.optionLabel) : option && option.label !== undefined ? option.label : option;
+            return props.optionLabel ? resolveFieldData(option, props.optionLabel) : option && option.label !== undefined ? option.label : option;
         };
 
         const getOptionValue = (option) => {
-            return props.optionValue ? ObjectUtils.resolveFieldData(option, props.optionValue) : option && option.value !== undefined ? option.value : option;
+            return props.optionValue ? resolveFieldData(option, props.optionValue) : option && option.value !== undefined ? option.value : option;
         };
 
         const isOptionDisabled = (option) => {
             if (props.optionDisabled) {
-                return ObjectUtils.isFunction(props.optionDisabled) ? props.optionDisabled(option) : ObjectUtils.resolveFieldData(option, props.optionDisabled);
+                return isFunction(props.optionDisabled) ? props.optionDisabled(option) : resolveFieldData(option, props.optionDisabled);
             }
 
             return option && option.disabled !== undefined ? option.disabled : false;
@@ -83,79 +73,52 @@ export const SelectButton = React.memo(
             let optionValue = getOptionValue(option);
 
             if (props.multiple) {
-                if (props.value && props.value.length) {
-                    return props.value.some((val) => ObjectUtils.equals(val, optionValue, props.dataKey));
-                }
+                return props.value?.some((val) => equals(val, optionValue, equalityKey));
             } else {
-                return ObjectUtils.equals(props.value, optionValue, props.dataKey);
+                return equals(props.value, optionValue, equalityKey);
             }
-
-            return false;
         };
 
-        const createItems = () => {
-            if (props.options && props.options.length) {
-                return props.options.map((option, index) => {
-                    const isDisabled = props.disabled || isOptionDisabled(option);
-                    const optionLabel = getOptionLabel(option);
-                    const tabIndex = props.disabled || index !== focusedIndex ? '-1' : '0';
-                    const selected = isSelected(option);
-                    const key = optionLabel + '_' + index;
+        const createOptions = () => {
+            return props.options?.map((option, index) => {
+                const checked = isSelected(option);
+                const label = getOptionLabel(option);
+                const disabled = props.disabled || isOptionDisabled(option);
+                const unstyled = props.unstyled;
+                const key = label + '_' + index;
+                const pt = ptm('pcToggleButton');
 
-                    return (
-                        <SelectButtonItem
-                            hostName="SelectButton"
-                            key={key}
-                            label={optionLabel}
-                            className={option.className}
-                            option={option}
-                            setFocusedIndex={setFocusedIndex}
-                            onClick={onOptionClick}
-                            template={props.itemTemplate}
-                            selected={selected}
-                            tabIndex={tabIndex}
-                            index={index}
-                            disabled={isDisabled}
-                            ptm={ptm}
-                            cx={cx}
-                            elementRef={elementRef}
-                        />
-                    );
-                });
-            }
-
-            return null;
+                return (
+                    <ToggleButton key={key} checked={checked} onChange={(e) => onOptionSelect(e, option, index)} onLabel={label} offLabel={label} disabled={disabled} unstyled={unstyled} pt={pt}>
+                        {props.optionTemplate ? props.optionTemplate(option, index) : <span {...pt?.['label']}>{label}</span>}
+                    </ToggleButton>
+                );
+            });
         };
 
         React.useImperativeHandle(ref, () => ({
-            props,
-            focus: () => DomHandler.focusFirstElement(elementRef.current),
-            getElement: () => elementRef.current
+            focus: () => focus(getFirstFocusableElement(ref.current))
         }));
 
-        const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
-        const items = createItems();
+        const hasTooltip = isNotEmpty(props.tooltip);
+        const options = createOptions();
 
         const rootProps = mergeProps(
             {
-                ref: elementRef,
+                ref,
                 id: props.id,
-                className: classNames(props.className, cx('root')),
                 style: props.style,
+                className: classNames(props.className, cx('root')),
                 role: 'group'
             },
-            SelectButtonBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
 
         return (
-            <>
-                <div {...rootProps}>
-                    {items}
-                    {props.children}
-                </div>
+            <ComponentProvider value={selectbutton}>
+                <div {...rootProps}>{options}</div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

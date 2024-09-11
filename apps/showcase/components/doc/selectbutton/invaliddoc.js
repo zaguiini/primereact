@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
+import { SelectButton } from 'primereact/selectbutton';
 import { useState } from 'react';
 
 export function InvalidDoc(props) {
@@ -51,7 +51,7 @@ export default function InvalidDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <SelectButton invalid value={value} onChange={(e) => setValue(e.value)} options={options} />
+                <SelectButton invalid={value === null} value={value} onChange={(e) => setValue(e.value)} options={options} />
             </div>
             <DocSectionCode code={code} />
         </>

@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
+import { SelectButton } from 'primereact/selectbutton';
 import { useState } from 'react';
 
 export function BasicDoc(props) {

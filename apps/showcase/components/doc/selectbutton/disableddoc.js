@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { SelectButton } from '@/components/lib/selectbutton/SelectButton';
+import { SelectButton } from 'primereact/selectbutton';
 import { useState } from 'react';
 
 export function DisabledDoc(props) {
@@ -27,7 +27,7 @@ export default function DisabledDemo() {
         { name: 'Option 1', value: 1 },
         { name: 'Option 2', value: 2, constant: true }
     ];
-    
+
     return (
         <div className="card flex flex-wrap justify-center flex-wrap gap-4">
             <SelectButton disabled options={options1} />
@@ -53,7 +53,7 @@ export default function DisabledDemo() {
         { name: 'Option 1', value: 1 },
         { name: 'Option 2', value: 2, constant: true }
     ];
-    
+
     return (
         <div className="card flex flex-wrap justify-center flex-wrap gap-4">
             <SelectButton disabled options={options1} />
