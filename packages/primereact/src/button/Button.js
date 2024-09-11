@@ -11,39 +11,44 @@ import { useButton } from './Button.base';
 export const Button = React.memo(
     React.forwardRef((inProps, inRef) => {
         const button = useButton(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = button;
-        const disabled = props.disabled || props.loading;
+        const { props, attrs, ptm, ptmi, cx, ref } = button;
 
-        if (props.visible === false) {
-            return null;
-        }
+        const disabled = props.disabled || props.loading;
+        const defaultAriaLabel = props.label ? props.label + (props.badge ? ' ' + props.badge : '') : attrs['aria-label'];
+        const hasFluid = {}; // @todo: check Fluid component
+
+        const getPTOptions = (key) => {
+            const _ptm = key === 'root' ? ptmi : ptm;
+
+            return _ptm(key, {
+                context: {
+                    disabled
+                }
+            });
+        };
+
+        const createLoadingIcon = () => {
+            const iconProps = mergeProps(
+                {
+                    className: classNames(cx('loadingIcon'), cx('icon'), props.loadingIcon)
+                },
+                getPTOptions('loadingIcon')
+            );
+
+            const icon = resolve(props.loadingIcon, { props: iconProps }) || <SpinnerIcon spin {...iconProps} />;
+
+            return IconUtils.getJSXIcon(icon, { ...iconProps }, { props });
+        };
 
         const createIcon = () => {
-            let className = classNames('p-button-icon p-c', {
-                [`p-button-icon-${props.iconPos}`]: props.label
-            });
-
-            const iconsProps = mergeProps(
+            const iconProps = mergeProps(
                 {
-                    className: cx('icon')
+                    className: classNames(cx('icon'), props.icon, props.iconClassName)
                 },
-                ptm('icon')
+                getPTOptions('icon')
             );
 
-            className = classNames(className, {
-                'p-button-loading-icon': props.loading
-            });
-
-            const loadingIconProps = mergeProps(
-                {
-                    className: cx('loadingIcon', { className })
-                },
-                ptm('loadingIcon')
-            );
-
-            const icon = props.loading ? props.loadingIcon || <SpinnerIcon {...loadingIconProps} spin /> : props.icon;
-
-            return IconUtils.getJSXIcon(icon, { ...iconsProps }, { props });
+            return IconUtils.getJSXIcon(resolve(props.icon, { props }), { ...iconProps }, { props });
         };
 
         const createLabel = () => {
@@ -51,65 +56,60 @@ export const Button = React.memo(
                 {
                     className: cx('label')
                 },
-                ptm('label')
+                getPTOptions('label'),
+                !props.label && { dangerouslySetInnerHTML: { __html: '&nbsp;' } }
             );
 
-            if (props.label) {
-                return <span {...labelProps}>{props.label}</span>;
-            }
-
-            return !props.children && !props.label && <span {...labelProps} dangerouslySetInnerHTML={{ __html: '&nbsp;' }} />;
+            return <span {...labelProps}>{props.label}</span>;
         };
 
         const createBadge = () => {
             if (props.badge) {
-                const badgeProps = mergeProps(
-                    {
-                        className: classNames(props.badgeClassName),
-                        value: props.badge,
-                        unstyled: props.unstyled,
-                        __parentMetadata: { parent: metaData }
-                    },
-                    ptm('badge')
-                );
-
-                return <Badge {...badgeProps}>{props.badge}</Badge>;
+                return <Badge value={props.badge} className={props.badgeClassName} severity={props.badgeSeverity} unstyled={props.unstyled} pt={getPTOptions('pcBadge')}></Badge>;
             }
 
             return null;
         };
 
+        const createContent = () => {
+            const icon = props.loading ? createLoadingIcon() : createIcon();
+            const label = createLabel();
+            const badge = createBadge();
+
+            return (
+                <>
+                    {icon}
+                    {label}
+                    {props.children}
+                    {badge}
+                </>
+            );
+        };
+
         const showTooltip = !disabled || (props.tooltipOptions && props.tooltipOptions.showOnDisabled);
         const hasTooltip = isNotEmpty(props.tooltip) && showTooltip;
-        const sizeMapping = {
-            large: 'lg',
-            small: 'sm'
-        };
-        const size = sizeMapping[props.size];
 
-        const icon = createIcon();
-        const label = createLabel();
-        const badge = createBadge();
-        const defaultAriaLabel = props.label ? props.label + (props.badge ? ' ' + props.badge : '') : props['aria-label'];
+        const content = props.children || createContent();
 
         const rootProps = mergeProps(
             {
                 ref,
+                type: 'button',
+                style: props.style,
+                className: classNames(cx('root'), props.className),
+                disabled,
                 'aria-label': defaultAriaLabel,
-                'data-pc-autofocus': props.autoFocus,
-                className: classNames(props.className, cx('root', { size, disabled })),
-                disabled: disabled
+                'data-pc-name': 'button',
+                'data-p-disabled': disabled,
+                'data-p-severity': props.severity
             },
-            ptmi('root')
+            getPTOptions('root')
         );
 
         return (
             <ComponentProvider value={button}>
                 <button {...rootProps}>
-                    {icon}
-                    {label}
-                    {props.children}
-                    {badge}
+                    {content}
                     <Ripple />
                 </button>
                 {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
