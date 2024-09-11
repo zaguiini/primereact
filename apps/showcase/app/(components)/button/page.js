@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/button/accessibilitydoc';
 import { BadgesDoc } from '@/components/doc/button/badgesdoc';
 import { BasicDoc } from '@/components/doc/button/basicdoc';

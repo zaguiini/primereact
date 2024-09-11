@@ -1,6 +1,6 @@
 import { ComponentProvider } from '@primereact/core/component';
 import { SpinnerIcon } from '@primereact/icons/spinner';
-import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
+import { classNames, isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { Badge } from 'primereact/badge';
 import { Ripple } from 'primereact/ripple';
 import { Tooltip } from 'primereact/tooltip';

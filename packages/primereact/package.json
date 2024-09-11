@@ -37,6 +37,8 @@
         "./togglebutton": "./src/togglebutton/ToggleButton.js",
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
+        "./buttongroup": "./src/buttongroup/ButtonGroup.js",
+        "./fluid": "./src/fluid/Fluid.js",
         "./inputtext": "./src/inputtext/InputText.js",
         "./keyfilter": "./src/keyfilter/KeyFilter.js",
         "./panel": "./src/panel/Panel.js",

@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ButtonGroup } from '@/components/lib/buttongroup/ButtonGroup';
 import { Button } from 'primereact/button';
+import { ButtonGroup } from 'primereact/buttongroup';
 
 export function ButtonGroupDoc(props) {
     const code = {

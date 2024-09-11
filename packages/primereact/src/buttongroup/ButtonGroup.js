@@ -1,37 +1,27 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { ObjectUtils, classNames } from '../utils/Utils';
-import { ButtonGroupBase } from './ButtonGroupBase';
+import { useButtonGroup } from './ButtonGroup.base';
 
 export const ButtonGroup = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ButtonGroupBase.getProps(inProps, context);
-        const elementRef = React.useRef(ref);
-        const { ptm, cx, isUnstyled } = ButtonGroupBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(ButtonGroupBase.css.styles, isUnstyled, { name: 'buttongroup' });
-
-        React.useEffect(() => {
-            ObjectUtils.combinedRefs(elementRef, ref);
-        }, [elementRef, ref]);
+    React.forwardRef((inProps, inRef) => {
+        const buttongroup = useButtonGroup(inProps, inRef);
+        const { props, ptmi, cx, ref } = buttongroup;
 
         const rootProps = mergeProps(
             {
-                ref: elementRef,
-                className: classNames(cx('root')),
+                ref,
+                className: cx('root'),
                 role: 'group'
             },
-            ButtonGroupBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
 
-        return <span {...rootProps}>{props.children}</span>;
+        return (
+            <ComponentProvider value={buttongroup}>
+                <span {...rootProps}>{props.children}</span>
+            </ComponentProvider>
+        );
     })
 );
 
