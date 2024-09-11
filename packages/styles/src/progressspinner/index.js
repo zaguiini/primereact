@@ -78,8 +78,15 @@ const classes = {
     circle: 'p-progressspinner-circle'
 };
 
+const inlineStyle = {
+    spin: ({ props }) => ({
+        'animation-duration': props.animationDuration
+    })
+};
+
 export const style = {
     name: 'progressspinner',
     theme,
-    classes
+    classes,
+    inlineStyle
 };

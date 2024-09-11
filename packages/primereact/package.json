@@ -43,6 +43,7 @@
         "./buttongroup": "./src/buttongroup/ButtonGroup.js",
         "./terminalservice": "./src/terminalservice/TerminalService.js",
         "./progressbar": "./src/progressbar/ProgressBar.js",
+        "./progressspinner": "./src/progressspinner/ProgressSpinner.js",
         "./toast": "./src/toast/Toast.js",
         "./terminal": "./src/terminal/Terminal.js",
         "./fluid": "./src/fluid/Fluid.js",

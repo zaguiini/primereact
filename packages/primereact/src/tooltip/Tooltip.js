@@ -503,7 +503,7 @@ export const Tooltip = React.memo(
             const arrowProps = mergeProps(
                 {
                     className: cx('arrow'),
-                    style: sx('arrow', { ...metaData })
+                    style: sx('arrow')
                 },
                 ptm('arrow')
             );

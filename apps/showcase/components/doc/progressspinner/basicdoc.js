@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ProgressSpinner } from '@/components/lib/progressspinner/ProgressSpinner';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 export function BasicDoc(props) {
     const code = {

@@ -1,50 +1,11 @@
+import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { classNames } from '../utils/Utils';
-import { ProgressSpinnerBase } from './ProgressSpinnerBase';
+import { useProgressSpinner } from './ProgressSpinner.base';
 
 export const ProgressSpinner = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ProgressSpinnerBase.getProps(inProps, context);
-
-        const elementRef = React.useRef(null);
-
-        const { ptm, cx, sx, isUnstyled } = ProgressSpinnerBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(ProgressSpinnerBase.css.styles, isUnstyled, { name: 'progressspinner' });
-
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getElement: () => elementRef.current
-        }));
-
-        const rootProps = mergeProps(
-            {
-                id: props.id,
-                ref: elementRef,
-                style: props.style,
-                className: classNames(props.className, cx('root')),
-                role: 'progressbar',
-                'aria-busy': true
-            },
-            ProgressSpinnerBase.getOtherProps(props),
-            ptm('root')
-        );
-
-        const spinnerProps = mergeProps(
-            {
-                className: cx('spinner'),
-                viewBox: '25 25 50 50',
-                style: sx('spinner')
-            },
-            ptm('spinner')
-        );
+    React.forwardRef((inProps, inRef) => {
+        const progressspinner = useProgressSpinner(inProps, inRef);
+        const { props, ptm, ptmi, cx, sx, ref } = progressspinner;
 
         const circleProps = mergeProps(
             {
@@ -59,9 +20,30 @@ export const ProgressSpinner = React.memo(
             ptm('circle')
         );
 
+        const spinProps = mergeProps(
+            {
+                className: cx('spin'),
+                viewBox: '25 25 50 50',
+                style: sx('spin')
+            },
+            ptm('spin')
+        );
+
+        const rootProps = mergeProps(
+            {
+                ref,
+                id: props.id,
+                style: props.style,
+                className: classNames(cx('root'), props.className),
+                role: 'progressbar',
+                'aria-busy': true
+            },
+            ptmi('root')
+        );
+
         return (
             <div {...rootProps}>
-                <svg {...spinnerProps}>
+                <svg {...spinProps}>
                     <circle {...circleProps} />
                 </svg>
             </div>
