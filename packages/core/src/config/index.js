@@ -69,6 +69,12 @@ export const PrimeReactProvider = (props) => {
         linkElement.parentNode?.replaceChild(newLinkElement, linkElement);
     };
 
+    React.useEffect(() => {
+        if (propsValue.theme) {
+            setTheme(propsValue.theme);
+        }
+    }, [propsValue.theme]);
+
     Theme.setTheme(theme);
 
     const value = {
