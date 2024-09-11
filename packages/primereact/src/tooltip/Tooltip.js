@@ -1,5 +1,5 @@
 import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMountEffect, useOverlayScrollListener, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
-import { addClass, find, getOuterHeight, getOuterWidth, isElement, isTouchDevice, mergeProps, removeClass, ZIndex } from '@primeuix/utils';
+import { addClass, classNames, find, getOuterHeight, getOuterWidth, isElement, isTouchDevice, mergeProps, removeClass, ZIndex } from '@primeuix/utils';
 import { Portal } from 'primereact/portal';
 import { ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
@@ -16,7 +16,7 @@ export const Tooltip = React.memo(
             className: classNameState
         };
         const tooltip = useTooltip(inProps, inRef, state);
-        const { props, attrs, ptm, cx, ref } = tooltip;
+        const { props, attrs, ptm, cx, sx, ref } = tooltip;
 
         useGlobalOnEscapeKey({
             callback: () => {
