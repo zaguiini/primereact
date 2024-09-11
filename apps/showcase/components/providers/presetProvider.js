@@ -64,11 +64,11 @@ const PresetProvider = ({ children }) => {
         const selectedColor = primaryColors.find((color) => color.name === colorName);
         const newPreset = { ...preset };
 
-        if (!newPreset.semantic) {
-            newPreset.semantic = {};
+        if (!newPreset.config.semantic) {
+            newPreset.config.semantic = {};
         }
 
-        newPreset.semantic.primary = selectedColor.palette;
+        newPreset.config.semantic.primary = selectedColor.palette;
 
         setCurrentPrimaryColor(selectedColor);
 
@@ -80,8 +80,8 @@ const PresetProvider = ({ children }) => {
 
         const newPreset = { ...preset };
 
-        if (!newPreset.semantic) {
-            newPreset.semantic = {};
+        if (!newPreset.config.semantic) {
+            newPreset.config.semantic = {};
         }
 
         const lightSurface = selectedColor?.hasOwnProperty('light') ? selectedColor.light.palette : selectedColor.palette;
@@ -89,16 +89,16 @@ const PresetProvider = ({ children }) => {
 
         const newColorScheme = {
             light: {
-                ...newPreset?.semantic?.colorScheme?.light,
+                ...newPreset.config?.semantic?.colorScheme?.light,
                 ...(lightSurface ? { surface: lightSurface } : {})
             },
             dark: {
-                ...newPreset?.semantic?.colorScheme?.dark,
+                ...newPreset.config?.semantic?.colorScheme?.dark,
                 ...(darkSurface ? { surface: darkSurface } : {})
             }
         };
 
-        newPreset.semantic.colorScheme = newColorScheme;
+        newPreset.config.semantic.colorScheme = newColorScheme;
 
         setCurrentSurfaceColor(selectedColor);
 
