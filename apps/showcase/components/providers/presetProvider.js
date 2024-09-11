@@ -11,7 +11,7 @@ const PresetProvider = ({ children }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [preset, setPreset] = useState(Aura);
     const [ripple, setRipple] = useState(false);
-    const [currentPrimaryColor, setCurrentPrimaryColor] = useState(primaryColors[8]);
+    const [currentPrimaryColor, setCurrentPrimaryColor] = useState(primaryColors[0]);
     const [currentSurfaceColor, setCurrentSurfaceColor] = useState(surfaceColors[0]);
 
     const changePreset = (newValue) => {
@@ -52,32 +52,49 @@ const PresetProvider = ({ children }) => {
         });
     };
 
-    const applyTheme = (type, colors) => {
+    const updatePrimaryColors = (colorName) => {
+        const selectedColor = primaryColors.find((color) => color.name === colorName);
         const newPreset = { ...preset };
 
         if (!newPreset.semantic) {
             newPreset.semantic = {};
         }
 
-        newPreset.semantic[type] = colors;
-
-        setPreset(newPreset);
-    };
-
-    const updatePrimaryColors = (colorName) => {
-        const selectedColor = primaryColors.find((color) => color.name === colorName);
+        newPreset.semantic.primary = selectedColor.palette;
 
         setCurrentPrimaryColor(selectedColor);
 
-        withViewTransition(() => applyTheme('primary', selectedColor.palette));
+        withViewTransition(() => setPreset(newPreset));
     };
 
     const updateSurfaceColors = (colorName) => {
         const selectedColor = surfaceColors.find((color) => color.name === colorName);
 
+        const newPreset = { ...preset };
+
+        if (!newPreset.semantic) {
+            newPreset.semantic = {};
+        }
+
+        const lightSurface = selectedColor?.hasOwnProperty('light') ? selectedColor.light.palette : selectedColor.palette;
+        const darkSurface = selectedColor?.hasOwnProperty('dark') ? selectedColor.dark.palette : selectedColor.palette;
+
+        const newColorScheme = {
+            light: {
+                ...newPreset?.semantic?.colorScheme?.light,
+                ...(lightSurface ? { surface: lightSurface } : {})
+            },
+            dark: {
+                ...newPreset?.semantic?.colorScheme?.dark,
+                ...(darkSurface ? { surface: darkSurface } : {})
+            }
+        };
+
+        newPreset.semantic.colorScheme = newColorScheme;
+
         setCurrentSurfaceColor(selectedColor);
 
-        withViewTransition(() => applyTheme('surface', selectedColor.palette));
+        withViewTransition(() => setPreset(newPreset));
     };
 
     return <Provider value={{ isDarkMode, toggleDarkMode, preset, currentPrimaryColor, currentSurfaceColor, changePreset, updatePrimaryColors, updateSurfaceColors, ripple, setRipple }}>{children}</Provider>;
