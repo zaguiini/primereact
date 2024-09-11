@@ -1,50 +1,44 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { classNames, focus, mergeProps } from '@primeuix/utils';
+import { TerminalService } from 'primereact/terminalservice';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { TerminalService } from '../terminalservice/TerminalService';
-import { DomHandler, classNames } from '../utils/Utils';
-import { TerminalBase } from './TerminalBase';
+import { useTerminal } from './Terminal.base';
 
 export const Terminal = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TerminalBase.getProps(inProps, context);
-
+    React.forwardRef((inProps, inRef) => {
         const [commandTextState, setCommandTextState] = React.useState('');
         const [commandsState, setCommandsState] = React.useState([]);
         const [indexState, setIndexState] = React.useState(0);
         const [emittedTextState, setEmittedTextState] = React.useState('');
-        const elementRef = React.useRef(null);
+        const state = {
+            commandText: commandTextState,
+            commands: commandsState,
+            index: indexState,
+            emittedText: emittedTextState
+        };
+
+        const terminal = useTerminal(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = terminal;
+
         const inputRef = React.useRef(null);
         const isEmitted = React.useRef(false);
 
-        const { ptm, cx, isUnstyled } = TerminalBase.setMetaData({
-            props,
-            state: {
-                commandText: commandTextState,
-                commands: commandsState
-            }
-        });
-
-        useHandleStyle(TerminalBase.css.styles, isUnstyled, { name: 'terminal' });
         const promptProps = mergeProps(
             {
-                className: cx('prompt')
+                className: cx('promptLabel')
             },
             ptm('prompt')
         );
 
         const onClick = () => {
-            DomHandler.focus(inputRef.current);
+            focus(inputRef.current);
         };
 
-        const onInputChange = (e) => {
-            setCommandTextState(e.target.value);
+        const onInputChange = (event) => {
+            setCommandTextState(event.target.value);
         };
 
-        const onKeyDown = (event) => {
+        const onInputKeyDown = (event) => {
             switch (event.code) {
                 case 'ArrowUp':
                     if (commandsState && commandsState.length) {
@@ -78,12 +72,6 @@ export const Terminal = React.memo(
             }
         };
 
-        React.useImperativeHandle(ref, () => ({
-            props,
-            focus: () => DomHandler.focus(inputRef.current),
-            getElement: () => elementRef.current
-        }));
-
         React.useEffect(() => {
             const response = (res) => {
                 if (commandsState && commandsState.length > 0) {
@@ -115,40 +103,59 @@ export const Terminal = React.memo(
                 isEmitted.current = false;
             }
 
-            elementRef.current.scrollTop = elementRef.current.scrollHeight;
+            ref.current.scrollTop = ref.current.scrollHeight;
         });
 
-        const createWelcomeMessage = () => {
-            if (props.welcomeMessage) {
-                const welcomeMessageProps = mergeProps(ptm('welcomeMessage'));
+        const createPromptContainer = () => {
+            const commandTextProps = mergeProps(
+                {
+                    ref: inputRef,
+                    value: commandTextState,
+                    type: 'text',
+                    className: cx('promptValue'),
+                    autoComplete: 'off',
+                    onChange: onInputChange,
+                    onKeyDown: onInputKeyDown
+                },
+                ptm('commandText')
+            );
 
-                return <div {...welcomeMessageProps}>{props.welcomeMessage}</div>;
-            }
+            const containerProps = mergeProps(
+                {
+                    className: cx('prompt')
+                },
+                ptm('container')
+            );
 
-            return null;
+            return (
+                <div {...containerProps}>
+                    <span {...promptProps}>{props.prompt}</span>
+                    <input {...commandTextProps} />
+                </div>
+            );
         };
 
         const createCommand = (command, index) => {
             const { text, response } = command;
             const key = text + '_' + index;
-            const commandsProps = mergeProps({ key }, ptm('commands'));
-            const commandProps = mergeProps(
-                {
-                    className: cx('command')
-                },
-                ptm('command')
-            );
             const responseProps = mergeProps(
                 {
-                    className: cx('response'),
+                    className: cx('commandResponse'),
                     'aria-live': 'polite'
                 },
                 ptm('response')
             );
+            const commandProps = mergeProps(
+                {
+                    className: cx('commandValue')
+                },
+                ptm('command')
+            );
+            const commandsProps = mergeProps({ className: cx('command') }, ptm('commands'));
 
             return (
-                <div {...commandsProps}>
-                    <span {...promptProps}>{props.prompt}&nbsp;</span>
+                <div {...commandsProps} key={key}>
+                    <span {...promptProps}>{props.prompt}</span>
                     <span {...commandProps}>{text}</span>
                     <div {...responseProps}>{response}</div>
                 </div>
@@ -159,7 +166,7 @@ export const Terminal = React.memo(
             const content = commandsState.map(createCommand);
             const contentProps = mergeProps(
                 {
-                    className: cx('content')
+                    className: cx('commandList')
                 },
                 ptm('content')
             );
@@ -167,56 +174,44 @@ export const Terminal = React.memo(
             return <div {...contentProps}>{content}</div>;
         };
 
-        const createPromptContainer = () => {
-            const containerProps = mergeProps(
-                {
-                    className: cx('container')
-                },
-                ptm('container')
-            );
+        const createWelcomeMessage = () => {
+            if (props.welcomeMessage) {
+                const welcomeMessageProps = mergeProps(
+                    {
+                        className: cx('welcomeMessage')
+                    },
+                    ptm('welcomeMessage')
+                );
 
-            const commandTextProps = mergeProps(
-                {
-                    ref: inputRef,
-                    value: commandTextState,
-                    type: 'text',
-                    className: cx('commandText'),
-                    autoComplete: 'off',
-                    onChange: (e) => onInputChange(e),
-                    onKeyDown
-                },
-                ptm('commandText')
-            );
+                return <div {...welcomeMessageProps}>{props.welcomeMessage}</div>;
+            }
 
-            return (
-                <div {...containerProps}>
-                    <span {...promptProps}>{props.prompt}&nbsp;</span>
-                    <input {...commandTextProps} />
-                </div>
-            );
+            return null;
         };
 
         const welcomeMessage = createWelcomeMessage();
         const content = createContent();
         const prompt = createPromptContainer();
+
         const rootProps = mergeProps(
             {
                 id: props.id,
-                ref: elementRef,
-                className: classNames(props.className, cx('root')),
+                ref,
                 style: props.style,
+                className: classNames(cx('root'), props.className),
                 onClick
             },
-            TerminalBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
 
         return (
-            <div {...rootProps}>
-                {welcomeMessage}
-                {content}
-                {prompt}
-            </div>
+            <ComponentProvider value={terminal}>
+                <div {...rootProps}>
+                    {welcomeMessage}
+                    {content}
+                    {prompt}
+                </div>
+            </ComponentProvider>
         );
     })
 );

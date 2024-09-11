@@ -41,6 +41,8 @@
         "./tag": "./src/tag/Tag.js",
         "./inplace": "./src/inplace/Inplace.js",
         "./buttongroup": "./src/buttongroup/ButtonGroup.js",
+        "./terminalservice": "./src/terminalservice/TerminalService.js",
+        "./terminal": "./src/terminal/Terminal.js",
         "./fluid": "./src/fluid/Fluid.js",
         "./inputtext": "./src/inputtext/InputText.js",
         "./keyfilter": "./src/keyfilter/KeyFilter.js",
