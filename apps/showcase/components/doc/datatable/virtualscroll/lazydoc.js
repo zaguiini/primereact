@@ -1,11 +1,11 @@
+import DeferredDemo from '@/components/demo/DeferredDemo';
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
+import { Skeleton } from 'primereact/skeleton';
 import { useState } from 'react';
 import { CarService } from '../../../../service/CarService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function LazyVirtualScrollDoc(props) {
     const [virtualCars, setVirtualCars] = useState(Array.from({ length: 100000 }));

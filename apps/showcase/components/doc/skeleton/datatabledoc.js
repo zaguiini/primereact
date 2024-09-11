@@ -2,7 +2,7 @@ import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
+import { Skeleton } from 'primereact/skeleton';
 
 export function DataTableDoc(props) {
     const items = Array.from({ length: 5 }, (v, i) => i);

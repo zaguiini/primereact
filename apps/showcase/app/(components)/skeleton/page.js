@@ -1,8 +1,8 @@
+'use client';
 import DocApiTable from '@/components/doc/common/docapitable';
 import { DocComponent } from '@/components/doc/common/doccomponent';
 import { AccessibilityDoc } from '@/components/doc/skeleton/accessibilitydoc';
 import { CardDoc } from '@/components/doc/skeleton/carddoc';
-import { DataTableDoc } from '@/components/doc/skeleton/datatabledoc';
 import { ImportDoc } from '@/components/doc/skeleton/importdoc';
 import { ListDoc } from '@/components/doc/skeleton/listdoc';
 import { Wireframe } from '@/components/doc/skeleton/pt/wireframe';
@@ -32,11 +32,11 @@ const SkeletonDemo = () => {
             label: 'List',
             component: ListDoc
         },
-        {
+        /*{
             id: 'datatable',
             label: 'DataTable',
             component: DataTableDoc
-        },
+        },*/
 
         {
             id: 'accessibility',

@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
+import { Skeleton } from 'primereact/skeleton';
 
 export function CardDoc(props) {
     const code = {

@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
 import { classNames } from '@/components/lib/utils/Utils';
 import { VirtualScroller } from '@/components/lib/virtualscroller/VirtualScroller';
+import { Skeleton } from 'primereact/skeleton';
 import { useEffect, useRef, useState } from 'react';
 
 export function LazyDoc(props) {
@@ -65,8 +65,8 @@ export function LazyDoc(props) {
 
     const code = {
         basic: `
-<VirtualScroller items={lazyItems} itemSize={50} itemTemplate={itemTemplate} lazy onLazyLoad={onLazyLoad} 
-    loadingTemplate={loadingTemplate} showLoader loading={lazyLoading} 
+<VirtualScroller items={lazyItems} itemSize={50} itemTemplate={itemTemplate} lazy onLazyLoad={onLazyLoad}
+    loadingTemplate={loadingTemplate} showLoader loading={lazyLoading}
     className="border border-surface rounded-border" style={{ width: '200px', height: '200px' }} />
         `,
         javascript: `
@@ -130,7 +130,7 @@ export default function LazyDemo() {
         );
     };
 
-    return ( 
+    return (
         <div className="card flex justify-center">
             <VirtualScroller items={lazyItems} itemSize={50} itemTemplate={itemTemplate} lazy onLazyLoad={onLazyLoad} loadingTemplate={loadingTemplate}
                 showLoader loading={lazyLoading} className="border border-surface rounded-border" style={{ width: '200px', height: '200px' }} />

@@ -35,6 +35,7 @@
         "./styleclass": "./src/styleclass/StyleClass.js",
         "./selectbutton": "./src/selectbutton/SelectButton.js",
         "./togglebutton": "./src/togglebutton/ToggleButton.js",
+        "./skeleton": "./src/skeleton/Skeleton.js",
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
         "./tag": "./src/tag/Tag.js",

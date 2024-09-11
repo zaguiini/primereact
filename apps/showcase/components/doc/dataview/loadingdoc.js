@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { DataView, DataViewLayoutOptions } from '@/components/lib/dataview/DataView';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
 import { classNames } from '@/components/lib/utils/Utils';
 import Link from 'next/link';
+import { Skeleton } from 'primereact/skeleton';
 import { useEffect, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 
