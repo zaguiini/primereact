@@ -68,10 +68,12 @@ export const classes = {
     root: ({ props, isFilled, context }) => [
         'p-inputtext p-component',
         {
-            'p-disabled': props.disabled,
-            'p-filled': isFilled,
+            'p-filled': instance?.filled, // @todo: refactor
+            'p-inputtext-sm': props.size === 'small',
+            'p-inputtext-lg': props.size === 'large',
             'p-invalid': props.invalid,
-            'p-variant-filled': props.variant ? props.variant === 'filled' : context && context.inputStyle === 'filled'
+            'p-variant-filled': props.variant ? props.variant === 'filled' : context && context.inputStyle === 'filled',
+            //'p-inputtext-fluid': instance.hasFluid @todo: refactor
         }
     ]
 };

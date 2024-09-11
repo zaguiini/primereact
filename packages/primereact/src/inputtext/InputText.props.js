@@ -1,17 +1,18 @@
 export const defaultProps = {
     __TYPE: 'InputText',
-    __parentMetadata: null,
-    children: undefined,
+    style: null,
     className: null,
+    size: null,
     invalid: false,
     variant: null,
+    fluid: null,
     keyfilter: null,
+    tooltip: null,
+    tooltipOptions: null,
+    validateOnly: false,
     onBeforeInput: null,
     onInput: null,
     onKeyDown: null,
     onPaste: null,
-    tooltip: null,
-    tooltipOptions: null,
-    validateOnly: false,
-    iconPosition: null
+    children: undefined
 };

@@ -8,7 +8,9 @@ import { useInputText } from './InputText.base';
 export const InputText = React.memo(
     React.forwardRef((inProps, inRef) => {
         const inputtext = useInputText(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = inputtext;
+        const { props, attrs, ptm, ptmi, cx, ref } = inputtext;
+
+        const pcFluid = {}; // @todo: check Fluid component
 
         const onKeyDown = (event) => {
             props.onKeyDown && props.onKeyDown(event);
@@ -49,22 +51,32 @@ export const InputText = React.memo(
         };
 
         const isFilled = React.useMemo(() => isNotEmpty(props.value) || isNotEmpty(props.defaultValue), [props.value, props.defaultValue]);
+        const hasFluid = isEmpty(props.fluid) ? !!pcFluid : props.fluid;
         const hasTooltip = isNotEmpty(props.tooltip);
 
         const rootProps = mergeProps(
             {
-                className: classNames(props.className, cx('root')),
+                ref,
+                type: 'text',
+                style: props.style,
+                className: classNames(cx('root'), props.className),
+                'aria-invalid': invalid || undefined,
                 onBeforeInput,
                 onInput,
                 onKeyDown,
                 onPaste
             },
-            ptmi('root')
+            ptmi('root', {
+                context: {
+                    filled: isFilled,
+                    disabled: attrs.disabled || attrs.disabled === ''
+                }
+            })
         );
 
         return (
             <ComponentProvider value={inputtext}>
-                <input ref={ref} {...rootProps} />
+                <input {...rootProps} />
                 {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );
