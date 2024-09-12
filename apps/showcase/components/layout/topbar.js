@@ -1,10 +1,15 @@
+'use client';
+
 //import { StyleClass } from 'primereact/styleclass';
+import { AppContext } from '@/config/app.context';
 import { useViewTransition } from '@primereact/hooks';
 import { classNames } from '@primeuix/utils';
 import pkg from 'package.json';
+import { useContext } from 'react';
 import Config from './Config';
 
 export default function Topbar() {
+    const { darkTheme, setDarkTheme } = useContext(AppContext);
     const versions = [
         {
             name: `v${pkg.version.split('.')[0]}`,
@@ -16,13 +21,20 @@ export default function Topbar() {
         }
     ];
 
-    const root = document?.documentElement;
-    const isDarkMode = root?.classList?.contains('p-dark');
-
     const toggleDarkMode = () => {
+        const root = document?.documentElement;
+
         if (!root) return;
 
-        useViewTransition(() => root?.classList?.toggle('p-dark'));
+        setDarkTheme((prevState) => {
+            if (!prevState) {
+                useViewTransition(() => root?.classList?.add('p-dark'));
+            } else {
+                useViewTransition(() => root?.classList?.remove('p-dark'));
+            }
+
+            return !prevState;
+        });
     };
 
     return (
@@ -114,7 +126,7 @@ export default function Topbar() {
                     </li>
                     <li>
                         <button type="button" className="topbar-item" onClick={() => toggleDarkMode?.()}>
-                            <i className={classNames('pi', { 'pi-moon': isDarkMode, 'pi-sun': !isDarkMode })}></i>
+                            <i className={classNames('pi', { 'pi-moon': darkTheme, 'pi-sun': !darkTheme })}></i>
                         </button>
                     </li>
                     <li className="relative">
