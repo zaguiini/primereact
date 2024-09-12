@@ -1,17 +1,19 @@
 import { useEffect, useRef } from 'react';
 
 export function CodeHighlight(props) {
-    const codeElement = useRef();
+    const codeRef = useRef();
     const languageClassName = `language-${props.lang || 'jsx'}`;
 
     useEffect(() => {
-        //window.Prism.highlightElement(codeElement.current);
-    }, []);
+        if (typeof window !== 'undefined' && window.Prism) {
+            window.Prism.highlightElement(codeRef.current);
+        }
+    }, [props.children]);
 
     return (
         <pre style={props.style} tabIndex="-1">
-            <code ref={codeElement} className={languageClassName}>
-                {props.children}&nbsp;
+            <code ref={codeRef} className={languageClassName}>
+                {props.children}
             </code>
         </pre>
     );

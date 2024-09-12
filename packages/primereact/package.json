@@ -48,6 +48,7 @@
         "./csstransition": "./src/csstransition/CssTransition.js",
         "./toast": "./src/toast/Toast.js",
         "./terminal": "./src/terminal/Terminal.js",
+        "./toggleswitch": "./src/toggleswitch/ToggleSwitch.js",
         "./slider": "./src/slider/Slider.js",
         "./fluid": "./src/fluid/Fluid.js",
         "./inputtext": "./src/inputtext/InputText.js",
