@@ -133,7 +133,7 @@ export const Tooltip = React.memo(
                 const { pageX: x, pageY: y } = currentMouseEvent.current;
 
                 if (props.autoZIndex && !ZIndex.get(elementRef.current)) {
-                    ZIndex.set('tooltip', elementRef.current, (context && context.autoZIndex) || PrimeReact.autoZIndex, props.baseZIndex || (context && context.zIndex.tooltip) || PrimeReact.zIndex.tooltip);
+                    ZIndex.set('tooltip', elementRef.current, context?.autoZIndex, props.baseZIndex || context?.zIndex.tooltip);
                 }
 
                 elementRef.current.style.left = '';
