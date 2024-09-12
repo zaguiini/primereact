@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import 'primeicons/primeicons.css';
 // @todo: check this package
 import { AppProvider } from '@/config/app.context';
+import Script from 'next/script';
 import StyleRegistry from '../registry';
 
 const geistSans = localFont({
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
     return (
         <html>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <Script src="/scripts/prism.js" data-manual strategy="beforeInteractive" />
                 <AppProvider>
                     <StyleRegistry>{children}</StyleRegistry>
                 </AppProvider>
