@@ -305,3 +305,8 @@ export declare function useDisplayOrder(group: string, isVisible?: boolean): num
  * Custom hook to return a function for merging properties.
  */
 export declare function useMergeProps(): (args: object[], options?: any) => object | undefined;
+/**
+ * Custom hook to use view transition.
+ * @param {() => void} callback - The callback to run.
+ */
+export declare function useViewTransition(callback: () => void): void;

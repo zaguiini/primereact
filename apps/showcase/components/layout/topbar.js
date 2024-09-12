@@ -1,9 +1,10 @@
 //import { StyleClass } from 'primereact/styleclass';
+import { useViewTransition } from '@primereact/hooks';
 import { classNames } from '@primeuix/utils';
 import pkg from 'package.json';
 import Config from './Config';
 
-export default function Topbar(props) {
+export default function Topbar() {
     const versions = [
         {
             name: `v${pkg.version.split('.')[0]}`,
@@ -14,6 +15,15 @@ export default function Topbar(props) {
             url: 'https://v9.primereact.org'
         }
     ];
+
+    const root = document?.documentElement;
+    const isDarkMode = root?.classList?.contains('p-dark');
+
+    const toggleDarkMode = () => {
+        if (!root) return;
+
+        useViewTransition(() => root?.classList?.toggle('p-dark'));
+    };
 
     return (
         <div className="layout-topbar">
@@ -103,8 +113,8 @@ export default function Topbar(props) {
                         </a>
                     </li>
                     <li>
-                        <button type="button" className="topbar-item" onClick={() => props?.toggleDarkMode?.()}>
-                            <i className={classNames('pi', { 'pi-moon': props?.isDarkMode, 'pi-sun': !props?.isDarkMode })}></i>
+                        <button type="button" className="topbar-item" onClick={() => toggleDarkMode?.()}>
+                            <i className={classNames('pi', { 'pi-moon': isDarkMode, 'pi-sun': !isDarkMode })}></i>
                         </button>
                     </li>
                     <li className="relative">

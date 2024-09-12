@@ -2,7 +2,6 @@
 import { useEventListener } from '@primereact/hooks';
 import { classNames, find, findSingle, getHeight, getOffset, getWindowScrollTop, isNotEmpty } from '@primeuix/utils';
 import Link from 'next/link';
-//import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
 export function DocSectionNav({ docs = [] }) {
@@ -79,13 +78,10 @@ export function DocSectionNav({ docs = [] }) {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const createItem = ({ id, label, children }, level = 0) => {
-        const { basePath, pathname } = {}; //router;
-        const href = `${basePath}${pathname}#${id}`;
-
         return (
             <li key={id} className={classNames('navbar-item', { 'active-navbar-item': activeId === id })}>
                 <div className="navbar-item-content">
-                    <Link href={href}>
+                    <Link href={`#${id}`}>
                         <button className="px-link" onClick={() => onClick(id)} title={label}>
                             {label}
                         </button>
