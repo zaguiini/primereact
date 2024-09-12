@@ -2,6 +2,7 @@
 
 import Layout from '@/components/layout/layout';
 import { PresetContext } from '@/components/providers/presetProvider';
+import Noir from '@/themes/app-theme';
 import { PrimeReactProvider, PrimeStyleSheet } from '@primereact/core/config';
 import { useServerInsertedHTML } from 'next/navigation';
 import React from 'react';
@@ -19,9 +20,7 @@ export default function StyleRegistry({ children }) {
     //if (typeof window !== 'undefined') return <>{children}</>;
 
     const value = {
-        theme: {
-            preset: preset.config
-        }
+        theme: Noir
     };
 
     return (

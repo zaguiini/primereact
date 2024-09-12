@@ -6,6 +6,7 @@
         "@/service/*": ["service/*"],
         "@/data/*": ["data/*"],
         "@/assets/*": ["assets/*"],
+        "@/themes/*": ["themes/*"],
         "primereact": ["../../packages/primereact/src"],
         "@primereact/hooks": ["../../packages/hooks/src"],
         "@primereact/themes/aura": ["../../packages/themes/src/presets/aura"],
