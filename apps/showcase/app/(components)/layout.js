@@ -4,7 +4,7 @@ import '@/assets/styles/tailwind/main.css';
 import localFont from 'next/font/local';
 import 'primeicons/primeicons.css';
 // @todo: check this package
-import { Providers } from '@/components/providers';
+import { AppProvider } from '@/config/app.context';
 import StyleRegistry from '../registry';
 
 const geistSans = localFont({
@@ -27,9 +27,9 @@ export default function RootLayout({ children }) {
     return (
         <html>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Providers>
+                <AppProvider>
                     <StyleRegistry>{children}</StyleRegistry>
-                </Providers>
+                </AppProvider>
             </body>
         </html>
     );

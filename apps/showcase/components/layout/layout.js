@@ -8,15 +8,14 @@ import Head from 'next/head';
 //import { useRouter } from 'next/router';
 import { PrimeReactContext } from '@primereact/core/config';
 import { useContext, useState } from 'react';
-import { NewsContext } from '../providers/newsProvider';
-import { PresetContext } from '../providers/presetProvider';
 
+// @todo: refactor
 export default function Layout({ children }) {
     const [sidebarActive, setSidebarActive] = useState(false);
     // const [configActive, setConfigActive] = useState(false);
     const { ripple, inputStyle } = useContext(PrimeReactContext);
-    const { isNewsActive } = useContext(NewsContext);
-    const { isDarkMode, toggleDarkMode } = useContext(PresetContext);
+    const { isNewsActive } = {}; //useContext(NewsContext);
+    const { isDarkMode, toggleDarkMode } = {}; //useContext(PresetContext);
 
     //const router = useRouter();
 

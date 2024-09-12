@@ -1,7 +1,7 @@
 //import { StyleClass } from 'primereact/styleclass';
 import { classNames } from '@primeuix/utils';
 import pkg from 'package.json';
-import PresetMenu from './presetMenu';
+import Config from './Config';
 
 export default function Topbar(props) {
     const versions = [
@@ -113,7 +113,7 @@ export default function Topbar(props) {
                             <i className="pi pi-palette"></i>
                         </button>
                         {/* </StyleClass> */}
-                        <PresetMenu />
+                        <Config />
                     </li>
                     <li>
                         <button type="button" style={{ maxWidth: '8rem' }} className="topbar-item version-item">
