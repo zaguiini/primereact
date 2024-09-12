@@ -111,7 +111,7 @@ const classes = {
     root: ({ instance, props }) => [
         'p-toggleswitch p-component',
         {
-            'p-toggleswitch-checked': instance.checked,
+            'p-toggleswitch-checked': props.checked === props.trueValue, // @todo: update
             'p-disabled': props.disabled,
             'p-invalid': props.invalid
         }

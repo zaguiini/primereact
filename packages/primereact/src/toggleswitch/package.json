@@ -1,0 +1,6 @@
+{
+    "main": "./ToggleSwitch.js",
+    "module": "./ToggleSwitch.js",
+    "types": "./ToggleSwitch.d.ts",
+    "sideEffects": false
+}

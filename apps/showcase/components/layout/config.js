@@ -6,6 +6,7 @@ import Lara from '@primereact/themes/lara';
 import Nora from '@primereact/themes/nora';
 import { classNames } from '@primeuix/utils';
 import { SelectButton } from 'primereact/selectbutton';
+import { ToggleSwitch } from 'primereact/toggleswitch';
 import { useContext, useState } from 'react';
 import presetColors from './presetColors.json';
 
@@ -226,8 +227,7 @@ export default function Config(props) {
                 </div>
                 <div className="config-panel-settings">
                     <span className="config-panel-label">Ripple</span>
-                    <input type="checkbox" name="Ripple" onChange={(e) => onRippleChange(e.target.checked)} checked={config.ripple} />
-                    {/* <InputSwitch checked={ripple} onChange={(e) => setRipple(e.value)} /> */}
+                    <ToggleSwitch checked={config.ripple} onChange={(e) => onRippleChange(e.value)} />
                 </div>
             </div>
         </div>
