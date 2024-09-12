@@ -26,7 +26,7 @@ useUpdateEffect(() => {
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
-import { useUpdateEffect } from 'primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const toast = useRef(null);
@@ -50,7 +50,7 @@ export default function BasicDemo() {
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
-import { useUpdateEffect } from 'primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const toast = useRef(null);

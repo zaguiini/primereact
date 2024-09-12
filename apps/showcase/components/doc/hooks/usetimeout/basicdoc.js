@@ -20,7 +20,7 @@ const [clearTimeout] = useTimeout(() => {
         javascript: `
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
-import { useTimeout } from 'primereact/hooks';
+import { useTimeout } from '@primereact/hooks';
 import { Toast } from 'primereact/toast';
 
 export default function BasicDemo() {
@@ -43,7 +43,7 @@ export default function BasicDemo() {
         typescript: `
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
-import { useTimeout } from 'primereact/hooks';
+import { useTimeout } from '@primereact/hooks';
 import { Toast } from 'primereact/toast';
 
 export default function BasicDemo() {

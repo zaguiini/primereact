@@ -5,7 +5,7 @@ import Link from 'next/link';
 export function TailwindDoc(props) {
     const code = {
         basic: `
-const Tailwind = {  
+const Tailwind = {
     messages: {
         root: ({ state, index }) => {
             return {
@@ -39,8 +39,8 @@ const Tailwind = {
 
     const code2 = {
         javascript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function UnstyledDemo() {

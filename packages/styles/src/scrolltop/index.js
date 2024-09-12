@@ -31,7 +31,8 @@ const theme = ({ dt }) => `
 
 const classes = {
     root: ({ props }) => ['p-scrolltop', { 'p-scrolltop-sticky': props.target !== 'window' }],
-    icon: 'p-scrolltop-icon'
+    icon: 'p-scrolltop-icon',
+    transition: 'p-scrolltop'
 };
 
 export const style = {

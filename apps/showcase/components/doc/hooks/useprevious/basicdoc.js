@@ -16,7 +16,7 @@ const prevValue = usePrevious(value);
         javascript: `
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
-import { usePrevious } from 'primereact/hooks';
+import { usePrevious } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [value, setValue] = useState('');
@@ -41,7 +41,7 @@ export default function BasicDemo() {
         typescript: `
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
-import { usePrevious } from 'primereact/hooks';
+import { usePrevious } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [value, setValue] = useState<string>('');

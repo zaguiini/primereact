@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ScrollTop } from '@/components/lib/scrolltop/ScrollTop';
+import { ScrollTop } from 'primereact/scrolltop';
 
 export function ElementDoc(props) {
     const code = {
@@ -8,7 +8,7 @@ export function ElementDoc(props) {
 <ScrollTop target="parent" threshold={100} className="w-8 h-8 rounded-md bg-primary text-primary-contrast" icon="pi pi-arrow-up text-base" />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { ScrollTop } from 'primereact/scrolltop';
 
 export default function ElementDemo() {
@@ -29,7 +29,7 @@ export default function ElementDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { ScrollTop } from 'primereact/scrolltop';
 
 export default function ElementDemo() {

@@ -43,8 +43,8 @@ msgs.current.show([
 ]);
         `,
         javascript: `
-import React, { useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function BasicDemo() {
@@ -67,7 +67,7 @@ export default function BasicDemo() {
                 }
             ]);
         }
-    }); 
+    });
 
     return (
         <div className="card flex justify-center">
@@ -77,8 +77,8 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React, { useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function BasicDemo() {

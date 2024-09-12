@@ -16,9 +16,9 @@ export function BasicDoc(props) {
 </div>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Button } from 'primereact/button';
-import { useCounter } from 'primereact/hooks';
+import { useCounter } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const { count, increment, decrement, reset } = useCounter(0);
@@ -36,9 +36,9 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Button } from 'primereact/button';
-import { useCounter } from 'primereact/hooks';
+import { useCounter } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const { count, increment, decrement, reset } = useCounter(0);

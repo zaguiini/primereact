@@ -26,7 +26,7 @@ export function BasicDoc(props) {
         javascript: `
 import React, { useState, useRef } from 'react';
 import { Button } from 'primereact/button';
-import { useClickOutside } from 'primereact/hooks';
+import { useClickOutside } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [visible, setVisible] = useState(false);
@@ -51,7 +51,7 @@ export default function BasicDemo() {
         typescript: `
 import React, { useState, useRef } from 'react';
 import { Button } from 'primereact/button';
-import { useClickOutside } from 'primereact/hooks';
+import { useClickOutside } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [visible, setVisible] = useState<boolean>(false);

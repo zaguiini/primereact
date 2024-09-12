@@ -10,8 +10,8 @@ export function VerticalDoc(props) {
 const { ref, y } = useMove({ initialValue: { y: 0.2 } });
         `,
         javascript: `
-import React from 'react'; 
-import {useMove } from 'primereact/hooks';
+import React from 'react';
+import {useMove } from '@primereact/hooks';
 
 export default function VerticalDemo() {
     const { ref, y } = useMove({ initialValue: { y: 0.2 }, mode: 'vertical' });
@@ -43,8 +43,8 @@ export default function VerticalDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
-import {useMove } from 'primereact/hooks';
+import React from 'react';
+import {useMove } from '@primereact/hooks';
 
 export default function VerticalDemo() {
     const { ref, y } = useMove({ initialValue: { y: 0.2 }, mode: 'vertical' });

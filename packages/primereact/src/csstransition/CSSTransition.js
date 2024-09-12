@@ -1,16 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { PrimeReactContext } from '@primereact/core/config';
+import { useUpdateEffect } from '@primereact/hooks';
+import { ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group';
-import { useUpdateEffect } from '../hooks/Hooks';
-import { ObjectUtils } from '../utils/Utils';
-import { CSSTransitionBase } from './CSSTransitionBase';
-import { PrimeReactContext } from '../api/Api';
-import PrimeReact from '../api/Api';
+import { useCSSTransition } from './CSSTransition.base';
 
-export const CSSTransition = React.forwardRef((inProps, ref) => {
-    const props = CSSTransitionBase.getProps(inProps);
+export const CSSTransition = React.forwardRef((inProps, inRef) => {
     const context = React.useContext(PrimeReactContext);
+    const csstransition = useCSSTransition(inProps, inRef);
+    const { props } = csstransition;
 
-    const disabled = props.disabled || (props.options && props.options.disabled) || (context && !context.cssTransition) || !PrimeReact.cssTransition;
+    const disabled = props.disabled || (props.options && props.options.disabled) || !context?.cssTransition;
 
     const onEnter = (node, isAppearing) => {
         props.onEnter && props.onEnter(node, isAppearing); // component
@@ -63,11 +64,15 @@ export const CSSTransition = React.forwardRef((inProps, ref) => {
         return props.in ? props.children : null;
     }
 
-    const immutableProps = { nodeRef: props.nodeRef, in: props.in, onEnter: onEnter, onEntering: onEntering, onEntered: onEntered, onExit: onExit, onExiting: onExiting, onExited: onExited };
+    const immutableProps = { nodeRef: props.nodeRef, in: props.in, onEnter, onEntering, onEntered, onExit, onExiting, onExited };
     const mutableProps = { classNames: props.classNames, timeout: props.timeout, unmountOnExit: props.unmountOnExit };
     const mergedProps = { ...mutableProps, ...(props.options || {}), ...immutableProps };
 
-    return <ReactCSSTransition {...mergedProps}>{props.children}</ReactCSSTransition>;
+    return (
+        <ComponentProvider value={csstransition}>
+            <ReactCSSTransition {...mergedProps}>{props.children}</ReactCSSTransition>
+        </ComponentProvider>
+    );
 });
 
 CSSTransition.displayName = 'CSSTransition';

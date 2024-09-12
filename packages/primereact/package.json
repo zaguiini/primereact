@@ -44,6 +44,8 @@
         "./terminalservice": "./src/terminalservice/TerminalService.js",
         "./progressbar": "./src/progressbar/ProgressBar.js",
         "./progressspinner": "./src/progressspinner/ProgressSpinner.js",
+        "./scrolltop": "./src/scrolltop/ScrollTop.js",
+        "./csstransition": "./src/csstransition/CssTransition.js",
         "./toast": "./src/toast/Toast.js",
         "./terminal": "./src/terminal/Terminal.js",
         "./fluid": "./src/fluid/Fluid.js",
@@ -81,7 +83,8 @@
         "@primereact/core": "workspace:*",
         "@primereact/hooks": "workspace:*",
         "@primereact/icons": "workspace:*",
-        "@primereact/styles": "workspace:*"
+        "@primereact/styles": "workspace:*",
+        "react-transition-group": "^4.4.2"
     },
     "engines": {
         "node": ">=12.11.0"

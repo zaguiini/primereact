@@ -15,7 +15,7 @@ const visible = useIntersectionObserver(elementRef, { threshold: 0.5 });
         `,
         javascript: `
 import React, { useRef } from 'react';
-import { useIntersectionObserver } from 'primereact/hooks';
+import { useIntersectionObserver } from '@primereact/hooks';
 import { classNames } from 'primereact/utils';
 
 export default function ThresholdDemo() {
@@ -38,7 +38,7 @@ export default function ThresholdDemo() {
         `,
         typescript: `
 import React, { useRef } from 'react';
-import { useIntersectionObserver } from 'primereact/hooks';
+import { useIntersectionObserver } from '@primereact/hooks';
 import { classNames } from 'primereact/utils';
 
 export default function ThresholdDemo() {

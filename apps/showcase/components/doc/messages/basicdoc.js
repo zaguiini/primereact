@@ -19,8 +19,8 @@ export function BasicDoc(props) {
 <Messages ref={msgs} />
         `,
         javascript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function BasicDemo() {
@@ -31,7 +31,7 @@ export default function BasicDemo() {
             msgs.current.clear();
             msgs.current.show({ id: '1', sticky: true, severity: 'info', summary: 'Info', detail: 'Message Content', closable: false });
         }
-    }); 
+    });
 
     return (
         <div className="card flex justify-center">
@@ -41,8 +41,8 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function BasicDemo() {

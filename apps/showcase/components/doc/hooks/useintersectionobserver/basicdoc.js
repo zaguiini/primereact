@@ -15,7 +15,7 @@ const visible = useIntersectionObserver(elementRef);
         `,
         javascript: `
 import React, { useRef } from 'react';
-import { useIntersectionObserver } from 'primereact/hooks';
+import { useIntersectionObserver } from '@primereact/hooks';
 import { classNames } from 'primereact/utils';
 
 export default function BasicDemo() {
@@ -38,7 +38,7 @@ export default function BasicDemo() {
         `,
         typescript: `
 import React, { useRef } from 'react';
-import { useIntersectionObserver } from 'primereact/hooks';
+import { useIntersectionObserver } from '@primereact/hooks';
 import { classNames } from 'primereact/utils';
 
 export default function BasicDemo() {

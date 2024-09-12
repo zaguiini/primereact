@@ -33,8 +33,8 @@ msgs.current.show([
 ]);
         `,
         javascript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function SeverityDemo() {
@@ -60,8 +60,8 @@ export default function SeverityDemo() {
 }
         `,
         typescript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function SeverityDemo() {

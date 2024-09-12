@@ -16,7 +16,7 @@ export function BasicDoc(props) {
         javascript: `
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
-import { useDebounce } from 'primereact/hooks';
+import { useDebounce } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [inputValue, debouncedValue, setInputValue] = useDebounce('', 400);
@@ -34,7 +34,7 @@ export default function BasicDemo() {
         typescript: `
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
-import { useDebounce } from 'primereact/hooks';
+import { useDebounce } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [inputValue, debouncedValue, setInputValue] = useDebounce('', 400);

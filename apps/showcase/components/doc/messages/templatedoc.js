@@ -37,8 +37,8 @@ export function TemplateDoc(props) {
     });
         `,
         javascript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function TemplateDemo() {
@@ -68,8 +68,8 @@ export default function TemplateDemo() {
 }
         `,
         typescript: `
-import React, { useEffect, useRef } from 'react'; 
-import { useMountEffect } from 'primereact/hooks';
+import React, { useEffect, useRef } from 'react';
+import { useMountEffect } from '@primereact/hooks';
 import { Messages } from 'primereact/messages';
 
 export default function TemplateDemo() {

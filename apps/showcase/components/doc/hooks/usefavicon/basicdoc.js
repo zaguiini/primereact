@@ -18,7 +18,7 @@ useFavicon(favicon);
         javascript: `
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
-import { useFavicon } from 'primereact/hooks';
+import { useFavicon } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [favicon, setFavicon] = useState('');
@@ -38,7 +38,7 @@ export default function BasicDemo() {
         typescript: `
 import React, { useState } from 'react';
 import { Button } from 'primereact/button';
-import { useFavicon } from 'primereact/hooks';
+import { useFavicon } from '@primereact/hooks';
 
 export default function BasicDemo() {
     const [favicon, setFavicon] = useState<string>('');

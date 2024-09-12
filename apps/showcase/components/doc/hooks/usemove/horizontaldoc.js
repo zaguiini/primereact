@@ -10,8 +10,8 @@ export function HorizontalDoc(props) {
 const { ref, x } = useMove({ initialValue: { x: 0.2 } });
         `,
         javascript: `
-import React from 'react'; 
-import {useMove } from 'primereact/hooks';
+import React from 'react';
+import {useMove } from '@primereact/hooks';
 
 export default function HorizontalDemo() {
     const { ref, x } = useMove({ initialValue: { x: 0.2 } });
@@ -43,8 +43,8 @@ export default function HorizontalDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
-import {useMove } from 'primereact/hooks';
+import React from 'react';
+import {useMove } from '@primereact/hooks';
 
 export default function HorizontalDemo() {
     const { ref, x } = useMove({ initialValue: { x: 0.2 } });

@@ -13,7 +13,7 @@ const { ref, x, y, active, reset } = useMove({ initialValue: { x: 0.2, y: 0.6 } 
         `,
         javascript: `
 import React from 'react';
-import { useMove } from 'primereact/hooks';
+import { useMove } from '@primereact/hooks';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 
@@ -47,7 +47,7 @@ export default function BasicDemo() {
         `,
         typescript: `
 import React from 'react';
-import { useMove } from 'primereact/hooks';
+import { useMove } from '@primereact/hooks';
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 

@@ -20,7 +20,7 @@ useMountEffect(() => {
         `,
         javascript: `
 import React from 'react';
-import { useMountEffect } from 'primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Toast } from 'primereact/toast';
 
 export default function BasicDemo() {
@@ -42,7 +42,7 @@ export default function BasicDemo() {
         `,
         typescript: `
 import React from 'react';
-import { useMountEffect } from 'primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Toast } from 'primereact/toast';
 
 export default function BasicDemo() {

@@ -62,9 +62,9 @@ const [bindKeyUp, unbindKeyUp] = useEventListener({
 });
         `,
         javascript: `
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { classNames } from 'primereact/utils';
-import { useEventListener } from 'primereact/hooks';
+import { useEventListener } from '@primereact/hooks';
 
 export default function DocumentDemo() {
     const [pressed, setPressed] = useState(false);
@@ -121,9 +121,9 @@ export default function DocumentDemo() {
 }
         `,
         typescript: `
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { classNames } from 'primereact/utils';
-import { useEventListener } from 'primereact/hooks';
+import { useEventListener } from '@primereact/hooks';
 
 export default function DocumentDemo() {
     const [pressed, setPressed] = useState<boolean>(false);
