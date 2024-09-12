@@ -31,7 +31,6 @@ export const ScrollTop = React.memo(
             target: 'window',
             type: 'scroll',
             listener: (event) => {
-                console.log('xxxx', getWindowScrollTop());
                 checkVisibility(getWindowScrollTop());
             }
         });
@@ -95,7 +94,7 @@ export const ScrollTop = React.memo(
             },
             ptm('transition')
         );
-        console.log(visibleState);
+
         return (
             <ComponentProvider value={scrolltop}>
                 <CSSTransition nodeRef={scrollElementRef} {...transitionProps}>
