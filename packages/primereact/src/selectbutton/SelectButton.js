@@ -88,9 +88,10 @@ export const SelectButton = React.memo(
                 const key = label + '_' + index;
                 const pt = ptm('pcToggleButton');
 
+                // @todo: check if this is correct
                 return (
                     <ToggleButton key={key} checked={checked} onChange={(e) => onOptionSelect(e, option, index)} onLabel={label} offLabel={label} disabled={disabled} unstyled={unstyled} pt={pt}>
-                        {props.optionTemplate ? props.optionTemplate(option, index) : <span {...pt?.['label']}>{label}</span>}
+                        {props.optionTemplate ? props.optionTemplate(option, index) || <span {...pt?.['label']}>{label}</span> : null}
                     </ToggleButton>
                 );
             });
