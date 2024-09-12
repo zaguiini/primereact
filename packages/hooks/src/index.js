@@ -25,3 +25,4 @@ export * from './methods/useStyle';
 export * from './methods/useTimeout';
 export * from './methods/useUnmountEffect';
 export * from './methods/useUpdateEffect';
+export * from './methods/useViewTransition';
