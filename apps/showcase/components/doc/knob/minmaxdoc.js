@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Knob } from '@/components/lib/knob/Knob';
+import { Knob } from 'primereact/knob';
 import { useState } from 'react';
 
 export function MinMaxDoc(props) {

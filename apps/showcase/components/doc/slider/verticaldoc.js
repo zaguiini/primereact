@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Slider } from '@/components/lib/slider/Slider';
+import { Slider } from 'primereact/slider';
 import { useState } from 'react';
 
 export function VerticalDoc(props) {

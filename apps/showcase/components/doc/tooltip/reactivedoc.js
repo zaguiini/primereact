@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Knob } from '@/components/lib/knob/Knob';
-import { Slider } from '@/components/lib/slider/Slider';
-import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import { Button } from 'primereact/button';
+import { Knob } from 'primereact/knob';
+import { Slider } from 'primereact/slider';
+import { Tooltip } from 'primereact/tooltip';
 import { useState } from 'react';
 
 export function ReactiveDoc(props) {

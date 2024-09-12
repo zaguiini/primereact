@@ -1,17 +1,28 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener } from '@primereact/hooks';
+import { classNames, getWindowScrollLeft, getWindowScrollTop, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMergeProps } from '../hooks/Hooks';
-import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
-import { SliderBase } from './SliderBase';
+import { useSlider } from './Slider.base';
 
 export const Slider = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = SliderBase.getProps(inProps, context);
+    React.forwardRef((inProps, inRef) => {
+        const slider = useSlider(inProps, inRef);
+        const { props, ptm, ptmi, cx, sx, ref } = slider;
 
-        const elementRef = React.useRef(null);
+        // @todo: Implement getRangeStyle
+        const getRangeStyle = () => {
+            if (props.range) {
+                const rangeSliderWidth = rangeEndPosition > rangeStartPosition ? rangeEndPosition - rangeStartPosition : rangeStartPosition - rangeEndPosition;
+                const rangeSliderPosition = rangeEndPosition > rangeStartPosition ? rangeStartPosition : rangeEndPosition;
+
+                if (horizontal) return { left: rangeSliderPosition + '%', width: rangeSliderWidth + '%' };
+                else return { bottom: rangeSliderPosition + '%', height: rangeSliderWidth + '%' };
+            } else {
+                if (horizontal) return { width: handlePosition + '%' };
+                else return { height: handlePosition + '%' };
+            }
+        };
+
         const handleIndex = React.useRef(0);
         const sliderHandleClick = React.useRef(false);
         const dragging = React.useRef(false);
@@ -20,20 +31,21 @@ export const Slider = React.memo(
         const barWidth = React.useRef(0);
         const barHeight = React.useRef(0);
         const touchId = React.useRef();
-        const value = props.range ? props.value ?? [props.min, props.max] : props.value ?? props.min ?? 0;
+        const value = props.range ? (props.value ?? [props.min, props.max]) : (props.value ?? props.min ?? 0);
         const horizontal = props.orientation === 'horizontal';
         const vertical = props.orientation === 'vertical';
+        const handlePosition = props.value < props.min ? 0 : props.value > props.max ? 100 : ((props.value - props.min) * 100) / (props.max - props.min);
+        const rangeStartPosition = props.value && props.value[0] ? ((props.value[0] < props.min ? 0 : props.value[0] - props.min) * 100) / (props.max - props.min) : 0;
+        const rangeEndPosition = props.value && props.value[1] ? ((props.value[1] > props.max ? 100 : props.value[1] - props.min) * 100) / (props.max - props.min) : 100;
+        const handleStyle = horizontal ? { left: `${handlePosition}%` } : { bottom: `${handlePosition}%` };
+        const rangeStartHandleStyle = horizontal ? { left: `${rangeStartPosition}%` } : { bottom: `${rangeStartPosition}%` };
+        const rangeEndHandleStyle = horizontal ? { left: `${rangeEndPosition}%` } : { bottom: `${rangeEndPosition}%` };
+        const rangeStyle = getRangeStyle();
 
         const [bindDocumentMouseMoveListener, unbindDocumentMouseMoveListener] = useEventListener({ type: 'mousemove', listener: (event) => onDrag(event) });
         const [bindDocumentMouseUpListener, unbindDocumentMouseUpListener] = useEventListener({ type: 'mouseup', listener: (event) => onDragEnd(event) });
         const [bindDocumentTouchMoveListener, unbindDocumentTouchMoveListener] = useEventListener({ type: 'touchmove', listener: (event) => onDrag(event) });
         const [bindDocumentTouchEndListener, unbindDocumentTouchEndListener] = useEventListener({ type: 'touchend', listener: (event) => onDragEnd(event) });
-
-        const { ptm, cx, sx, isUnstyled } = SliderBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(SliderBase.css.styles, isUnstyled, { name: 'slider' });
 
         const spin = (event, dir) => {
             const val = props.range ? value[handleIndex.current] : value;
@@ -48,6 +60,14 @@ export const Slider = React.memo(
                 return;
             }
 
+            if (event.changedTouches && event.changedTouches[0]) {
+                touchId.current = event.changedTouches[0].identifier;
+            }
+
+            bindDocumentTouchMoveListener();
+            bindDocumentTouchEndListener();
+
+            ref.current.setAttribute('data-p-sliding', true);
             dragging.current = true;
             updateDomData();
             sliderHandleClick.current = true;
@@ -58,6 +78,7 @@ export const Slider = React.memo(
                 handleIndex.current = index;
             }
 
+            event.currentTarget.focus();
             event.preventDefault();
         };
 
@@ -71,6 +92,7 @@ export const Slider = React.memo(
         const onDragEnd = (event) => {
             if (dragging.current) {
                 dragging.current = false;
+                ref.current.setAttribute('data-p-sliding', false);
 
                 const newValue = setValue(event);
 
@@ -91,25 +113,14 @@ export const Slider = React.memo(
             onDragStart(event, index);
         };
 
-        const onTouchStart = (event, index) => {
-            if (event.changedTouches && event.changedTouches[0]) {
-                touchId.current = event.changedTouches[0].identifier;
-            }
-
-            bindDocumentTouchMoveListener();
-            bindDocumentTouchEndListener();
-            onDragStart(event, index);
-        };
-
         const onKeyDown = (event, index) => {
             if (props.disabled) {
                 return;
             }
 
             handleIndex.current = index;
-            const key = event.key;
 
-            switch (key) {
+            switch (event.code) {
                 case 'ArrowRight':
                 case 'ArrowUp':
                     spin(event, 1);
@@ -150,7 +161,7 @@ export const Slider = React.memo(
                 return;
             }
 
-            if (!sliderHandleClick.current) {
+            if (!sliderHandleClick.current && getAttribute(event.target, 'data-pc-section') !== 'handle') {
                 updateDomData();
                 const value = setValue(event);
 
@@ -161,12 +172,12 @@ export const Slider = React.memo(
         };
 
         const updateDomData = () => {
-            const rect = elementRef.current.getBoundingClientRect();
+            const rect = ref.current.getBoundingClientRect();
 
-            initX.current = rect.left + DomHandler.getWindowScrollLeft();
-            initY.current = rect.top + DomHandler.getWindowScrollTop();
-            barWidth.current = elementRef.current.offsetWidth;
-            barHeight.current = elementRef.current.offsetHeight;
+            initX.current = rect.left + getWindowScrollLeft();
+            initY.current = rect.top + getWindowScrollTop();
+            barWidth.current = ref.current.offsetWidth;
+            barHeight.current = ref.current.offsetHeight;
         };
 
         const trackTouch = (event) => {
@@ -257,79 +268,73 @@ export const Slider = React.memo(
             return newValue;
         };
 
-        const createHandle = (leftValue, bottomValue, index) => {
-            leftValue = ObjectUtils.isEmpty(leftValue) ? null : leftValue;
-            bottomValue = ObjectUtils.isEmpty(bottomValue) ? null : bottomValue;
-
-            const style = {
-                transition: dragging.current ? 'none' : null,
-                left: leftValue != null ? leftValue + '%' : null,
-                bottom: bottomValue != null ? bottomValue + '%' : null
-            };
-
-            const handleProps = mergeProps(
+        const createHandle = (handleProps) => {
+            const commonHandleProps = mergeProps(
                 {
-                    className: cx('handle', { index, handleIndex }),
-                    style: { ...sx('handle', { dragging, leftValue, bottomValue }), ...style },
-                    tabIndex: props.tabIndex,
+                    className: cx('handle'),
                     role: 'slider',
-                    onMouseDown: (event) => onMouseDown(event, index),
-                    onTouchStart: (event) => onTouchStart(event, index),
-                    onKeyDown: (event) => onKeyDown(event, index),
+                    tabIndex: props.tabIndex,
                     'aria-valuemin': props.min,
                     'aria-valuemax': props.max,
-                    'aria-valuenow': leftValue || bottomValue || 0,
                     'aria-orientation': props.orientation,
-                    ...ariaProps
+                    'aria-labelledby': props.ariaLabelledby,
+                    'aria-label': props.ariaLabel
                 },
+                handleProps,
                 ptm('handle')
             );
 
-            return <span {...handleProps} />;
+            return <span {...commonHandleProps} />;
         };
 
-        const createRangeSlider = () => {
-            const handleValueStart = ((value[0] < props.min ? props.min : value[0] - props.min) * 100) / (props.max - props.min);
-            const handleValueEnd = ((value[1] > props.max ? props.max : value[1] - props.min) * 100) / (props.max - props.min);
+        const createRangeHandle = () => {
+            const startHandleProps = {
+                style: { ...sx('handle'), ...rangeStartHandleStyle },
+                onKeyDown: (event) => onKeyDown(event, 0),
+                onMouseDown: (event) => onMouseDown(event, 0),
+                onTouchStart: (event) => onDragStart(event, 0),
+                onTouchMove: (event) => onDrag(event, 0),
+                onTouchEnd: (event) => onDragEnd(event, 0),
+                'aria-valuenow': value ? value[0] : null
+            };
 
-            const rangeStartHandle = horizontal ? createHandle(handleValueStart, null, 0) : createHandle(null, handleValueStart, 0);
-            const rangeEndHandle = horizontal ? createHandle(handleValueEnd, null, 1) : createHandle(null, handleValueEnd, 1);
-            const rangeSliderWidth = handleValueEnd > handleValueStart ? handleValueEnd - handleValueStart : handleValueStart - handleValueEnd;
-            const rangeSliderPosition = handleValueEnd > handleValueStart ? handleValueStart : handleValueEnd;
+            const endHandleProps = {
+                style: { ...sx('handle'), ...rangeEndHandleStyle },
+                onKeyDown: (event) => onKeyDown(event, 1),
+                onMouseDown: (event) => onMouseDown(event, 1),
+                onTouchStart: (event) => onDragStart(event, 1),
+                onTouchMove: (event) => onDrag(event, 1),
+                onTouchEnd: (event) => onDragEnd(event, 1),
+                'aria-valuenow': value ? value[1] : null
+            };
 
-            const rangeStyle = horizontal ? { left: rangeSliderPosition + '%', width: rangeSliderWidth + '%' } : { bottom: rangeSliderPosition + '%', height: rangeSliderWidth + '%' };
-
-            const rangeProps = mergeProps(
-                {
-                    className: cx('range'),
-                    style: { ...sx('range'), ...rangeStyle }
-                },
-                ptm('range')
-            );
+            const startHandle = createHandle(startHandleProps);
+            const endHandle = createHandle(endHandleProps);
 
             return (
                 <>
-                    <span {...rangeProps} />
-                    {rangeStartHandle}
-                    {rangeEndHandle}
+                    {startHandle}
+                    {endHandle}
                 </>
             );
         };
 
-        const createSingleSlider = () => {
-            let handleValue;
+        const createSingleHandle = () => {
+            const handleProps = {
+                style: { ...sx('handle'), ...handleStyle },
+                onKeyDown,
+                onMouseDown,
+                onTouchStart: onDragStart,
+                onTouchMove: onDrag,
+                onTouchEnd: onDragEnd,
+                'aria-valuenow': value
+            };
 
-            if (value < props.min) {
-                handleValue = props.min;
-            } else if (value > props.max) {
-                handleValue = props.max;
-            } else {
-                handleValue = ((value - props.min) * 100) / (props.max - props.min);
-            }
+            return createHandle(handleProps);
+        };
 
-            const rangeStyle = horizontal ? { width: handleValue + '%' } : { height: handleValue + '%' };
-            const handle = horizontal ? createHandle(handleValue, null, null) : createHandle(null, handleValue, null);
-
+        const createContent = () => {
+            const handle = props.range ? createRangeHandle() : createSingleHandle();
             const rangeProps = mergeProps(
                 {
                     className: cx('range'),
@@ -346,29 +351,24 @@ export const Slider = React.memo(
             );
         };
 
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getElement: () => elementRef.current
-        }));
+        const content = createContent();
 
-        const otherProps = SliderBase.getOtherProps(props);
-        const ariaProps = ObjectUtils.reduceKeys(otherProps, DomHandler.ARIA_PROPS);
-
-        const content = props.range ? createRangeSlider() : createSingleSlider();
         const rootProps = mergeProps(
             {
+                ref,
+                id: props.id,
                 style: props.style,
-                className: classNames(props.className, cx('root', { vertical, horizontal })),
-                onClick: onBarClick
+                className: classNames(cx('root'), props.className),
+                onClick: onBarClick,
+                'data-p-sliding': false
             },
-            SliderBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
 
         return (
-            <div id={props.id} ref={elementRef} {...rootProps}>
-                {content}
-            </div>
+            <ComponentProvider value={slider}>
+                <div {...rootProps}>{content}</div>
+            </ComponentProvider>
         );
     })
 );

@@ -4,11 +4,11 @@ import { Divider } from '@/components/lib/divider/Divider';
 import { Dropdown } from '@/components/lib/dropdown/Dropdown';
 import { Paginator } from '@/components/lib/paginator/Paginator';
 import { Ripple } from '@/components/lib/ripple/Ripple';
-import { Slider } from '@/components/lib/slider/Slider';
-import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
+import { Slider } from 'primereact/slider';
+import { Tooltip } from 'primereact/tooltip';
 import React, { useState } from 'react';
 
 export function TemplateDoc(props) {

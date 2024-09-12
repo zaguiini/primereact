@@ -1,28 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener } from '@primereact/hooks';
+import { classNames, isFunction, isString, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMergeProps } from '../hooks/Hooks';
-import { classNames } from '../utils/Utils';
-import { KnobBase } from './KnobBase';
+import { useKnob } from './Knob.base';
 
-const radius = 40;
-const midX = 50;
-const midY = 50;
-const minRadians = (4 * Math.PI) / 3;
-const maxRadians = -Math.PI / 3;
+// Set fix value for SSR.
+const Math_PI = 3.14159265358979;
 
 export const Knob = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = KnobBase.getProps(inProps, context);
+    React.forwardRef((inProps, inRef) => {
+        const [radius] = React.useState(40);
+        const [midX] = React.useState(50);
+        const [midY] = React.useState(50);
+        const [minRadians] = React.useState((4 * Math_PI) / 3);
+        const [maxRadians] = React.useState(-Math_PI / 3);
+        const knob = useKnob(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = knob;
 
-        const { ptm, cx, isUnstyled } = KnobBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(KnobBase.css.styles, isUnstyled, { name: 'knob' });
-        const elementRef = React.useRef(null);
         const enabled = !props.disabled && !props.readOnly;
 
         const [bindWindowMouseMoveListener, unbindWindowMouseMoveListener] = useEventListener({
@@ -51,7 +45,7 @@ export const Knob = React.memo(
             type: 'touchmove',
             listener: (event) => {
                 if (event.touches.length === 1) {
-                    const rect = elementRef.current.getBoundingClientRect();
+                    const rect = ref.current.getBoundingClientRect();
                     const touch = event.targetTouches.item(0);
                     const offsetX = touch.clientX - rect.left;
                     const offsetY = touch.clientY - rect.top;
@@ -95,7 +89,7 @@ export const Knob = React.memo(
 
         const valueY = () => midY - Math.sin(valueRadians()) * radius;
 
-        const largeArc = () => (Math.abs(zeroRadians() - valueRadians()) < Math.PI ? 0 : 1);
+        const largeArc = () => (Math.abs(zeroRadians() - valueRadians()) < Math_PI ? 0 : 1);
 
         const sweep = () => (valueRadians() > zeroRadians() ? 0 : 1);
 
@@ -103,13 +97,13 @@ export const Knob = React.memo(
 
         const valuePath = `M ${zeroX()} ${zeroY()} A ${radius} ${radius} 0 ${largeArc()} ${sweep()} ${valueX()} ${valueY()}`;
 
-        const valueToDisplay = () => props.valueTemplate.replace('{value}', props.value.toString());
+        const valueToDisplay = () => (isString(props.valueTemplate) ? props.valueTemplate.replace(/{value}/g, props.value.toString()) : isFunction(props.valueTemplate) ? props.valueTemplate(props.value) : undefined);
 
         const updateValue = (offsetX, offsetY) => {
             const dx = offsetX - props.size / 2;
             const dy = props.size / 2 - offsetY;
             const angle = Math.atan2(dy, dx);
-            const start = -Math.PI / 2 - Math.PI / 6;
+            const start = -Math_PI / 2 - Math_PI / 6;
 
             updateModel(angle, start);
         };
@@ -120,7 +114,7 @@ export const Knob = React.memo(
             if (angle > maxRadians) {
                 mappedValue = mapRange(angle, minRadians, maxRadians, props.min, props.max);
             } else if (angle < start) {
-                mappedValue = mapRange(angle + 2 * Math.PI, minRadians, maxRadians, props.min, props.max);
+                mappedValue = mapRange(angle + 2 * Math_PI, minRadians, maxRadians, props.min, props.max);
             } else {
                 return;
             }
@@ -221,55 +215,28 @@ export const Knob = React.memo(
             }
         };
 
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getElement: () => elementRef.current
-        }));
-
-        const labelProps = mergeProps(
+        const textProps = mergeProps(
             {
                 x: 50,
                 y: 57,
                 textAnchor: 'middle',
                 fill: props.textColor,
-                className: cx('label'),
+                className: cx('text'),
                 name: props.name
             },
-            ptm('label')
+            ptm('text')
         );
 
-        const text = props.showValue && <text {...labelProps}>{valueToDisplay()}</text>;
+        const text = props.showValue && <text {...textProps}>{valueToDisplay()}</text>;
 
-        const rootProps = mergeProps(
+        const valueProps = mergeProps(
             {
-                ref: elementRef,
-                id: props.id,
-                className: classNames(props.className, cx('root')),
-                style: props.style
+                d: valuePath,
+                strokeWidth: props.strokeWidth,
+                stroke: props.valueColor,
+                className: cx('value')
             },
-            ptm('root')
-        );
-
-        const svgProps = mergeProps(
-            {
-                viewBox: '0 0 100 100',
-                width: props.size,
-                height: props.size,
-                'aria-valuemin': props.min,
-                'aria-valuemax': props.max,
-                'aria-valuenow': props.value,
-                'aria-labelledby': props.ariaLabelledby,
-                'aria-label': props.ariaLabel,
-                role: 'slider',
-                tabIndex: props.readonly || props.disabled ? -1 : props.tabIndex,
-                onClick: (e) => onClick(e),
-                onMouseDown: (e) => onMouseDown(e),
-                onMouseUp: (e) => onMouseUp(e),
-                onTouchStart: (e) => onTouchStart(e),
-                onTouchEnd: (e) => onTouchEnd(e),
-                onKeyDown: (e) => onKeyDown(e)
-            },
-            ptm('svg')
+            ptm('value')
         );
 
         const rangeProps = mergeProps(
@@ -282,24 +249,48 @@ export const Knob = React.memo(
             ptm('range')
         );
 
-        const valueProps = mergeProps(
+        const svgProps = mergeProps(
             {
-                d: valuePath,
-                strokeWidth: props.strokeWidth,
-                stroke: props.valueColor,
-                className: cx('value')
+                viewBox: '0 0 100 100',
+                role: 'slider',
+                width: props.size,
+                height: props.size,
+                tabIndex: props.readonly || props.disabled ? -1 : props.tabIndex,
+                'aria-valuemin': props.min,
+                'aria-valuemax': props.max,
+                'aria-valuenow': props.value,
+                'aria-labelledby': props.ariaLabelledby,
+                'aria-label': props.ariaLabel,
+                onClick,
+                onKeyDown,
+                onMouseDown,
+                onMouseUp,
+                onTouchStart,
+                onTouchEnd
             },
-            ptm('value')
+            ptm('svg')
+        );
+
+        const rootProps = mergeProps(
+            {
+                ref,
+                id: props.id,
+                style: props.style,
+                className: classNames(cx('root'), props.className)
+            },
+            ptmi('root')
         );
 
         return (
-            <div {...rootProps}>
-                <svg {...svgProps}>
-                    <path {...rangeProps} />
-                    <path {...valueProps} />
-                    {text}
-                </svg>
-            </div>
+            <ComponentProvider value={knob}>
+                <div {...rootProps}>
+                    <svg {...svgProps}>
+                        <path {...rangeProps} />
+                        <path {...valueProps} />
+                        {text}
+                    </svg>
+                </div>
+            </ComponentProvider>
         );
     })
 );

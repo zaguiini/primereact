@@ -1,3 +1,5 @@
+import { $dt } from '@primeuix/styled';
+
 export const defaultProps = {
     __TYPE: 'Knob',
     id: null,
@@ -14,9 +16,9 @@ export const defaultProps = {
     max: 100,
     strokeWidth: 14,
     name: null,
-    valueColor: 'var(--primary-color, Black)',
-    rangeColor: 'var(--surface-border, LightGray)',
-    textColor: 'var(--text-color-secondary, Black)',
+    valueColor: $dt('knob.value.background').variable,
+    rangeColor: $dt('knob.range.background').variable,
+    textColor: $dt('knob.text.color').variable,
     valueTemplate: '{value}',
     onChange: null,
     children: undefined

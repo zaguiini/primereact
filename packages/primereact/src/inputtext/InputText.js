@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { addClass, classNames, isNotEmpty, mergeProps, removeClass } from '@primeuix/utils';
+import { addClass, classNames, isEmpty, isNotEmpty, mergeProps, removeClass } from '@primeuix/utils';
 import { KeyFilter } from 'primereact/keyfilter';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
@@ -60,7 +60,7 @@ export const InputText = React.memo(
                 type: 'text',
                 style: props.style,
                 className: classNames(cx('root'), props.className),
-                'aria-invalid': invalid || undefined,
+                'aria-invalid': props.invalid || undefined,
                 onBeforeInput,
                 onInput,
                 onKeyDown,

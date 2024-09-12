@@ -1,10 +1,10 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { SpeedDial } from '@/components/lib/speeddial/SpeedDial';
-import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Toast } from 'primereact/toast';
+import { Tooltip } from 'primereact/tooltip';
 import { useRef } from 'react';
 
 export function TooltipDoc(props) {

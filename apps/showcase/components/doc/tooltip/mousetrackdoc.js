@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import { Button } from 'primereact/button';
+import { Tooltip } from 'primereact/tooltip';
 
 export function MouseTrackDoc(props) {
     const code = {

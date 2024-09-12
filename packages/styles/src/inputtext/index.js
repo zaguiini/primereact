@@ -68,7 +68,7 @@ export const classes = {
     root: ({ props, isFilled, context }) => [
         'p-inputtext p-component',
         {
-            'p-filled': instance?.filled, // @todo: refactor
+            'p-filled': isFilled,//instance?.filled, // @todo: refactor
             'p-inputtext-sm': props.size === 'small',
             'p-inputtext-lg': props.size === 'large',
             'p-invalid': props.invalid,

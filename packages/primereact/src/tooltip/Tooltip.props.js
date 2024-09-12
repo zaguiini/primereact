@@ -1,11 +1,12 @@
 export const defaultProps = {
     __TYPE: 'Tooltip',
+    style: null,
+    className: null,
     appendTo: null,
     at: null,
     autoHide: true,
     autoZIndex: true,
     baseZIndex: 0,
-    className: null,
     closeOnEscape: false,
     content: null,
     disabled: false,
@@ -25,7 +26,6 @@ export const defaultProps = {
     showDelay: 0,
     showEvent: 'mouseenter',
     showOnDisabled: false,
-    style: null,
     target: null,
     updateDelay: 0,
     children: undefined

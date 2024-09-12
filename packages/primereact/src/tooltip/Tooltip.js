@@ -1,12 +1,14 @@
+import { PrimeReactContext } from '@primereact/core/config';
 import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMountEffect, useOverlayScrollListener, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { addClass, classNames, find, getOuterHeight, getOuterWidth, isElement, isTouchDevice, mergeProps, removeClass, ZIndex } from '@primeuix/utils';
 import { Portal } from 'primereact/portal';
-import { ObjectUtils } from 'primereact/utils';
+import { findCollisionPosition, flipfitCollision, ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
 import { useTooltip } from './Tooltip.base';
 
 export const Tooltip = React.memo(
     React.forwardRef((inProps, inRef) => {
+        const config = React.useContext(PrimeReactContext);
         const [visibleState, setVisibleState] = React.useState(false);
         const [positionState, setPositionState] = React.useState(inProps.position || 'right');
         const [classNameState, setClassNameState] = React.useState('');
@@ -133,7 +135,7 @@ export const Tooltip = React.memo(
                 const { pageX: x, pageY: y } = currentMouseEvent.current;
 
                 if (props.autoZIndex && !ZIndex.get(elementRef.current)) {
-                    ZIndex.set('tooltip', elementRef.current, context?.autoZIndex, props.baseZIndex || context?.zIndex.tooltip);
+                    ZIndex.set('tooltip', elementRef.current, config?.autoZIndex, props.baseZIndex || config?.zIndex.tooltip);
                 }
 
                 elementRef.current.style.left = '';
@@ -254,14 +256,13 @@ export const Tooltip = React.memo(
                 elementRef.current.style.top = top + 'px';
                 addClass(elementRef.current, 'p-tooltip-active');
             } else {
-                // @todo
-                /*const pos = DomHandler.findCollisionPosition(currentPosition);
+                const pos = findCollisionPosition(currentPosition);
                 const my = getTargetOption(target, 'my') || props.my || pos.my;
                 const at = getTargetOption(target, 'at') || props.at || pos.at;
 
                 elementRef.current.style.padding = '0px';
 
-                DomHandler.flipfitCollision(elementRef.current, target, my, at, (calculatedPosition) => {
+                flipfitCollision(elementRef.current, target, my, at, (calculatedPosition) => {
                     const { x: atX, y: atY } = calculatedPosition.at;
                     const { x: myX } = calculatedPosition.my;
                     const newPosition = props.at ? (atX !== 'center' && atX !== myX ? atX : atY) : calculatedPosition.at[`${pos.axis}`];
@@ -270,8 +271,8 @@ export const Tooltip = React.memo(
 
                     setPositionState(newPosition);
                     updateContainerPosition(newPosition);
-                    DomHandler.addClass(elementRef.current, 'p-tooltip-active');
-                });*/
+                    addClass(elementRef.current, 'p-tooltip-active');
+                });
             }
         };
 
@@ -489,7 +490,7 @@ export const Tooltip = React.memo(
             const rootProps = mergeProps(
                 {
                     id: props.id,
-                    className: classNames(props.className, cx('root', { positionState, classNameState })),
+                    className: classNames(cx('root', { positionState, classNameState }), props.className),
                     style: props.style,
                     role: 'tooltip',
                     'aria-hidden': visibleState,

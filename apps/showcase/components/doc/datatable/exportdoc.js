@@ -3,8 +3,8 @@ import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Column } from '@/components/lib/column/Column';
 import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Tooltip } from '@/components/lib/tooltip/Tooltip';
 import { Button } from 'primereact/button';
+import { Tooltip } from 'primereact/tooltip';
 import { useRef, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';
 
