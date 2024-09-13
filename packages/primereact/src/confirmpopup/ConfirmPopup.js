@@ -1,12 +1,13 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { Button } from 'primereact/button';
+import { CSSTransition } from 'primereact/csstransition';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useConfirmPopup } from './ConfirmPopup.base';
 import { ConfirmPopupBase } from './ConfirmPopupBase';
 
 export const confirmPopup = (props = {}) => {
@@ -25,7 +26,10 @@ export const confirmPopup = (props = {}) => {
 };
 
 export const ConfirmPopup = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const confirmpopup = useConfirmPopup(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = confirmpopup;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ConfirmPopupBase.getProps(inProps, context);
@@ -409,7 +413,11 @@ export const ConfirmPopup = React.memo(
 
         const element = inProps?.content ? createTemplateElement() : createElement();
 
-        return <Portal element={element} appendTo={getPropValue('appendTo')} visible={getPropValue('visible')} />;
+        return (
+            <ComponentProvider value={confirmpopup}>
+                <Portal element={element} appendTo={getPropValue('appendTo')} visible={getPropValue('visible')} />
+            </ComponentProvider>
+        );
     })
 );
 

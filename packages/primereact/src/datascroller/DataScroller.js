@@ -1,12 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
 import { ObjectUtils, classNames } from '../utils/Utils';
+import { useDataScroller } from './DataScroller.base';
 import { DataScrollerBase } from './DataScrollerBase';
 
 export const DataScroller = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const datascroller = useDataScroller(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = datascroller;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = DataScrollerBase.getProps(inProps, context);
@@ -247,11 +251,13 @@ export const DataScroller = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {header}
-                {content}
-                {footer}
-            </div>
+            <ComponentProvider value={datascroller}>
+                <div {...rootProps}>
+                    {header}
+                    {content}
+                    {footer}
+                </div>
+            </ComponentProvider>
         );
     })
 );

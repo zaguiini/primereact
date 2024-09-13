@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { Ripple } from '../ripple/Ripple';
 import { classNames } from '../utils/Utils';
 
 export const PickListItem = React.memo((props) => {

@@ -1,15 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { OverlayService } from 'primereact/overlayservice';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect, useGlobalOnEscapeKey, ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder } from '../hooks/Hooks';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useColorPicker } from './ColorPicker.base';
 import { ColorPickerBase } from './ColorPickerBase';
 import { ColorPickerPanel } from './ColorPickerPanel';
 
 export const ColorPicker = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const colorpicker = useColorPicker(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = colorpicker;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ColorPickerBase.getProps(inProps, context);
@@ -645,7 +649,7 @@ export const ColorPicker = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={colorpicker}>
                 <div {...rootProps}>
                     {input}
                     <ColorPickerPanel
@@ -670,7 +674,7 @@ export const ColorPicker = React.memo(
                     </ColorPickerPanel>
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

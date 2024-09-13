@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { localeOption } from '../api/Api';
-import { useMergeProps } from '../hooks/Hooks';
 import { DomHandler, ObjectUtils } from '../utils/Utils';
 import { TreeTableRow } from './TreeTableRow';
 

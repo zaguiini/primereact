@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { MinusIcon } from '@primereact/icons/minus';
+import { PlusIcon } from '@primereact/icons/plus';
+import { Button } from 'primereact/button';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { MinusIcon } from '../icons/minus';
-import { PlusIcon } from '../icons/plus';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useSpeedDial } from './SpeedDial.base';
 import { SpeedDialBase } from './SpeedDialBase';
 
 export const SpeedDial = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const speeddial = useSpeedDial(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = speeddial;
+
         const [visibleState, setVisibleState] = React.useState(false);
         const [idState, setIdState] = React.useState(null);
         const [focused, setFocused] = React.useState(false);
@@ -602,13 +606,13 @@ export const SpeedDial = React.memo(
         );
 
         return (
-            <React.Fragment>
+            <ComponentProvider value={speeddial}>
                 <div ref={elementRef} {...rootProps}>
                     {button}
                     {list}
                 </div>
                 {mask}
-            </React.Fragment>
+            </ComponentProvider>
         );
     })
 );

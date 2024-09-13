@@ -1,15 +1,15 @@
+import { useMatchMedia, useMergeProps } from '@primereact/hooks';
+import { AngleDoubleDownIcon } from '@primereact/icons/angledoubledown';
+import { AngleDoubleLeftIcon } from '@primereact/icons/angledoubleleft';
+import { AngleDoubleRightIcon } from '@primereact/icons/angledoubleright';
+import { AngleDoubleUpIcon } from '@primereact/icons/angledoubleup';
+import { AngleDownIcon } from '@primereact/icons/angledown';
+import { AngleLeftIcon } from '@primereact/icons/angleleft';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { AngleUpIcon } from '@primereact/icons/angleup';
+import { Button } from 'primereact/button';
 import * as React from 'react';
 import { ariaLabel } from '../api/Locale';
-import { Button } from '../button/Button';
-import { useMatchMedia, useMergeProps } from '../hooks/Hooks';
-import { AngleDoubleDownIcon } from '../icons/angledoubledown';
-import { AngleDoubleLeftIcon } from '../icons/angledoubleleft';
-import { AngleDoubleRightIcon } from '../icons/angledoubleright';
-import { AngleDoubleUpIcon } from '../icons/angledoubleup';
-import { AngleDownIcon } from '../icons/angledown';
-import { AngleLeftIcon } from '../icons/angleleft';
-import { AngleRightIcon } from '../icons/angleright';
-import { AngleUpIcon } from '../icons/angleup';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 
 export const PickListTransferControls = React.memo((props) => {

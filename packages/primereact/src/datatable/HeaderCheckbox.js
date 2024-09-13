@@ -1,9 +1,9 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { Checkbox } from 'primereact/checkbox';
 import * as React from 'react';
 import { ariaLabel } from '../api/Locale';
-import { Checkbox } from '../checkbox/Checkbox';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
 import { IconUtils } from '../utils/Utils';
 
 export const HeaderCheckbox = React.memo((props) => {

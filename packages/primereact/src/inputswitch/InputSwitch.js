@@ -1,13 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
+import { useInputSwitch } from './InputSwitch.base';
 import { InputSwitchBase } from './InputSwitchBase';
 
 export const InputSwitch = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const inputswitch = useInputSwitch(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputswitch;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = InputSwitchBase.getProps(inProps, context);
@@ -111,13 +115,13 @@ export const InputSwitch = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={inputswitch}>
                 <div id={props.id} ref={elementRef} {...rootProps}>
                     <input ref={inputRef} {...inputProps} />
                     <span {...sliderProps} />
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

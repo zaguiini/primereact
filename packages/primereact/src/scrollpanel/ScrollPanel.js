@@ -1,11 +1,15 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useUnmountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useUnmountEffect } from '../hooks/Hooks';
 import { DomHandler, UniqueComponentId, classNames } from '../utils/Utils';
+import { useScrollPanel } from './ScrollPanel.base';
 import { ScrollPanelBase } from './ScrollPanelBase';
 
-export const ScrollPanel = React.forwardRef((inProps, ref) => {
+export const ScrollPanel = React.forwardRef((inProps, inRef) => {
+    const scrollpanel = useScrollPanel(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = scrollpanel;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = ScrollPanelBase.getProps(inProps, context);
@@ -346,15 +350,17 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
     );
 
     return (
-        <div {...rootProps}>
-            <div {...wrapperProps}>
-                <div ref={contentRef} {...contentProps}>
-                    {props.children}
+        <ComponentProvider value={scrollpanel}>
+            <div {...rootProps}>
+                <div {...wrapperProps}>
+                    <div ref={contentRef} {...contentProps}>
+                        {props.children}
+                    </div>
                 </div>
+                <div {...barXProps} />
+                <div {...barYProps} />
             </div>
-            <div {...barXProps} />
-            <div {...barYProps} />
-        </div>
+        </ComponentProvider>
     );
 });
 

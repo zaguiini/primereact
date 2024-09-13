@@ -1,7 +1,7 @@
+import { useMergeProps } from '@primereact/hooks';
+import { SearchIcon } from '@primereact/icons/search';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { SearchIcon } from '../icons/search';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 
 export const OrderListSubList = React.memo(

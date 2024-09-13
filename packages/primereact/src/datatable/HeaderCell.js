@@ -1,10 +1,10 @@
+import { useMergeProps, usePrevious } from '@primereact/hooks';
+import { SortAltIcon } from '@primereact/icons/sortalt';
+import { SortAmountDownIcon } from '@primereact/icons/sortamountdown';
+import { SortAmountUpAltIcon } from '@primereact/icons/sortamountupalt';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps, usePrevious } from '../hooks/Hooks';
-import { SortAltIcon } from '../icons/sortalt';
-import { SortAmountDownIcon } from '../icons/sortamountdown';
-import { SortAmountUpAltIcon } from '../icons/sortamountupalt';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { ColumnFilter } from './ColumnFilter';
 import { HeaderCheckbox } from './HeaderCheckbox';

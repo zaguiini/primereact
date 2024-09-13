@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { Badge } from '../badge/Badge';
+import { Badge } from 'primereact/badge';
 import { Avatar } from './Avatar';
 
 import { snapshot } from '../../test';

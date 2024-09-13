@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { TimesIcon } from '@primereact/icons/times';
+import { Button } from 'primereact/button';
 import * as React from 'react';
 import { localeOption, PrimeReactContext } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useUpdateEffect } from '../hooks/Hooks';
-import { TimesIcon } from '../icons/times';
 import { classNames, IconUtils, ObjectUtils } from '../utils/Utils';
+import { useInplace } from './Inplace.base';
 import { InplaceBase } from './InplaceBase';
 
 export const InplaceDisplay = (props) => props.children;
 export const InplaceContent = (props) => props.children;
 
-export const Inplace = React.forwardRef((inProps, ref) => {
+export const Inplace = React.forwardRef((inProps, inRef) => {
+    const inplace = useInplace(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = inplace;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = InplaceBase.getProps(inProps, context);
@@ -160,7 +164,11 @@ export const Inplace = React.forwardRef((inProps, ref) => {
         ptm('root')
     );
 
-    return <div {...rootProps}>{children}</div>;
+    return (
+        <ComponentProvider value={inplace}>
+            <div {...rootProps}>{children}</div>
+        </ComponentProvider>
+    );
 });
 
 InplaceDisplay.displayName = 'InplaceDisplay';

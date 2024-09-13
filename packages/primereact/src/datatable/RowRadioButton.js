@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { RadioButton } from '../radiobutton/RadioButton';
 
 export const RowRadioButton = React.memo((props) => {

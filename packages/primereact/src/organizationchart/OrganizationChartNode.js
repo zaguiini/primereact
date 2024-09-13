@@ -1,7 +1,7 @@
+import { useMergeProps } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronUpIcon } from '@primereact/icons/chevronup';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronUpIcon } from '../icons/chevronup';
 import { IconUtils, ObjectUtils } from '../utils/Utils';
 
 export const OrganizationChartNode = React.memo((props) => {

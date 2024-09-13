@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronRightIcon } from '../icons/chevronright';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { usePanelMenu } from './PanelMenu.base';
 import { PanelMenuBase } from './PanelMenuBase';
 import { PanelMenuList } from './PanelMenuList';
 
 export const PanelMenu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const panelmenu = usePanelMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = panelmenu;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = PanelMenuBase.getProps(inProps, context);
@@ -441,7 +445,11 @@ export const PanelMenu = React.memo(
             ptm('root')
         );
 
-        return <div {...rootProps}>{panels}</div>;
+        return (
+            <ComponentProvider value={panelmenu}>
+                <div {...rootProps}>{panels}</div>
+            </ComponentProvider>
+        );
     })
 );
 

@@ -1,8 +1,9 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUnmountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useUnmountEffect } from '../hooks/Hooks';
 import { classNames } from '../utils/Utils';
+import { useChart } from './Chart.base';
 import { ChartBase } from './ChartBase';
 
 // GitHub #3059 wrapper if loaded by script tag
@@ -15,7 +16,10 @@ const ChartJS = (function () {
 })();
 
 const PrimeReactChart = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const chart = useChart(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = chart;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ChartBase.getProps(inProps, context);
@@ -114,9 +118,11 @@ const PrimeReactChart = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                <canvas {...canvasProps} />
-            </div>
+            <ComponentProvider value={chart}>
+                <div {...rootProps}>
+                    <canvas {...canvasProps} />
+                </div>
+            </ComponentProvider>
         );
     }),
     (prevProps, nextProps) => prevProps.data === nextProps.data && prevProps.options === nextProps.options && prevProps.type === nextProps.type

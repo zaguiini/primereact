@@ -1,14 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { BarsIcon } from '@primereact/icons/bars';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, ariaLabel } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { BarsIcon } from '../icons/bars';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useMenubar } from './Menubar.base';
 import { MenubarBase } from './MenubarBase';
 import { MenubarSub } from './MenubarSub';
 
 export const Menubar = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const menubar = useMenubar(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = menubar;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MenubarBase.getProps(inProps, context);
@@ -685,12 +689,14 @@ export const Menubar = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {start}
-                {menuButton}
-                {submenu}
-                {end}
-            </div>
+            <ComponentProvider value={menubar}>
+                <div {...rootProps}>
+                    {start}
+                    {menuButton}
+                    {submenu}
+                    {end}
+                </div>
+            </ComponentProvider>
         );
     })
 );

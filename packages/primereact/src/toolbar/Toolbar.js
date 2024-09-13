@@ -1,12 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { ObjectUtils, classNames } from '../utils/Utils';
+import { useToolbar } from './Toolbar.base';
 import { ToolbarBase } from './ToolbarBase';
 
 export const Toolbar = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const toolbar = useToolbar(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = toolbar;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ToolbarBase.getProps(inProps, context);
@@ -59,11 +63,13 @@ export const Toolbar = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                <div {...startProps}>{start}</div>
-                <div {...centerProps}>{center}</div>
-                <div {...endProps}>{end}</div>
-            </div>
+            <ComponentProvider value={toolbar}>
+                <div {...rootProps}>
+                    <div {...startProps}>{start}</div>
+                    <div {...centerProps}>{center}</div>
+                    <div {...endProps}>{end}</div>
+                </div>
+            </ComponentProvider>
         );
     })
 );

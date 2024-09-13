@@ -1,13 +1,14 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { ChevronUpIcon } from '@primereact/icons/chevronup';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, ariaLabel, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronLeftIcon } from '../icons/chevronleft';
-import { ChevronRightIcon } from '../icons/chevronright';
-import { ChevronUpIcon } from '../icons/chevronup';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useCarousel } from './Carousel.base';
 import { CarouselBase } from './CarouselBase';
 
 const CarouselItem = React.memo((props) => {
@@ -34,7 +35,10 @@ const CarouselItem = React.memo((props) => {
 });
 
 export const Carousel = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const carousel = useCarousel(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = carousel;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = CarouselBase.getProps(inProps, context);
@@ -814,14 +818,16 @@ export const Carousel = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {header}
-                <div {...contentProps}>
-                    {content}
-                    {indicators}
+            <ComponentProvider value={carousel}>
+                <div {...rootProps}>
+                    {header}
+                    <div {...contentProps}>
+                        {content}
+                        {indicators}
+                    </div>
+                    {footer}
                 </div>
-                {footer}
-            </div>
+            </ComponentProvider>
         );
     })
 );

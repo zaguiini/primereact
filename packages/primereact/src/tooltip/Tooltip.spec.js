@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import { PrimeReactProvider } from '../api/Api';
-import { Button } from '../button/Button';
-import { InputText } from '../inputtext/InputText';
 import { Tooltip } from './Tooltip';
 
 describe('Tooltip', () => {

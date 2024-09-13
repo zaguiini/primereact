@@ -1,17 +1,21 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
+import { CSSTransition } from 'primereact/csstransition';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronLeftIcon } from '../icons/chevronleft';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useSlideMenu } from './SlideMenu.base';
 import { SlideMenuBase } from './SlideMenuBase';
 import { SlideMenuSub } from './SlideMenuSub';
 
 export const SlideMenu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const slidemenu = useSlideMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = slidemenu;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = SlideMenuBase.getProps(inProps, context);
@@ -246,7 +250,7 @@ export const SlideMenu = React.memo(
 
         const element = createElement();
 
-        return props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element;
+        return <ComponentProvider value={slidemenu}>{props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}</ComponentProvider>;
     })
 );
 

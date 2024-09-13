@@ -1,39 +1,34 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, usePrevious, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { CalendarIcon } from '@primereact/icons/calendar';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { ChevronUpIcon } from '@primereact/icons/chevronup';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { OverlayService } from 'primereact/overlayservice';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption, localeOptions } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useOverlayListener, usePrevious, useUnmountEffect, useUpdateEffect, useGlobalOnEscapeKey, ESC_KEY_HANDLING_PRIORITIES } from '../hooks/Hooks';
-import { CalendarIcon } from '../icons/calendar';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronLeftIcon } from '../icons/chevronleft';
-import { ChevronRightIcon } from '../icons/chevronright';
-import { ChevronUpIcon } from '../icons/chevronup';
-import { InputText } from '../inputtext/InputText';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Ripple } from '../ripple/Ripple';
+import PrimeReact, { localeOption, localeOptions } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames, mask } from '../utils/Utils';
+import { useCalendar } from './Calendar.base';
 import { CalendarBase } from './CalendarBase';
 import { CalendarPanel } from './CalendarPanel';
 
 export const Calendar = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = CalendarBase.getProps(inProps, context);
+    React.forwardRef((inProps, inRef) => {
         const [focusedState, setFocusedState] = React.useState(false);
         const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
         const [viewDateState, setViewDateState] = React.useState(null);
         const [idState, setIdState] = React.useState(props.id);
-
-        const metaData = {
-            props,
-            state: {
-                focused: focusedState,
-                overlayVisible: overlayVisibleState,
-                viewDate: viewDateState
-            }
+        const state = {
+            focused: focusedState,
+            overlayVisible: overlayVisibleState,
+            viewDate: viewDateState
         };
-        const { ptm, cx, isUnstyled } = CalendarBase.setMetaData(metaData);
+        const calendar = useCalendar(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = calendar;
 
         useGlobalOnEscapeKey({
             callback: () => {
@@ -4378,36 +4373,38 @@ export const Calendar = React.memo(
         );
 
         return (
-            <span ref={elementRef} {...rootProps}>
-                {content}
-                <CalendarPanel
-                    hostName="Calendar"
-                    id={panelId}
-                    locale={props.locale}
-                    ref={overlayRef}
-                    className={panelClassName}
-                    style={props.panelStyle}
-                    appendTo={props.appendTo}
-                    inline={props.inline}
-                    onClick={onPanelClick}
-                    onMouseUp={onPanelMouseUp}
-                    in={visible}
-                    onEnter={onOverlayEnter}
-                    onEntered={onOverlayEntered}
-                    onExit={onOverlayExit}
-                    onExited={onOverlayExited}
-                    transitionOptions={props.transitionOptions}
-                    ptm={ptm}
-                    cx={cx}
-                >
-                    {datePicker}
-                    {timePicker}
-                    {monthPicker}
-                    {yearPicker}
-                    {buttonBar}
-                    {footer}
-                </CalendarPanel>
-            </span>
+            <ComponentProvider value={calendar}>
+                <span ref={elementRef} {...rootProps}>
+                    {content}
+                    <CalendarPanel
+                        hostName="Calendar"
+                        id={panelId}
+                        locale={props.locale}
+                        ref={overlayRef}
+                        className={panelClassName}
+                        style={props.panelStyle}
+                        appendTo={props.appendTo}
+                        inline={props.inline}
+                        onClick={onPanelClick}
+                        onMouseUp={onPanelMouseUp}
+                        in={visible}
+                        onEnter={onOverlayEnter}
+                        onEntered={onOverlayEntered}
+                        onExit={onOverlayExit}
+                        onExited={onOverlayExited}
+                        transitionOptions={props.transitionOptions}
+                        ptm={ptm}
+                        cx={cx}
+                    >
+                        {datePicker}
+                        {timePicker}
+                        {monthPicker}
+                        {yearPicker}
+                        {buttonBar}
+                        {footer}
+                    </CalendarPanel>
+                </span>
+            </ComponentProvider>
         );
     })
 );

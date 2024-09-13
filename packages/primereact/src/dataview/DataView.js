@@ -1,13 +1,14 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
+import { BarsIcon } from '@primereact/icons/bars';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { ThLargeIcon } from '@primereact/icons/thlarge';
+import { Paginator } from 'primereact/paginator';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { localeOption, PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { BarsIcon } from '../icons/bars';
-import { SpinnerIcon } from '../icons/spinner';
-import { ThLargeIcon } from '../icons/thlarge';
-import { Paginator } from '../paginator/Paginator';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, IconUtils, ObjectUtils } from '../utils/Utils';
-import { useMergeProps } from '../hooks/Hooks';
+import { useDataView } from './DataView.base';
 import { DataViewBase, DataViewLayoutOptionsBase } from './DataViewBase';
 
 export const DataViewLayoutOptions = React.memo((inProps) => {
@@ -77,7 +78,10 @@ export const DataViewItem = React.memo((props) => {
 });
 
 export const DataView = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const dataview = useDataView(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = dataview;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = DataViewBase.getProps(inProps, context);
@@ -336,14 +340,16 @@ export const DataView = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {loader}
-                {header}
-                {topPaginator}
-                {content}
-                {bottomPaginator}
-                {footer}
-            </div>
+            <ComponentProvider value={dataview}>
+                <div {...rootProps}>
+                    {loader}
+                    {header}
+                    {topPaginator}
+                    {content}
+                    {bottomPaginator}
+                    {footer}
+                </div>
+            </ComponentProvider>
         );
     })
 );

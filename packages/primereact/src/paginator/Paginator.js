@@ -1,7 +1,7 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useUpdateEffect } from '../hooks/Hooks';
 import { ObjectUtils, classNames } from '../utils/Utils';
 import { CurrentPageReport } from './CurrentPageReport';
 import { FirstPageLink } from './FirstPageLink';
@@ -9,12 +9,16 @@ import { JumpToPageInput } from './JumpToPageInput';
 import { LastPageLink } from './LastPageLink';
 import { NextPageLink } from './NextPageLink';
 import { PageLinks } from './PageLinks';
+import { usePaginator } from './Paginator.base';
 import { PaginatorBase } from './PaginatorBase';
 import { PrevPageLink } from './PrevPageLink';
 import { RowsPerPageDropdown } from './RowsPerPageDropdown';
 
 export const Paginator = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const paginator = usePaginator(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = paginator;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = PaginatorBase.getProps(inProps, context);
@@ -315,11 +319,13 @@ export const Paginator = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {leftElement}
-                {elements}
-                {rightElement}
-            </div>
+            <ComponentProvider value={paginator}>
+                <div {...rootProps}>
+                    {leftElement}
+                    {elements}
+                    {rightElement}
+                </div>
+            </ComponentProvider>
         );
     })
 );

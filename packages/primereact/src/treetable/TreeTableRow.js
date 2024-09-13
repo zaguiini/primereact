@@ -1,15 +1,15 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { MinusIcon } from '@primereact/icons/minus';
+import { Checkbox } from 'primereact/checkbox';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { ariaLabel } from '../api/Api';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronRightIcon } from '../icons/chevronright';
-import { MinusIcon } from '../icons/minus';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 import { TreeTableBodyCell } from './TreeTableBodyCell';
-import { Checkbox } from '../checkbox/Checkbox';
 
 export const TreeTableRow = React.memo((props) => {
     const elementRef = React.useRef(null);

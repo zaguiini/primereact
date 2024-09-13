@@ -7,12 +7,12 @@
  * @module inputnumber
  *
  */
+import { InputText, InputTextPassThroughOptions } from 'primereact/inputtext';
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { ComponentHooks } from '../componentbase/componentbase';
-import { InputText, InputTextPassThroughOptions } from '../inputtext/inputtext';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormEvent } from '../ts-helpers';
 import { IconType, PassThroughType } from '../utils/utils';
 

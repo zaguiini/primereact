@@ -1,20 +1,21 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
+import { PlusIcon } from '@primereact/icons/plus';
+import { TimesIcon } from '@primereact/icons/times';
+import { UploadIcon } from '@primereact/icons/upload';
+import { Badge } from 'primereact/badge';
+import { Button } from 'primereact/button';
+import { Messages } from 'primereact/messages';
+import { ProgressBar } from 'primereact/progressbar';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { localeOption, PrimeReactContext } from '../api/Api';
-import { Badge } from '../badge/Badge';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { PlusIcon } from '../icons/plus';
-import { TimesIcon } from '../icons/times';
-import { UploadIcon } from '../icons/upload';
-import { Messages } from '../messages/Messages';
-import { ProgressBar } from '../progressbar/ProgressBar';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
+import { useFileUpload } from './FileUpload.base';
 import { FileUploadBase } from './FileUploadBase';
 
 export const FileUpload = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = FileUploadBase.getProps(inProps, context);
@@ -34,6 +35,9 @@ export const FileUpload = React.memo(
                 focused: focusedState
             }
         };
+
+        const fileupload = useFileUpload(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = fileupload;
 
         const { ptm, cx, isUnstyled } = FileUploadBase.setMetaData(metaData);
 
@@ -735,15 +739,17 @@ export const FileUpload = React.memo(
             );
 
             return (
-                <div {...rootProps}>
-                    <Messages ref={messagesRef} pt={ptm('message')} __parentMetadata={{ parent: metaData }} />
-                    <span {...basicButtonProps}>
-                        {chooseIcon}
-                        {label}
-                        {input}
-                        <Ripple />
-                    </span>
-                </div>
+                <ComponentProvider value={fileupload}>
+                    <div {...rootProps}>
+                        <Messages ref={messagesRef} pt={ptm('message')} __parentMetadata={{ parent: metaData }} />
+                        <span {...basicButtonProps}>
+                            {chooseIcon}
+                            {label}
+                            {input}
+                            <Ripple />
+                        </span>
+                    </div>
+                </ComponentProvider>
             );
         };
 

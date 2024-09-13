@@ -1,15 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { TimesCircleIcon } from '@primereact/icons/timescircle';
+import { KeyFilter } from 'primereact/keyfilter';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { TimesCircleIcon } from '../icons/timescircle';
-import { KeyFilter } from '../keyfilter/KeyFilter';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useChips } from './Chips.base';
 import { ChipsBase } from './ChipsBase';
 
 export const Chips = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const chips = useChips(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = chips;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ChipsBase.getProps(inProps, context);
@@ -455,10 +459,10 @@ export const Chips = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={chips}>
                 <div {...rootProps}>{list}</div>
                 {hasTooltip && <Tooltip target={inputRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

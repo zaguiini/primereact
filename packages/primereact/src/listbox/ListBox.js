@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { Tooltip } from 'primereact/tooltip';
+import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { FilterService, PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, UniqueComponentId } from '../utils/Utils';
-import { VirtualScroller } from '../virtualscroller/VirtualScroller';
+import { useListbox } from './ListBox.base';
 import { ListBoxBase } from './ListBoxBase';
 import { ListBoxHeader } from './ListBoxHeader';
 import { ListBoxItem } from './ListBoxItem';
 
 export const ListBox = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const listbox = useListbox(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = listbox;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ListBoxBase.getProps(inProps, context);
@@ -915,7 +919,7 @@ export const ListBox = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={listbox}>
                 <div {...rootProps}>
                     <span {...hiddenFirstElement} />
                     {header}
@@ -923,7 +927,7 @@ export const ListBox = React.memo(
                     <span {...hiddenLastElement} />
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptCallbacks.ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

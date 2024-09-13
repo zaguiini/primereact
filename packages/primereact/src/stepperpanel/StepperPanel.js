@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
 import { StepperPanelBase } from './StepperPanelBase';
 
 export const StepperPanel = React.memo(

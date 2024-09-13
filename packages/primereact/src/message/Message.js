@@ -1,16 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { ExclamationTriangleIcon } from '@primereact/icons/exclamationtriangle';
+import { InfoCircleIcon } from '@primereact/icons/infocircle';
+import { TimesCircleIcon } from '@primereact/icons/timescircle';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { ExclamationTriangleIcon } from '../icons/exclamationtriangle';
-import { InfoCircleIcon } from '../icons/infocircle';
-import { TimesCircleIcon } from '../icons/timescircle';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { MessageBase } from './MessageBase';
 
 export const Message = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const message = useMessage(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = message;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MessageBase.getProps(inProps, context);
@@ -95,9 +98,11 @@ export const Message = React.memo(
         );
 
         return (
-            <div id={props.id} ref={elementRef} {...rootProps}>
-                {content}
-            </div>
+            <ComponentProvider value={message}>
+                <div id={props.id} ref={elementRef} {...rootProps}>
+                    {content}
+                </div>
+            </ComponentProvider>
         );
     })
 );

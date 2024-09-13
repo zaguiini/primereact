@@ -7,12 +7,12 @@
  * @module selectbutton
  *
  */
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { PassThroughOptions } from '../passthrough';
 import { SelectItemOptionsType } from '../selectitem/selectitem';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormEvent } from '../ts-helpers';
 import { PassThroughType } from '../utils/utils';
 

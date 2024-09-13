@@ -1,11 +1,11 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
+import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { localeOption, PrimeReactContext } from '../api/Api';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps } from '../hooks/Hooks';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, ObjectUtils } from '../utils/Utils';
-import { VirtualScroller } from '../virtualscroller/VirtualScroller';
 
 export const AutoCompletePanel = React.memo(
     React.forwardRef((props, ref) => {

@@ -1,8 +1,8 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { Checkbox } from 'primereact/checkbox';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { Checkbox } from '../checkbox/Checkbox';
-import { useMergeProps } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 
 export const MultiSelectItem = React.memo((props) => {

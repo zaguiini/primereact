@@ -1,12 +1,12 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { SearchIcon } from '@primereact/icons/search';
+import { TimesIcon } from '@primereact/icons/times';
+import { Checkbox } from 'primereact/checkbox';
+import { InputText } from 'primereact/inputtext';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { localeOption } from '../api/Api';
-import { Checkbox } from '../checkbox/Checkbox';
-import { useMergeProps } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { SearchIcon } from '../icons/search';
-import { TimesIcon } from '../icons/times';
-import { InputText } from '../inputtext/InputText';
-import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, UniqueComponentId } from '../utils/Utils';
 
 export const MultiSelectHeader = React.memo((props) => {

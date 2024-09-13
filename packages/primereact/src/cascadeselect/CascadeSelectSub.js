@@ -1,8 +1,8 @@
+import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { AngleRightIcon } from '../icons/angleright';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 export const CascadeSelectSub = React.memo((props) => {
     const mergeProps = useMergeProps();

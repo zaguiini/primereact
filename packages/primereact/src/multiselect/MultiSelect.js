@@ -1,19 +1,23 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { TimesIcon } from '@primereact/icons/times';
+import { TimesCircleIcon } from '@primereact/icons/timescircle';
+import { OverlayService } from 'primereact/overlayservice';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import PrimeReact, { FilterService, PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { SpinnerIcon } from '../icons/spinner';
-import { TimesIcon } from '../icons/times';
-import { TimesCircleIcon } from '../icons/timescircle';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useMultiSelect } from './MultiSelect.base';
 import { MultiSelectBase } from './MultiSelectBase';
 import { MultiSelectPanel } from './MultiSelectPanel';
 
 export const MultiSelect = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const multiselect = useMultiSelect(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = multiselect;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MultiSelectBase.getProps(inProps, context);
@@ -1089,7 +1093,7 @@ export const MultiSelect = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={multiselect}>
                 <div {...rootProps}>
                     <div {...hiddenInputWrapperProps}>
                         <input {...inputProps} readOnly />
@@ -1149,7 +1153,7 @@ export const MultiSelect = React.memo(
                     />
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

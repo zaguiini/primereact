@@ -1,13 +1,13 @@
+import { useMergeProps } from '@primereact/hooks';
+import { SortAltIcon } from '@primereact/icons/sortalt';
+import { SortAmountDownIcon } from '@primereact/icons/sortamountdown';
+import { SortAmountUpAltIcon } from '@primereact/icons/sortamountupalt';
+import { InputText } from 'primereact/inputtext';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
 import { ColumnGroupBase } from '../columngroup/ColumnGroupBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { SortAltIcon } from '../icons/sortalt';
-import { SortAmountDownIcon } from '../icons/sortamountdown';
-import { SortAmountUpAltIcon } from '../icons/sortamountupalt';
-import { InputText } from '../inputtext/InputText';
 import { RowBase } from '../row/RowBase';
-import { Tooltip } from '../tooltip/Tooltip';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 
 export const TreeTableHeader = React.memo((props) => {

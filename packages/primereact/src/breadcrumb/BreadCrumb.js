@@ -1,26 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMountEffect } from '@primereact/hooks';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { ChevronRightIcon } from '../icons/chevronright';
 import { IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useBreadCrumb } from './BreadCrumb.base';
 import { BreadCrumbBase } from './BreadCrumbBase';
 
 export const BreadCrumb = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = BreadCrumbBase.getProps(inProps, context);
+    React.forwardRef((inProps, inRef) => {
         const [idState, setIdState] = React.useState(props.id);
-        const elementRef = React.useRef(null);
-        const { ptm, cx, isUnstyled } = BreadCrumbBase.setMetaData({
-            props,
-            state: {
-                id: idState
-            }
-        });
+        const state = {
+            id: idState
+        };
 
-        useHandleStyle(BreadCrumbBase.css.styles, isUnstyled, { name: 'breadcrumb' });
+        const breadcrumb = useBreadCrumb(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = breadcrumb;
+
+        const elementRef = React.useRef(null);
 
         const itemClick = (event, item) => {
             if (item.disabled) {
@@ -260,13 +256,15 @@ export const BreadCrumb = React.memo(
         );
 
         return (
-            <nav {...rootProps}>
-                <ol {...menuProps}>
-                    {home}
-                    {home && !!items?.length && separator}
-                    {items}
-                </ol>
-            </nav>
+            <ComponentProvider value={breadcrumb}>
+                <nav {...rootProps}>
+                    <ol {...menuProps}>
+                        {home}
+                        {home && !!items?.length && separator}
+                        {items}
+                    </ol>
+                </nav>
+            </ComponentProvider>
         );
     })
 );

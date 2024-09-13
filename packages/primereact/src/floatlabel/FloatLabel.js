@@ -1,12 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { classNames, ObjectUtils } from '../utils/Utils';
+import { useFloatLabel } from './FloatLabel.base';
 import { FloatLabelBase } from './FloatLabelBase';
 
 export const FloatLabel = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const floatlabel = useFloatLabel(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = floatlabel;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = FloatLabelBase.getProps(inProps, context);
@@ -30,7 +34,11 @@ export const FloatLabel = React.memo(
             ptm('root')
         );
 
-        return <span {...rootProps}>{props.children}</span>;
+        return (
+            <ComponentProvider value={floatlabel}>
+                <span {...rootProps}>{props.children}</span>
+            </ComponentProvider>
+        );
     })
 );
 

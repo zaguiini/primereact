@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
+import { AngleRightIcon } from '@primereact/icons/angleright';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { AngleRightIcon } from '../icons/angleright';
 import { classNames, IconUtils, ObjectUtils } from '../utils/Utils';
 
 export const SlideMenuSub = React.memo((props) => {

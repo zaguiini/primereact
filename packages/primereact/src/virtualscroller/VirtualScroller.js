@@ -1,12 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMergeProps, useMountEffect, usePrevious, useResizeListener, useStyle, useUpdateEffect } from '@primereact/hooks';
+import { SpinnerIcon } from '@primereact/icons/spinner';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useEventListener, useMergeProps, useMountEffect, usePrevious, useResizeListener, useStyle, useUpdateEffect } from '../hooks/Hooks';
-import { SpinnerIcon } from '../icons/spinner';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useVirtualScroller } from './VirtualScroller.base';
 import { VirtualScrollerBase } from './VirtualScrollerBase';
 
 export const VirtualScroller = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const virtualscroller = useVirtualScroller(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = virtualscroller;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = VirtualScrollerBase.getProps(inProps, context);
@@ -779,11 +784,13 @@ export const VirtualScroller = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {content}
-                {spacer}
-                {loader}
-            </div>
+            <ComponentProvider value={virtualscroller}>
+                <div {...rootProps}>
+                    {content}
+                    {spacer}
+                    {loader}
+                </div>
+            </ComponentProvider>
         );
     })
 );

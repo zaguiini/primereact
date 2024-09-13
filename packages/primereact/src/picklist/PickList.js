@@ -1,15 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import PrimeReact, { FilterService, PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useUpdateEffect } from '../hooks/Hooks';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { usePickList } from './PickList.base';
 import { PickListBase } from './PickListBase';
 import { PickListControls } from './PickListControls';
 import { PickListSubList } from './PickListSubList';
 import { PickListTransferControls } from './PickListTransferControls';
 
 export const PickList = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const picklist = usePickList(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = picklist;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = PickListBase.getProps(inProps, context);
@@ -610,138 +614,140 @@ export const PickList = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {props.showSourceControls && (
-                    <PickListControls
+            <ComponentProvider value={picklist}>
+                <div {...rootProps}>
+                    {props.showSourceControls && (
+                        <PickListControls
+                            hostName="PickList"
+                            list={props.source}
+                            selection={sourceSelection}
+                            onReorder={onSourceReorder}
+                            className={cx('sourceControls')}
+                            dataKey={props.dataKey}
+                            moveUpIcon={props.moveUpIcon}
+                            moveTopIcon={props.moveTopIcon}
+                            moveDownIcon={props.moveDownIcon}
+                            moveBottomIcon={props.moveBottomIcon}
+                            ptm={ptm}
+                            cx={cx}
+                            unstyled={props.unstyled}
+                            metaData={metaData}
+                        />
+                    )}
+
+                    <PickListSubList
                         hostName="PickList"
-                        list={props.source}
+                        ref={sourceListElementRef}
+                        type="source"
+                        list={sourceList}
+                        parentId={attributeSelectorState}
                         selection={sourceSelection}
-                        onReorder={onSourceReorder}
-                        className={cx('sourceControls')}
+                        onSelectionChange={(e) => onSelectionChange(e, 'sourceSelection', props.onSourceSelectionChange)}
+                        onListKeyDown={(e) => onListKeyDown(e, 'source')}
+                        onListFocus={(e) => onListFocus(e, 'source')}
+                        onListBlur={(e) => onListBlur(e, 'source')}
+                        onOptionMouseDown={(index) => onOptionMouseDown(index, 'source')}
+                        onItemClick={(e) => onItemClick(e, 'source')}
+                        focusedOptionId={focused.source ? focusedOptionId : null}
+                        ariaActivedescendant={focused.source ? focusedOptionId : null}
+                        itemTemplate={sourceItemTemplate}
+                        header={props.sourceHeader}
+                        style={props.sourceStyle}
+                        className={cx('listSourceWrapper')}
+                        listClassName={cx('listSource')}
+                        metaKeySelection={props.metaKeySelection}
+                        tabIndex={props.tabIndex}
                         dataKey={props.dataKey}
-                        moveUpIcon={props.moveUpIcon}
-                        moveTopIcon={props.moveTopIcon}
-                        moveDownIcon={props.moveDownIcon}
-                        moveBottomIcon={props.moveBottomIcon}
+                        filterValue={sourceFilteredValue}
+                        onFilter={onFilter}
+                        showFilter={showSourceFilter}
+                        placeholder={props.sourceFilterPlaceholder}
+                        filterTemplate={props.sourceFilterTemplate}
+                        sourceFilterIcon={props.sourceFilterIcon}
                         ptm={ptm}
                         cx={cx}
-                        unstyled={props.unstyled}
-                        metaData={metaData}
+                        focusedList={focused}
+                        changeFocusedOptionIndex={changeFocusedOptionIndex}
+                        focusOnHover={props.focusOnHover}
                     />
-                )}
 
-                <PickListSubList
-                    hostName="PickList"
-                    ref={sourceListElementRef}
-                    type="source"
-                    list={sourceList}
-                    parentId={attributeSelectorState}
-                    selection={sourceSelection}
-                    onSelectionChange={(e) => onSelectionChange(e, 'sourceSelection', props.onSourceSelectionChange)}
-                    onListKeyDown={(e) => onListKeyDown(e, 'source')}
-                    onListFocus={(e) => onListFocus(e, 'source')}
-                    onListBlur={(e) => onListBlur(e, 'source')}
-                    onOptionMouseDown={(index) => onOptionMouseDown(index, 'source')}
-                    onItemClick={(e) => onItemClick(e, 'source')}
-                    focusedOptionId={focused.source ? focusedOptionId : null}
-                    ariaActivedescendant={focused.source ? focusedOptionId : null}
-                    itemTemplate={sourceItemTemplate}
-                    header={props.sourceHeader}
-                    style={props.sourceStyle}
-                    className={cx('listSourceWrapper')}
-                    listClassName={cx('listSource')}
-                    metaKeySelection={props.metaKeySelection}
-                    tabIndex={props.tabIndex}
-                    dataKey={props.dataKey}
-                    filterValue={sourceFilteredValue}
-                    onFilter={onFilter}
-                    showFilter={showSourceFilter}
-                    placeholder={props.sourceFilterPlaceholder}
-                    filterTemplate={props.sourceFilterTemplate}
-                    sourceFilterIcon={props.sourceFilterIcon}
-                    ptm={ptm}
-                    cx={cx}
-                    focusedList={focused}
-                    changeFocusedOptionIndex={changeFocusedOptionIndex}
-                    focusOnHover={props.focusOnHover}
-                />
-
-                <PickListTransferControls
-                    hostName="PickList"
-                    onTransfer={onTransfer}
-                    source={props.source}
-                    visibleSourceList={sourceList}
-                    target={props.target}
-                    breakpoint={props.breakpoint}
-                    visibleTargetList={targetList}
-                    sourceSelection={sourceSelection}
-                    targetSelection={targetSelection}
-                    dataKey={props.dataKey}
-                    moveToTargetIcon={props.moveToTargetIcon}
-                    moveAllToTargetIcon={props.moveAllToTargetIcon}
-                    moveToSourceIcon={props.moveToSourceIcon}
-                    moveAllToSourceIcon={props.moveAllToSourceIcon}
-                    ptm={ptm}
-                    cx={cx}
-                    unstyled={props.unstyled}
-                    metaData={metaData}
-                />
-
-                <PickListSubList
-                    hostName="PickList"
-                    ref={targetListElementRef}
-                    type="target"
-                    list={targetList}
-                    selection={targetSelection}
-                    parentId={attributeSelectorState}
-                    onSelectionChange={(e) => onSelectionChange(e, 'targetSelection', props.onTargetSelectionChange)}
-                    onListKeyDown={(e) => onListKeyDown(e, 'target')}
-                    onListFocus={(e) => onListFocus(e, 'target')}
-                    onListBlur={(e) => onListBlur(e, 'target')}
-                    onOptionMouseDown={(index) => onOptionMouseDown(index, 'target')}
-                    onItemClick={(e) => onItemClick(e, 'target')}
-                    focusedOptionId={focused.target ? focusedOptionId : null}
-                    ariaActivedescendant={focused.target ? focusedOptionId : null}
-                    itemTemplate={targetItemTemplate}
-                    header={props.targetHeader}
-                    style={props.targetStyle}
-                    className={cx('listTargetWrapper')}
-                    listClassName={cx('listWrapper')}
-                    metaKeySelection={props.metaKeySelection}
-                    tabIndex={props.tabIndex}
-                    dataKey={props.dataKey}
-                    filterValue={targetFilteredValue}
-                    onFilter={onFilter}
-                    showFilter={showTargetFilter}
-                    placeholder={props.targetFilterPlaceholder}
-                    filterTemplate={props.targetFilterTemplate}
-                    targetFilterIcon={props.targetFilterIcon}
-                    ptm={ptm}
-                    cx={cx}
-                    focusedList={focused}
-                    changeFocusedOptionIndex={changeFocusedOptionIndex}
-                    focusOnHover={props.focusOnHover}
-                />
-
-                {props.showTargetControls && (
-                    <PickListControls
+                    <PickListTransferControls
                         hostName="PickList"
-                        list={props.target}
-                        selection={targetSelection}
-                        onReorder={onTargetReorder}
-                        className={cx('targetControls')}
+                        onTransfer={onTransfer}
+                        source={props.source}
+                        visibleSourceList={sourceList}
+                        target={props.target}
+                        breakpoint={props.breakpoint}
+                        visibleTargetList={targetList}
+                        sourceSelection={sourceSelection}
+                        targetSelection={targetSelection}
                         dataKey={props.dataKey}
-                        moveUpIcon={props.moveUpIcon}
-                        moveTopIcon={props.moveTopIcon}
-                        moveDownIcon={props.moveDownIcon}
-                        moveBottomIcon={props.moveBottomIcon}
+                        moveToTargetIcon={props.moveToTargetIcon}
+                        moveAllToTargetIcon={props.moveAllToTargetIcon}
+                        moveToSourceIcon={props.moveToSourceIcon}
+                        moveAllToSourceIcon={props.moveAllToSourceIcon}
                         ptm={ptm}
                         cx={cx}
                         unstyled={props.unstyled}
                         metaData={metaData}
                     />
-                )}
-            </div>
+
+                    <PickListSubList
+                        hostName="PickList"
+                        ref={targetListElementRef}
+                        type="target"
+                        list={targetList}
+                        selection={targetSelection}
+                        parentId={attributeSelectorState}
+                        onSelectionChange={(e) => onSelectionChange(e, 'targetSelection', props.onTargetSelectionChange)}
+                        onListKeyDown={(e) => onListKeyDown(e, 'target')}
+                        onListFocus={(e) => onListFocus(e, 'target')}
+                        onListBlur={(e) => onListBlur(e, 'target')}
+                        onOptionMouseDown={(index) => onOptionMouseDown(index, 'target')}
+                        onItemClick={(e) => onItemClick(e, 'target')}
+                        focusedOptionId={focused.target ? focusedOptionId : null}
+                        ariaActivedescendant={focused.target ? focusedOptionId : null}
+                        itemTemplate={targetItemTemplate}
+                        header={props.targetHeader}
+                        style={props.targetStyle}
+                        className={cx('listTargetWrapper')}
+                        listClassName={cx('listWrapper')}
+                        metaKeySelection={props.metaKeySelection}
+                        tabIndex={props.tabIndex}
+                        dataKey={props.dataKey}
+                        filterValue={targetFilteredValue}
+                        onFilter={onFilter}
+                        showFilter={showTargetFilter}
+                        placeholder={props.targetFilterPlaceholder}
+                        filterTemplate={props.targetFilterTemplate}
+                        targetFilterIcon={props.targetFilterIcon}
+                        ptm={ptm}
+                        cx={cx}
+                        focusedList={focused}
+                        changeFocusedOptionIndex={changeFocusedOptionIndex}
+                        focusOnHover={props.focusOnHover}
+                    />
+
+                    {props.showTargetControls && (
+                        <PickListControls
+                            hostName="PickList"
+                            list={props.target}
+                            selection={targetSelection}
+                            onReorder={onTargetReorder}
+                            className={cx('targetControls')}
+                            dataKey={props.dataKey}
+                            moveUpIcon={props.moveUpIcon}
+                            moveTopIcon={props.moveTopIcon}
+                            moveDownIcon={props.moveDownIcon}
+                            moveBottomIcon={props.moveBottomIcon}
+                            ptm={ptm}
+                            cx={cx}
+                            unstyled={props.unstyled}
+                            metaData={metaData}
+                        />
+                    )}
+                </div>
+            </ComponentProvider>
         );
     })
 );

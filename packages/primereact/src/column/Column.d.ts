@@ -8,14 +8,14 @@
  * @module column
  *
  */
+import { CheckboxPassThroughOptions } from 'primereact/checkbox';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { FilterMatchMode } from '../api/api';
-import { CheckboxPassThroughOptions } from '../checkbox/checkbox';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { DataTablePassThroughOptions } from '../datatable/datatable';
 import { PassThroughOptions } from '../passthrough';
 import { RadioButtonPassThroughOptions } from '../radiobutton/radiobutton';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { IconType, PassThroughType } from '../utils/utils';
 
 export declare type ColumnPassThroughType<T> = PassThroughType<T, ColumnPassThroughMethodOptions>;

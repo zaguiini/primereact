@@ -1,9 +1,14 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMergeProps, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useEventListener, useMergeProps, useMountEffect } from '../hooks/Hooks';
+import { useDeferredContent } from './DeferredContent.base';
 import { DeferredContentBase } from './DeferredContentBase';
 
-export const DeferredContent = React.forwardRef((inProps, ref) => {
+export const DeferredContent = React.forwardRef((inProps, inRef) => {
+    const deferredcontent = useDeferredContent(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = deferredcontent;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = DeferredContentBase.getProps(inProps, context);
@@ -64,7 +69,11 @@ export const DeferredContent = React.forwardRef((inProps, ref) => {
         ptm('root')
     );
 
-    return <div {...rootProps}>{loadedState && props.children}</div>;
+    return (
+        <ComponentProvider value={deferredcontent}>
+            <div {...rootProps}>{loadedState && props.children}</div>
+        </ComponentProvider>
+    );
 });
 
 DeferredContent.displayName = 'DeferredContent';

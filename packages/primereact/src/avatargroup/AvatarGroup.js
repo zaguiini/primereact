@@ -5,7 +5,7 @@ import { useAvatarGroup } from './AvatarGroup.base';
 
 export const AvatarGroup = React.forwardRef((inProps, inRef) => {
     const avatargroup = useAvatarGroup(inProps, inRef);
-    const { props, ptmi, cx, ref } = avatargroup;
+    const { props, ptm, ptmi, cx, ref } = avatargroup;
 
     const rootProps = mergeProps(
         {

@@ -1,14 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { Checkbox } from 'primereact/checkbox';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { ariaLabel, PrimeReactContext } from '../api/Api';
-import { Checkbox } from '../checkbox/Checkbox';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Tooltip } from '../tooltip/Tooltip';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
+import { useMultiStateCheckbox } from './MultiStateCheckbox.base';
 import { MultiStateCheckboxBase } from './MultiStateCheckboxBase';
 
 export const MultiStateCheckbox = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const multistatecheckbox = useMultiStateCheckbox(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = multistatecheckbox;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MultiStateCheckboxBase.getProps(inProps, context);
@@ -196,13 +200,13 @@ export const MultiStateCheckbox = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={multiselectcheckbox}>
                 <div {...rootProps}>
                     <Checkbox {...checkboxProps} />
                     {focusedState && <span {...srOnlyAriaProps}>{ariaValueLabel}</span>}
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

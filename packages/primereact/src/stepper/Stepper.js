@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
 import React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { UniqueComponentId, classNames, ObjectUtils } from '../utils/Utils';
+import { classNames, ObjectUtils, UniqueComponentId } from '../utils/Utils';
+import { useStepper } from './Stepper.base';
 import { StepperBase } from './StepperBase';
 import { StepperContent } from './StepperContent';
 import { StepperHeader } from './StepperHeader';
 import { StepperSeparator } from './StepperSeparator';
 
 export const Stepper = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const stepper = useStepper(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = stepper;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = StepperBase.getProps(inProps, context);
@@ -341,12 +345,14 @@ export const Stepper = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {start && <div {...startProps}>{start}</div>}
-                {props.orientation === 'horizontal' && createHorizontal()}
-                {props.orientation === 'vertical' && createVertical()}
-                {end && <div {...endProps}>{end}</div>}
-            </div>
+            <ComponentProvider value={stepper}>
+                <div {...rootProps}>
+                    {start && <div {...startProps}>{start}</div>}
+                    {props.orientation === 'horizontal' && createHorizontal()}
+                    {props.orientation === 'vertical' && createVertical()}
+                    {end && <div {...endProps}>{end}</div>}
+                </div>
+            </ComponentProvider>
         );
     })
 );

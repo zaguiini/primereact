@@ -1,12 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { InputText } from 'primereact/inputtext';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useMountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { InputText } from '../inputtext/InputText';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
+import { useInputMask } from './InputMask.base';
 import { InputMaskBase } from './InputMaskBase';
 
 export const InputMask = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const inputmask = useInputMask(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputmask;
+
         const context = React.useContext(PrimeReactContext);
         const props = InputMaskBase.getProps(inProps, context);
         const elementRef = React.useRef(null);
@@ -627,34 +632,36 @@ export const InputMask = React.memo(
         const className = classNames(props.className, cx('root', { context }));
 
         return (
-            <InputText
-                ref={elementRef}
-                autoFocus={props.autoFocus}
-                id={props.id}
-                type={props.type}
-                name={props.name}
-                style={props.style}
-                className={className}
-                {...otherProps}
-                placeholder={props.placeholder}
-                size={props.size}
-                maxLength={props.maxLength}
-                tabIndex={props.tabIndex}
-                disabled={props.disabled}
-                readOnly={props.readOnly}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onKeyDown={onKeyDown}
-                onKeyPress={onKeyPress}
-                onInput={onInput}
-                onPaste={(e) => handleInputChange(e, true)}
-                required={props.required}
-                tooltip={props.tooltip}
-                tooltipOptions={props.tooltipOptions}
-                pt={props.pt}
-                unstyled={props.unstyled}
-                __parentMetadata={{ parent: metaData }}
-            />
+            <ComponentProvider value={inputmask}>
+                <InputText
+                    ref={elementRef}
+                    autoFocus={props.autoFocus}
+                    id={props.id}
+                    type={props.type}
+                    name={props.name}
+                    style={props.style}
+                    className={className}
+                    {...otherProps}
+                    placeholder={props.placeholder}
+                    size={props.size}
+                    maxLength={props.maxLength}
+                    tabIndex={props.tabIndex}
+                    disabled={props.disabled}
+                    readOnly={props.readOnly}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onKeyDown={onKeyDown}
+                    onKeyPress={onKeyPress}
+                    onInput={onInput}
+                    onPaste={(e) => handleInputChange(e, true)}
+                    required={props.required}
+                    tooltip={props.tooltip}
+                    tooltipOptions={props.tooltipOptions}
+                    pt={props.pt}
+                    unstyled={props.unstyled}
+                    __parentMetadata={{ parent: metaData }}
+                />
+            </ComponentProvider>
         );
     })
 );

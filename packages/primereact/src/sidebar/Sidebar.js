@@ -1,15 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { TimesIcon } from '@primereact/icons/times';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { TimesIcon } from '../icons/times';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useSidebar } from './Sidebar.base';
 import { SidebarBase } from './SidebarBase';
 
-export const Sidebar = React.forwardRef((inProps, ref) => {
+export const Sidebar = React.forwardRef((inProps, inRef) => {
+    const sidebar = useSidebar(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = sidebar;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = SidebarBase.getProps(inProps, context);
@@ -303,7 +307,11 @@ export const Sidebar = React.forwardRef((inProps, ref) => {
     const createSidebar = () => {
         const element = inProps?.content ? createTemplateElement() : createElement();
 
-        return <Portal element={element} appendTo={props.appendTo} visible />;
+        return (
+            <ComponentProvider value={sidebar}>
+                <Portal element={element} appendTo={props.appendTo} visible />
+            </ComponentProvider>
+        );
     };
 
     return maskVisibleState && createSidebar();

@@ -1,20 +1,24 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { EyeIcon } from '@primereact/icons/eye';
+import { EyeSlashIcon } from '@primereact/icons/eyeslash';
+import { CSSTransition } from 'primereact/csstransition';
+import { IconField } from 'primereact/iconfield';
+import { InputIcon } from 'primereact/inputicon';
+import { InputText } from 'primereact/inputtext';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, ariaLabel, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { IconField } from '../iconfield/IconField';
-import { EyeIcon } from '../icons/eye';
-import { EyeSlashIcon } from '../icons/eyeslash';
-import { InputIcon } from '../inputicon/InputIcon';
-import { InputText } from '../inputtext/InputText';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { usePassword } from './Password.base';
 import { PasswordBase } from './PasswordBase';
 
 export const Password = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const password = usePassword(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = password;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = PasswordBase.getProps(inProps, context);
@@ -489,10 +493,12 @@ export const Password = React.memo(
         }
 
         return (
-            <div {...rootProps}>
-                {input}
-                {panel}
-            </div>
+            <ComponentProvider value={password}>
+                <div {...rootProps}>
+                    {input}
+                    {panel}
+                </div>
+            </ComponentProvider>
         );
     })
 );

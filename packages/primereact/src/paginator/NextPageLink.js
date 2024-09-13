@@ -1,8 +1,8 @@
+import { useMergeProps } from '@primereact/hooks';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { ariaLabel, PrimeReactContext } from '../api/Api';
-import { useMergeProps } from '../hooks/Hooks';
-import { AngleRightIcon } from '../icons/angleright';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, IconUtils, ObjectUtils } from '../utils/Utils';
 import { NextPageLinkBase } from './PaginatorBase';
 

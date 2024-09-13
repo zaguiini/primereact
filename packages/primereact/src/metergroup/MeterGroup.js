@@ -1,11 +1,15 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { ObjectUtils, classNames } from '../utils/Utils';
+import { useMeterGroup } from './MeterGroup.base';
 import { MeterGroupBase } from './MeterGroupBase';
 
-export const MeterGroup = (inProps) => {
+export const MeterGroup = (inProps, inRef) => {
+    const metergroup = useMeterGroup(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = metergroup;
+
     const context = React.useContext(PrimeReactContext);
     const props = MeterGroupBase.getProps(inProps, context);
     const { values, min, max, orientation, labelPosition, start, end, meter, labelList } = props;
@@ -151,12 +155,16 @@ export const MeterGroup = (inProps) => {
     const labelElement = ObjectUtils.getJSXElement(labelListContent, { values, totalPercent });
 
     return (
-        <div {...rootProps} role="meter" aria-valuemin={min} aria-valuemax={max} aria-valuenow={totalPercent}>
-            {labelPosition === 'start' && labelElement}
-            {start && ObjectUtils.getJSXElement(start, templateProps)}
-            {createMeters()}
-            {end && ObjectUtils.getJSXElement(end, templateProps)}
-            {labelPosition === 'end' && labelElement}
-        </div>
+        <ComponentProvider value={badge}>
+            <div {...rootProps} role="meter" aria-valuemin={min} aria-valuemax={max} aria-valuenow={totalPercent}>
+                {labelPosition === 'start' && labelElement}
+                {start && ObjectUtils.getJSXElement(start, templateProps)}
+                {createMeters()}
+                {end && ObjectUtils.getJSXElement(end, templateProps)}
+                {labelPosition === 'end' && labelElement}
+            </div>
+        </ComponentProvider>
     );
 };
+
+MeterGroup.displayName = 'MeterGroup';

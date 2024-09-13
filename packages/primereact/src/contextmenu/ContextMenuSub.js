@@ -1,8 +1,8 @@
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { CSSTransition } from 'primereact/csstransition';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useUpdateEffect } from '../hooks/Hooks';
-import { AngleRightIcon } from '../icons/angleright';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 
 export const ContextMenuSub = React.memo(

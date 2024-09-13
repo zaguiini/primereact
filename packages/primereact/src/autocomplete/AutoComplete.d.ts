@@ -7,15 +7,15 @@
  * @module autocomplete
  *
  */
+import { ButtonPassThroughOptions } from 'primereact/button';
+import { InputText, InputTextPassThroughOptions } from 'primereact/inputtext';
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { CSSTransitionProps as ReactCSSTransitionProps } from 'react-transition-group/CSSTransition';
-import { ButtonPassThroughOptions } from '../button/button';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { CSSTransitionProps } from '../csstransition';
-import { InputText, InputTextPassThroughOptions } from '../inputtext/inputtext';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormEvent } from '../ts-helpers';
 import { IconType, PassThroughType } from '../utils';
 import { VirtualScroller, VirtualScrollerPassThroughOptions, VirtualScrollerProps } from '../virtualscroller';

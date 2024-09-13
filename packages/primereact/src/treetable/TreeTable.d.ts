@@ -7,15 +7,15 @@
  * @module treetable
  *
  */
+import { InputTextPassThroughOptions } from 'primereact/inputtext';
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
 import * as React from 'react';
 import { CSSProperties } from 'react';
 import { Column, ColumnPassThroughOptions } from '../column';
 import { ComponentHooks } from '../componentbase/componentbase';
-import { InputTextPassThroughOptions } from '../inputtext/inputtext';
 import { PaginatorPassThroughOptions, PaginatorTemplate } from '../paginator';
 import { PassThroughOptions } from '../passthrough';
 import { RowPassThroughOptions } from '../row/row';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
 import { TreeNode } from '../treenode';
 import { IconType, PassThroughType } from '../utils/utils';
 

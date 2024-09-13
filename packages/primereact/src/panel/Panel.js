@@ -1,3 +1,4 @@
+import { ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
@@ -11,8 +12,6 @@ import { usePanel } from './Panel.base';
 export const Panel = React.forwardRef((inProps, inRef) => {
     const [idState, setIdState] = React.useState(inProps.id);
     const [collapsedState, setCollapsedState] = React.useState(inProps.collapsed);
-    const panel = usePanel(inProps, inRef, state);
-    const { props, attrs, ptm, cx, ref } = panel;
     const elementRef = React.useRef(null);
     const contentRef = React.useRef(null);
     const collapsed = props.toggleable ? (props.onToggle ? props.collapsed : collapsedState) : false;
@@ -22,6 +21,8 @@ export const Panel = React.forwardRef((inProps, inRef) => {
         id: idState,
         collapsed
     };
+    const panel = usePanel(inProps, inRef, state);
+    const { props, attrs, ptm, cx, ref } = panel;
 
     const toggle = (event) => {
         if (!props.toggleable) {
@@ -250,11 +251,13 @@ export const Panel = React.forwardRef((inProps, inRef) => {
     const footer = createFooter();
 
     return (
-        <div {...rootProps}>
-            {header}
-            {content}
-            {footer}
-        </div>
+        <ComponentProvider value={panel}>
+            <div {...rootProps}>
+                {header}
+                {content}
+                {footer}
+            </div>
+        </ComponentProvider>
     );
 });
 

@@ -1,7 +1,7 @@
+import { useMergeProps } from '@primereact/hooks';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { ariaLabel, PrimeReactContext } from '../api/Api';
-import { useMergeProps } from '../hooks/Hooks';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, ObjectUtils } from '../utils/Utils';
 import { PageLinksBase } from './PaginatorBase';
 

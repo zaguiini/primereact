@@ -1,11 +1,15 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { classNames } from '../utils/Utils';
+import { useDivider } from './Divider.base';
 import { DividerBase } from './DividerBase';
 
-export const Divider = React.forwardRef((inProps, ref) => {
+export const Divider = React.forwardRef((inProps, inRef) => {
+    const divider = useDivider(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = divider;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = DividerBase.getProps(inProps, context);
@@ -45,9 +49,11 @@ export const Divider = React.forwardRef((inProps, ref) => {
     );
 
     return (
-        <div {...rootProps}>
-            <div {...contentProps}>{props.children}</div>
-        </div>
+        <ComponentProvider value={divider}>
+            <div {...rootProps}>
+                <div {...contentProps}>{props.children}</div>
+            </div>
+        </ComponentProvider>
     );
 });
 

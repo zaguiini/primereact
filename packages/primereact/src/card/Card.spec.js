@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
+import { Button } from 'primereact/button';
 import { snapshot } from '../../test';
 import { PrimeReactProvider } from '../api/Api';
-import { Button } from '../button/Button';
 import { Card } from './Card';
 
 const header = <img alt="Card" src="/images/usercard.png" />;

@@ -1,20 +1,24 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { SearchIcon } from '@primereact/icons/search';
+import { TimesIcon } from '@primereact/icons/times';
+import { OverlayService } from 'primereact/overlayservice';
+import { Ripple } from 'primereact/ripple';
+import { Tooltip } from 'primereact/tooltip';
+import { Tree } from 'primereact/tree';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { SearchIcon } from '../icons/search';
-import { TimesIcon } from '../icons/times';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Ripple } from '../ripple/Ripple';
-import { Tooltip } from '../tooltip/Tooltip';
-import { Tree } from '../tree/Tree';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useTreeSelect } from './TreeSelect.base';
 import { TreeSelectBase } from './TreeSelectBase';
 import { TreeSelectPanel } from './TreeSelectPanel';
 
 export const TreeSelect = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const treeselect = useTreeSelect(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = treeselect;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = TreeSelectBase.getProps(inProps, context);
@@ -880,37 +884,39 @@ export const TreeSelect = React.memo(
         const footer = createFooter();
 
         return (
-            <div {...rootProps}>
-                {keyboardHelper}
-                {labelElement}
-                {clearIcon}
-                {dropdownIcon}
-                <TreeSelectPanel
-                    hostName="TreeSelect"
-                    ref={overlayRef}
-                    appendTo={props.appendTo}
-                    panelStyle={props.panelStyle}
-                    panelClassName={props.panelClassName}
-                    scrollHeight={props.scrollHeight}
-                    onClick={onOverlayClick}
-                    header={header}
-                    hide={hide}
-                    footer={footer}
-                    firstHiddenFocusableElementOnOverlay={<span {...firstHiddenFocusableElementOnOverlayProps} />}
-                    lastHiddenFocusableElementOnOverlay={<span {...lastHiddenFocusableElementOnOverlayProps} />}
-                    transitionOptions={props.transitionOptions}
-                    in={overlayVisibleState}
-                    onEnter={onOverlayEnter}
-                    onEntered={onOverlayEntered}
-                    onExit={onOverlayExit}
-                    onExited={onOverlayExited}
-                    ptm={ptm}
-                    cx={cx}
-                >
-                    {content}
-                </TreeSelectPanel>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </div>
+            <ComponentProvider value={treeselect}>
+                <div {...rootProps}>
+                    {keyboardHelper}
+                    {labelElement}
+                    {clearIcon}
+                    {dropdownIcon}
+                    <TreeSelectPanel
+                        hostName="TreeSelect"
+                        ref={overlayRef}
+                        appendTo={props.appendTo}
+                        panelStyle={props.panelStyle}
+                        panelClassName={props.panelClassName}
+                        scrollHeight={props.scrollHeight}
+                        onClick={onOverlayClick}
+                        header={header}
+                        hide={hide}
+                        footer={footer}
+                        firstHiddenFocusableElementOnOverlay={<span {...firstHiddenFocusableElementOnOverlayProps} />}
+                        lastHiddenFocusableElementOnOverlay={<span {...lastHiddenFocusableElementOnOverlayProps} />}
+                        transitionOptions={props.transitionOptions}
+                        in={overlayVisibleState}
+                        onEnter={onOverlayEnter}
+                        onEntered={onOverlayEntered}
+                        onExit={onOverlayExit}
+                        onExited={onOverlayExited}
+                        ptm={ptm}
+                        cx={cx}
+                    >
+                        {content}
+                    </TreeSelectPanel>
+                    {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                </div>
+            </ComponentProvider>
         );
     })
 );

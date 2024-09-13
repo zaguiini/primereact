@@ -1,15 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { TimesIcon } from '@primereact/icons/times';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext, ariaLabel } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { TimesIcon } from '../icons/times';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useTriStateCheckbox } from './TriStateCheckbox.base';
 import { TriStateCheckboxBase } from './TriStateCheckboxBase';
 
 export const TriStateCheckbox = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const tristatecheckbox = useTriStateCheckbox(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = tristatecheckbox;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = TriStateCheckboxBase.getProps(inProps, context);
@@ -160,14 +164,14 @@ export const TriStateCheckbox = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={tristatecheckbox}>
                 <div id={props.id} ref={elementRef} {...rootProps}>
                     <input {...inputProps} />
                     <span {...srOnlyAriaProps}>{ariaValueLabel}</span>
                     <div {...boxProps}>{checkIcon}</div>
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

@@ -7,6 +7,8 @@
  * @module datatable
  *
  */
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { VirtualScroller, VirtualScrollerPassThroughOptions, VirtualScrollerProps } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { Column, ColumnPassThroughOptions, ColumnProps } from '../column';
 import { ColumnGroupPassThroughOptions } from '../columngroup/columngroup';
@@ -14,9 +16,7 @@ import { ComponentHooks } from '../componentbase/componentbase';
 import { PaginatorPassThroughOptions, PaginatorTemplate } from '../paginator';
 import { PassThroughOptions } from '../passthrough';
 import { RowPassThroughOptions } from '../row/row';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
 import { IconType, PassThroughType } from '../utils/utils';
-import { VirtualScroller, VirtualScrollerPassThroughOptions, VirtualScrollerProps } from '../virtualscroller/virtualscroller';
 
 type DataTableHeaderTemplateType<TValue extends DataTableValueArray> = React.ReactNode | ((options: DataTableHeaderTemplateOptions<TValue>) => React.ReactNode);
 

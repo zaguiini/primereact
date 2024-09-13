@@ -1,13 +1,14 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useDock } from './Dock.base';
 import { DockBase } from './DockBase';
 
 export const Dock = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
         const [currentIndexState, setCurrentIndexState] = React.useState(-3);
         const [focused, setFocused] = React.useState(false);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
@@ -22,6 +23,10 @@ export const Dock = React.memo(
                 currentIndex: currentIndexState
             }
         });
+
+        const dock = useDock(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = dock;
+
         const elementRef = React.useRef(null);
         const listRef = React.useRef(null);
 
@@ -343,13 +348,15 @@ export const Dock = React.memo(
         );
 
         return (
-            <div id={props.id} ref={elementRef} {...rootProps}>
-                <div {...containerProps}>
-                    {header}
-                    {list}
-                    {footer}
+            <ComponentProvider value={dock}>
+                <div id={props.id} ref={elementRef} {...rootProps}>
+                    <div {...containerProps}>
+                        {header}
+                        {list}
+                        {footer}
+                    </div>
                 </div>
-            </div>
+            </ComponentProvider>
         );
     })
 );

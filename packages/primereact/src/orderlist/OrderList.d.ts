@@ -7,8 +7,8 @@
  * @module orderlist
  *
  */
+import { ButtonPassThroughOptions } from 'primereact/button';
 import * as React from 'react';
-import { ButtonPassThroughOptions } from '../button/button';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { PassThroughOptions } from '../passthrough';
 import { IconType, PassThroughType } from '../utils/utils';

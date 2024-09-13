@@ -1,18 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { CSSTransition } from 'primereact/csstransition';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { SpinnerIcon } from '../icons/spinner';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useCascadeSelect } from './CascadeSelect.base';
 import { CascadeSelectBase } from './CascadeSelectBase';
 import { CascadeSelectSub } from './CascadeSelectSub';
 
 export const CascadeSelect = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const cascadeselect = useCascadeSelect(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = cascadeselect;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = CascadeSelectBase.getProps(inProps, context);
@@ -494,7 +498,7 @@ export const CascadeSelect = React.memo(
         const ariaProps = ObjectUtils.reduceKeys(otherProps, DomHandler.ARIA_PROPS);
         const element = createElement();
 
-        return element;
+        return <ComponentProvider value={cascadeselect}>{element}</ComponentProvider>;
     })
 );
 

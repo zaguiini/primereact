@@ -1,14 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useCheckbox } from './Checkbox.base';
 import { CheckboxBase } from './CheckboxBase';
 
 export const Checkbox = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const checkbox = useCheckbox(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = checkbox;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = CheckboxBase.getProps(inProps, context);
@@ -167,13 +171,13 @@ export const Checkbox = React.memo(
         };
 
         return (
-            <>
+            <ComponentProvider value={checkbox}>
                 <div ref={elementRef} {...rootProps}>
                     {createInputElement()}
                     {createBoxElement()}
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

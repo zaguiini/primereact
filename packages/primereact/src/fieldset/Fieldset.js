@@ -1,15 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { MinusIcon } from '@primereact/icons/minus';
+import { PlusIcon } from '@primereact/icons/plus';
+import { CSSTransition } from 'primereact/csstransition';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { MinusIcon } from '../icons/minus';
-import { PlusIcon } from '../icons/plus';
-import { Ripple } from '../ripple/Ripple';
 import { IconUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useFieldset } from './Fieldset.base';
 import { FieldsetBase } from './FieldsetBase';
 
-export const Fieldset = React.forwardRef((inProps, ref) => {
+export const Fieldset = React.forwardRef((inProps, inRef) => {
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = FieldsetBase.getProps(inProps, context);
@@ -20,6 +21,8 @@ export const Fieldset = React.forwardRef((inProps, ref) => {
     const contentRef = React.useRef(null);
     const headerId = idState + '_header';
     const contentId = idState + '_content';
+    const fieldset = useFieldset(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = fieldset;
 
     const { ptm, cx, isUnstyled } = FieldsetBase.setMetaData({
         props,
@@ -210,10 +213,12 @@ export const Fieldset = React.forwardRef((inProps, ref) => {
     const content = createContent();
 
     return (
-        <fieldset {...rootProps}>
-            {legend}
-            {content}
-        </fieldset>
+        <ComponentProvider value={fieldset}>
+            <fieldset {...rootProps}>
+                {legend}
+                {content}
+            </fieldset>
+        </ComponentProvider>
     );
 });
 

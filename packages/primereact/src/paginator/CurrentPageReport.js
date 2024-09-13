@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useMergeProps } from '../hooks/Hooks';
 import { ObjectUtils } from '../utils/Utils';
 import { CurrentPageReportBase } from './PaginatorBase';
 

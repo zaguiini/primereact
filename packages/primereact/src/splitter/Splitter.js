@@ -1,14 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMergeProps, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMergeProps, useMountEffect } from '../hooks/Hooks';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useSplitter } from './Splitter.base';
 import { SplitterBase, SplitterPanelBase } from './SplitterBase';
 
 export const SplitterPanel = () => {};
 
 export const Splitter = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const splitter = useSplitter(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = splitter;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = SplitterBase.getProps(inProps, context);
@@ -481,9 +485,11 @@ export const Splitter = React.memo(
         const panels = createPanels();
 
         return (
-            <div ref={elementRef} {...rootProps}>
-                {panels}
-            </div>
+            <ComponentProvider value={splitter}>
+                <div ref={elementRef} {...rootProps}>
+                    {panels}
+                </div>
+            </ComponentProvider>
         );
     })
 );

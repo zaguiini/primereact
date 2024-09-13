@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
+import { SearchIcon } from '@primereact/icons/search';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { SearchIcon } from '../icons/search';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { PickListItem } from './PickListItem';
 

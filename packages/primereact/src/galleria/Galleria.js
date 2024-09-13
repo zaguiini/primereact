@@ -1,18 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useInterval, useMergeProps, useUnmountEffect } from '@primereact/hooks';
+import { TimesIcon } from '@primereact/icons/times';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useInterval, useMergeProps, useUnmountEffect, ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey } from '../hooks/Hooks';
-import { TimesIcon } from '../icons/times';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useGalleria } from './Galleria.base';
 import { GalleriaBase } from './GalleriaBase';
 import { GalleriaItem } from './GalleriaItem';
 import { GalleriaThumbnails } from './GalleriaThumbnails';
 
 export const Galleria = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const galleria = useGalleria(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = galleria;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = GalleriaBase.getProps(inProps, context);
@@ -337,7 +341,7 @@ export const Galleria = React.memo(
                 return <Portal element={galleriaWrapper} />;
             }
 
-            return element;
+            return <ComponentProvider value={galleria}>{element}</ComponentProvider>;
         };
 
         return ObjectUtils.isNotEmpty(props.value) && createGalleria();

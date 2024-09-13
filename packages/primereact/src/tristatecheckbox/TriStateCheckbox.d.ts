@@ -7,8 +7,8 @@
  * @module tristatecheckbox
  *
  */
+import { CheckboxPassThroughType } from 'primereact/checkbox';
 import * as React from 'react';
-import { CheckboxPassThroughType } from '../checkbox/checkbox';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { PassThroughOptions } from '../passthrough';
 import { TooltipPassThroughOptions } from '../tooltip/tooltip';

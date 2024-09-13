@@ -1,14 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import PrimeReact, { FilterService, PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '../hooks/Hooks';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useOrderList } from './OrderList.base';
 import { OrderListBase } from './OrderListBase';
 import { OrderListControls } from './OrderListControls';
 import { OrderListSubList } from './OrderListSubList';
 
 export const OrderList = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const orderlist = useOrderList(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = orderlist;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = OrderListBase.getProps(inProps, context);
@@ -436,57 +440,59 @@ export const OrderList = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                <OrderListControls
-                    hostName="OrderList"
-                    value={visibleList}
-                    selection={selectionState}
-                    onReorder={onReorder}
-                    dataKey={props.dataKey}
-                    moveUpIcon={props.moveUpIcon}
-                    moveTopIcon={props.moveTopIcon}
-                    moveDownIcon={props.moveDownIcon}
-                    moveBottomIcon={props.moveBottomIcon}
-                    ptm={ptm}
-                    cx={cx}
-                    unstyled={props.unstyled}
-                    metaData={metaData}
-                />
-                <OrderListSubList
-                    ref={listElementRef}
-                    hostName="OrderList"
-                    {...props}
-                    focused={focused}
-                    ariaLabel={props.ariaLabel}
-                    ariaLabelledBy={props.ariaLabelledBy}
-                    value={visibleList}
-                    selection={selectionState}
-                    onItemClick={onItemClick}
-                    onOptionMouseDown={onOptionMouseDown}
-                    focusedOptionId={focusedOptionId}
-                    onListKeyDown={onListKeyDown}
-                    onListFocus={onListFocus}
-                    onListBlur={onListBlur}
-                    onFilterInputChange={onFilterInputChange}
-                    itemTemplate={props.itemTemplate}
-                    filter={props.filter}
-                    onFilter={onFilter}
-                    resetFilter={resetFilter}
-                    filterTemplate={props.filterTemplate}
-                    header={props.header}
-                    parentId={attributeSelectorState}
-                    listStyle={props.listStyle}
-                    dataKey={props.dataKey}
-                    dragdrop={props.dragdrop}
-                    onChange={props.onChange}
-                    tabIndex={props.tabIndex}
-                    filterIcon={props.filterIcon}
-                    isUnstyled={isUnstyled}
-                    ptm={ptm}
-                    cx={cx}
-                    changeFocusedOptionIndex={changeFocusedOptionIndex}
-                />
-            </div>
+            <ComponentProvider value={orderlist}>
+                <div {...rootProps}>
+                    <OrderListControls
+                        hostName="OrderList"
+                        value={visibleList}
+                        selection={selectionState}
+                        onReorder={onReorder}
+                        dataKey={props.dataKey}
+                        moveUpIcon={props.moveUpIcon}
+                        moveTopIcon={props.moveTopIcon}
+                        moveDownIcon={props.moveDownIcon}
+                        moveBottomIcon={props.moveBottomIcon}
+                        ptm={ptm}
+                        cx={cx}
+                        unstyled={props.unstyled}
+                        metaData={metaData}
+                    />
+                    <OrderListSubList
+                        ref={listElementRef}
+                        hostName="OrderList"
+                        {...props}
+                        focused={focused}
+                        ariaLabel={props.ariaLabel}
+                        ariaLabelledBy={props.ariaLabelledBy}
+                        value={visibleList}
+                        selection={selectionState}
+                        onItemClick={onItemClick}
+                        onOptionMouseDown={onOptionMouseDown}
+                        focusedOptionId={focusedOptionId}
+                        onListKeyDown={onListKeyDown}
+                        onListFocus={onListFocus}
+                        onListBlur={onListBlur}
+                        onFilterInputChange={onFilterInputChange}
+                        itemTemplate={props.itemTemplate}
+                        filter={props.filter}
+                        onFilter={onFilter}
+                        resetFilter={resetFilter}
+                        filterTemplate={props.filterTemplate}
+                        header={props.header}
+                        parentId={attributeSelectorState}
+                        listStyle={props.listStyle}
+                        dataKey={props.dataKey}
+                        dragdrop={props.dragdrop}
+                        onChange={props.onChange}
+                        tabIndex={props.tabIndex}
+                        filterIcon={props.filterIcon}
+                        isUnstyled={isUnstyled}
+                        ptm={ptm}
+                        cx={cx}
+                        changeFocusedOptionIndex={changeFocusedOptionIndex}
+                    />
+                </div>
+            </ComponentProvider>
         );
     })
 );

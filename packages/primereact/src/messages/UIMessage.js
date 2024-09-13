@@ -1,14 +1,13 @@
+import { useMergeProps, useTimeout } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { ExclamationTriangleIcon } from '@primereact/icons/exclamationtriangle';
+import { InfoCircleIcon } from '@primereact/icons/infocircle';
+import { TimesIcon } from '@primereact/icons/times';
+import { TimesCircleIcon } from '@primereact/icons/timescircle';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { localeOption } from '../api/Api';
-import { useTimeout } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
-import { ExclamationTriangleIcon } from '../icons/exclamationtriangle';
-import { InfoCircleIcon } from '../icons/infocircle';
-import { TimesIcon } from '../icons/times';
-import { TimesCircleIcon } from '../icons/timescircle';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, IconUtils } from '../utils/Utils';
-import { useMergeProps } from '../hooks/Hooks';
 
 export const UIMessage = React.memo(
     React.forwardRef((props, ref) => {

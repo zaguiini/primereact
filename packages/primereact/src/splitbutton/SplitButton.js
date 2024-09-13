@@ -1,17 +1,21 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { Button } from 'primereact/button';
+import { OverlayService } from 'primereact/overlayservice';
+import { TieredMenu } from 'primereact/tieredmenu';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { TieredMenu } from '../tieredmenu/TieredMenu';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useSplitButton } from './SplitButton.base';
 import { SplitButtonBase } from './SplitButtonBase';
 
 export const SplitButton = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const splitbutton = useSplitButton(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = splitbutton;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = SplitButtonBase.getProps(inProps, context);
@@ -142,7 +146,7 @@ export const SplitButton = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={splitbutton}>
                 <div {...rootProps}>
                     <Button
                         ref={defaultButtonRef}
@@ -210,7 +214,7 @@ export const SplitButton = React.memo(
                     />
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

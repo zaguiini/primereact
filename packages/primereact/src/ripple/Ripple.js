@@ -1,3 +1,4 @@
+import { ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { useRipple } from './Ripple.base';
@@ -6,7 +7,7 @@ export const Ripple = React.memo(
     React.forwardRef((inProps, inRef) => {
         const [isMounted, setMounted] = React.useState(false);
         const ripple = useRipple(inProps, inRef);
-        const { props, ptmi, cx, ref } = ripple;
+        const { props, ptm, ptmi, cx, ref } = ripple;
         const inkRef = React.useRef(null);
         const targetRef = React.useRef(null);
         // @todo
@@ -109,7 +110,11 @@ export const Ripple = React.memo(
             ptmi('root')
         );
 
-        return <span role="presentation" ref={inkRef} {...rootProps} onAnimationEnd={onAnimationEnd} />;
+        return (
+            <ComponentProvider value={ripple}>
+                <span role="presentation" ref={inkRef} {...rootProps} onAnimationEnd={onAnimationEnd} />
+            </ComponentProvider>
+        );
     })
 );
 

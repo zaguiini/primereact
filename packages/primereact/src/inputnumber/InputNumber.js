@@ -1,17 +1,21 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { AngleDownIcon } from '@primereact/icons/angledown';
+import { AngleUpIcon } from '@primereact/icons/angleup';
+import { InputText } from 'primereact/inputtext';
+import { Ripple } from 'primereact/ripple';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { AngleDownIcon } from '../icons/angledown';
-import { AngleUpIcon } from '../icons/angleup';
-import { InputText } from '../inputtext/InputText';
-import { Ripple } from '../ripple/Ripple';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useInputNumber } from './InputNumber.base';
 import { InputNumberBase } from './InputNumberBase';
 
 export const InputNumber = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const inputnumber = useInputNumber(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputnumber;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = InputNumberBase.getProps(inProps, context);
@@ -1309,13 +1313,13 @@ export const InputNumber = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={inputnumber}>
                 <span ref={elementRef} {...rootProps}>
                     {inputElement}
                     {buttonGroup}
                 </span>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

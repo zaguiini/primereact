@@ -1,5 +1,5 @@
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
 import { DomHandler, ObjectUtils } from '../utils/Utils';
 
 export const TreeTableScrollableView = React.memo((props) => {

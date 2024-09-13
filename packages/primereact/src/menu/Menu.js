@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect } from '../hooks/Hooks';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useMenu } from './Menu.base';
 import { MenuBase } from './MenuBase';
 
 export const Menu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const menu = useMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = menu;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MenuBase.getProps(inProps, context);
@@ -493,7 +497,7 @@ export const Menu = React.memo(
 
         const element = createElement();
 
-        return props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element;
+        return <ComponentProvider value={menu}>{props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}</ComponentProvider>;
     })
 );
 

@@ -7,12 +7,12 @@
  * @module radiobutton
  *
  */
+import { CheckboxPassThroughType } from 'primereact/checkbox';
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
-import { CheckboxPassThroughType } from '../checkbox/checkbox';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormEvent } from '../ts-helpers';
 import { PassThroughType } from '../utils/utils';
 

@@ -1,41 +1,35 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { TimesCircleIcon } from '@primereact/icons/timescircle';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { OverlayService } from 'primereact/overlayservice';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { SpinnerIcon } from '../icons/spinner';
-import { TimesCircleIcon } from '../icons/timescircle';
-import { InputText } from '../inputtext/InputText';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Tooltip } from '../tooltip/Tooltip';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useAutoComplete } from './AutoComplete.base';
 import { AutoCompleteBase } from './AutoCompleteBase';
 import { AutoCompletePanel } from './AutoCompletePanel';
 
 export const AutoComplete = React.memo(
-    React.forwardRef((inProps, ref) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = AutoCompleteBase.getProps(inProps, context);
+    React.forwardRef((inProps, inRef) => {
         const [idState, setIdState] = React.useState(props.id);
         const [searchingState, setSearchingState] = React.useState(false);
         const [focusedState, setFocusedState] = React.useState(false);
         const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
-
-        const metaData = {
-            props,
-            state: {
-                id: idState,
-                searching: searchingState,
-                focused: focusedState,
-                overlayVisible: overlayVisibleState
-            }
+        const state = {
+            id: idState,
+            searching: searchingState,
+            focused: focusedState,
+            overlayVisible: overlayVisibleState
         };
 
-        const { ptm, cx, sx, isUnstyled } = AutoCompleteBase.setMetaData(metaData);
+        const autocomplete = useAutoComplete(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = autocomplete;
 
-        useHandleStyle(AutoCompleteBase.css.styles, isUnstyled, { name: 'autocomplete' });
         const elementRef = React.useRef(null);
         const overlayRef = React.useRef(null);
         const inputRef = React.useRef(props.inputRef);
@@ -748,7 +742,7 @@ export const AutoComplete = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={autocomplete}>
                 <span {...rootProps}>
                     {input}
                     {loader}
@@ -776,7 +770,7 @@ export const AutoComplete = React.memo(
                     />
                 </span>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

@@ -1,15 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { Portal } from '../portal/Portal';
 import { DomHandler, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useContextMenu } from './ContextMenu.base';
 import { ContextMenuBase } from './ContextMenuBase';
 import { ContextMenuSub } from './ContextMenuSub';
 
 export const ContextMenu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ContextMenuBase.getProps(inProps, context);
@@ -26,6 +27,9 @@ export const ContextMenu = React.memo(
         const [processedItems, setProcessedItems] = React.useState([]);
         const [visibleItems, setVisibleItems] = React.useState([]);
         const [focusedItemId, setFocusedItemId] = React.useState(null);
+
+        const contextmenu = useContextMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = contextmenu;
 
         const { ptm, cx, isUnstyled } = ContextMenuBase.setMetaData({
             props,
@@ -750,7 +754,11 @@ export const ContextMenu = React.memo(
 
         const element = createContextMenu();
 
-        return <Portal element={element} appendTo={props.appendTo} />;
+        return (
+            <ComponentProvider value={contextmenu}>
+                <Portal element={element} appendTo={props.appendTo} />
+            </ComponentProvider>
+        );
     })
 );
 

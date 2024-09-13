@@ -1,8 +1,8 @@
+import { useMergeProps } from '@primereact/hooks';
+import { Dropdown } from 'primereact/dropdown';
 import * as React from 'react';
 import { PrimeReactContext, localeOption } from '../api/Api';
 import { ariaLabel } from '../api/Locale';
-import { Dropdown } from '../dropdown/Dropdown';
-import { useMergeProps } from '../hooks/Hooks';
 import { ObjectUtils } from '../utils/Utils';
 import { RowsPerPageDropdownBase } from './PaginatorBase';
 

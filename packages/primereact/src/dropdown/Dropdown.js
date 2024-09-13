@@ -1,19 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronUpIcon } from '@primereact/icons/chevronup';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { TimesIcon } from '@primereact/icons/times';
+import { OverlayService } from 'primereact/overlayservice';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import PrimeReact, { FilterService, PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronUpIcon } from '../icons/chevronup';
-import { SpinnerIcon } from '../icons/spinner';
-import { TimesIcon } from '../icons/times';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useDropdown } from './Dropdown.base';
 import { DropdownBase } from './DropdownBase';
 import { DropdownPanel } from './DropdownPanel';
 
 export const Dropdown = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = DropdownBase.getProps(inProps, context);
@@ -43,6 +44,9 @@ export const Dropdown = React.memo(
                 overlayVisible: overlayVisibleState
             }
         });
+
+        const dropdown = useDropdown(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = dropdown;
 
         useHandleStyle(DropdownBase.css.styles, isUnstyled, { name: 'dropdown' });
 
@@ -1198,7 +1202,7 @@ export const Dropdown = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={dropdown}>
                 <div {...rootProps}>
                     {keyboardHelper}
                     {hiddenSelect}
@@ -1243,7 +1247,7 @@ export const Dropdown = React.memo(
                     />
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

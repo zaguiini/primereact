@@ -7,15 +7,15 @@
  * @module splitbutton
  *
  */
+import { ButtonPassThroughOptions } from 'primereact/button';
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { CSSTransitionProps as ReactCSSTransitionProps } from 'react-transition-group/CSSTransition';
-import { ButtonPassThroughOptions } from '../button/button';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { CSSTransitionProps } from '../csstransition';
 import { MenuItem } from '../menuitem';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { IconType, PassThroughType, TemplateType } from '../utils';
 
 export declare type SplitButtonPassThroughType<T> = PassThroughType<T, SplitButtonPassThroughMethodOptions>;

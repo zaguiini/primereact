@@ -1,12 +1,12 @@
+import { useMergeProps } from '@primereact/hooks';
+import { SearchIcon } from '@primereact/icons/search';
+import { TimesIcon } from '@primereact/icons/times';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
+import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { localeOption, PrimeReactContext } from '../api/Api';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps } from '../hooks/Hooks';
-import { SearchIcon } from '../icons/search';
-import { TimesIcon } from '../icons/times';
-import { Portal } from '../portal/Portal';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
-import { VirtualScroller } from '../virtualscroller/VirtualScroller';
 import { DropdownItem } from './DropdownItem';
 
 export const DropdownPanel = React.memo(

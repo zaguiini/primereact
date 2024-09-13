@@ -1,21 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ArrowDownIcon } from '@primereact/icons/arrowdown';
+import { ArrowUpIcon } from '@primereact/icons/arrowup';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { Paginator } from 'primereact/paginator';
+import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { getStorage } from '../../utils/utils';
 import PrimeReact, { FilterMatchMode, FilterOperator, FilterService, PrimeReactContext } from '../api/Api';
 import { ColumnBase } from '../column/ColumnBase';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { ArrowDownIcon } from '../icons/arrowdown';
-import { ArrowUpIcon } from '../icons/arrowup';
-import { SpinnerIcon } from '../icons/spinner';
-import { Paginator } from '../paginator/Paginator';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
-import { VirtualScroller } from '../virtualscroller/VirtualScroller';
+import { useDataTable } from './DataTable.base';
 import { DataTableBase } from './DataTableBase';
 import { TableBody } from './TableBody';
 import { TableFooter } from './TableFooter';
 import { TableHeader } from './TableHeader';
 
-export const DataTable = React.forwardRef((inProps, ref) => {
+export const DataTable = React.forwardRef((inProps, inRef) => {
     const context = React.useContext(PrimeReactContext);
     const mergeProps = useMergeProps();
     const props = DataTableBase.getProps(inProps, context);
@@ -50,6 +51,9 @@ export const DataTable = React.forwardRef((inProps, ref) => {
         }
     };
     const ptCallbacks = DataTableBase.setMetaData(metaData);
+
+    const datatable = useDataTable(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = datatable;
 
     useHandleStyle(DataTableBase.css.styles, ptCallbacks.isUnstyled, { name: 'datatable' });
     const attributeSelector = React.useRef('');
@@ -2033,16 +2037,18 @@ export const DataTable = React.forwardRef((inProps, ref) => {
     );
 
     return (
-        <div ref={elementRef} {...rootProps}>
-            {loader}
-            {header}
-            {paginatorTop}
-            {content}
-            {paginatorBottom}
-            {footer}
-            {resizeHelper}
-            {reorderIndicators}
-        </div>
+        <ComponentProvider value={datatable}>
+            <div ref={elementRef} {...rootProps}>
+                {loader}
+                {header}
+                {paginatorTop}
+                {content}
+                {paginatorBottom}
+                {footer}
+                {resizeHelper}
+                {reorderIndicators}
+            </div>
+        </ComponentProvider>
     );
 });
 

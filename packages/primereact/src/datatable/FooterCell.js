@@ -1,6 +1,6 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { classNames, DomHandler, ObjectUtils } from '../utils/Utils';
 
 export const FooterCell = React.memo((props) => {

@@ -1,9 +1,9 @@
+import { useMergeProps } from '@primereact/hooks';
+import { BlankIcon } from '@primereact/icons/blank';
+import { CheckIcon } from '@primereact/icons/check';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { Ripple } from '../ripple/Ripple';
 import { classNames, ObjectUtils } from '../utils/Utils';
-import { CheckIcon } from '../icons/check';
-import { BlankIcon } from '../icons/blank';
 
 export const DropdownItem = React.memo((props) => {
     const mergeProps = useMergeProps();

@@ -1,11 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import React, { useContext, useRef } from 'react';
-import { useMergeProps } from '../hooks/Hooks';
 import { PrimeReactContext } from '../api/Api';
-import { InputIconBase } from './InputIconBase';
 import { classNames } from '../utils/Utils';
+import { useInputIcon } from './InputIcon.base';
+import { InputIconBase } from './InputIconBase';
 
 export const InputIcon = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const inputicon = useInputIcon(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputicon;
+
         const elementRef = useRef(ref);
         const mergeProps = useMergeProps();
         const context = useContext(PrimeReactContext);
@@ -28,11 +33,11 @@ export const InputIcon = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={inputicon}>
                 <span {...rootProps} ref={elementRef}>
                     {props.children}
                 </span>
-            </>
+            </ComponentProvider>
         );
     })
 );

@@ -1,9 +1,9 @@
+import { useMountEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
 import { mergeProps } from '@primeuix/utils';
+import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMountEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronRightIcon } from '../icons/chevronright';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useAccordion } from './Accordion.base';
 

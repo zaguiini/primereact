@@ -1,12 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useSteps } from './Steps.base';
 import { StepsBase } from './StepsBase';
 
 export const Steps = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const steps = useSteps(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = steps;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = StepsBase.getProps(inProps, context);
@@ -322,7 +326,11 @@ export const Steps = React.memo(
 
         const items = createItems();
 
-        return <nav {...rootProps}>{items}</nav>;
+        return (
+            <ComponentProvider value={steps}>
+                <nav {...rootProps}>{items}</nav>
+            </ComponentProvider>
+        );
     })
 );
 

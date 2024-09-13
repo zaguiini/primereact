@@ -1,14 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
+import { KeyFilter } from 'primereact/keyfilter';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { KeyFilter } from '../keyfilter/KeyFilter';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
+import { useInputTextarea } from './InputTextarea.base';
 import { InputTextareaBase } from './InputTextareaBase';
 
 export const InputTextarea = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const inputtextarea = useInputTextarea(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputtextarea;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = InputTextareaBase.getProps(inProps, context);
@@ -141,10 +145,10 @@ export const InputTextarea = React.memo(
         );
 
         return (
-            <>
+            <ComponentProvider value={inputtextarea}>
                 <textarea {...rootProps} />
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

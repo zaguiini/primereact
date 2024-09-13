@@ -1,8 +1,7 @@
+import { useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { useUpdateEffect } from '../hooks/useUpdateEffect';
 import { DomHandler, ObjectUtils } from '../utils/Utils';
 import { PanelMenuSub } from './PanelMenuSub';
-``;
 
 export const PanelMenuList = React.memo((props) => {
     const { ptm, cx } = props;

@@ -1,5 +1,5 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
 
 export const StepperSeparator = React.memo(
     React.forwardRef((props, ref) => {

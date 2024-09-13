@@ -7,8 +7,8 @@
  * @module speeddial
  *
  */
+import { ButtonPassThroughOptions } from 'primereact/button';
 import * as React from 'react';
-import { ButtonPassThroughOptions } from '../button/button';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { MenuItem } from '../menuitem';
 import { PassThroughOptions } from '../passthrough';

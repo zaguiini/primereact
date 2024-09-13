@@ -1,22 +1,12 @@
+import { ComponentProvider } from '@primereact/core/component';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { ObjectUtils, classNames } from '../utils/Utils';
+import { useCard } from './Card.base';
 import { CardBase } from './CardBase';
 
-export const Card = React.forwardRef((inProps, ref) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = CardBase.getProps(inProps, context);
-
-    const elementRef = React.useRef(ref);
-
-    const { ptm, cx, isUnstyled } = CardBase.setMetaData({
-        props
-    });
-
-    useHandleStyle(CardBase.css.styles, isUnstyled, { name: 'card' });
+export const Card = React.forwardRef((inProps, inRef) => {
+    const card = useCard(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = card;
 
     const createHeader = () => {
         const headerProps = mergeProps(
@@ -106,10 +96,12 @@ export const Card = React.forwardRef((inProps, ref) => {
     const body = createBody();
 
     return (
-        <div {...rootProps}>
-            {header}
-            {body}
-        </div>
+        <ComponentProvider value={card}>
+            <div {...rootProps}>
+                {header}
+                {body}
+            </div>
+        </ComponentProvider>
     );
 });
 

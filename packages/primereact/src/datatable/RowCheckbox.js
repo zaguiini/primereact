@@ -1,8 +1,8 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CheckIcon } from '@primereact/icons/check';
+import { Checkbox } from 'primereact/checkbox';
 import * as React from 'react';
-import { Checkbox } from '../checkbox/Checkbox';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { CheckIcon } from '../icons/check';
 import { IconUtils } from '../utils/Utils';
 
 export const RowCheckbox = React.memo((props) => {

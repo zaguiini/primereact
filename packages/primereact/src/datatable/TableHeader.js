@@ -1,7 +1,7 @@
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
 import { ColumnGroupBase } from '../columngroup/ColumnGroupBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
 import { RowBase } from '../row/RowBase';
 import { classNames } from '../utils/Utils';
 import { ColumnFilter } from './ColumnFilter';

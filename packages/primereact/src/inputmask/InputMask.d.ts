@@ -7,10 +7,10 @@
  * @module inputmask
  *
  */
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { InputText, InputTextPassThroughOptions, InputTextProps } from '../inputtext';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormEvent } from '../ts-helpers';
 
 /**

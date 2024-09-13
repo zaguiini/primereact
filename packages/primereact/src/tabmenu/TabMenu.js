@@ -1,13 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
+import { useTabMenu } from './TabMenu.base';
 import { TabMenuBase } from './TabMenuBase';
 
 export const TabMenu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const tabmenu = useTabMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = tabmenu;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = TabMenuBase.getProps(inProps, context);
@@ -340,12 +344,14 @@ export const TabMenu = React.memo(
             );
 
             return (
-                <div {...rootProps}>
-                    <ul {...menuProps}>
-                        {items}
-                        <li {...inkbarProps} />
-                    </ul>
-                </div>
+                <ComponentProvider value={tabmenu}>
+                    <div {...rootProps}>
+                        <ul {...menuProps}>
+                            {items}
+                            <li {...inkbarProps} />
+                        </ul>
+                    </div>
+                </ComponentProvider>
             );
         }
 

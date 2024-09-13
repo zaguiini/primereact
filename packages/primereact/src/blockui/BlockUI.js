@@ -1,26 +1,24 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { Portal } from '../portal/Portal';
+import PrimeReact from '../api/Api';
 import { DomHandler, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useBlockUI } from './BlockUI.base';
 import { BlockUIBase } from './BlockUIBase';
 
-export const BlockUI = React.forwardRef((inProps, ref) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = BlockUIBase.getProps(inProps, context);
-
+export const BlockUI = React.forwardRef((inProps, inRef) => {
     const [visibleState, setVisibleState] = React.useState(props.blocked);
+    const state = {
+        visible: false
+    };
+
+    const blockui = useBlockUI(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = blockui;
+
     const elementRef = React.useRef(null);
     const maskRef = React.useRef(null);
     const activeElementRef = React.useRef(null);
-
-    const { ptm, cx, isUnstyled } = BlockUIBase.setMetaData({
-        props
-    });
-
-    useHandleStyle(BlockUIBase.css.styles, isUnstyled, { name: 'blockui' });
 
     const block = () => {
         setVisibleState(true);
@@ -132,10 +130,12 @@ export const BlockUI = React.forwardRef((inProps, ref) => {
     );
 
     return (
-        <div {...rootProps}>
-            {props.children}
-            {mask}
-        </div>
+        <ComponentProvider value={blockui}>
+            <div {...rootProps}>
+                {props.children}
+                {mask}
+            </div>
+        </ComponentProvider>
     );
 });
 

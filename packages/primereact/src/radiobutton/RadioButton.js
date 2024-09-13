@@ -1,13 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
+import { useRadioButton } from './RadioButton.base';
 import { RadioButtonBase } from './RadioButtonBase';
 
 export const RadioButton = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const radiobutton = useRadioButton(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = radiobutton;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = RadioButtonBase.getProps(inProps, context);
@@ -174,13 +178,13 @@ export const RadioButton = React.memo(
         };
 
         return (
-            <>
+            <ComponentProvider value={radiobutton}>
                 <div ref={elementRef} {...rootProps}>
                     {createInputElement()}
                     {createBoxElement()}
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

@@ -7,13 +7,13 @@
  * @module fileupload
  *
  */
+import { BadgePassThroughOptions } from 'primereact/badge';
+import { ButtonPassThroughOptions } from 'primereact/button';
+import { ProgressBarPassThroughOptions } from 'primereact/progressbar';
 import * as React from 'react';
-import { BadgePassThroughOptions } from '../badge/badge';
-import { ButtonPassThroughOptions } from '../button/button';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { MessagePassThroughOptions } from '../message/message';
 import { PassThroughOptions } from '../passthrough';
-import { ProgressBarPassThroughOptions } from '../progressbar/progressbar';
 import { IconType, PassThroughType } from '../utils';
 
 export declare type FileUploadPassThroughType<T> = PassThroughType<T, FileUploadPassThroughMethodOptions>;

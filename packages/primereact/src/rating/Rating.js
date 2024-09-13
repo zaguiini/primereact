@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
+import { BanIcon } from '@primereact/icons/ban';
+import { StarIcon } from '@primereact/icons/star';
+import { StarFillIcon } from '@primereact/icons/starfill';
+import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { BanIcon } from '../icons/ban';
-import { StarIcon } from '../icons/star';
-import { StarFillIcon } from '../icons/starfill';
-import { Tooltip } from '../tooltip/Tooltip';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useRating } from './Rating.base';
 import { RatingBase } from './RatingBase';
 
 export const Rating = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const rating = useRating(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = rating;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = RatingBase.getProps(inProps, context);
@@ -208,13 +212,13 @@ export const Rating = React.memo(
         const icons = createIcons();
 
         return (
-            <>
+            <ComponentProvider value={rating}>
                 <div {...rootProps}>
                     {cancelIcon}
                     {icons}
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </>
+            </ComponentProvider>
         );
     })
 );

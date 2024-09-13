@@ -1,10 +1,10 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
+import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { localeOption, PrimeReactContext } from '../api/Api';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps } from '../hooks/Hooks';
-import { Portal } from '../portal/Portal';
 import { classNames, DomHandler, ObjectUtils } from '../utils/Utils';
-import { VirtualScroller } from '../virtualscroller/VirtualScroller';
 import { MultiSelectHeader } from './MultiSelectHeader';
 import { MultiSelectItem } from './MultiSelectItem';
 

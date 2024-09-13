@@ -1,9 +1,9 @@
+import { useMergeProps } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { CSSTransition } from 'primereact/csstransition';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronRightIcon } from '../icons/chevronright';
-import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 
 export const PanelMenuSub = React.memo(

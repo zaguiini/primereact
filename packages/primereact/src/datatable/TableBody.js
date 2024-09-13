@@ -1,7 +1,7 @@
+import { useMergeProps, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { localeOption } from '../api/Api';
 import { ColumnBase } from '../column/ColumnBase';
-import { useMergeProps, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
 import { DomHandler, ObjectUtils } from '../utils/Utils';
 import { BodyRow } from './BodyRow';
 import { RowTogglerButton } from './RowTogglerButton';

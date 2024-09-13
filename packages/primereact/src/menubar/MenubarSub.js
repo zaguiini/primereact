@@ -1,8 +1,8 @@
+import { useMergeProps } from '@primereact/hooks';
+import { AngleDownIcon } from '@primereact/icons/angledown';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { useMergeProps } from '../hooks/Hooks';
-import { AngleDownIcon } from '../icons/angledown';
-import { AngleRightIcon } from '../icons/angleright';
-import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 
 export const MenubarSub = React.memo(

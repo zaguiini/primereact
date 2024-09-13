@@ -1,10 +1,15 @@
+import { ComponentProvider } from '@primereact/core/component';
 import * as React from 'react';
 
 let messageIdx = 0;
 
 export const Toast = React.memo(
-    React.forwardRef((inProps, ref) => {
-        /*const mergeProps = useMergeProps();
+    React.forwardRef((inProps, inRef) => {
+        /*
+        const toast = useToast(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = toast;
+
+        const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ToastBase.getProps(inProps, context);
 
@@ -167,7 +172,7 @@ export const Toast = React.memo(
 
         return <Portal element={element} appendTo={props.appendTo} />;*/
 
-        return;
+        return <ComponentProvider value={toast}></ComponentProvider>;
     })
 );
 

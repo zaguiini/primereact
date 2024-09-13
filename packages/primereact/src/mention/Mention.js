@@ -1,17 +1,21 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { InputTextarea } from '../inputtextarea/InputTextarea';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useMention } from './Mention.base';
 import { MentionBase } from './MentionBase';
 
 export const Mention = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const mention = useMention(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = mention;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MentionBase.getProps(inProps, context);
@@ -562,10 +566,12 @@ export const Mention = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                <InputTextarea {...inputMentionProps} />
-                {panel}
-            </div>
+            <ComponentProvider value={mention}>
+                <div {...rootProps}>
+                    <InputTextarea {...inputMentionProps} />
+                    {panel}
+                </div>
+            </ComponentProvider>
         );
     })
 );

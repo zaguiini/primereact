@@ -1,12 +1,16 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { classNames, ObjectUtils } from '../utils/Utils';
+import { useTimeline } from './Timeline.base';
 import { TimelineBase } from './TimelineBase';
 
 export const Timeline = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const timeline = useTimeline(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = timeline;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = TimelineBase.getProps(inProps, context);
@@ -106,7 +110,11 @@ export const Timeline = React.memo(
             ptm('root')
         );
 
-        return <div {...rootProps}>{events}</div>;
+        return (
+            <ComponentProvider value={timeline}>
+                <div {...rootProps}>{events}</div>
+            </ComponentProvider>
+        );
     })
 );
 

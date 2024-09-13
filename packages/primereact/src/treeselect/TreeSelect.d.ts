@@ -7,14 +7,14 @@
  * @module treeselect
  *
  */
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
+import { TreeNodeTemplateOptions, TreePassThroughOptions, TreeTogglerTemplateOptions } from 'primereact/tree';
 import * as React from 'react';
 import { CSSTransitionProps as ReactCSSTransitionProps } from 'react-transition-group/CSSTransition';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { CSSTransitionProps } from '../csstransition';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
-import { TreeNodeTemplateOptions, TreePassThroughOptions, TreeTogglerTemplateOptions } from '../tree/tree';
 import { TreeNode } from '../treenode';
 import { FormEvent } from '../ts-helpers';
 import { IconType, PassThroughType } from '../utils/utils';

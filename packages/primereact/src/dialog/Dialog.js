@@ -1,18 +1,22 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { TimesIcon } from '@primereact/icons/times';
+import { WindowMaximizeIcon } from '@primereact/icons/windowmaximize';
+import { WindowMinimizeIcon } from '@primereact/icons/windowminimize';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
 import FocusTrap from '../focustrap/FocusTrap';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { TimesIcon } from '../icons/times';
-import { WindowMaximizeIcon } from '../icons/windowmaximize';
-import { WindowMinimizeIcon } from '../icons/windowminimize';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useDialog } from './Dialog.base';
 import { DialogBase } from './DialogBase';
 
-export const Dialog = React.forwardRef((inProps, ref) => {
+export const Dialog = React.forwardRef((inProps, inRef) => {
+    const dialog = useDialog(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = dialog;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = DialogBase.getProps(inProps, context);
@@ -700,13 +704,15 @@ export const Dialog = React.forwardRef((inProps, ref) => {
         }
 
         const rootElement = (
-            <div {...maskProps}>
-                <CSSTransition nodeRef={dialogRef} {...transitionProps}>
-                    <div {...rootProps}>
-                        <FocusTrap autoFocus={props.focusOnShow}>{contentElement}</FocusTrap>
-                    </div>
-                </CSSTransition>
-            </div>
+            <ComponentProvider value={dialog}>
+                <div {...maskProps}>
+                    <CSSTransition nodeRef={dialogRef} {...transitionProps}>
+                        <div {...rootProps}>
+                            <FocusTrap autoFocus={props.focusOnShow}>{contentElement}</FocusTrap>
+                        </div>
+                    </CSSTransition>
+                </div>
+            </ComponentProvider>
         );
 
         return <Portal element={rootElement} appendTo={props.appendTo} visible />;

@@ -7,13 +7,13 @@
  * @module listbox
  *
  */
+import { InputTextPassThroughOptions } from 'primereact/inputtext';
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { ComponentHooks } from '../componentbase/componentbase';
-import { InputTextPassThroughOptions } from '../inputtext/inputtext';
 import { PassThroughOptions } from '../passthrough';
 import { SelectItemOptionsType } from '../selectitem/selectitem';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { IconType, PassThroughType } from '../utils/utils';
 import { VirtualScroller, VirtualScrollerPassThroughOptions, VirtualScrollerProps } from '../virtualscroller';
 

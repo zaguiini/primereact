@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { Avatar } from '../avatar/Avatar';
+import { Avatar } from 'primereact/avatar';
 import { AvatarGroup } from './AvatarGroup';
 
 import { snapshot } from '../../test';

@@ -1,8 +1,8 @@
+import { useMergeProps } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import { localeOption } from '../api/Api';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps } from '../hooks/Hooks';
-import { Portal } from '../portal/Portal';
 
 export const CalendarPanel = React.forwardRef((props, ref) => {
     const cx = props.cx;

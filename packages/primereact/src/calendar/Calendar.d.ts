@@ -7,12 +7,12 @@
  * @module calendar
  *
  */
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { CSSTransitionProps as ReactCSSTransitionProps } from 'react-transition-group/CSSTransition';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { CSSTransitionProps } from '../csstransition';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormEvent, Nullable } from '../ts-helpers';
 import { IconType, PassThroughType } from '../utils';
 

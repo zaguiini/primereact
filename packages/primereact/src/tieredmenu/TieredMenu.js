@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
 import { DomHandler, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useTieredMenu } from './TieredMenu.base';
 import { TieredMenuBase } from './TieredMenuBase';
 import { TieredMenuSub } from './TieredMenuSub';
 
 export const TieredMenu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const tieredmenu = useTieredMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = tieredmenu;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = TieredMenuBase.getProps(inProps, context);
@@ -744,7 +748,7 @@ export const TieredMenu = React.memo(
 
         const element = createElement();
 
-        return props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element;
+        return <ComponentProvider value={tieredmenu}>{props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}</ComponentProvider>;
     })
 );
 

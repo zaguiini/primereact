@@ -1,11 +1,11 @@
+import { useMergeProps } from '@primereact/hooks';
+import { AngleDoubleDownIcon } from '@primereact/icons/angledoubledown';
+import { AngleDoubleUpIcon } from '@primereact/icons/angledoubleup';
+import { AngleDownIcon } from '@primereact/icons/angledown';
+import { AngleUpIcon } from '@primereact/icons/angleup';
+import { Button } from 'primereact/button';
 import * as React from 'react';
 import { ariaLabel } from '../api/Api';
-import { Button } from '../button/Button';
-import { useMergeProps } from '../hooks/Hooks';
-import { AngleDoubleDownIcon } from '../icons/angledoubledown';
-import { AngleDoubleUpIcon } from '../icons/angledoubleup';
-import { AngleDownIcon } from '../icons/angledown';
-import { AngleUpIcon } from '../icons/angleup';
 import { classNames, ObjectUtils } from '../utils/Utils';
 
 export const PickListControls = React.memo((props) => {

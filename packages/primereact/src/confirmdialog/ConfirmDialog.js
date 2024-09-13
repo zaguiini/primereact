@@ -1,12 +1,13 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { Button } from 'primereact/button';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import { PrimeReactContext, localeOption } from '../api/Api';
-import { Button } from '../button/Button';
-import { useHandleStyle } from '../componentbase/ComponentBase';
 import { Dialog } from '../dialog/Dialog';
-import { useMergeProps, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useConfirmDialog } from './ConfirmDialog.base';
 import { ConfirmDialogBase } from './ConfirmDialogBase';
 
 export const confirmDialog = (props = {}) => {
@@ -25,7 +26,10 @@ export const confirmDialog = (props = {}) => {
 };
 
 export const ConfirmDialog = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const confirmdialog = useConfirmDialog(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = confirmdialog;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ConfirmDialogBase.getProps(inProps, context);
@@ -259,7 +263,11 @@ export const ConfirmDialog = React.memo(
 
         const element = createElement();
 
-        return <Portal element={element} appendTo={getPropValue('appendTo')} />;
+        return (
+            <ComponentProvider value={confirmdialog}>
+                <Portal element={element} appendTo={getPropValue('appendTo')} />
+            </ComponentProvider>
+        );
     })
 );
 

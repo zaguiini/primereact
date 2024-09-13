@@ -7,14 +7,14 @@
  * @module password
  *
  */
+import { KeyFilterType } from 'primereact/keyfilteroptions';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { CSSTransitionProps as ReactCSSTransitionProps } from 'react-transition-group/CSSTransition';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { CSSTransitionProps } from '../csstransition';
 import { InputText } from '../inputtext';
-import { KeyFilterType } from '../keyfilter/keyfilteroptions';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { IconType, PassThroughType } from '../utils/utils';
 
 export declare type PasswordPassThroughType<T> = PassThroughType<T, PasswordPassThroughMethodOptions>;

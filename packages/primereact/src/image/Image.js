@@ -1,21 +1,25 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMergeProps, useUnmountEffect } from '@primereact/hooks';
+import { DownloadIcon } from '@primereact/icons/download';
+import { EyeIcon } from '@primereact/icons/eye';
+import { RefreshIcon } from '@primereact/icons/refresh';
+import { SearchMinusIcon } from '@primereact/icons/searchminus';
+import { SearchPlusIcon } from '@primereact/icons/searchplus';
+import { TimesIcon } from '@primereact/icons/times';
+import { UndoIcon } from '@primereact/icons/undo';
+import { CSSTransition } from 'primereact/csstransition';
+import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMergeProps, useUnmountEffect } from '../hooks/Hooks';
-import { DownloadIcon } from '../icons/download';
-import { EyeIcon } from '../icons/eye';
-import { RefreshIcon } from '../icons/refresh';
-import { SearchMinusIcon } from '../icons/searchminus';
-import { SearchPlusIcon } from '../icons/searchplus';
-import { TimesIcon } from '../icons/times';
-import { UndoIcon } from '../icons/undo';
-import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+import { useImage } from './Image.base';
 import { ImageBase } from './ImageBase';
 
 export const Image = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const image = useImage(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = image;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = ImageBase.getProps(inProps, context);
@@ -391,11 +395,13 @@ export const Image = React.memo(
         );
 
         return (
-            <span {...rootProps}>
-                {image}
-                {preview}
-                {maskVisibleState && <Portal element={element} appendTo={document.body} />}
-            </span>
+            <ComponentProvider value={image}>
+                <span {...rootProps}>
+                    {image}
+                    {preview}
+                    {maskVisibleState && <Portal element={element} appendTo={document.body} />}
+                </span>
+            </ComponentProvider>
         );
     })
 );

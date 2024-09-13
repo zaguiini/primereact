@@ -1,13 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { classNames, DomHandler } from '../utils/Utils';
+import { useOrganizationChart } from './OrganizationChart.base';
 import { OrganizationChartBase } from './OrganizationChartBase';
 import { OrganizationChartNode } from './OrganizationChartNode';
 
 export const OrganizationChart = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const organizationchart = useOrganizationChart(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = organizationchart;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = OrganizationChartBase.getProps(inProps, context);
@@ -91,20 +95,22 @@ export const OrganizationChart = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                <OrganizationChartNode
-                    hostName="OrganizationChart"
-                    node={root}
-                    nodeTemplate={props.nodeTemplate}
-                    selectionMode={props.selectionMode}
-                    onNodeClick={onNodeClick}
-                    isSelected={isSelected}
-                    togglerIcon={props.togglerIcon}
-                    ptm={ptm}
-                    cx={cx}
-                    sx={sx}
-                />
-            </div>
+            <ComponentProvider value={organizationchart}>
+                <div {...rootProps}>
+                    <OrganizationChartNode
+                        hostName="OrganizationChart"
+                        node={root}
+                        nodeTemplate={props.nodeTemplate}
+                        selectionMode={props.selectionMode}
+                        onNodeClick={onNodeClick}
+                        isSelected={isSelected}
+                        togglerIcon={props.togglerIcon}
+                        ptm={ptm}
+                        cx={cx}
+                        sx={sx}
+                    />
+                </div>
+            </ComponentProvider>
         );
     })
 );

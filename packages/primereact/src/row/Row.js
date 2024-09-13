@@ -1,9 +1,14 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
-import { useMergeProps } from '../hooks/Hooks';
+import { useRow } from './Row.base';
 import { RowBase } from './RowBase';
 
-export const Row = (inProps) => {
+export const Row = (inProps, inRef) => {
+    const row = useRow(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = row;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = RowBase.getProps(inProps, context);
@@ -21,7 +26,11 @@ export const Row = (inProps) => {
         ptm('root')
     );
 
-    return <tr {...rootProps}>{props.children}</tr>;
+    return (
+        <ComponentProvider value={row}>
+            <tr {...rootProps}>{props.children}</tr>
+        </ComponentProvider>
+    );
 };
 
 Row.displayName = 'Row';

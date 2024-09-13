@@ -1,16 +1,20 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUpdateEffect } from '@primereact/hooks';
+import { AngleDownIcon } from '@primereact/icons/angledown';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { BarsIcon } from '@primereact/icons/bars';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, ariaLabel } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUpdateEffect } from '../hooks/Hooks';
-import { AngleDownIcon } from '../icons/angledown';
-import { AngleRightIcon } from '../icons/angleright';
-import { BarsIcon } from '../icons/bars';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useMegaMenu } from './MegaMenu.base';
 import { MegaMenuBase } from './MegaMenuBase';
 
 export const MegaMenu = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const megamenu = useMegaMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = megamenu;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MegaMenuBase.getProps(inProps, context);
@@ -1298,12 +1302,14 @@ export const MegaMenu = React.memo(
         const menuButton = createMenuButton();
 
         return (
-            <div id={props.id} ref={elementRef} {...rootProps}>
-                {start}
-                {menuButton}
-                {menu}
-                {end}
-            </div>
+            <ComponentProvider value={megamenu}>
+                <div id={props.id} ref={elementRef} {...rootProps}>
+                    {start}
+                    {menuButton}
+                    {menu}
+                    {end}
+                </div>
+            </ComponentProvider>
         );
     })
 );

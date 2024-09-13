@@ -1,7 +1,7 @@
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { AngleRightIcon } from '@primereact/icons/angleright';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { useMergeProps, useUpdateEffect } from '../hooks/Hooks';
-import { AngleRightIcon } from '../icons/angleright';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 
 export const TieredMenuSub = React.memo(

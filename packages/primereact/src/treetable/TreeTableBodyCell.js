@@ -1,7 +1,7 @@
+import { useEventListener, useMergeProps, useUnmountEffect } from '@primereact/hooks';
+import { OverlayService } from 'primereact/overlayservice';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
-import { useEventListener, useMergeProps, useUnmountEffect } from '../hooks/Hooks';
-import { OverlayService } from '../overlayservice/OverlayService';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 
 export const TreeTableBodyCell = (props) => {

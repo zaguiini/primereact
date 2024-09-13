@@ -1,20 +1,20 @@
+import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { FilterIcon } from '@primereact/icons/filter';
+import { FilterSlashIcon } from '@primereact/icons/filterslash';
+import { PlusIcon } from '@primereact/icons/plus';
+import { TrashIcon } from '@primereact/icons/trash';
+import { Button } from 'primereact/button';
+import { CSSTransition } from 'primereact/csstransition';
+import { Dropdown } from 'primereact/dropdown';
+import FocusTrap from 'primereact/focustrap';
+import { InputText } from 'primereact/inputtext';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { FilterMatchMode, FilterOperator, PrimeReactContext, localeOption } from '../api/Api';
 import { ariaLabel } from '../api/Locale';
-import { Button } from '../button/Button';
 import { ColumnBase } from '../column/ColumnBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { Dropdown } from '../dropdown/Dropdown';
-import FocusTrap from '../focustrap/FocusTrap';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
-import { FilterIcon } from '../icons/filter';
-import { FilterSlashIcon } from '../icons/filterslash';
-import { PlusIcon } from '../icons/plus';
-import { TrashIcon } from '../icons/trash';
-import { InputText } from '../inputtext/InputText';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils } from '../utils/Utils';
 
 export const ColumnFilter = React.memo((props) => {

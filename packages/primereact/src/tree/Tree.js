@@ -1,16 +1,19 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { SearchIcon } from '@primereact/icons/search';
+import { SpinnerIcon } from '@primereact/icons/spinner';
 import * as React from 'react';
 import { localeOption, PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps } from '../hooks/Hooks';
-import { useUpdateEffect } from '../hooks/useUpdateEffect';
-import { SearchIcon } from '../icons/search';
-import { SpinnerIcon } from '../icons/spinner';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
+import { useTree } from './Tree.base';
 import { TreeBase } from './TreeBase';
 import { UITreeNode } from './UITreeNode';
 
 export const Tree = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const tree = useTree(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = tree;
+
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = TreeBase.getProps(inProps, context);
@@ -649,12 +652,14 @@ export const Tree = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                {loader}
-                {header}
-                {content}
-                {footer}
-            </div>
+            <ComponentProvider value={tree}>
+                <div {...rootProps}>
+                    {loader}
+                    {header}
+                    {content}
+                    {footer}
+                </div>
+            </ComponentProvider>
         );
     })
 );

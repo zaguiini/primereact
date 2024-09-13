@@ -1,16 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
+import { TimesIcon } from '@primereact/icons/times';
+import { CSSTransition } from 'primereact/csstransition';
+import { OverlayService } from 'primereact/overlayservice';
+import { Portal } from 'primereact/portal';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect } from '../hooks/Hooks';
-import { TimesIcon } from '../icons/times';
-import { OverlayService } from '../overlayservice/OverlayService';
-import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
+import { useOverlayPanel } from './OverlayPanel.base';
 import { OverlayPanelBase } from './OverlayPanelBase';
 
-export const OverlayPanel = React.forwardRef((inProps, ref) => {
+export const OverlayPanel = React.forwardRef((inProps, inRef) => {
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = OverlayPanelBase.getProps(inProps, context);
@@ -22,6 +23,9 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
             visible: visibleState
         }
     });
+
+    const overlaypanel = useOverlayPanel(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = overlaypanel;
 
     useHandleStyle(OverlayPanelBase.css.styles, isUnstyled, { name: 'overlaypanel' });
 
@@ -312,7 +316,11 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
 
     const element = createElement();
 
-    return <Portal element={element} appendTo={props.appendTo} />;
+    return (
+        <ComponentProvider value={overlaypanel}>
+            <Portal element={element} appendTo={props.appendTo} />
+        </ComponentProvider>
+    );
 });
 
 OverlayPanel.displayName = 'OverlayPanel';

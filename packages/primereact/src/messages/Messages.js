@@ -1,17 +1,18 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps } from '@primereact/hooks';
+import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps } from '../hooks/Hooks';
 import { ObjectUtils } from '../utils/Utils';
+import { useMessages } from './Messages.base';
 import { MessagesBase } from './MessagesBase';
 import { UIMessage } from './UIMessage';
 
 let messageIdx = 0;
 
 export const Messages = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = MessagesBase.getProps(inProps, context);
@@ -24,6 +25,9 @@ export const Messages = React.memo(
                 messages: messagesState
             }
         };
+
+        const messages = useMessages(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = messages;
 
         const ptCallbacks = MessagesBase.setMetaData(metaData);
 
@@ -114,20 +118,22 @@ export const Messages = React.memo(
         );
 
         return (
-            <div ref={elementRef} {...rootProps}>
-                <TransitionGroup>
-                    {messagesState &&
-                        messagesState.map((message, index) => {
-                            const messageRef = React.createRef();
+            <ComponentProvider value={messages}>
+                <div ref={elementRef} {...rootProps}>
+                    <TransitionGroup>
+                        {messagesState &&
+                            messagesState.map((message, index) => {
+                                const messageRef = React.createRef();
 
-                            return (
-                                <CSSTransition nodeRef={messageRef} key={message._pId} {...transitionProps}>
-                                    <UIMessage hostName="Messages" ref={messageRef} message={message} onClick={props.onClick} onClose={onClose} ptCallbacks={ptCallbacks} metaData={metaData} index={index} />
-                                </CSSTransition>
-                            );
-                        })}
-                </TransitionGroup>
-            </div>
+                                return (
+                                    <CSSTransition nodeRef={messageRef} key={message._pId} {...transitionProps}>
+                                        <UIMessage hostName="Messages" ref={messageRef} message={message} onClick={props.onClick} onClose={onClose} ptCallbacks={ptCallbacks} metaData={metaData} index={index} />
+                                    </CSSTransition>
+                                );
+                            })}
+                    </TransitionGroup>
+                </div>
+            </ComponentProvider>
         );
     })
 );

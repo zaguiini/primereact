@@ -1,11 +1,11 @@
+import { useMergeProps, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '@primereact/hooks';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { ChevronUpIcon } from '@primereact/icons/chevronup';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import PrimeReact, { PrimeReactContext, ariaLabel, localeOption } from '../api/Api';
-import { useMergeProps, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '../hooks/Hooks';
-import { ChevronDownIcon } from '../icons/chevrondown';
-import { ChevronLeftIcon } from '../icons/chevronleft';
-import { ChevronRightIcon } from '../icons/chevronright';
-import { ChevronUpIcon } from '../icons/chevronup';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 
 const GalleriaThumbnailItem = React.memo((props) => {
@@ -353,7 +353,7 @@ export const GalleriaThumbnails = React.memo(
                 [data-pc-section="thumbnailitem"] {
                     flex: 1 0 ${100 / numVisibleState}%
                 }
-            } 
+            }
         `;
 
             if (props.responsiveOptions) {
@@ -378,7 +378,7 @@ export const GalleriaThumbnails = React.memo(
                             [data-pc-section="thumbnailitem"] {
                                 flex: 1 0 ${100 / res.numVisible}%
                             }
-                        } 
+                        }
                     }
                 `;
                 }

@@ -7,11 +7,11 @@
  * @module inputswitch
  *
  */
+import { TooltipPassThroughOptions } from 'primereact/tooltip';
+import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { ComponentHooks } from '../componentbase/componentbase';
 import { PassThroughOptions } from '../passthrough';
-import { TooltipPassThroughOptions } from '../tooltip/tooltip';
-import { TooltipOptions } from '../tooltip/tooltipoptions';
 import { FormBooleanEvent } from '../ts-helpers';
 import { PassThroughType } from '../utils/utils';
 

@@ -1,7 +1,7 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { ColumnBase } from '../column/ColumnBase';
 import { ColumnGroupBase } from '../columngroup/ColumnGroupBase';
-import { useMergeProps } from '../hooks/Hooks';
 import { RowBase } from '../row/RowBase';
 import { FooterCell } from './FooterCell';
 

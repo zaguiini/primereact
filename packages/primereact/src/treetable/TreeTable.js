@@ -1,21 +1,25 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useEventListener, useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ArrowDownIcon } from '@primereact/icons/arrowdown';
+import { ArrowUpIcon } from '@primereact/icons/arrowup';
+import { SpinnerIcon } from '@primereact/icons/spinner';
+import { Paginator } from 'primereact/paginator';
 import * as React from 'react';
+import { getStorage } from '../../utils/utils';
 import PrimeReact, { FilterMatchMode, FilterService, PrimeReactContext } from '../api/Api';
 import { ColumnBase } from '../column/ColumnBase';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useEventListener, useUpdateEffect, useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { ArrowDownIcon } from '../icons/arrowdown';
-import { ArrowUpIcon } from '../icons/arrowup';
-import { SpinnerIcon } from '../icons/spinner';
-import { Paginator } from '../paginator/Paginator';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
+import { useTreeTable } from './TreeTable.base';
 import { TreeTableBase } from './TreeTableBase';
 import { TreeTableBody } from './TreeTableBody';
 import { TreeTableFooter } from './TreeTableFooter';
 import { TreeTableHeader } from './TreeTableHeader';
 import { TreeTableScrollableView } from './TreeTableScrollableView';
-import { getStorage } from '../../utils/utils';
 
-export const TreeTable = React.forwardRef((inProps, ref) => {
+export const TreeTable = React.forwardRef((inProps, inRef) => {
+    const treetable = useTreeTable(inProps, inRef);
+    const { props, ptm, ptmi, cx, ref } = treetable;
+
     const mergeProps = useMergeProps();
     const context = React.useContext(PrimeReactContext);
     const props = TreeTableBase.getProps(inProps, context);
@@ -1444,17 +1448,19 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
     );
 
     return (
-        <div ref={elementRef} {...rootProps}>
-            {loader}
-            {headerFacet}
-            {paginatorTop}
-            {table}
-            {paginatorBottom}
-            {footerFacet}
-            {resizeHelper}
-            {reorderIndicatorUp}
-            {reorderIndicatorDown}
-        </div>
+        <ComponentProvider value={treetable}>
+            <div ref={elementRef} {...rootProps}>
+                {loader}
+                {headerFacet}
+                {paginatorTop}
+                {table}
+                {paginatorBottom}
+                {footerFacet}
+                {resizeHelper}
+                {reorderIndicatorUp}
+                {reorderIndicatorDown}
+            </div>
+        </ComponentProvider>
     );
 });
 

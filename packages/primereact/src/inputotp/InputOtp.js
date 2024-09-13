@@ -1,13 +1,17 @@
+import { ComponentProvider } from '@primereact/core/component';
+import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { InputText } from 'primereact/inputtext';
 import React, { useContext, useRef, useState } from 'react';
 import { PrimeReactContext, ariaLabel } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { useMergeProps, useUpdateEffect } from '../hooks/Hooks';
-import { InputText } from '../inputtext/InputText';
 import { ObjectUtils } from '../utils/Utils';
 import { InputOtpBase } from './BaseInputOtp';
+import { useInputOtp } from './InputOtp.base';
 
 export const InputOtp = React.memo(
-    React.forwardRef((inProps, ref) => {
+    React.forwardRef((inProps, inRef) => {
+        const inputotp = useInputOtp(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputotp;
+
         const elementRef = useRef(ref);
         const mergeProps = useMergeProps();
         const context = useContext(PrimeReactContext);
@@ -236,7 +240,8 @@ export const InputOtp = React.memo(
             ptm('root')
         );
 
-        return <div {...rootElementProps}>{createInputElements(props.length)}</div>;
+        return (
+            <ComponentProvider value={inputotp}><div {...rootElementProps}>{createInputElements(props.length)}</div></ComponentProvider>
     })
 );
 

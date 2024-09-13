@@ -1,7 +1,7 @@
+import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
 import { PrimeReactContext } from '../api/Api';
 import { ariaLabel } from '../api/Locale';
-import { useMergeProps } from '../hooks/Hooks';
 import { InputNumber } from '../inputnumber/InputNumber';
 import { ObjectUtils } from '../utils/Utils';
 import { JumpToPageInputBase } from './PaginatorBase';

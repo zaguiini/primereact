@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Button } from 'primereact/button';
 import { userAgent } from '../../test';
 import { PrimeReactProvider } from '../api/Api';
-import { Button } from '../button/Button';
 
 describe('Ripple', () => {
     test('when Ripple is enabled, button should have ripple effect on desktop device', async () => {

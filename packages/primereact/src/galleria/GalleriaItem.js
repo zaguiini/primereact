@@ -1,9 +1,9 @@
+import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
 import { ariaLabel, localeOption } from '../api/Api';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { ChevronLeftIcon } from '../icons/chevronleft';
-import { ChevronRightIcon } from '../icons/chevronright';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, classNames } from '../utils/Utils';
 
 export const GalleriaItem = React.memo(
