@@ -39,6 +39,7 @@
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
         "./tag": "./src/tag/Tag.js",
+        "./card": "./src/card/Card.js",
         "./inplace": "./src/inplace/Inplace.js",
         "./buttongroup": "./src/buttongroup/ButtonGroup.js",
         "./terminalservice": "./src/terminalservice/TerminalService.js",

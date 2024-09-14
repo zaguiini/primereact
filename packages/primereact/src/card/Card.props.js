@@ -4,7 +4,7 @@ export const defaultProps = {
     header: null,
     footer: null,
     title: null,
-    subTitle: null,
+    subtitle: null,
     style: null,
     className: null,
     children: undefined

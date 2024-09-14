@@ -1,46 +1,59 @@
 import { ComponentProvider } from '@primereact/core/component';
+import { classNames, mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
-import { ObjectUtils, classNames } from '../utils/Utils';
 import { useCard } from './Card.base';
-import { CardBase } from './CardBase';
 
 export const Card = React.forwardRef((inProps, inRef) => {
     const card = useCard(inProps, inRef);
     const { props, ptm, ptmi, cx, ref } = card;
 
-    const createHeader = () => {
-        const headerProps = mergeProps(
-            {
-                className: cx('header')
-            },
-            ptm('header')
-        );
+    const createCaption = () => {
+        if (props.title || props.subtitle) {
+            const subtitleProps = mergeProps(
+                {
+                    className: cx('subtitle')
+                },
+                ptm('subtitle')
+            );
 
-        if (props.header) {
-            return <div {...headerProps}>{ObjectUtils.getJSXElement(props.header, props)}</div>;
+            const subtitle = props.subtitle && <div {...subtitleProps}>{resolve(props.subtitle, props)}</div>;
+
+            const titleProps = mergeProps(
+                {
+                    className: cx('title')
+                },
+                ptm('title')
+            );
+
+            const title = props.title && <div {...titleProps}>{resolve(props.title, props)}</div>;
+
+            const captionProps = mergeProps(
+                {
+                    className: cx('caption')
+                },
+                ptm('caption')
+            );
+
+            return (
+                <div {...captionProps}>
+                    {title}
+                    {subtitle}
+                </div>
+            );
         }
 
         return null;
     };
 
     const createBody = () => {
-        const titleProps = mergeProps(
+        const footerProps = mergeProps(
             {
-                className: cx('title')
+                className: cx('footer')
             },
-            ptm('title')
+            ptm('footer')
         );
 
-        const title = props.title && <div {...titleProps}>{ObjectUtils.getJSXElement(props.title, props)}</div>;
-
-        const subTitleProps = mergeProps(
-            {
-                className: cx('subTitle')
-            },
-            ptm('subTitle')
-        );
-
-        const subTitle = props.subTitle && <div {...subTitleProps}>{ObjectUtils.getJSXElement(props.subTitle, props)}</div>;
+        const footer = props.footer && <div {...footerProps}>{resolve(props.footer, props)}</div>;
 
         const contentProps = mergeProps(
             {
@@ -51,14 +64,7 @@ export const Card = React.forwardRef((inProps, inRef) => {
 
         const children = props.children && <div {...contentProps}>{props.children}</div>;
 
-        const footerProps = mergeProps(
-            {
-                className: cx('footer')
-            },
-            ptm('footer')
-        );
-
-        const footer = props.footer && <div {...footerProps}>{ObjectUtils.getJSXElement(props.footer, props)}</div>;
+        const caption = createCaption();
 
         const bodyProps = mergeProps(
             {
@@ -69,31 +75,40 @@ export const Card = React.forwardRef((inProps, inRef) => {
 
         return (
             <div {...bodyProps}>
-                {title}
-                {subTitle}
+                {caption}
                 {children}
                 {footer}
             </div>
         );
     };
 
-    React.useEffect(() => {
-        ObjectUtils.combinedRefs(elementRef, ref);
-    }, [elementRef, ref]);
+    const createHeader = () => {
+        if (props.header) {
+            const headerProps = mergeProps(
+                {
+                    className: cx('header')
+                },
+                ptm('header')
+            );
+
+            return <div {...headerProps}>{resolve(props.header, props)}</div>;
+        }
+
+        return null;
+    };
+
+    const header = createHeader();
+    const body = createBody();
 
     const rootProps = mergeProps(
         {
             id: props.id,
-            ref: elementRef,
+            ref,
             style: props.style,
-            className: classNames(props.className, cx('root'))
+            className: classNames(cx('root'), props.className)
         },
-        CardBase.getOtherProps(props),
-        ptm('root')
+        ptmi('root')
     );
-
-    const header = createHeader();
-    const body = createBody();
 
     return (
         <ComponentProvider value={card}>

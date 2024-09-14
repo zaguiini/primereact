@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Card } from '@/components/lib/card/Card';
 import { Button } from 'primereact/button';
+import { Card } from 'primereact/card';
 
 export function AdvancedDoc(props) {
     const header = <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" />;

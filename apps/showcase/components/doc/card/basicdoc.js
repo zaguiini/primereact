@@ -1,19 +1,19 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Card } from '@/components/lib/card/Card';
+import { Card } from 'primereact/card';
 
 export function BasicDoc(props) {
     const code = {
         basic: `
 <Card title="Simple Card">
     <p className="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae 
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
         numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
     </p>
 </Card>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Card } from 'primereact/card';
 
 export default function BasicDemo() {
@@ -21,7 +21,7 @@ export default function BasicDemo() {
         <div className="card">
             <Card title="Simple Card">
                 <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae 
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                     numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                 </p>
             </Card>
@@ -30,7 +30,7 @@ export default function BasicDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Card } from 'primereact/card';
 
 export default function BasicDemo() {
@@ -38,7 +38,7 @@ export default function BasicDemo() {
         <div className="card">
             <Card title="Simple Card">
                 <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae 
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
                     numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
                 </p>
             </Card>

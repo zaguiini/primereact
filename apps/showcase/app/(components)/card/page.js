@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/card/accessibilitydoc';
 import { AdvancedDoc } from '@/components/doc/card/advanceddoc';
 import { BasicDoc } from '@/components/doc/card/basicdoc';
