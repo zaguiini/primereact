@@ -1,8 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 import { useRadioButton } from './RadioButton.base';
 import { RadioButtonBase } from './RadioButtonBase';
@@ -12,18 +11,8 @@ export const RadioButton = React.memo(
         const radiobutton = useRadioButton(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = radiobutton;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = RadioButtonBase.getProps(inProps, context);
-
         const elementRef = React.useRef(null);
         const inputRef = React.useRef(props.inputRef);
-
-        const { ptm, cx, isUnstyled } = RadioButtonBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(RadioButtonBase.css.styles, isUnstyled, { name: 'radiobutton' });
 
         const select = (event) => {
             onChange(event);

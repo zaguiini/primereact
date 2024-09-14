@@ -1,43 +1,36 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useMenu } from './Menu.base';
 import { MenuBase } from './MenuBase';
 
 export const Menu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const menu = useMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = menu;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MenuBase.getProps(inProps, context);
         const [idState, setIdState] = React.useState(props.id);
         const [visibleState, setVisibleState] = React.useState(!props.popup);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
         const [selectedOptionIndex, setSelectedOptionIndex] = React.useState(-1);
         const [focused, setFocused] = React.useState(false);
 
-        const { ptm, cx, sx, isUnstyled } = MenuBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                visible: visibleState,
-                focused: focused
-            }
-        });
+        const state = {
+            id: idState,
+            visible: visibleState,
+            focused: focused
+        };
+
+        const menu = useMenu(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = menu;
 
         const getMenuItemPTOptions = (key, menuContext) => {
             return ptm(key, { context: menuContext });
         };
 
-        useHandleStyle(MenuBase.css.styles, isUnstyled, { name: 'menu' });
         const menuRef = React.useRef(null);
         const listRef = React.useRef(null);
         const targetRef = React.useRef(null);

@@ -1,5 +1,4 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import { PlusIcon } from '@primereact/icons/plus';
 import { TimesIcon } from '@primereact/icons/times';
 import { UploadIcon } from '@primereact/icons/upload';
@@ -9,39 +8,29 @@ import { Messages } from 'primereact/messages';
 import { ProgressBar } from 'primereact/progressbar';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { localeOption, PrimeReactContext } from '../api/Api';
+import { localeOption } from '../api/Api';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 import { useFileUpload } from './FileUpload.base';
 import { FileUploadBase } from './FileUploadBase';
 
 export const FileUpload = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = FileUploadBase.getProps(inProps, context);
         const [uploadedFilesState, setUploadedFilesState] = React.useState([]);
         const [filesState, setFilesState] = React.useState([]);
         const [progressState, setProgressState] = React.useState(0);
         const [focusedState, setFocusedState] = React.useState(false);
         const [uploadingState, setUploadingState] = React.useState(false);
-
-        const metaData = {
-            props,
-            state: {
-                progress: progressState,
-                uploading: uploadingState,
-                uploadedFiles: uploadedFilesState,
-                files: filesState,
-                focused: focusedState
-            }
+        const state = {
+            progress: progressState,
+            uploading: uploadingState,
+            uploadedFiles: uploadedFilesState,
+            files: filesState,
+            focused: focusedState
         };
 
-        const fileupload = useFileUpload(inProps, inRef);
+        const fileupload = useFileUpload(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = fileupload;
 
-        const { ptm, cx, isUnstyled } = FileUploadBase.setMetaData(metaData);
-
-        useHandleStyle(FileUploadBase.css.styles, isUnstyled, { name: 'fileupload' });
         const fileInputRef = React.useRef(null);
         const messagesRef = React.useRef(null);
         const contentRef = React.useRef(null);

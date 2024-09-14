@@ -1,7 +1,6 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useSplitter } from './Splitter.base';
 import { SplitterBase, SplitterPanelBase } from './SplitterBase';
@@ -10,13 +9,6 @@ export const SplitterPanel = () => {};
 
 export const Splitter = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const splitter = useSplitter(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = splitter;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = SplitterBase.getProps(inProps, context);
-
         const idState = React.useRef('');
         const elementRef = React.useRef(null);
         const gutterRef = React.useRef();
@@ -40,19 +32,13 @@ export const Splitter = React.memo(
         const panelSize = (sizes, index) => (index in sizes ? sizes[index] : (props.children && [].concat(props.children)[index].props.size) || 100 / childrenLength);
         const horizontal = props.layout === 'horizontal';
 
-        const metaData = {
-            props,
-            state: {
-                panelSizes: panelSizes,
-                nested: DomHandler.getAttribute(elementRef.current && elementRef.current.parentElement, 'data-p-splitter-panel-nested') === true
-            }
+        const state = {
+            panelSizes: panelSizes,
+            nested: DomHandler.getAttribute(elementRef.current && elementRef.current.parentElement, 'data-p-splitter-panel-nested') === true
         };
 
-        const { ptm, cx, isUnstyled } = SplitterBase.setMetaData({
-            ...metaData
-        });
-
-        useHandleStyle(SplitterBase.css.styles, isUnstyled, { name: 'splitter' });
+        const splitter = useSplitter(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = splitter;
 
         const getPanelPT = (key) => {
             return ptm(key, {

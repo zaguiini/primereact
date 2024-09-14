@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMergeProps, useUnmountEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useUnmountEffect } from '@primereact/hooks';
 import { DownloadIcon } from '@primereact/icons/download';
 import { EyeIcon } from '@primereact/icons/eye';
 import { RefreshIcon } from '@primereact/icons/refresh';
@@ -10,20 +10,13 @@ import { UndoIcon } from '@primereact/icons/undo';
 import { CSSTransition } from 'primereact/csstransition';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useImage } from './Image.base';
 import { ImageBase } from './ImageBase';
 
 export const Image = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const image = useImage(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = image;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ImageBase.getProps(inProps, context);
-
         const [maskVisibleState, setMaskVisibleState] = React.useState(false);
         const [previewVisibleState, setPreviewVisibleState] = React.useState(false);
         const [rotateState, setRotateState] = React.useState(0);
@@ -35,15 +28,15 @@ export const Image = React.memo(
         const previewButton = React.useRef(null);
         const zoomOutDisabled = scaleState <= 0.5;
         const zoomInDisabled = scaleState >= 1.5;
-        const { ptm, cx, sx, isUnstyled } = ImageBase.setMetaData({
-            props,
-            state: {
-                maskVisible: maskVisibleState,
-                previewVisible: previewVisibleState,
-                rotate: rotateState,
-                scale: scaleState
-            }
-        });
+        const state = {
+            maskVisible: maskVisibleState,
+            previewVisible: previewVisibleState,
+            rotate: rotateState,
+            scale: scaleState
+        };
+
+        const image = useImage(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = image;
 
         useGlobalOnEscapeKey({
             callback: () => {
@@ -57,8 +50,6 @@ export const Image = React.memo(
                 0
             ]
         });
-
-        useHandleStyle(ImageBase.css.styles, isUnstyled, { name: 'image' });
 
         const show = () => {
             if (props.preview) {

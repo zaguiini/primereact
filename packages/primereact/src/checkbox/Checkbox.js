@@ -1,34 +1,21 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CheckIcon } from '@primereact/icons/check';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useCheckbox } from './Checkbox.base';
 import { CheckboxBase } from './CheckboxBase';
 
 export const Checkbox = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const checkbox = useCheckbox(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = checkbox;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = CheckboxBase.getProps(inProps, context);
         const [focusedState, setFocusedState] = React.useState(false);
-        const { ptm, cx, isUnstyled } = CheckboxBase.setMetaData({
-            props,
-            state: {
-                focused: focusedState
-            },
-            context: {
-                checked: props.checked === props.trueValue,
-                disabled: props.disabled
-            }
-        });
+        const state = {
+            focused: focusedState
+        };
 
-        useHandleStyle(CheckboxBase.css.styles, isUnstyled, { name: 'checkbox' });
+        const checkbox = useCheckbox(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = checkbox;
 
         const elementRef = React.useRef(null);
         const inputRef = React.useRef(props.inputRef);

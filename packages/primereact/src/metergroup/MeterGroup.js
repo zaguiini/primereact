@@ -1,7 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { ObjectUtils, classNames } from '../utils/Utils';
 import { useMeterGroup } from './MeterGroup.base';
 import { MeterGroupBase } from './MeterGroupBase';
@@ -10,20 +8,7 @@ export const MeterGroup = (inProps, inRef) => {
     const metergroup = useMeterGroup(inProps, inRef);
     const { props, ptm, ptmi, cx, ref } = metergroup;
 
-    const context = React.useContext(PrimeReactContext);
-    const props = MeterGroupBase.getProps(inProps, context);
     const { values, min, max, orientation, labelPosition, start, end, meter, labelList } = props;
-
-    const mergeProps = useMergeProps();
-    const { ptm, cx, isUnstyled } = MeterGroupBase.setMetaData({
-        props,
-        ...props.__parentMetadata,
-        context: {
-            disabled: props.disabled
-        }
-    });
-
-    useHandleStyle(MeterGroupBase.css.styles, isUnstyled, { name: 'metergroup' });
 
     let totalPercent = 0;
     let percentages = [];

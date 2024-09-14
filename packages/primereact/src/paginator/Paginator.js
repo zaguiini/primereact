@@ -1,7 +1,6 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { ObjectUtils, classNames } from '../utils/Utils';
 import { CurrentPageReport } from './CurrentPageReport';
 import { FirstPageLink } from './FirstPageLink';
@@ -19,16 +18,6 @@ export const Paginator = React.memo(
         const paginator = usePaginator(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = paginator;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = PaginatorBase.getProps(inProps, context);
-        const metaData = {
-            props,
-            ...props.__parentMetadata
-        };
-        const { ptm, cx, isUnstyled } = PaginatorBase.setMetaData(metaData);
-
-        useHandleStyle(PaginatorBase.css.styles, isUnstyled, { name: 'paginator' });
         const elementRef = React.useRef(null);
         const page = Math.floor(props.first / props.rows);
         const totalPages = Math.ceil(props.totalRecords / props.rows);

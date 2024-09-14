@@ -1,11 +1,11 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
 import { CSSTransition } from 'primereact/csstransition';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, IconUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useSlideMenu } from './SlideMenu.base';
 import { SlideMenuBase } from './SlideMenuBase';
@@ -13,26 +13,17 @@ import { SlideMenuSub } from './SlideMenuSub';
 
 export const SlideMenu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const slidemenu = useSlideMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = slidemenu;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = SlideMenuBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [levelState, setLevelState] = React.useState(0);
         const [visibleState, setVisibleState] = React.useState(false);
-        const { ptm, cx, sx, isUnstyled } = SlideMenuBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                visible: visibleState,
-                level: levelState
-            }
-        });
+        const state = {
+            id: idState,
+            visible: visibleState,
+            level: levelState
+        };
 
-        useHandleStyle(SlideMenuBase.css.styles, isUnstyled, { name: 'slidemenu' });
+        const slidemenu = useSlideMenu(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = slidemenu;
 
         const menuRef = React.useRef(null);
         const targetRef = React.useRef(null);

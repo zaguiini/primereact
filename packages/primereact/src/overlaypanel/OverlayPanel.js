@@ -1,33 +1,25 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
 import { TimesIcon } from '@primereact/icons/times';
 import { CSSTransition } from 'primereact/csstransition';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useOverlayPanel } from './OverlayPanel.base';
 import { OverlayPanelBase } from './OverlayPanelBase';
 
 export const OverlayPanel = React.forwardRef((inProps, inRef) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = OverlayPanelBase.getProps(inProps, context);
     const [visibleState, setVisibleState] = React.useState(false);
 
-    const { ptm, cx, sx, isUnstyled } = OverlayPanelBase.setMetaData({
-        props,
-        state: {
-            visible: visibleState
-        }
-    });
+    const state = {
+        visible: visibleState
+    };
 
-    const overlaypanel = useOverlayPanel(inProps, inRef);
+    const overlaypanel = useOverlayPanel(inProps, inRef, state);
     const { props, ptm, ptmi, cx, ref } = overlaypanel;
-
-    useHandleStyle(OverlayPanelBase.css.styles, isUnstyled, { name: 'overlaypanel' });
 
     const attributeSelector = React.useRef('');
     const overlayRef = React.useRef(null);

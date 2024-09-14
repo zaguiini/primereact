@@ -1,10 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 import { InputText } from 'primereact/inputtext';
-import React, { useContext, useRef, useState } from 'react';
-import { PrimeReactContext, ariaLabel } from '../api/Api';
+import React, { useRef, useState } from 'react';
+import { ariaLabel } from '../api/Api';
 import { ObjectUtils } from '../utils/Utils';
-import { InputOtpBase } from './BaseInputOtp';
 import { useInputOtp } from './InputOtp.base';
 
 export const InputOtp = React.memo(
@@ -13,18 +12,7 @@ export const InputOtp = React.memo(
         const { props, ptm, ptmi, cx, ref } = inputotp;
 
         const elementRef = useRef(ref);
-        const mergeProps = useMergeProps();
-        const context = useContext(PrimeReactContext);
-        const props = InputOtpBase.getProps(inProps, context);
-        const { ptm, cx, isUnstyled } = InputOtpBase.setMetaData({
-            props,
-            ...props.__parentMetadata,
-            context: {
-                disabled: props.disabled
-            }
-        });
 
-        useHandleStyle(InputOtpBase.css.styles, isUnstyled, { name: 'inputotp' });
 
         const defaultValue = props.value ? props.value?.toString()?.split?.('') : new Array(props.length);
         const [tokens, setTokens] = useState(defaultValue);

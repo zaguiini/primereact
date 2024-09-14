@@ -1,11 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import { CheckIcon } from '@primereact/icons/check';
 import { ExclamationTriangleIcon } from '@primereact/icons/exclamationtriangle';
 import { InfoCircleIcon } from '@primereact/icons/infocircle';
 import { TimesCircleIcon } from '@primereact/icons/timescircle';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { MessageBase } from './MessageBase';
 
@@ -14,17 +12,7 @@ export const Message = React.memo(
         const message = useMessage(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = message;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MessageBase.getProps(inProps, context);
-
         const elementRef = React.useRef(null);
-
-        const { ptm, cx, isUnstyled } = MessageBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(MessageBase.css.styles, isUnstyled, { name: 'message' });
 
         const createContent = () => {
             if (props.content) {

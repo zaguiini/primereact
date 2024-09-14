@@ -79,24 +79,15 @@ export const DataViewItem = React.memo((props) => {
 
 export const DataView = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const dataview = useDataView(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = dataview;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = DataViewBase.getProps(inProps, context);
         const [firstState, setFirstState] = React.useState(props.first);
         const [rowsState, setRowsState] = React.useState(props.rows);
-        const metaData = {
-            props,
-            state: {
-                first: firstState,
-                rows: rowsState
-            }
+        const state = {
+            first: firstState,
+            rows: rowsState
         };
-        const { ptm, cx, isUnstyled } = DataViewBase.setMetaData(metaData);
 
-        useHandleStyle(DataViewBase.css.styles, isUnstyled, { name: 'dataview' });
+        const dataview = useDataView(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = dataview;
 
         const elementRef = React.useRef(null);
         const first = props.onPage ? props.first : firstState;

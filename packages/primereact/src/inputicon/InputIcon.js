@@ -1,7 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
-import React, { useContext, useRef } from 'react';
-import { PrimeReactContext } from '../api/Api';
+import React, { useRef } from 'react';
 import { classNames } from '../utils/Utils';
 import { useInputIcon } from './InputIcon.base';
 import { InputIconBase } from './InputIconBase';
@@ -12,17 +10,6 @@ export const InputIcon = React.memo(
         const { props, ptm, ptmi, cx, ref } = inputicon;
 
         const elementRef = useRef(ref);
-        const mergeProps = useMergeProps();
-        const context = useContext(PrimeReactContext);
-        const props = InputIconBase.getProps(inProps, context);
-
-        const { ptm, cx } = InputIconBase.setMetaData({
-            props,
-            ...props.__parentMetadata,
-            context: {
-                iconPosition: props.iconPosition
-            }
-        });
 
         const rootProps = mergeProps(
             {

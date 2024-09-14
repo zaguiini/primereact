@@ -1,35 +1,26 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { AngleDownIcon } from '@primereact/icons/angledown';
 import { AngleUpIcon } from '@primereact/icons/angleup';
 import { InputText } from 'primereact/inputtext';
 import { Ripple } from 'primereact/ripple';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useInputNumber } from './InputNumber.base';
 import { InputNumberBase } from './InputNumberBase';
 
 export const InputNumber = React.memo(
     React.forwardRef((inProps, inRef) => {
+        const [focusedState, setFocusedState] = React.useState(false);
+        const state = {
+            focused: focusedState
+        };
+
         const inputnumber = useInputNumber(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = inputnumber;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = InputNumberBase.getProps(inProps, context);
-        const [focusedState, setFocusedState] = React.useState(false);
-        const metaData = {
-            props,
-            ...props.__parentMetadata,
-            state: {
-                focused: focusedState
-            }
-        };
-        const { ptm, cx, isUnstyled } = InputNumberBase.setMetaData(metaData);
-
-        useHandleStyle(InputNumberBase.css.styles, isUnstyled, { name: 'inputnumber' });
         const elementRef = React.useRef(null);
         const inputRef = React.useRef(null);
         const timer = React.useRef(null);

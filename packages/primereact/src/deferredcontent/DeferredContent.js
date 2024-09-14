@@ -1,20 +1,18 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { useDeferredContent } from './DeferredContent.base';
 import { DeferredContentBase } from './DeferredContentBase';
 
 export const DeferredContent = React.forwardRef((inProps, inRef) => {
-    const deferredcontent = useDeferredContent(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = deferredcontent;
-
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = DeferredContentBase.getProps(inProps, context);
-
     const [loadedState, setLoadedState] = React.useState(false);
+    const state = {
+        loaded: loadedState
+    };
     const elementRef = React.useRef(null);
+
+    const deferredcontent = useDeferredContent(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = deferredcontent;
 
     const [bindScrollListener, unbindScrollListener] = useEventListener({
         target: 'window',

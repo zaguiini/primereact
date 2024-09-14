@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { TimesIcon } from '@primereact/icons/times';
 import { WindowMaximizeIcon } from '@primereact/icons/windowmaximize';
 import { WindowMinimizeIcon } from '@primereact/icons/windowminimize';
@@ -7,20 +7,13 @@ import { CSSTransition } from 'primereact/csstransition';
 import { Portal } from 'primereact/portal';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import FocusTrap from '../focustrap/FocusTrap';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useDialog } from './Dialog.base';
 import { DialogBase } from './DialogBase';
 
 export const Dialog = React.forwardRef((inProps, inRef) => {
-    const dialog = useDialog(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = dialog;
-
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = DialogBase.getProps(inProps, context);
-
     const uniqueId = props.id ? props.id : UniqueComponentId();
     const [idState, setIdState] = React.useState(uniqueId);
     const [maskVisibleState, setMaskVisibleState] = React.useState(false);
@@ -45,17 +38,14 @@ export const Dialog = React.forwardRef((inProps, inRef) => {
     const isCloseOnEscape = props.closable && props.closeOnEscape && visibleState;
     const displayOrder = useDisplayOrder('dialog', isCloseOnEscape);
 
-    const { ptm, cx, sx, isUnstyled } = DialogBase.setMetaData({
-        props,
-        ...props.__parentMetadata,
-        state: {
-            id: idState,
-            maximized: maximized,
-            containerVisible: maskVisibleState
-        }
-    });
+    const state = {
+        id: idState,
+        maximized: maximized,
+        containerVisible: maskVisibleState
+    };
 
-    useHandleStyle(DialogBase.css.styles, isUnstyled, { name: 'dialog' });
+    const dialog = useDialog(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = dialog;
 
     useGlobalOnEscapeKey({
         callback: (event) => {

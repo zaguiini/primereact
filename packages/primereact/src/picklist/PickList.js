@@ -1,7 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
-import PrimeReact, { FilterService, PrimeReactContext } from '../api/Api';
+import PrimeReact, { FilterService } from '../api/Api';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { usePickList } from './PickList.base';
 import { PickListBase } from './PickListBase';
@@ -11,13 +11,6 @@ import { PickListTransferControls } from './PickListTransferControls';
 
 export const PickList = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const picklist = usePickList(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = picklist;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = PickListBase.getProps(inProps, context);
-
         const [sourceSelectionState, setSourceSelectionState] = React.useState([]);
         const [targetSelectionState, setTargetSelectionState] = React.useState([]);
         const [sourceFilterValueState, setSourceFilterValueState] = React.useState('');
@@ -27,19 +20,17 @@ export const PickList = React.memo(
         const [focusedOptionId, setFocusedOptionId] = React.useState(null);
         const [focused, setFocused] = React.useState({ source: false, target: false });
 
-        const metaData = {
-            props,
-            state: {
-                sourceSelection: sourceSelectionState,
-                targetSelection: targetSelectionState,
-                sourceFilterValue: sourceFilterValueState,
-                targetFilterValue: targetFilterValueState,
-                attributeSelector: attributeSelectorState
-            }
+        const state = {
+            sourceSelection: sourceSelectionState,
+            targetSelection: targetSelectionState,
+            sourceFilterValue: sourceFilterValueState,
+            targetFilterValue: targetFilterValueState,
+            attributeSelector: attributeSelectorState
         };
-        const { ptm, cx, isUnstyled } = PickListBase.setMetaData(metaData);
 
-        useHandleStyle(PickListBase.css.styles, isUnstyled, { name: 'picklist' });
+        const picklist = usePickList(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = picklist;
+
         const elementRef = React.useRef(null);
         const sourceListElementRef = React.useRef(null);
         const targetListElementRef = React.useRef(null);

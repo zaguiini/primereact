@@ -1,7 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
-import React, { Children, cloneElement, useContext, useRef } from 'react';
-import { PrimeReactContext } from '../api/Api';
+import React, { Children, cloneElement, useRef } from 'react';
 import { classNames } from '../utils/Utils';
 import { useIconField } from './IconField.base';
 import { IconFieldBase } from './IconFieldBase';
@@ -12,17 +10,6 @@ export const IconField = React.memo(
         const { props, ptm, ptmi, cx, ref } = iconfield;
 
         const elementRef = useRef(ref);
-        const mergeProps = useMergeProps();
-        const context = useContext(PrimeReactContext);
-        const props = IconFieldBase.getProps(inProps, context);
-
-        const { ptm, cx } = IconFieldBase.setMetaData({
-            props,
-            ...props.__parentMetadata,
-            context: {
-                iconPosition: props.iconPosition
-            }
-        });
 
         const rootProps = mergeProps(
             {

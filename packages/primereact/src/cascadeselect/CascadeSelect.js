@@ -1,12 +1,12 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import { CSSTransition } from 'primereact/csstransition';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useCascadeSelect } from './CascadeSelect.base';
 import { CascadeSelectBase } from './CascadeSelectBase';
@@ -14,28 +14,17 @@ import { CascadeSelectSub } from './CascadeSelectSub';
 
 export const CascadeSelect = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const cascadeselect = useCascadeSelect(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = cascadeselect;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = CascadeSelectBase.getProps(inProps, context);
         const [focusedState, setFocusedState] = React.useState(false);
         const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
         const [attributeSelectorState, setAttributeSelectorState] = React.useState(null);
-        const { ptm, cx, isUnstyled } = CascadeSelectBase.setMetaData({
-            props,
-            state: {
-                focused: focusedState,
-                overlayVisible: overlayVisibleState,
-                attributeSelector: attributeSelectorState
-            },
-            context: {
-                ...context
-            }
-        });
+        const state = {
+            focused: focusedState,
+            overlayVisible: overlayVisibleState,
+            attributeSelector: attributeSelectorState
+        },
 
-        useHandleStyle(CascadeSelectBase.css.styles, isUnstyled, { name: 'cascadeselect' });
+        const cascadeselect = useCascadeSelect(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = cascadeselect;
 
         const elementRef = React.useRef(null);
         const overlayRef = React.useRef(null);

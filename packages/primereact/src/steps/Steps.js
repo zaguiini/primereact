@@ -1,39 +1,25 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useSteps } from './Steps.base';
 import { StepsBase } from './StepsBase';
 
 export const Steps = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const steps = useSteps(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = steps;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = StepsBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [activeIndexState, setActiveIndexState] = React.useState(props.activeIndex);
         const elementRef = React.useRef(null);
         const listRef = React.useRef(null);
         const count = React.Children.count(props.children);
 
-        const metaData = {
-            props,
-            state: {
-                id: idState,
-                activeIndex: activeIndexState
-            }
+        const state = {
+            id: idState,
+            activeIndex: activeIndexState
         };
 
-        const { ptm, ptmo, cx, isUnstyled } = StepsBase.setMetaData({
-            ...metaData
-        });
-
-        useHandleStyle(StepsBase.css.styles, isUnstyled, { name: 'steps' });
+        const steps = useSteps(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = steps;
 
         const getStepPT = (step, key, index) => {
             const stepMetaData = {

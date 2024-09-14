@@ -1,9 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Tooltip } from 'primereact/tooltip';
 import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
-import { FilterService, PrimeReactContext, localeOption } from '../api/Api';
+import { FilterService, localeOption } from '../api/Api';
 import { DomHandler, ObjectUtils, UniqueComponentId } from '../utils/Utils';
 import { useListbox } from './ListBox.base';
 import { ListBoxBase } from './ListBoxBase';
@@ -12,12 +12,6 @@ import { ListBoxItem } from './ListBoxItem';
 
 export const ListBox = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const listbox = useListbox(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = listbox;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ListBoxBase.getProps(inProps, context);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(null);
         const searchTimeout = React.useRef(null);
         const firstHiddenFocusableElement = React.useRef(null);
@@ -33,17 +27,12 @@ export const ListBox = React.memo(
         const optionTouched = React.useRef(false);
         const filteredValue = (props.onFilterValueChange ? props.filterValue : filterValueState) || '';
         const hasFilter = filteredValue && filteredValue.trim().length > 0;
-
-        const metaData = {
-            props,
-            state: {
-                filterValue: filteredValue
-            }
+        const state = {
+            filterValue: filteredValue
         };
 
-        const ptCallbacks = ListBoxBase.setMetaData(metaData);
-
-        useHandleStyle(ListBoxBase.css.styles, ptCallbacks.isUnstyled, { name: 'listbox' });
+        const listbox = useListbox(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = listbox;
 
         const onOptionSelect = (event, option, index = -1) => {
             if (props.disabled || isOptionDisabled(option)) {

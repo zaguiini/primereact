@@ -1,24 +1,17 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMatchMedia, useMountEffect, useResizeListener, useUpdateEffect } from '@primereact/hooks';
 import { AngleDownIcon } from '@primereact/icons/angledown';
 import { AngleRightIcon } from '@primereact/icons/angleright';
 import { BarsIcon } from '@primereact/icons/bars';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, ariaLabel } from '../api/Api';
+import PrimeReact, { ariaLabel } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useMegaMenu } from './MegaMenu.base';
 import { MegaMenuBase } from './MegaMenuBase';
 
 export const MegaMenu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const megamenu = useMegaMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = megamenu;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MegaMenuBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [activeItemState, setActiveItemState] = React.useState(null);
         const [focused, setFocused] = React.useState(null);
@@ -40,17 +33,15 @@ export const MegaMenu = React.memo(
         const vertical = props.orientation === 'vertical';
         const isMobileMode = useMatchMedia(`screen and (max-width: ${props.breakpoint})`, !!props.breakpoint);
 
-        const { ptm, cx, isUnstyled } = MegaMenuBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                activeItem: activeItemState && activeItemState.item,
-                attributeSelector: attributeSelectorState,
-                mobileActive: mobileActiveState
-            }
-        });
+        const state = {
+            id: idState,
+            activeItem: activeItemState && activeItemState.item,
+            attributeSelector: attributeSelectorState,
+            mobileActive: mobileActiveState
+        };
 
-        useHandleStyle(MegaMenuBase.css.styles, isUnstyled, { name: 'megamenu' });
+        const megamenu = useMegaMenu(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = megamenu;
 
         const getPTOptions = (processedItem, key, index) => {
             return ptm(key, {

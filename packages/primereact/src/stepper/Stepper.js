@@ -1,8 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { classNames, ObjectUtils, UniqueComponentId } from '../utils/Utils';
 import { useStepper } from './Stepper.base';
 import { StepperBase } from './StepperBase';
@@ -12,22 +11,15 @@ import { StepperSeparator } from './StepperSeparator';
 
 export const Stepper = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const stepper = useStepper(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = stepper;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = StepperBase.getProps(inProps, context);
         const start = ObjectUtils.getJSXElement(props.start, props);
         const end = ObjectUtils.getJSXElement(props.end, props);
-        const { ptm, cx, isUnstyled, ptmo } = StepperBase.setMetaData({
-            props
-        });
+
         const [idState, setIdState] = React.useState(props.id);
         const [activeStepState, setActiveStepState] = React.useState(props.activeStep);
         const navRef = React.useRef();
 
-        useHandleStyle(StepperBase.css.styles, isUnstyled, { name: 'stepper' });
+        const stepper = useStepper(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = stepper;
 
         const startProps = mergeProps(
             {

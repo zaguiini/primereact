@@ -1,11 +1,11 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useInterval, useMergeProps, useUnmountEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useInterval, useUnmountEffect } from '@primereact/hooks';
 import { TimesIcon } from '@primereact/icons/times';
 import { CSSTransition } from 'primereact/csstransition';
 import { Portal } from 'primereact/portal';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useGalleria } from './Galleria.base';
 import { GalleriaBase } from './GalleriaBase';
@@ -14,13 +14,6 @@ import { GalleriaThumbnails } from './GalleriaThumbnails';
 
 export const Galleria = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const galleria = useGalleria(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = galleria;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = GalleriaBase.getProps(inProps, context);
-
         const [visibleState, setVisibleState] = React.useState(false);
         const [numVisibleState, setNumVisibleState] = React.useState(props.numVisible);
         const [slideShowActiveState, setSlideShowActiveState] = React.useState(false);
@@ -31,18 +24,15 @@ export const Galleria = React.memo(
         const activeItemIndex = props.onItemChange ? props.activeIndex : activeIndexState;
         const isVertical = props.thumbnailsPosition === 'left' || props.thumbnailsPosition === 'right';
         const id = props.id || UniqueComponentId();
+        const state = {
+            visible: visibleState,
+            numVisible: numVisibleState,
+            slideShowActive: slideShowActiveState,
+            activeIndex: activeIndexState
+        };
 
-        const { ptm, cx, sx, isUnstyled } = GalleriaBase.setMetaData({
-            props,
-            state: {
-                visible: visibleState,
-                numVisible: numVisibleState,
-                slideShowActive: slideShowActiveState,
-                activeIndex: activeIndexState
-            }
-        });
-
-        useHandleStyle(GalleriaBase.css.styles, isUnstyled, { name: 'galleria' });
+        const galleria = useGalleria(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = galleria;
 
         useGlobalOnEscapeKey({
             callback: () => {

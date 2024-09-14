@@ -1,7 +1,6 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUnmountEffect } from '@primereact/hooks';
+import { useUnmountEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { classNames } from '../utils/Utils';
 import { useChart } from './Chart.base';
 import { ChartBase } from './ChartBase';
@@ -20,15 +19,6 @@ const PrimeReactChart = React.memo(
         const chart = useChart(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = chart;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ChartBase.getProps(inProps, context);
-
-        const { ptm, cx, sx, isUnstyled } = ChartBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(ChartBase.css.styles, isUnstyled, { name: 'chart' });
         const elementRef = React.useRef(null);
         const chartRef = React.useRef(null);
         const canvasRef = React.useRef(null);

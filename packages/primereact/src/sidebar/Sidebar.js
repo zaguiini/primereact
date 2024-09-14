@@ -1,33 +1,24 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { TimesIcon } from '@primereact/icons/times';
 import { CSSTransition } from 'primereact/csstransition';
 import { Portal } from 'primereact/portal';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useSidebar } from './Sidebar.base';
 import { SidebarBase } from './SidebarBase';
 
 export const Sidebar = React.forwardRef((inProps, inRef) => {
-    const sidebar = useSidebar(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = sidebar;
-
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = SidebarBase.getProps(inProps, context);
-
     const [maskVisibleState, setMaskVisibleState] = React.useState(false);
     const [visibleState, setVisibleState] = React.useState(false);
-    const { ptm, cx, sx, isUnstyled } = SidebarBase.setMetaData({
-        props,
-        state: {
-            containerVisible: maskVisibleState
-        }
-    });
+    const state = {
+        containerVisible: maskVisibleState
+    };
 
-    useHandleStyle(SidebarBase.css.styles, isUnstyled, { name: 'sidebar' });
+    const sidebar = useSidebar(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = sidebar;
 
     const sidebarRef = React.useRef(null);
     const maskRef = React.useRef(null);

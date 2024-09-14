@@ -1,9 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMatchMedia, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useContextMenu } from './ContextMenu.base';
 import { ContextMenuBase } from './ContextMenuBase';
@@ -11,10 +11,6 @@ import { ContextMenuSub } from './ContextMenuSub';
 
 export const ContextMenu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ContextMenuBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [visibleState, setVisibleState] = React.useState(false);
         const [reshowState, setReshowState] = React.useState(false);
@@ -27,22 +23,17 @@ export const ContextMenu = React.memo(
         const [processedItems, setProcessedItems] = React.useState([]);
         const [visibleItems, setVisibleItems] = React.useState([]);
         const [focusedItemId, setFocusedItemId] = React.useState(null);
+        const state = {
+            id: idState,
+            visible: visibleState,
+            reshow: reshowState,
+            resetMenu: resetMenuState,
+            attributeSelector: attributeSelectorState
+        };
 
-        const contextmenu = useContextMenu(inProps, inRef);
+        const contextmenu = useContextMenu(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = contextmenu;
 
-        const { ptm, cx, isUnstyled } = ContextMenuBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                visible: visibleState,
-                reshow: reshowState,
-                resetMenu: resetMenuState,
-                attributeSelector: attributeSelectorState
-            }
-        });
-
-        useHandleStyle(ContextMenuBase.css.styles, isUnstyled, { name: 'contextmenu' });
         const menuRef = React.useRef(null);
         const listRef = React.useRef(null);
         const currentEvent = React.useRef(null);

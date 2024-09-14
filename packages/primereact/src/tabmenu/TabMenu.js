@@ -1,21 +1,13 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useTabMenu } from './TabMenu.base';
 import { TabMenuBase } from './TabMenuBase';
 
 export const TabMenu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const tabmenu = useTabMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = tabmenu;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TabMenuBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [activeIndexState, setActiveIndexState] = React.useState(props.activeIndex);
         const elementRef = React.useRef(null);
@@ -23,17 +15,13 @@ export const TabMenu = React.memo(
         const navRef = React.useRef(null);
         const tabsRef = React.useRef({});
         const activeIndex = props.onTabChange ? props.activeIndex : activeIndexState;
-        const metaData = {
-            props,
-            state: {
-                id: idState,
-                activeIndex: activeIndex
-            }
+        const state = {
+            id: idState,
+            activeIndex: activeIndex
         };
 
-        const { ptm, cx, isUnstyled } = TabMenuBase.setMetaData({
-            ...metaData
-        });
+        const tabmenu = useTabMenu(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = tabmenu;
 
         const getPTOptions = (key, item, index) => {
             return ptm(key, {
@@ -44,8 +32,6 @@ export const TabMenu = React.memo(
                 }
             });
         };
-
-        useHandleStyle(TabMenuBase.css.styles, isUnstyled, { name: 'tabmenu' });
 
         const itemClick = (event, item, index) => {
             if (item.disabled) {

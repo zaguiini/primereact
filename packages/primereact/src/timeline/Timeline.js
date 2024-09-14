@@ -1,7 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { classNames, ObjectUtils } from '../utils/Utils';
 import { useTimeline } from './Timeline.base';
 import { TimelineBase } from './TimelineBase';
@@ -10,15 +8,6 @@ export const Timeline = React.memo(
     React.forwardRef((inProps, inRef) => {
         const timeline = useTimeline(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = timeline;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TimelineBase.getProps(inProps, context);
-        const { ptm, cx, isUnstyled } = TimelineBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(TimelineBase.css.styles, isUnstyled, { name: 'timeline' });
 
         const getPTOptions = (key, index) => {
             return ptm(key, {

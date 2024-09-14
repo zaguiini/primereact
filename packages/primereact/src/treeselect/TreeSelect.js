@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SearchIcon } from '@primereact/icons/search';
 import { TimesIcon } from '@primereact/icons/times';
@@ -8,7 +8,7 @@ import { Ripple } from 'primereact/ripple';
 import { Tooltip } from 'primereact/tooltip';
 import { Tree } from 'primereact/tree';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useTreeSelect } from './TreeSelect.base';
 import { TreeSelectBase } from './TreeSelectBase';
@@ -16,13 +16,6 @@ import { TreeSelectPanel } from './TreeSelectPanel';
 
 export const TreeSelect = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const treeselect = useTreeSelect(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = treeselect;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TreeSelectBase.getProps(inProps, context);
-
         const [focusedState, setFocusedState] = React.useState(false);
         const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
         const [expandedKeysState, setExpandedKeysState] = React.useState(props.expandedKeys);
@@ -46,19 +39,15 @@ export const TreeSelect = React.memo(
         const isCheckboxSelectionMode = props.selectionMode === 'checkbox';
         const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
 
-        const metaData = {
-            props,
-            state: {
-                focused: focusedState,
-                overlayVisible: overlayVisibleState,
-                expandedKeys: expandedKeys,
-                filterValue: filteredValue
-            }
+        const state = {
+            focused: focusedState,
+            overlayVisible: overlayVisibleState,
+            expandedKeys: expandedKeys,
+            filterValue: filteredValue
         };
 
-        const { ptm, cx, isUnstyled } = TreeSelectBase.setMetaData(metaData);
-
-        useHandleStyle(TreeSelectBase.css.styles, isUnstyled, { name: 'treeselect' });
+        const treeselect = useTreeSelect(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = treeselect;
 
         const filterOptions = {
             filter: (e) => onFilterInputChange(e),

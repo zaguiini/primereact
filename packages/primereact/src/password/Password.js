@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { EyeIcon } from '@primereact/icons/eye';
 import { EyeSlashIcon } from '@primereact/icons/eyeslash';
 import { CSSTransition } from 'primereact/csstransition';
@@ -9,25 +9,13 @@ import { InputText } from 'primereact/inputtext';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, ariaLabel, localeOption } from '../api/Api';
+import PrimeReact, { ariaLabel, localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { usePassword } from './Password.base';
 import { PasswordBase } from './PasswordBase';
 
 export const Password = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const password = usePassword(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = password;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = PasswordBase.getProps(inProps, context);
-
-        const promptLabel = props.promptLabel || localeOption('passwordPrompt');
-        const weakLabel = props.weakLabel || localeOption('weak');
-        const mediumLabel = props.mediumLabel || localeOption('medium');
-        const strongLabel = props.strongLabel || localeOption('strong');
-
         const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
         const [meterState, setMeterState] = React.useState(null);
         const [infoTextState, setInfoTextState] = React.useState(promptLabel);
@@ -39,19 +27,20 @@ export const Password = React.memo(
         const mediumCheckRegExp = React.useRef(new RegExp(props.mediumRegex));
         const strongCheckRegExp = React.useRef(new RegExp(props.strongRegex));
         const type = unmaskedState ? 'text' : 'password';
-        const metaData = {
-            props,
-            state: {
-                overlayVisible: overlayVisibleState,
-                meter: meterState,
-                infoText: infoTextState,
-                focused: focusedState,
-                unmasked: unmaskedState
-            }
+        const state = {
+            overlayVisible: overlayVisibleState,
+            meter: meterState,
+            infoText: infoTextState,
+            focused: focusedState,
+            unmasked: unmaskedState
         };
-        const { ptm, cx, isUnstyled } = PasswordBase.setMetaData(metaData);
+        const password = usePassword(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = password;
 
-        useHandleStyle(PasswordBase.css.styles, isUnstyled, { name: 'password' });
+        const promptLabel = props.promptLabel || localeOption('passwordPrompt');
+        const weakLabel = props.weakLabel || localeOption('weak');
+        const mediumLabel = props.mediumLabel || localeOption('medium');
+        const strongLabel = props.strongLabel || localeOption('strong');
 
         const passwordDisplayOrder = useDisplayOrder('password', overlayVisibleState);
 

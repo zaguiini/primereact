@@ -1,11 +1,11 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { Button } from 'primereact/button';
 import { CSSTransition } from 'primereact/csstransition';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useConfirmPopup } from './ConfirmPopup.base';
 import { ConfirmPopupBase } from './ConfirmPopupBase';
@@ -27,25 +27,14 @@ export const confirmPopup = (props = {}) => {
 
 export const ConfirmPopup = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const confirmpopup = useConfirmPopup(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = confirmpopup;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ConfirmPopupBase.getProps(inProps, context);
-
         const [visibleState, setVisibleState] = React.useState(props.visible);
         const [reshowState, setReshowState] = React.useState(false);
-        const metaData = {
-            props,
-            state: {
-                visible: visibleState,
-                reshow: reshowState
-            }
+        const state = {
+            visible: visibleState,
+            reshow: reshowState
         };
-        const { ptm, cx, isUnstyled } = ConfirmPopupBase.setMetaData(metaData);
-
-        useHandleStyle(ConfirmPopupBase.css.styles, isUnstyled, { name: 'confirmpopup' });
+        const confirmpopup = useConfirmPopup(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = confirmpopup;
 
         const overlayRef = React.useRef(null);
         const acceptBtnRef = React.useRef(null);

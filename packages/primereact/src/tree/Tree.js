@@ -1,9 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 import { SearchIcon } from '@primereact/icons/search';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import * as React from 'react';
-import { localeOption, PrimeReactContext } from '../api/Api';
+import { localeOption } from '../api/Api';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 import { useTree } from './Tree.base';
 import { TreeBase } from './TreeBase';
@@ -11,13 +11,6 @@ import { UITreeNode } from './UITreeNode';
 
 export const Tree = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const tree = useTree(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = tree;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TreeBase.getProps(inProps, context);
-
         const [filterValueState, setFilterValueState] = React.useState('');
         const [expandedKeysState, setExpandedKeysState] = React.useState(props.expandedKeys);
         const elementRef = React.useRef(null);
@@ -27,15 +20,13 @@ export const Tree = React.memo(
         const filteredValue = props.onFilterValueChange ? props.filterValue : filterValueState;
         const expandedKeys = props.onToggle ? props.expandedKeys : expandedKeysState;
         const childFocusEvent = React.useRef(null);
-        const { ptm, cx, isUnstyled } = TreeBase.setMetaData({
-            props,
-            state: {
-                filterValue: filteredValue,
-                expandedKeys: expandedKeys
-            }
-        });
+        const state = {
+            filterValue: filteredValue,
+            expandedKeys: expandedKeys
+        };
 
-        useHandleStyle(TreeBase.css.styles, isUnstyled, { name: 'tree' });
+        const tree = useTree(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = tree;
 
         const filterOptions = {
             filter: (e) => onFilterInputChange(e),

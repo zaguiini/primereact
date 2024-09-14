@@ -1,8 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { useRef } from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, classNames } from '../utils/Utils';
 import { useEditor } from './Editor.base';
 import { EditorBase } from './EditorBase';
@@ -17,14 +16,6 @@ const QuillJS = (function () {
 
 export const Editor = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = EditorBase.getProps(inProps, context);
-        const { ptm, cx, isUnstyled } = EditorBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(EditorBase.css.styles, isUnstyled, { name: 'editor' });
         const editor = useEditor(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = editor;
 

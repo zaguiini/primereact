@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ArrowDownIcon } from '@primereact/icons/arrowdown';
 import { ArrowUpIcon } from '@primereact/icons/arrowup';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -7,7 +7,7 @@ import { Paginator } from 'primereact/paginator';
 import { VirtualScroller } from 'primereact/virtualscroller';
 import * as React from 'react';
 import { getStorage } from '../../utils/utils';
-import PrimeReact, { FilterMatchMode, FilterOperator, FilterService, PrimeReactContext } from '../api/Api';
+import PrimeReact, { FilterMatchMode, FilterOperator, FilterService } from '../api/Api';
 import { ColumnBase } from '../column/ColumnBase';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useDataTable } from './DataTable.base';
@@ -17,9 +17,6 @@ import { TableFooter } from './TableFooter';
 import { TableHeader } from './TableHeader';
 
 export const DataTable = React.forwardRef((inProps, inRef) => {
-    const context = React.useContext(PrimeReactContext);
-    const mergeProps = useMergeProps();
-    const props = DataTableBase.getProps(inProps, context);
     const [firstState, setFirstState] = React.useState(props.first);
     const [rowsState, setRowsState] = React.useState(props.rows);
     const [sortFieldState, setSortFieldState] = React.useState(props.sortField);
@@ -31,31 +28,23 @@ export const DataTable = React.forwardRef((inProps, inRef) => {
     const [editingMetaState, setEditingMetaState] = React.useState({});
     const [d_rowsState, setD_rowsState] = React.useState(props.rows);
     const [d_filtersState, setD_filtersState] = React.useState({});
-    const metaData = {
-        props,
-        state: {
-            first: firstState,
-            rows: rowsState,
-            sortField: sortFieldState,
-            sortOrder: sortOrderState,
-            multiSortMeta: multiSortMetaState,
-            filters: filtersState,
-            columnOrder: columnOrderState,
-            groupRowsSortMeta: groupRowsSortMetaState,
-            editingMeta: editingMetaState,
-            d_rows: d_rowsState,
-            d_filters: d_filtersState
-        },
-        context: {
-            scrollable: props.scrollable
-        }
+    const state = {
+        first: firstState,
+        rows: rowsState,
+        sortField: sortFieldState,
+        sortOrder: sortOrderState,
+        multiSortMeta: multiSortMetaState,
+        filters: filtersState,
+        columnOrder: columnOrderState,
+        groupRowsSortMeta: groupRowsSortMetaState,
+        editingMeta: editingMetaState,
+        d_rows: d_rowsState,
+        d_filters: d_filtersState
     };
-    const ptCallbacks = DataTableBase.setMetaData(metaData);
 
-    const datatable = useDataTable(inProps, inRef);
+    const datatable = useDataTable(inProps, inRef, state);
     const { props, ptm, ptmi, cx, ref } = datatable;
 
-    useHandleStyle(DataTableBase.css.styles, ptCallbacks.isUnstyled, { name: 'datatable' });
     const attributeSelector = React.useRef('');
     const elementRef = React.useRef(null);
     const tableRef = React.useRef(null);

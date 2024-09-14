@@ -1,8 +1,8 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { BarsIcon } from '@primereact/icons/bars';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, ariaLabel } from '../api/Api';
+import PrimeReact, { ariaLabel } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useMenubar } from './Menubar.base';
 import { MenubarBase } from './MenubarBase';
@@ -10,13 +10,6 @@ import { MenubarSub } from './MenubarSub';
 
 export const Menubar = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const menubar = useMenubar(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = menubar;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MenubarBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [mobileActiveState, setMobileActiveState] = React.useState(false);
         const [focused, setFocused] = React.useState(false);
@@ -33,15 +26,13 @@ export const Menubar = React.memo(
         const searchValue = React.useRef('');
         const searchTimeout = React.useRef(null);
         const reverseTrigger = React.useRef(false);
-        const { ptm, cx, isUnstyled } = MenubarBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                mobileActive: mobileActiveState
-            }
-        });
+        const state = {
+            id: idState,
+            mobileActive: mobileActiveState
+        };
 
-        useHandleStyle(MenubarBase.css.styles, isUnstyled, { name: 'menubar' });
+        const menubar = useMenubar(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = menubar;
 
         const [bindOutsideClickListener, unbindOutsideClickListener] = useEventListener({
             type: 'click',

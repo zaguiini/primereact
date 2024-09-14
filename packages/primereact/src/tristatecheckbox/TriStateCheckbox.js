@@ -1,10 +1,10 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { CheckIcon } from '@primereact/icons/check';
 import { TimesIcon } from '@primereact/icons/times';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext, ariaLabel } from '../api/Api';
+import { ariaLabel } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useTriStateCheckbox } from './TriStateCheckbox.base';
 import { TriStateCheckboxBase } from './TriStateCheckboxBase';
@@ -14,17 +14,7 @@ export const TriStateCheckbox = React.memo(
         const tristatecheckbox = useTriStateCheckbox(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = tristatecheckbox;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TriStateCheckboxBase.getProps(inProps, context);
-
         const elementRef = React.useRef(null);
-
-        const { ptm, cx, isUnstyled } = TriStateCheckboxBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(TriStateCheckboxBase.css.styles, isUnstyled, { name: 'tristatecheckbox' });
 
         const onChange = (event) => {
             if (props.disabled || props.readOnly) {

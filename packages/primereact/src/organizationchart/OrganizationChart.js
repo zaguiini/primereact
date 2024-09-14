@@ -1,7 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { classNames, DomHandler } from '../utils/Utils';
 import { useOrganizationChart } from './OrganizationChart.base';
 import { OrganizationChartBase } from './OrganizationChartBase';
@@ -12,14 +10,6 @@ export const OrganizationChart = React.memo(
         const organizationchart = useOrganizationChart(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = organizationchart;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = OrganizationChartBase.getProps(inProps, context);
-        const { ptm, cx, sx, isUnstyled } = OrganizationChartBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(OrganizationChartBase.css.styles, isUnstyled, { name: 'orgchart' });
         const elementRef = React.useRef(null);
         const root = props.value && props.value.length ? props.value[0] : null;
 

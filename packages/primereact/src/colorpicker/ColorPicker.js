@@ -1,9 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { OverlayService } from 'primereact/overlayservice';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useColorPicker } from './ColorPicker.base';
 import { ColorPickerBase } from './ColorPickerBase';
@@ -11,23 +11,17 @@ import { ColorPickerPanel } from './ColorPickerPanel';
 
 export const ColorPicker = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const colorpicker = useColorPicker(inProps, inRef);
+        const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
+        const state = {
+            overlayVisible: overlayVisibleState
+        };
+
+        const colorpicker = useColorPicker(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = colorpicker;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ColorPickerBase.getProps(inProps, context);
-        const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
-        const { ptm, cx, isUnstyled } = ColorPickerBase.setMetaData({
-            props,
-            state: {
-                overlayVisible: overlayVisibleState
-            }
-        });
         const isCloseOnEscape = overlayVisibleState && props.closeOnEscape;
         const overlayDisplayOrder = useDisplayOrder('overlay-panel', isCloseOnEscape);
 
-        useHandleStyle(ColorPickerBase.css.styles, isUnstyled, { name: 'colorpicker' });
         useGlobalOnEscapeKey({
             callback: () => {
                 hide();

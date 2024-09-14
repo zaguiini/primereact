@@ -2,18 +2,12 @@ import { ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { InputText } from 'primereact/inputtext';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 import { useInputMask } from './InputMask.base';
 import { InputMaskBase } from './InputMaskBase';
 
 export const InputMask = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const inputmask = useInputMask(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = inputmask;
-
-        const context = React.useContext(PrimeReactContext);
-        const props = InputMaskBase.getProps(inProps, context);
         const elementRef = React.useRef(null);
         const firstNonMaskPos = React.useRef(null);
         const lastRequiredNonMaskPos = React.useRef(0);
@@ -28,11 +22,9 @@ export const InputMask = React.memo(
         const defaultBuffer = React.useRef(null);
         const caretTimeoutId = React.useRef(null);
         const androidChrome = React.useRef(false);
-        const metaData = {
-            props
-        };
 
-        const { cx } = InputMaskBase.setMetaData(metaData);
+        const inputmask = useInputMask(inProps, inRef);
+        const { props, ptm, ptmi, cx, ref } = inputmask;
 
         const caret = (first, last) => {
             let range;

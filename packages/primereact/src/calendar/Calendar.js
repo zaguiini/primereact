@@ -38,7 +38,6 @@ export const Calendar = React.memo(
             priority: [ESC_KEY_HANDLING_PRIORITIES.OVERLAY_PANEL, 0]
         });
 
-        useHandleStyle(CalendarBase.css.styles, isUnstyled, { name: 'calendar' });
         const elementRef = React.useRef(null);
         const overlayRef = React.useRef(null);
         const inputRef = React.useRef(props.inputRef);

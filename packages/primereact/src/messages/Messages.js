@@ -1,9 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
-import { PrimeReactContext } from '../api/Api';
 import { ObjectUtils } from '../utils/Utils';
 import { useMessages } from './Messages.base';
 import { MessagesBase } from './MessagesBase';
@@ -13,25 +11,14 @@ let messageIdx = 0;
 
 export const Messages = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MessagesBase.getProps(inProps, context);
         const [messagesState, setMessagesState] = React.useState([]);
         const elementRef = React.useRef(null);
-        const metaData = {
-            props,
-            ...props.__parentMetadata,
-            state: {
-                messages: messagesState
-            }
+        const state = {
+            messages: messagesState
         };
 
-        const messages = useMessages(inProps, inRef);
+        const messages = useMessages(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = messages;
-
-        const ptCallbacks = MessagesBase.setMetaData(metaData);
-
-        useHandleStyle(MessagesBase.css.styles, ptCallbacks.isUnstyled, { name: 'messages' });
 
         const show = (messageInfo) => {
             if (messageInfo) {

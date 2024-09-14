@@ -1,20 +1,13 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMergeProps, useMountEffect, usePrevious, useResizeListener, useStyle, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '@primereact/hooks';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useVirtualScroller } from './VirtualScroller.base';
 import { VirtualScrollerBase } from './VirtualScrollerBase';
 
 export const VirtualScroller = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const virtualscroller = useVirtualScroller(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = virtualscroller;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = VirtualScrollerBase.getProps(inProps, context);
         const prevProps = usePrevious(inProps) || {};
 
         const vertical = props.orientation === 'vertical';
@@ -28,20 +21,19 @@ export const VirtualScroller = React.memo(
         const [numToleratedItemsState, setNumToleratedItemsState] = React.useState(props.numToleratedItems);
         const [loadingState, setLoadingState] = React.useState(props.loading || false);
         const [loaderArrState, setLoaderArrState] = React.useState([]);
-        const { ptm } = VirtualScrollerBase.setMetaData({
-            props,
-            state: {
-                first: firstState,
-                last: lastState,
-                page: pageState,
-                numItemsInViewport: numItemsInViewportState,
-                numToleratedItems: numToleratedItemsState,
-                loading: loadingState,
-                loaderArr: loaderArrState
-            }
-        });
+        const state = {
+            first: firstState,
+            last: lastState,
+            page: pageState,
+            numItemsInViewport: numItemsInViewportState,
+            numToleratedItems: numToleratedItemsState,
+            loading: loadingState,
+            loaderArr: loaderArrState
+        };
 
-        useStyle(VirtualScrollerBase.css.styles, { name: 'virtualscroller' });
+        const virtualscroller = useVirtualScroller(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = virtualscroller;
+
         const elementRef = React.useRef(null);
         const contentRef = React.useRef(null);
         const spacerRef = React.useRef(null);

@@ -1,9 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUpdateEffect } from '@primereact/hooks';
+import { useUpdateEffect } from '@primereact/hooks';
 import { TimesIcon } from '@primereact/icons/times';
 import { Button } from 'primereact/button';
 import * as React from 'react';
-import { localeOption, PrimeReactContext } from '../api/Api';
+import { localeOption } from '../api/Api';
 import { classNames, IconUtils, ObjectUtils } from '../utils/Utils';
 import { useInplace } from './Inplace.base';
 import { InplaceBase } from './InplaceBase';
@@ -12,25 +12,15 @@ export const InplaceDisplay = (props) => props.children;
 export const InplaceContent = (props) => props.children;
 
 export const Inplace = React.forwardRef((inProps, inRef) => {
-    const inplace = useInplace(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = inplace;
-
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = InplaceBase.getProps(inProps, context);
-
     const [activeState, setActiveState] = React.useState(props.active);
     const elementRef = React.useRef(null);
     const active = props.onToggle ? props.active : activeState;
-    const metaData = {
-        props,
-        state: {
-            active: activeState
-        }
+    const state = {
+        active: activeState
     };
-    const { ptm, cx, isUnstyled } = InplaceBase.setMetaData(metaData);
 
-    useHandleStyle(InplaceBase.css.styles, isUnstyled, { name: 'inplace' });
+    const inplace = useInplace(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = inplace;
 
     const open = (event) => {
         if (props.disabled) {

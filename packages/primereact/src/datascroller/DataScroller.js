@@ -1,26 +1,17 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { PrimeReactContext, localeOption } from '../api/Api';
+import { localeOption } from '../api/Api';
 import { ObjectUtils, classNames } from '../utils/Utils';
 import { useDataScroller } from './DataScroller.base';
 import { DataScrollerBase } from './DataScrollerBase';
 
 export const DataScroller = React.memo(
     React.forwardRef((inProps, inRef) => {
+        const [dataToRenderState, setDataToRenderState] = React.useState([]);
+
         const datascroller = useDataScroller(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = datascroller;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = DataScrollerBase.getProps(inProps, context);
-
-        const [dataToRenderState, setDataToRenderState] = React.useState([]);
-        const { ptm, cx, sx, isUnstyled } = DataScrollerBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(DataScrollerBase.css.styles, isUnstyled, { name: 'datascroller' });
 
         const elementRef = React.useRef(null);
         const contentRef = React.useRef(null);

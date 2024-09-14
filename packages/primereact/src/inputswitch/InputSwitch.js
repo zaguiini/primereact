@@ -1,8 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 import { useInputSwitch } from './InputSwitch.base';
 import { InputSwitchBase } from './InputSwitchBase';
@@ -12,14 +11,6 @@ export const InputSwitch = React.memo(
         const inputswitch = useInputSwitch(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = inputswitch;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = InputSwitchBase.getProps(inProps, context);
-        const { ptm, cx, isUnstyled } = InputSwitchBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(InputSwitchBase.css.styles, isUnstyled, { name: 'inputswitch' });
         const elementRef = React.useRef(null);
         const inputRef = React.useRef(props.inputRef);
         const checked = props.checked === props.trueValue;

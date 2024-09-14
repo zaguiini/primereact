@@ -1,8 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useDock } from './Dock.base';
 import { DockBase } from './DockBase';
@@ -12,25 +11,17 @@ export const Dock = React.memo(
         const [currentIndexState, setCurrentIndexState] = React.useState(-3);
         const [focused, setFocused] = React.useState(false);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = DockBase.getProps(inProps, context);
         const [idState, setIdState] = React.useState(props.id);
-        const { ptm, cx, isUnstyled } = DockBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                currentIndex: currentIndexState
-            }
-        });
+        const state = {
+            id: idState,
+            currentIndex: currentIndexState
+        };
 
-        const dock = useDock(inProps, inRef);
+        const dock = useDock(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = dock;
 
         const elementRef = React.useRef(null);
         const listRef = React.useRef(null);
-
-        useHandleStyle(DockBase.css.styles, isUnstyled, { name: 'dock' });
 
         const getPTOptions = (key, item, index) => {
             return ptm(key, {

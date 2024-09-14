@@ -1,34 +1,25 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { Checkbox } from 'primereact/checkbox';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { ariaLabel, PrimeReactContext } from '../api/Api';
+import { ariaLabel } from '../api/Api';
 import { classNames, DomHandler, IconUtils, ObjectUtils } from '../utils/Utils';
 import { useMultiStateCheckbox } from './MultiStateCheckbox.base';
 import { MultiStateCheckboxBase } from './MultiStateCheckboxBase';
 
 export const MultiStateCheckbox = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const multistatecheckbox = useMultiStateCheckbox(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = multistatecheckbox;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MultiStateCheckboxBase.getProps(inProps, context);
-
         const [focusedState, setFocusedState] = React.useState(false);
         const elementRef = React.useRef(null);
         const equalityKey = props.optionValue ? null : props.dataKey;
 
-        const { ptm, cx, sx, isUnstyled } = MultiStateCheckboxBase.setMetaData({
-            props,
-            state: {
-                focused: focusedState
-            }
-        });
+        const state = {
+            focused: focusedState
+        };
 
-        useHandleStyle(MultiStateCheckboxBase.css.styles, isUnstyled, { name: 'multistatecheckbox' });
+        const multistatecheckbox = useMultiStateCheckbox(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = multistatecheckbox;
 
         const onClick = (event) => {
             if (!props.disabled && !props.readOnly) {

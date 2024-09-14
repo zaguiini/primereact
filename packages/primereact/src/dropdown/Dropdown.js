@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { ChevronUpIcon } from '@primereact/icons/chevronup';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -7,7 +7,7 @@ import { TimesIcon } from '@primereact/icons/times';
 import { OverlayService } from 'primereact/overlayservice';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { FilterService, PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { FilterService, localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useDropdown } from './Dropdown.base';
 import { DropdownBase } from './DropdownBase';
@@ -15,9 +15,6 @@ import { DropdownPanel } from './DropdownPanel';
 
 export const Dropdown = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = DropdownBase.getProps(inProps, context);
         const [filterState, setFilterState] = React.useState('');
         const [focusedState, setFocusedState] = React.useState(false);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
@@ -35,20 +32,14 @@ export const Dropdown = React.memo(
         const isLazy = props.virtualScrollerOptions && props.virtualScrollerOptions.lazy;
         const hasFilter = ObjectUtils.isNotEmpty(filterState);
         const appendTo = props.appendTo || (context && context.appendTo) || PrimeReact.appendTo;
-        const { ptm, cx, sx, isUnstyled } = DropdownBase.setMetaData({
-            props,
-            ...props.__parentMetadata,
-            state: {
-                filter: filterState,
-                focused: focusedState,
-                overlayVisible: overlayVisibleState
-            }
-        });
+        const state = {
+            filter: filterState,
+            focused: focusedState,
+            overlayVisible: overlayVisibleState
+        };
 
-        const dropdown = useDropdown(inProps, inRef);
+        const dropdown = useDropdown(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = dropdown;
-
-        useHandleStyle(DropdownBase.css.styles, isUnstyled, { name: 'dropdown' });
 
         const [bindOverlayListener, unbindOverlayListener] = useOverlayListener({
             target: elementRef,

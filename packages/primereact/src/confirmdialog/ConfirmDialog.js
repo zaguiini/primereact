@@ -1,10 +1,10 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { Button } from 'primereact/button';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import { PrimeReactContext, localeOption } from '../api/Api';
+import { localeOption } from '../api/Api';
 import { Dialog } from '../dialog/Dialog';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useConfirmDialog } from './ConfirmDialog.base';
@@ -27,18 +27,17 @@ export const confirmDialog = (props = {}) => {
 
 export const ConfirmDialog = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const confirmdialog = useConfirmDialog(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = confirmdialog;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ConfirmDialogBase.getProps(inProps, context);
-
         const [visibleState, setVisibleState] = React.useState(props.visible);
         const [reshowState, setReshowState] = React.useState(false);
         const confirmProps = React.useRef(null);
         const isCallbackExecuting = React.useRef(false);
         const focusElementOnHide = React.useRef(null);
+        const state = {
+            visible: visibleState
+        };
+
+        const confirmdialog = useConfirmDialog(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = confirmdialog;
 
         const getCurrentProps = () => {
             let group = props.group;
@@ -55,16 +54,6 @@ export const ConfirmDialog = React.memo(
 
         const acceptLabel = getPropValue('acceptLabel') || localeOption('accept');
         const rejectLabel = getPropValue('rejectLabel') || localeOption('reject');
-
-        const metaData = {
-            props,
-            state: {
-                visible: visibleState
-            }
-        };
-        const { ptm, cx, isUnstyled } = ConfirmDialogBase.setMetaData(metaData);
-
-        useHandleStyle(ConfirmDialogBase.css.styles, isUnstyled, { name: 'confirmdialog' });
 
         const accept = () => {
             if (!isCallbackExecuting.current) {

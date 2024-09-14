@@ -1,33 +1,24 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { TimesCircleIcon } from '@primereact/icons/timescircle';
 import { KeyFilter } from 'primereact/keyfilter';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useChips } from './Chips.base';
 import { ChipsBase } from './ChipsBase';
 
 export const Chips = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const chips = useChips(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = chips;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ChipsBase.getProps(inProps, context);
         const [focusedState, setFocusedState] = React.useState(false);
         const [focusedIndex, setFocusedIndex] = React.useState(null);
 
-        const { ptm, cx, isUnstyled } = ChipsBase.setMetaData({
-            props,
-            state: {
-                focused: focusedState
-            }
-        });
+        const state = {
+            focused: focusedState
+        };
 
-        useHandleStyle(ChipsBase.css.styles, isUnstyled, { name: 'chips' });
+        const chips = useChips(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = chips;
 
         const elementRef = React.useRef(null);
         const listRef = React.useRef(null);

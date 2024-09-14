@@ -1,20 +1,16 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
 import { Button } from 'primereact/button';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useSpeedDial } from './SpeedDial.base';
 import { SpeedDialBase } from './SpeedDialBase';
 
 export const SpeedDial = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const speeddial = useSpeedDial(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = speeddial;
-
         const [visibleState, setVisibleState] = React.useState(false);
         const [idState, setIdState] = React.useState(null);
         const [focused, setFocused] = React.useState(false);
@@ -22,20 +18,15 @@ export const SpeedDial = React.memo(
         const isItemClicked = React.useRef(false);
         const elementRef = React.useRef(null);
         const listRef = React.useRef(null);
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = SpeedDialBase.getProps(inProps, context);
+
         const visible = props.onVisibleChange ? props.visible : visibleState;
         const speedDialDisplayOrder = useDisplayOrder('speed-dial', visible);
-        const metaData = {
-            props,
-            state: {
-                visible
-            }
+        const state = {
+            visible
         };
-        const { ptm, cx, sx, isUnstyled } = SpeedDialBase.setMetaData(metaData);
 
-        useHandleStyle(SpeedDialBase.css.styles, isUnstyled, { name: 'speeddial' });
+        const speeddial = useSpeedDial(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = speeddial;
 
         useGlobalOnEscapeKey({
             callback: () => {

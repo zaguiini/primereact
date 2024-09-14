@@ -1,5 +1,5 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import { TimesIcon } from '@primereact/icons/times';
@@ -7,7 +7,7 @@ import { TimesCircleIcon } from '@primereact/icons/timescircle';
 import { OverlayService } from 'primereact/overlayservice';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { FilterService, PrimeReactContext, localeOption } from '../api/Api';
+import PrimeReact, { FilterService, localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useMultiSelect } from './MultiSelect.base';
 import { MultiSelectBase } from './MultiSelectBase';
@@ -15,12 +15,6 @@ import { MultiSelectPanel } from './MultiSelectPanel';
 
 export const MultiSelect = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const multiselect = useMultiSelect(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = multiselect;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = MultiSelectBase.getProps(inProps, context);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(null);
         const [clicked, setClicked] = React.useState(false);
         const [filterState, setFilterState] = React.useState('');
@@ -38,17 +32,15 @@ export const MultiSelect = React.memo(
         const hasFilter = filterState && filterState.trim().length > 0;
         const empty = ObjectUtils.isEmpty(props.value);
         const equalityKey = props.optionValue ? null : props.dataKey;
-        const metaData = {
-            props,
-            state: {
-                filterState: filterState,
-                focused: focusedState,
-                overlayVisible: overlayVisibleState
-            }
+        const state = {
+            filterState: filterState,
+            focused: focusedState,
+            overlayVisible: overlayVisibleState
         };
-        const { ptm, cx, sx, isUnstyled } = MultiSelectBase.setMetaData(metaData);
 
-        useHandleStyle(MultiSelectBase.css.styles, isUnstyled, { name: 'multiselect' });
+        const multiselect = useMultiSelect(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = multiselect;
+
         const [bindOverlayListener, unbindOverlayListener] = useOverlayListener({
             target: elementRef,
             overlay: overlayRef,

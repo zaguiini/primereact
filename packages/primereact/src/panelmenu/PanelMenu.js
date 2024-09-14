@@ -1,10 +1,9 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { ChevronRightIcon } from '@primereact/icons/chevronright';
 import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { usePanelMenu } from './PanelMenu.base';
 import { PanelMenuBase } from './PanelMenuBase';
@@ -12,28 +11,19 @@ import { PanelMenuList } from './PanelMenuList';
 
 export const PanelMenu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const panelmenu = usePanelMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = panelmenu;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = PanelMenuBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [activeItemState, setActiveItemState] = React.useState(null);
         const [activeItemsState, setActiveItemsState] = React.useState([]);
         const [animationDisabled, setAnimationDisabled] = React.useState(false);
         const elementRef = React.useRef(null);
 
-        const { ptm, cx, isUnstyled } = PanelMenuBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                activeItem: activeItemState
-            }
-        });
+        const state = {
+            id: idState,
+            activeItem: activeItemState
+        };
 
-        useHandleStyle(PanelMenuBase.css.styles, isUnstyled, { name: 'panelmenu' });
+        const panelmenu = usePanelMenu(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = panelmenu;
 
         const onItemClick = (event, item) => {
             if (item.disabled) {

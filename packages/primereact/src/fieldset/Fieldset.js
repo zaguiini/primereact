@@ -1,19 +1,15 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
 import { CSSTransition } from 'primereact/csstransition';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { IconUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useFieldset } from './Fieldset.base';
 import { FieldsetBase } from './FieldsetBase';
 
 export const Fieldset = React.forwardRef((inProps, inRef) => {
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = FieldsetBase.getProps(inProps, context);
     const [idState, setIdState] = React.useState(props.id);
     const [collapsedState, setCollapsedState] = React.useState(props.collapsed);
     const collapsed = props.toggleable ? (props.onToggle ? props.collapsed : collapsedState) : false;
@@ -21,18 +17,13 @@ export const Fieldset = React.forwardRef((inProps, inRef) => {
     const contentRef = React.useRef(null);
     const headerId = idState + '_header';
     const contentId = idState + '_content';
-    const fieldset = useFieldset(inProps, inRef);
+    const state = {
+        id: idState,
+        collapsed: collapsed
+    };
+
+    const fieldset = useFieldset(inProps, inRef, state);
     const { props, ptm, ptmi, cx, ref } = fieldset;
-
-    const { ptm, cx, isUnstyled } = FieldsetBase.setMetaData({
-        props,
-        state: {
-            id: idState,
-            collapsed: collapsed
-        }
-    });
-
-    useHandleStyle(FieldsetBase.css.styles, isUnstyled, { name: 'fieldset' });
 
     const toggle = (event) => {
         if (props.toggleable) {

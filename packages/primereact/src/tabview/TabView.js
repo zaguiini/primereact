@@ -1,11 +1,11 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
 import { ChevronRightIcon } from '@primereact/icons/chevronright';
 import { TimesIcon } from '@primereact/icons/times';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import { PrimeReactContext, ariaLabel } from '../api/Api';
+import { ariaLabel } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useTabView } from './TabView.base';
 import { TabPanelBase, TabViewBase } from './TabViewBase';
@@ -13,13 +13,6 @@ import { TabPanelBase, TabViewBase } from './TabViewBase';
 export const TabPanel = () => {};
 
 export const TabView = React.forwardRef((inProps, inRef) => {
-    const tabview = useTabView(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = tabview;
-
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = TabViewBase.getProps(inProps, context);
-
     const [idState, setIdState] = React.useState(props.id);
     const [backwardIsDisabledState, setBackwardIsDisabledState] = React.useState(true);
     const [forwardIsDisabledState, setForwardIsDisabledState] = React.useState(false);
@@ -35,22 +28,16 @@ export const TabView = React.forwardRef((inProps, inRef) => {
     const activeIndex = props.onTabChange ? props.activeIndex : activeIndexState;
     const count = React.Children.count(props.children);
 
-    const metaData = {
-        props,
-        state: {
-            id: idState,
-            isPrevButtonDisabled: backwardIsDisabledState,
-            isNextButtonDisabled: forwardIsDisabledState,
-            hiddenTabsState: hiddenTabsState,
-            activeIndex: activeIndexState
-        }
+    const state = {
+        id: idState,
+        isPrevButtonDisabled: backwardIsDisabledState,
+        isNextButtonDisabled: forwardIsDisabledState,
+        hiddenTabsState: hiddenTabsState,
+        activeIndex: activeIndexState
     };
 
-    const { ptm, ptmo, cx, sx, isUnstyled } = TabViewBase.setMetaData({
-        ...metaData
-    });
-
-    useHandleStyle(TabViewBase.css.styles, isUnstyled, { name: 'tabview' });
+    const tabview = useTabView(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = tabview;
 
     const getTabPT = (tab, key, index) => {
         const tabMetaData = {

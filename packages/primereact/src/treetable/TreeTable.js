@@ -1,28 +1,21 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ArrowDownIcon } from '@primereact/icons/arrowdown';
 import { ArrowUpIcon } from '@primereact/icons/arrowup';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import { Paginator } from 'primereact/paginator';
 import * as React from 'react';
 import { getStorage } from '../../utils/utils';
-import PrimeReact, { FilterMatchMode, FilterService, PrimeReactContext } from '../api/Api';
+import PrimeReact, { FilterMatchMode, FilterService } from '../api/Api';
 import { ColumnBase } from '../column/ColumnBase';
 import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useTreeTable } from './TreeTable.base';
-import { TreeTableBase } from './TreeTableBase';
 import { TreeTableBody } from './TreeTableBody';
 import { TreeTableFooter } from './TreeTableFooter';
 import { TreeTableHeader } from './TreeTableHeader';
 import { TreeTableScrollableView } from './TreeTableScrollableView';
 
 export const TreeTable = React.forwardRef((inProps, inRef) => {
-    const treetable = useTreeTable(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = treetable;
-
-    const mergeProps = useMergeProps();
-    const context = React.useContext(PrimeReactContext);
-    const props = TreeTableBase.getProps(inProps, context);
     const [expandedKeysState, setExpandedKeysState] = React.useState(props.expandedKeys);
     const [firstState, setFirstState] = React.useState(props.first);
     const [rowsState, setRowsState] = React.useState(props.rows);
@@ -31,25 +24,20 @@ export const TreeTable = React.forwardRef((inProps, inRef) => {
     const [multiSortMetaState, setMultiSortMetaState] = React.useState(props.multiSortMeta);
     const [filtersState, setFiltersState] = React.useState(props.filters);
     const [columnOrderState, setColumnOrderState] = React.useState([]);
-    const metaData = {
-        props,
-        state: {
-            expandedKeys: expandedKeysState,
-            first: firstState,
-            rows: rowsState,
-            sortField: sortFieldState,
-            sortOrder: sortOrderState,
-            multiSortMeta: multiSortMetaState,
-            filters: filtersState,
-            columnOrder: columnOrderState
-        },
-        context: {
-            scrollable: props.scrollable
-        }
+    const state = {
+        expandedKeys: expandedKeysState,
+        first: firstState,
+        rows: rowsState,
+        sortField: sortFieldState,
+        sortOrder: sortOrderState,
+        multiSortMeta: multiSortMetaState,
+        filters: filtersState,
+        columnOrder: columnOrderState
     };
-    const ptCallbacks = TreeTableBase.setMetaData(metaData);
 
-    useHandleStyle(TreeTableBase.css.styles, ptCallbacks.isUnstyled, { name: 'treetable' });
+    const treetable = useTreeTable(inProps, inRef, state);
+    const { props, ptm, ptmi, cx, ref } = treetable;
+
     const elementRef = React.useRef(null);
     const tableRef = React.useRef(null);
     const resizerHelperRef = React.useRef(null);

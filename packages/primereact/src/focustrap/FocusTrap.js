@@ -1,31 +1,17 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMountEffect, useStyle } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler } from '../utils/Utils';
 import { useFocusTrap } from './FocusTrap.base';
-import { FocusTrapBase } from './FocusTrapBase';
 
 export const FocusTrap = React.memo(
     React.forwardRef((inProps, inRef) => {
         const targetRef = React.useRef(null);
         const firstFocusableElementRef = React.useRef(null);
         const lastFocusableElementRef = React.useRef(null);
-        const context = React.useContext(PrimeReactContext);
-        const props = FocusTrapBase.getProps(inProps, context);
 
         const focustrap = useFocusTrap(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = focustrap;
-
-        const metaData = {
-            props
-        };
-
-        useStyle(FocusTrapBase.css.styles, { name: 'focustrap' });
-
-        const { ptm } = FocusTrapBase.setMetaData({
-            ...metaData
-        });
 
         React.useImperativeHandle(ref, () => ({
             props,

@@ -1,7 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps, useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
-import PrimeReact, { FilterService, PrimeReactContext } from '../api/Api';
+import PrimeReact, { FilterService } from '../api/Api';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useOrderList } from './OrderList.base';
 import { OrderListBase } from './OrderListBase';
@@ -10,13 +10,6 @@ import { OrderListSubList } from './OrderListSubList';
 
 export const OrderList = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const orderlist = useOrderList(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = orderlist;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = OrderListBase.getProps(inProps, context);
-
         const [selectionState, setSelectionState] = React.useState([]);
         const [filterValueState, setFilterValueState] = React.useState('');
         const [attributeSelectorState, setAttributeSelectorState] = React.useState(null);
@@ -28,17 +21,14 @@ export const OrderList = React.memo(
         const styleElementRef = React.useRef(null);
         const reorderDirection = React.useRef(null);
         const listElementRef = React.useRef(null);
-        const metaData = {
-            props,
-            state: {
-                selection: selectionState,
-                filterValue: filterValueState,
-                attributeSelector: attributeSelectorState
-            }
+        const state = {
+            selection: selectionState,
+            filterValue: filterValueState,
+            attributeSelector: attributeSelectorState
         };
-        const { ptm, cx, isUnstyled } = OrderListBase.setMetaData(metaData);
 
-        useHandleStyle(OrderListBase.css.styles, isUnstyled, { name: 'orderlist' });
+        const orderlist = useOrderList(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = orderlist;
 
         const getVisibleList = () => {
             if (hasFilter) {

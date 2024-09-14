@@ -1,34 +1,26 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import { BanIcon } from '@primereact/icons/ban';
 import { StarIcon } from '@primereact/icons/star';
 import { StarFillIcon } from '@primereact/icons/starfill';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useRating } from './Rating.base';
 import { RatingBase } from './RatingBase';
 
 export const Rating = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const rating = useRating(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = rating;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = RatingBase.getProps(inProps, context);
-
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
         const [isFocusVisibleItem, setFocusVisibleItem] = React.useState(true);
 
         const elementRef = React.useRef(null);
+        const state = {
+            focusedOptionIndex,
+            isFocusVisibleItem
+        };
 
-        const { ptm, cx, isUnstyled } = RatingBase.setMetaData({
-            props
-        });
-
-        useHandleStyle(RatingBase.css.styles, isUnstyled, { name: 'rating' });
+        const rating = useRating(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = rating;
 
         const getPTOptions = (value, key) => {
             return ptm(key, {

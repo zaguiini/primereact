@@ -1,9 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMergeProps } from '@primereact/hooks';
 import { KeyFilter } from 'primereact/keyfilter';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 import { useInputTextarea } from './InputTextarea.base';
 import { InputTextareaBase } from './InputTextareaBase';
@@ -13,22 +11,8 @@ export const InputTextarea = React.memo(
         const inputtextarea = useInputTextarea(inProps, inRef);
         const { props, ptm, ptmi, cx, ref } = inputtextarea;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = InputTextareaBase.getProps(inProps, context);
-
         const elementRef = React.useRef(ref);
         const cachedScrollHeight = React.useRef(0);
-
-        const { ptm, cx, isUnstyled } = InputTextareaBase.setMetaData({
-            props,
-            ...props.__parentMetadata,
-            context: {
-                disabled: props.disabled
-            }
-        });
-
-        useHandleStyle(InputTextareaBase.css.styles, isUnstyled, { name: 'inputtextarea' });
 
         const onFocus = (event) => {
             if (props.autoResize) {

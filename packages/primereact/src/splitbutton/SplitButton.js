@@ -1,25 +1,18 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect } from '@primereact/hooks';
+import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useUnmountEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { Button } from 'primereact/button';
 import { OverlayService } from 'primereact/overlayservice';
 import { TieredMenu } from 'primereact/tieredmenu';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useSplitButton } from './SplitButton.base';
 import { SplitButtonBase } from './SplitButtonBase';
 
 export const SplitButton = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const splitbutton = useSplitButton(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = splitbutton;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = SplitButtonBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [overlayVisibleState, setOverlayVisibleState] = React.useState(false);
         const elementRef = React.useRef(null);
@@ -27,17 +20,13 @@ export const SplitButton = React.memo(
         const defaultButtonRef = React.useRef(null);
         const overlayRef = React.useRef(null);
         const overlayDisplayOrder = useDisplayOrder('split-button-tooltip', overlayVisibleState);
-        const metaData = {
-            props,
-            state: {
-                id: idState,
-                overlayVisible: overlayVisibleState
-            }
+        const state = {
+            id: idState,
+            overlayVisible: overlayVisibleState
         };
 
-        const { ptm, cx, isUnstyled } = SplitButtonBase.setMetaData(metaData);
-
-        useHandleStyle(SplitButtonBase.css.styles, isUnstyled, { name: 'splitbutton' });
+        const splitbutton = useSplitButton(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = splitbutton;
 
         useGlobalOnEscapeKey({
             callback: () => {

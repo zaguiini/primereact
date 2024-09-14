@@ -6,26 +6,17 @@ let messageIdx = 0;
 export const Toast = React.memo(
     React.forwardRef((inProps, inRef) => {
         /*
-        const toast = useToast(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = toast;
 
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = ToastBase.getProps(inProps, context);
 
         const [messagesState, setMessagesState] = React.useState([]);
         const containerRef = React.useRef(null);
 
-        const metaData = {
-            props,
-            state: {
+        const state = {
                 messages: messagesState
-            }
-        };
+            };
 
-        const ptCallbacks = ToastBase.setMetaData(metaData);
-
-        useHandleStyle(ToastBase.css.styles, ptCallbacks.isUnstyled, { name: 'toast' });
+        const toast = useToast(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = toast;
 
         const show = (messageInfo) => {
             if (messageInfo) {

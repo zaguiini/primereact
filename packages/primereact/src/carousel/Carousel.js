@@ -6,7 +6,7 @@ import { ChevronRightIcon } from '@primereact/icons/chevronright';
 import { ChevronUpIcon } from '@primereact/icons/chevronup';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext, ariaLabel, localeOption } from '../api/Api';
+import PrimeReact, { ariaLabel, localeOption } from '../api/Api';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { useCarousel } from './Carousel.base';
 import { CarouselBase } from './CarouselBase';
@@ -36,28 +36,20 @@ const CarouselItem = React.memo((props) => {
 
 export const Carousel = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const carousel = useCarousel(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = carousel;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = CarouselBase.getProps(inProps, context);
-
         const [numVisibleState, setNumVisibleState] = React.useState(props.numVisible);
         const [numScrollState, setNumScrollState] = React.useState(props.numScroll);
         const [totalShiftedItemsState, setTotalShiftedItemsState] = React.useState(props.page * props.numScroll * -1);
         const [pageState, setPageState] = React.useState(props.page);
-        const { ptm, cx, sx, isUnstyled } = CarouselBase.setMetaData({
-            props,
-            state: {
-                numVisible: numVisibleState,
-                numScroll: numScrollState,
-                totalShiftedItems: totalShiftedItemsState,
-                page: pageState
-            }
-        });
+        const state = {
+            numVisible: numVisibleState,
+            numScroll: numScrollState,
+            totalShiftedItems: totalShiftedItemsState,
+            page: pageState
+        };
 
-        useHandleStyle(CarouselBase.css.styles, isUnstyled, { name: 'carousel' });
+        const carousel = useCarousel(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = carousel;
+
         const elementRef = React.useRef(null);
         const itemsContainerRef = React.useRef(null);
         const remainingItems = React.useRef(0);

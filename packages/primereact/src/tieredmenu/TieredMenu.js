@@ -1,10 +1,10 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useEventListener, useMatchMedia, useMergeProps, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMatchMedia, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import { OverlayService } from 'primereact/overlayservice';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact, { PrimeReactContext } from '../api/Api';
+import PrimeReact from '../api/Api';
 import { DomHandler, ObjectUtils, UniqueComponentId, ZIndexUtils, classNames } from '../utils/Utils';
 import { useTieredMenu } from './TieredMenu.base';
 import { TieredMenuBase } from './TieredMenuBase';
@@ -12,13 +12,6 @@ import { TieredMenuSub } from './TieredMenuSub';
 
 export const TieredMenu = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const tieredmenu = useTieredMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = tieredmenu;
-
-        const mergeProps = useMergeProps();
-        const context = React.useContext(PrimeReactContext);
-        const props = TieredMenuBase.getProps(inProps, context);
-
         const [idState, setIdState] = React.useState(props.id);
         const [visibleState, setVisibleState] = React.useState(!props.popup);
         const [activeItemPath, setActiveItemPath] = React.useState([]);
@@ -30,16 +23,14 @@ export const TieredMenu = React.memo(
         const [visibleItems, setVisibleItems] = React.useState([]);
         const [focusTrigger, setFocusTrigger] = React.useState(false);
         const [attributeSelectorState, setAttributeSelectorState] = React.useState(null);
-        const { ptm, cx, sx, isUnstyled } = TieredMenuBase.setMetaData({
-            props,
-            state: {
-                id: idState,
-                visible: visibleState,
-                attributeSelector: attributeSelectorState
-            }
-        });
+        const state = {
+            id: idState,
+            visible: visibleState,
+            attributeSelector: attributeSelectorState
+        };
 
-        useHandleStyle(TieredMenuBase.css.styles, isUnstyled, { name: 'tieredmenu' });
+        const tieredmenu = useTieredMenu(inProps, inRef, state);
+        const { props, ptm, ptmi, cx, ref } = tieredmenu;
 
         const containerRef = React.useRef(null);
         const menuRef = React.useRef(null);
