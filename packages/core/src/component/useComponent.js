@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { ComponentContext } from './Component.context';
 import { useComponentPT } from './useComponentPT';
 import { useComponentStyle } from './useComponentStyle';
 
 export const useComponent = ({ props, attrs, state, style }, inRef) => {
     const ref = React.useRef(inRef); // @todo
+    const parent = React.useContext(ComponentContext); // @todo
     const ptx = useComponentPT({ props, attrs, state }, ref);
     const stx = useComponentStyle({ props, attrs, state, style }, ref);
     const instance = {
@@ -13,7 +15,8 @@ export const useComponent = ({ props, attrs, state, style }, inRef) => {
         attrs,
         state,
         style,
-        parent: {}, // @todo
+        parent, // @todo
+        //[`$pc${options.value.name}`]: options.value,
         ...ptx,
         ...stx
     };

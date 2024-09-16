@@ -12,17 +12,19 @@ import { usePanel } from './Panel.base';
 export const Panel = React.forwardRef((inProps, inRef) => {
     const [idState, setIdState] = React.useState(inProps.id);
     const [collapsedState, setCollapsedState] = React.useState(inProps.collapsed);
-    const elementRef = React.useRef(null);
-    const contentRef = React.useRef(null);
-    const collapsed = props.toggleable ? (props.onToggle ? props.collapsed : collapsedState) : false;
-    const headerId = idState + '_header';
-    const contentId = idState + '_content';
+    const collapsed = inProps.toggleable ? (inProps.onToggle ? inProps.collapsed : collapsedState) : false;
     const state = {
         id: idState,
         collapsed
     };
     const panel = usePanel(inProps, inRef, state);
     const { props, attrs, ptm, cx, ref } = panel;
+
+    const elementRef = React.useRef(null);
+    const contentRef = React.useRef(null);
+
+    const headerId = idState + '_header';
+    const contentId = idState + '_content';
 
     const toggle = (event) => {
         if (!props.toggleable) {
