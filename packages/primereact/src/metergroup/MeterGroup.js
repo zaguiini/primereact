@@ -1,10 +1,10 @@
 import { ComponentProvider } from '@primereact/core/component';
+import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { ObjectUtils, classNames } from '../utils/Utils';
+import { ObjectUtils } from '../utils/Utils';
 import { useMeterGroup } from './MeterGroup.base';
-import { MeterGroupBase } from './MeterGroupBase';
 
-export const MeterGroup = (inProps, inRef) => {
+export const MeterGroup = React.forwardRef((inProps, inRef) => {
     const metergroup = useMeterGroup(inProps, inRef);
     const { props, ptm, ptmi, cx, ref } = metergroup;
 
@@ -13,7 +13,7 @@ export const MeterGroup = (inProps, inRef) => {
     let totalPercent = 0;
     let percentages = [];
 
-    values.map((item) => {
+    values?.map((item) => {
         totalPercent = totalPercent + item.value;
         percentages.push(Math.round((item.value / totalPercent) * 100));
     });
@@ -24,16 +24,17 @@ export const MeterGroup = (inProps, inRef) => {
         return Math.round(Math.max(0, Math.min(100, percentageOfItem)));
     };
 
-    const rootProps = mergeProps(
-        {
-            className: classNames(props.className, cx('root', { orientation }))
-        },
-        MeterGroupBase.getOtherProps(props),
-        ptm('root')
-    );
+    const getPTOptions = (key, value, index) => {
+        return ptm(key, {
+            context: {
+                value,
+                index
+            }
+        });
+    };
 
     const createMeters = () => {
-        const meters = values.map((item, index) => {
+        const meters = values?.map((item, index) => {
             const calculatedPercantage = calculatePercentage(item.value);
             const meterInlineStyles = {
                 backgroundColor: item.color,
@@ -46,7 +47,7 @@ export const MeterGroup = (inProps, inRef) => {
                     className: cx('meter'),
                     style: meterInlineStyles
                 },
-                ptm('meter')
+                getPTOptions('meter', item, index)
             );
 
             if (meter || item.meterTemplate) {
@@ -54,7 +55,7 @@ export const MeterGroup = (inProps, inRef) => {
                     {
                         className: cx('meter')
                     },
-                    ptm('meter')
+                    getPTOptions('meter', item, index)
                 );
 
                 return ObjectUtils.getJSXElement(item.meterTemplate || meter, { ...item, percentage: calculatedPercantage, index }, meterTemplateProps);
@@ -65,9 +66,9 @@ export const MeterGroup = (inProps, inRef) => {
 
         const meterContainerProps = mergeProps(
             {
-                className: cx('metercontainer')
+                className: cx('meters')
             },
-            ptm('metercontainer')
+            ptm('meters')
         );
 
         return <div {...meterContainerProps}>{meters}</div>;
@@ -83,35 +84,35 @@ export const MeterGroup = (inProps, inRef) => {
 
         const labelItemProps = mergeProps(
             {
-                className: cx('labellistitem')
-            },
-            ptm('labellistitem')
-        );
-
-        const labelProps = mergeProps(
-            {
                 className: cx('label')
             },
             ptm('label')
         );
 
+        const labelProps = mergeProps(
+            {
+                className: cx('labelText')
+            },
+            ptm('labelText')
+        );
+
         return (
             <ol {...labelListProps}>
-                {values.map((item, index) => {
+                {values?.map((item, index) => {
                     const labelIconProps = mergeProps(
                         {
-                            className: classNames(cx('labelicon'), item.icon),
+                            className: classNames(cx('labelIcon'), item.icon),
                             style: { color: item.color }
                         },
-                        ptm('labelicon')
+                        ptm('labelIcon')
                     );
 
                     const labelListIconProps = mergeProps(
                         {
-                            className: cx('labellisttype'),
+                            className: cx('labelMarker'),
                             style: { backgroundColor: item.color }
                         },
-                        ptm('labellisttype')
+                        ptm('labelMarker')
                     );
 
                     const labelIcon = item.icon ? <i {...labelIconProps} /> : <span {...labelListIconProps} />;
@@ -130,18 +131,30 @@ export const MeterGroup = (inProps, inRef) => {
         );
     };
 
+    const labelListContent = labelList || createLabelList();
+    const labelElement = ObjectUtils.getJSXElement(labelListContent, { values, totalPercent });
+
+    const rootProps = mergeProps(
+        {
+            ref,
+            className: classNames(cx('root', { orientation }), props.className),
+            role: 'meter',
+            'aria-valuemin': min,
+            'aria-valuemax': max,
+            'aria-valuenow': totalPercent
+        },
+        ptmi('root')
+    );
+
     const templateProps = {
         totalPercent,
         percentages,
         values
     };
 
-    const labelListContent = labelList || createLabelList();
-    const labelElement = ObjectUtils.getJSXElement(labelListContent, { values, totalPercent });
-
     return (
-        <ComponentProvider value={badge}>
-            <div {...rootProps} role="meter" aria-valuemin={min} aria-valuemax={max} aria-valuenow={totalPercent}>
+        <ComponentProvider value={metergroup}>
+            <div {...rootProps}>
                 {labelPosition === 'start' && labelElement}
                 {start && ObjectUtils.getJSXElement(start, templateProps)}
                 {createMeters()}
@@ -150,6 +163,6 @@ export const MeterGroup = (inProps, inRef) => {
             </div>
         </ComponentProvider>
     );
-};
+});
 
 MeterGroup.displayName = 'MeterGroup';

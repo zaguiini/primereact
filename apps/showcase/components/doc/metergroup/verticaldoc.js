@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { MeterGroup } from '@/components/lib/metergroup/MeterGroup';
+import { MeterGroup } from 'primereact/metergroup';
 
 export function VerticalDoc(props) {
     const code = {

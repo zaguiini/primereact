@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { MeterGroup } from '@/components/lib/metergroup/MeterGroup';
+import { MeterGroup } from 'primereact/metergroup';
 
 export function BasicDoc(props) {
     const code = {
@@ -37,7 +37,7 @@ export default function BasicDemo() {
         `
     };
 
-    const values = [{ label: 'Space used', value: 15 }];
+    const values = [{ label: 'Space used', value: 15, color: 'var(--p-primary-color)' }];
 
     return (
         <>

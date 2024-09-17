@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { MeterGroup } from '@/components/lib/metergroup/MeterGroup';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { MeterGroup } from 'primereact/metergroup';
 
 export function TemplateDoc(props) {
     const code = {

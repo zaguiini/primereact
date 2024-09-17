@@ -1,16 +1,18 @@
+'use client';
+
 import DocApiTable from '@/components/doc/common/docapitable';
 import { DocComponent } from '@/components/doc/common/doccomponent';
+import { AccessibilityDoc } from '@/components/doc/metergroup/accessibilitydoc';
 import { BasicDoc } from '@/components/doc/metergroup/basicdoc';
 import { IconDoc } from '@/components/doc/metergroup/icondoc';
 import { ImportDoc } from '@/components/doc/metergroup/importdoc';
-import { MultipleDoc } from '@/components/doc/metergroup/multipledoc';
 import { LabelDoc } from '@/components/doc/metergroup/labeldoc';
-import { VerticalDoc } from '@/components/doc/metergroup/verticaldoc';
 import { MinMaxDoc } from '@/components/doc/metergroup/minmaxdoc';
-import { TemplateDoc } from '@/components/doc/metergroup/templatedoc';
-import { AccessibilityDoc } from '@/components/doc/metergroup/accessibilitydoc';
+import { MultipleDoc } from '@/components/doc/metergroup/multipledoc';
 import { Wireframe } from '@/components/doc/metergroup/pt/wireframe';
+import { TemplateDoc } from '@/components/doc/metergroup/templatedoc';
 import { StyledDoc } from '@/components/doc/metergroup/theming/styleddoc';
+import { VerticalDoc } from '@/components/doc/metergroup/verticaldoc';
 
 const MessagesDemo = () => {
     const docs = [

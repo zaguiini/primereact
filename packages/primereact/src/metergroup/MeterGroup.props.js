@@ -1,6 +1,6 @@
 export const defaultProps = {
     __TYPE: 'MeterGroup',
-    __parentMetadata: null,
+    style: null,
     children: undefined,
     className: null,
     values: null,

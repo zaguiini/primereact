@@ -59,6 +59,7 @@
         "./portal": "./src/portal/Portal.js",
         "./ripple": "./src/ripple/Ripple.js",
         "./tooltip": "./src/tooltip/Tooltip.js",
+        "./metergroup": "./src/metergroup/MeterGroup.js",
         "./utils": "./src/utils/Utils.js",
         "./*": "./*"
     },
