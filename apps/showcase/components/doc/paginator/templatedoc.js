@@ -1,11 +1,11 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Divider } from '@/components/lib/divider/Divider';
 import { Dropdown } from '@/components/lib/dropdown/Dropdown';
 import { Paginator } from '@/components/lib/paginator/Paginator';
 import { Ripple } from '@/components/lib/ripple/Ripple';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
+import { Divider } from 'primereact/divider';
 import { InputText } from 'primereact/inputtext';
 import { Slider } from 'primereact/slider';
 import { Tooltip } from 'primereact/tooltip';

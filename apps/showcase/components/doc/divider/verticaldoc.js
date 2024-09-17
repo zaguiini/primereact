@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Divider } from '@/components/lib/divider/Divider';
+import { Divider } from 'primereact/divider';
 
 export function VerticalDoc(props) {
     const code = {

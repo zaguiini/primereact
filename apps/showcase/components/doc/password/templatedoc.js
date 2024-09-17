@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Divider } from '@/components/lib/divider/Divider';
 import { Password } from '@/components/lib/password/Password';
+import { Divider } from 'primereact/divider';
 import { useState } from 'react';
 
 export function TemplateDoc(props) {

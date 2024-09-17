@@ -1,12 +1,11 @@
 import { ComponentProvider } from '@primereact/core/component';
+import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { classNames } from '../utils/Utils';
 import { useDivider } from './Divider.base';
-import { DividerBase } from './DividerBase';
 
 export const Divider = React.forwardRef((inProps, inRef) => {
     const divider = useDivider(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = divider;
+    const { props, ptm, ptmi, cx, ref, sx } = divider;
 
     const elementRef = React.useRef(null);
     const horizontal = props.layout === 'horizontal';
@@ -21,12 +20,11 @@ export const Divider = React.forwardRef((inProps, inRef) => {
         {
             ref: elementRef,
             style: sx('root'),
-            className: classNames(props.className, cx('root', { horizontal, vertical })),
+            className: classNames(cx('root', { horizontal, vertical }), props.className),
             'aria-orientation': props.layout,
             role: 'separator'
         },
-        DividerBase.getOtherProps(props),
-        ptm('root')
+        ptmi('root')
     );
 
     const contentProps = mergeProps(

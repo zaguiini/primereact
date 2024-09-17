@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Divider } from '@/components/lib/divider/Divider';
 import { Button } from 'primereact/button';
+import { Divider } from 'primereact/divider';
 
 export function ContentDoc(props) {
     const code = {
