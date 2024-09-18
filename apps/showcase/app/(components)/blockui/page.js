@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/blockui/accessibilitydoc';
 import { BasicDoc } from '@/components/doc/blockui/basicdoc';
 import { DocumentDoc } from '@/components/doc/blockui/documentdoc';

@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '../../../../components/lib/button/Button';
 import { useCounter } from '../../../../components/lib/hooks/Hooks';
+import { Button } from '../primereact/button';
 
 export function BasicDoc(props) {
     const { count, increment, decrement, reset } = useCounter(0);

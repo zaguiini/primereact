@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '../../../../components/lib/button/Button';
 import { useCounter } from '../../../../components/lib/hooks/Hooks';
+import { Button } from '../primereact/button';
 
 export function OptionsDoc(props) {
     const { count, increment, decrement, reset } = useCounter(10, { step: 0.25, min: 0, max: 15 });

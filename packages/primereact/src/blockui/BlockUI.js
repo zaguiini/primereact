@@ -1,20 +1,21 @@
 import { ComponentProvider } from '@primereact/core/component';
+import { PrimeReactContext } from '@primereact/core/config';
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
+import { addClass, blockBodyScroll, classNames, hasCSSAnimation, mergeProps, resolve, unblockBodyScroll, ZIndex } from '@primeuix/utils';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
-import PrimeReact from '../api/Api';
-import { DomHandler, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
+
 import { useBlockUI } from './BlockUI.base';
-import { BlockUIBase } from './BlockUIBase';
 
 export const BlockUI = React.forwardRef((inProps, inRef) => {
-    const [visibleState, setVisibleState] = React.useState(props.blocked);
+    const config = React.useContext(PrimeReactContext);
+    const [visibleState, setVisibleState] = React.useState(inProps.blocked);
     const state = {
-        visible: false
+        visible: visibleState
     };
 
     const blockui = useBlockUI(inProps, inRef, state);
-    const { props, ptm, ptmi, cx, ref } = blockui;
+    const { props, ptm, ptmi, cx, ref, isUnstyled } = blockui;
 
     const elementRef = React.useRef(null);
     const maskRef = React.useRef(null);
@@ -26,9 +27,9 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
     };
 
     const unblock = () => {
-        !isUnstyled() && DomHandler.addClass(maskRef.current, 'p-component-overlay-leave');
+        !isUnstyled && addClass(maskRef.current, 'p-overlay-mask-leave');
 
-        if (DomHandler.hasCSSAnimation(maskRef.current) > 0) {
+        if (hasCSSAnimation(maskRef.current) > 0) {
             maskRef.current.addEventListener('animationend', () => {
                 removeMask();
             });
@@ -38,11 +39,11 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
     };
 
     const removeMask = () => {
-        ZIndexUtils.clear(maskRef.current);
+        ZIndex.clear(maskRef.current);
         setVisibleState(false);
 
         if (props.fullScreen) {
-            DomHandler.unblockBodyScroll();
+            unblockBodyScroll();
             activeElementRef.current && activeElementRef.current.focus();
         }
 
@@ -51,14 +52,14 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
 
     const onPortalMounted = () => {
         if (props.fullScreen) {
-            DomHandler.blockBodyScroll();
+            blockBodyScroll();
             activeElementRef.current && activeElementRef.current.blur();
         }
 
         if (props.autoZIndex) {
             const key = props.fullScreen ? 'modal' : 'overlay';
 
-            ZIndexUtils.set(key, maskRef.current, (context && context.autoZIndex) || PrimeReact.autoZIndex, props.baseZIndex || (context && context.zIndex[key]) || PrimeReact.zIndex[key]);
+            ZIndex.set(key, maskRef.current, config.autoZIndex, props.baseZIndex || config.zIndex[key]);
         }
 
         props.onBlocked && props.onBlocked();
@@ -73,9 +74,9 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
     }, [props.blocked]);
 
     useUnmountEffect(() => {
-        props.fullScreen && DomHandler.unblockBodyScroll();
+        props.fullScreen && unblockBodyScroll();
 
-        ZIndexUtils.clear(maskRef.current);
+        ZIndex.clear(maskRef.current);
     });
 
     React.useImperativeHandle(ref, () => ({
@@ -90,9 +91,8 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
             const appendTo = props.fullScreen ? document.body : 'self';
             const maskProps = mergeProps(
                 {
-                    className: classNames(props.className, cx('mask')),
+                    className: cx('mask'),
                     style: {
-                        ...props.style,
                         position: props.fullScreen ? 'fixed' : 'absolute',
                         top: '0',
                         left: '0',
@@ -102,7 +102,7 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
                 },
                 ptm('mask')
             );
-            const content = props.template ? ObjectUtils.getJSXElement(props.template, props) : null;
+            const content = props.template ? resolve(props.template, props) : null;
             const mask = (
                 <div ref={maskRef} {...maskProps}>
                     {content}
@@ -121,12 +121,11 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
         {
             id: props.id,
             ref: elementRef,
-            style: props.containerStyle,
-            className: classNames(props.containerClassName, cx('root')),
-            'aria-busy': props.blocked
+            style: props.style,
+            className: classNames(cx('root'), props.className),
+            'aria-busy': visibleState
         },
-        BlockUIBase.getOtherProps(props),
-        ptm('root')
+        ptmi('root')
     );
 
     return (

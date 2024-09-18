@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { BlockUI } from 'primereact/blockui';
+import { Button } from 'primereact/button';
 import { useEffect, useState } from 'react';
-import { BlockUI } from '../../../components/lib/blockui/BlockUI';
-import { Button } from '../../../components/lib/button/Button';
 
 export function DocumentDoc(props) {
     const [blocked, setBlocked] = useState(false);

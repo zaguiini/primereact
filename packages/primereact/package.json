@@ -65,6 +65,7 @@
         "./column": "./src/column/Column.js",
         "./datatable": "./src/datatable/DataTable.js",
         "./overlayservice": "./src/overlayservice/OverlayService.js",
+        "./blockui": "./src/blockui/BlockUI.js",
         "./utils": "./src/utils/Utils.js",
         "./*": "./*"
     },

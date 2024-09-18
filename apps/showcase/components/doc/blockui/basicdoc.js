@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { BlockUI } from 'primereact/blockui';
 import { Button } from 'primereact/button';
+import { Panel } from 'primereact/panel';
 import { useState } from 'react';
-import { BlockUI } from '../../../components/lib/blockui/BlockUI';
-import { Panel } from '../../../components/lib/panel/Panel';
 
 export function BasicDoc(props) {
     const [blocked, setBlocked] = useState(false);

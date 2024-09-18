@@ -18,7 +18,10 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: 'p-blockui'
+    root: 'p-blockui',
+    mask: ({ props }) => ['p-blockui-mask p-overlay-mask p-overlay-mask-enter', {
+        'p-blockui-mask-document' : props.fullScreen
+    }]
 };
 
 export const style = {
