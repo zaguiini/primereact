@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/checkbox/accessibilitydoc';
 import { BasicDoc } from '@/components/doc/checkbox/basicdoc';
 import { DisabledDoc } from '@/components/doc/checkbox/disableddoc';

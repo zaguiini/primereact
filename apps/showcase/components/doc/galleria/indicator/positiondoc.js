@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Checkbox } from '@/components/lib/checkbox/Checkbox';
 import { Galleria } from '@/components/lib/galleria/Galleria';
 import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { Checkbox } from 'primereact/checkbox';
 import { useEffect, useState } from 'react';
 import { PhotoService } from '../../../../service/PhotoService';
 
@@ -39,7 +39,7 @@ export function PositionDoc(props) {
 
     const code = {
         basic: `
-<Galleria value={images} style={{ maxWidth: '640px' }} showThumbnails={false} showIndicators 
+<Galleria value={images} style={{ maxWidth: '640px' }} showThumbnails={false} showIndicators
     showIndicatorsOnItem={inside} indicatorsPosition={position} item={itemTemplate} />
         `,
         javascript: `
@@ -71,7 +71,7 @@ export default function PositionDemo() {
             value: 'right'
         }
     ];
-    
+
     useEffect(() => {
         PhotoService.getImages().then((data) => setImages(data));
     }, []);
@@ -98,7 +98,7 @@ export default function PositionDemo() {
                 <Checkbox inputId="inside_cbox" onChange={e => setInside(e.checked)} checked={inside}></Checkbox>
                 <label htmlFor="inside_cbox" className="ml-2">Inside</label>
             </div>
-            <Galleria value={images} style={{ maxWidth: '640px' }} showThumbnails={false} showIndicators 
+            <Galleria value={images} style={{ maxWidth: '640px' }} showThumbnails={false} showIndicators
                     showIndicatorsOnItem={inside} indicatorsPosition={position} item={itemTemplate} />
         </div>
     )
@@ -140,7 +140,7 @@ export default function PositionDemo() {
     const itemTemplate = (item) => {
         return <img src={item.itemImageSrc} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
     };
-    
+
     return (
         <div className="card">
             <div className="flex flex-wrap gap-4 mb-8">
@@ -159,7 +159,7 @@ export default function PositionDemo() {
                 <Checkbox inputId="inside_cbox" onChange={e => setInside(e.checked)} checked={inside}></Checkbox>
                 <label htmlFor="inside_cbox" className="ml-2">Inside</label>
             </div>
-            <Galleria value={images} style={{ maxWidth: '640px' }} showThumbnails={false} showIndicators 
+            <Galleria value={images} style={{ maxWidth: '640px' }} showThumbnails={false} showIndicators
                     showIndicatorsOnItem={inside} indicatorsPosition={position} item={itemTemplate} />
         </div>
     )

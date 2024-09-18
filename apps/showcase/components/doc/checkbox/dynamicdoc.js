@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Checkbox } from '@/components/lib/checkbox/Checkbox';
+import { Checkbox } from 'primereact/checkbox';
 import { useState } from 'react';
 
 export function DynamicDoc(props) {
@@ -82,7 +82,7 @@ import React, { useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 
 interface Category {
-    name: string; 
+    name: string;
     key: string;
 }
 

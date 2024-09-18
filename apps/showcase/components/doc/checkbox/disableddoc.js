@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Checkbox } from '@/components/lib/checkbox/Checkbox';
+import { Checkbox } from 'primereact/checkbox';
 
 export function DisabledDoc(props) {
     const code = {
@@ -8,7 +8,7 @@ export function DisabledDoc(props) {
 <Checkbox checked disabled></Checkbox>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Checkbox } from "primereact/checkbox";
 
 export default function DisabledDemo() {
@@ -20,7 +20,7 @@ export default function DisabledDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Checkbox } from "primereact/checkbox";
 
 export default function DisabledDemo() {

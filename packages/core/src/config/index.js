@@ -13,7 +13,8 @@ export const PrimeReactProvider = (props) => {
 
     const [theme, setTheme] = useState(propsValue.theme);
     const [ripple, setRipple] = useState(propsValue.ripple || false);
-    const [inputStyle, setInputStyle] = useState(propsValue.inputStyle || 'outlined');
+    const [inputStyle, setInputStyle] = useState(propsValue.inputStyle); // @todo: remove this
+    const [inputVariant, setInputVariant] = useState(propsValue.inputVariant);
     const [locale, setLocale] = useState(propsValue.locale || 'en');
     const [appendTo, setAppendTo] = useState(propsValue.appendTo || null);
     const [styleContainer, setStyleContainer] = useState(propsValue.styleContainer || null);
@@ -85,6 +86,8 @@ export const PrimeReactProvider = (props) => {
         setRipple,
         inputStyle,
         setInputStyle,
+        inputVariant,
+        setInputVariant,
         locale,
         setLocale,
         appendTo,

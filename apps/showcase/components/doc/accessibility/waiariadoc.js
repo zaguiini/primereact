@@ -1,6 +1,6 @@
 import { CodeHighlight } from '@/components/doc/common/codehighlight';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Checkbox } from '@/components/lib/checkbox/Checkbox';
+import { Checkbox } from 'primereact/checkbox';
 import { useState } from 'react';
 
 export function WAIAriaDoc(props) {

@@ -114,13 +114,13 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: ({ instance, props }) => [
+    root: ({ props, state, context }) => [
         'p-checkbox p-component',
         {
-            'p-checkbox-checked': instance.checked,
+            'p-checkbox-checked': state.checked,
             'p-disabled': props.disabled,
             'p-invalid': props.invalid,
-            'p-variant-filled': props.variant ? props.variant === 'filled' : instance.$primevue.config.inputStyle === 'filled' || instance.$primevue.config.inputVariant === 'filled'
+            'p-variant-filled': props.variant ? props.variant === 'filled' : context?.inputVariant === 'filled'
         }
     ],
     box: 'p-checkbox-box',

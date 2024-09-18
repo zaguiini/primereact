@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Checkbox } from '@/components/lib/checkbox/Checkbox';
+import { Checkbox } from 'primereact/checkbox';
 import { useState } from 'react';
 
 export function InvalidDoc(props) {
@@ -14,7 +14,7 @@ export function InvalidDoc(props) {
 import React, { useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 
-export default function InvalidDemo() { 
+export default function InvalidDemo() {
     const [checked, setChecked] = useState(false);
 
     return (

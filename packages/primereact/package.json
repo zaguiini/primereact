@@ -36,6 +36,8 @@
         "./selectbutton": "./src/selectbutton/SelectButton.js",
         "./togglebutton": "./src/togglebutton/ToggleButton.js",
         "./skeleton": "./src/skeleton/Skeleton.js",
+        "./checkbox": "./src/checkbox/Checkbox.js",
+        "./radiobutton": "./src/radiobutton/RadioButton.js",
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
         "./tag": "./src/tag/Tag.js",

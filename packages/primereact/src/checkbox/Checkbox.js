@@ -1,27 +1,40 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { useMountEffect } from '@primereact/hooks';
 import { CheckIcon } from '@primereact/icons/check';
+import { MinusIcon } from '@primereact/icons/minus';
+import { classNames, contains, focus, isNotEmpty, mergeProps } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
+import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
-import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useCheckbox } from './Checkbox.base';
-import { CheckboxBase } from './CheckboxBase';
 
 export const Checkbox = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const [focusedState, setFocusedState] = React.useState(false);
+        const [indeterminateState, setIndeterminateState] = React.useState(inProps.indeterminate);
         const state = {
-            focused: focusedState
+            indeterminate: indeterminateState
         };
 
         const checkbox = useCheckbox(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = checkbox;
 
-        const elementRef = React.useRef(null);
-        const inputRef = React.useRef(props.inputRef);
+        const checked = indeterminateState ? false : props.binary ? props.checked === props.trueValue : contains(props.value, props.checked);
+        // add checked state to the checkbox instance
+        checkbox.state.checked = checked;
 
-        const isChecked = () => {
-            return props.checked === props.trueValue;
+        const elementRef = React.useRef(null);
+        const inputRef = React.useRef(null);
+
+        const getPTOptions = (key) => {
+            const _ptm = key === 'root' ? ptmi : ptm;
+
+            return _ptm(key, {
+                context: {
+                    checked,
+                    indeterminate: indeterminateState,
+                    disabled: props.disabled
+                }
+            });
         };
 
         const onChange = (event) => {
@@ -29,13 +42,24 @@ export const Checkbox = React.memo(
                 return;
             }
 
+            let newValue;
+
+            if (props.binary) {
+                newValue = indeterminateState ? props.trueValue : checked ? props.falseValue : props.trueValue;
+            } else {
+                if (checked || indeterminateState) newValue = checked.filter((val) => !equals(val, props.value));
+                else newValue = checked ? [...checked, props.value] : [props.value];
+            }
+
+            if (indeterminateState) {
+                setIndeterminateState(false);
+            }
+
             if (props.onChange) {
-                const checked = isChecked();
-                const value = checked ? props.falseValue : props.trueValue;
                 const eventData = {
                     originalEvent: event,
                     value: props.value,
-                    checked: value,
+                    checked: newValue,
                     stopPropagation: () => {
                         event?.stopPropagation();
                     },
@@ -47,7 +71,7 @@ export const Checkbox = React.memo(
                         name: props.name,
                         id: props.id,
                         value: props.value,
-                        checked: value
+                        checked: newValue
                     }
                 };
 
@@ -58,110 +82,99 @@ export const Checkbox = React.memo(
                     return;
                 }
 
-                DomHandler.focus(inputRef.current);
+                focus(inputRef.current);
             }
         };
 
-        const onFocus = () => {
-            setFocusedState(true);
-            props?.onFocus?.();
+        const onFocus = (event) => {
+            props?.onFocus?.(event);
         };
 
-        const onBlur = () => {
-            setFocusedState(false);
-            props?.onBlur?.();
+        const onBlur = (event) => {
+            props?.onBlur?.(event);
         };
-
-        React.useImperativeHandle(ref, () => ({
-            props,
-            focus: () => DomHandler.focus(inputRef.current),
-            getElement: () => elementRef.current,
-            getInput: () => inputRef.current
-        }));
-
-        React.useEffect(() => {
-            ObjectUtils.combinedRefs(inputRef, props.inputRef);
-        }, [inputRef, props.inputRef]);
-
-        useUpdateEffect(() => {
-            inputRef.current.checked = isChecked();
-        }, [props.checked, props.trueValue]);
 
         useMountEffect(() => {
             if (props.autoFocus) {
-                DomHandler.focus(inputRef.current, props.autoFocus);
+                focus(inputRef.current, props.autoFocus);
             }
         });
 
-        const checked = isChecked();
-        const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
-        const otherProps = CheckboxBase.getOtherProps(props);
-        const rootProps = mergeProps(
-            {
-                id: props.id,
-                className: classNames(props.className, cx('root', { checked, context })),
-                style: props.style,
-                'data-p-highlight': checked,
-                'data-p-disabled': props.disabled,
-                onContextMenu: props.onContextMenu,
-                onMouseDown: props.onMouseDown
-            },
-            otherProps,
-            ptm('root')
-        );
-
-        const createInputElement = () => {
-            const ariaProps = ObjectUtils.reduceKeys(otherProps, DomHandler.ARIA_PROPS);
-            const inputProps = mergeProps(
-                {
-                    id: props.inputId,
-                    type: 'checkbox',
-                    className: cx('input'),
-                    name: props.name,
-                    tabIndex: props.tabIndex,
-                    onFocus: (e) => onFocus(e),
-                    onBlur: (e) => onBlur(e),
-                    onChange: (e) => onChange(e),
-                    disabled: props.disabled,
-                    readOnly: props.readOnly,
-                    required: props.required,
-                    'aria-invalid': props.invalid,
-                    checked: checked,
-                    ...ariaProps
-                },
-                ptm('input')
-            );
-
-            return <input ref={inputRef} {...inputProps} />;
-        };
+        React.useEffect(() => {
+            setIndeterminateState(props.indeterminate);
+        }, [props.indeterminate]);
 
         const createBoxElement = () => {
             const iconProps = mergeProps(
                 {
                     className: cx('icon')
                 },
-                ptm('icon')
-            );
-            const boxProps = mergeProps(
-                {
-                    className: cx('box', { checked }),
-                    'data-p-highlight': checked,
-                    'data-p-disabled': props.disabled
-                },
-                ptm('box')
+                getPTOptions('icon')
             );
 
-            const icon = checked ? props.icon || <CheckIcon {...iconProps} /> : null;
-            const checkboxIcon = IconUtils.getJSXIcon(icon, { ...iconProps }, { props, checked });
+            const boxProps = mergeProps(
+                {
+                    className: cx('box')
+                },
+                getPTOptions('box')
+            );
+
+            const icon = checked ? props.icon || <CheckIcon {...iconProps} /> : indeterminateState ? props.icon || <MinusIcon {...iconProps} /> : null;
+            const checkboxIcon = IconUtils.getJSXIcon(icon, { ...iconProps }, { props, checked, indeterminate: indeterminateState, className: cx('icon') });
 
             return <div {...boxProps}>{checkboxIcon}</div>;
         };
 
+        const createInputElement = () => {
+            const inputProps = mergeProps(
+                {
+                    ref: inputRef,
+                    id: props.inputId,
+                    type: 'checkbox',
+                    style: props.inputStyle,
+                    className: classNames(cx('input'), props.inputClassName),
+                    name: props.name,
+                    checked: checked,
+                    tabIndex: props.tabIndex,
+                    disabled: props.disabled,
+                    readOnly: props.readOnly,
+                    required: props.required,
+                    'aria-labelledby': props.ariaLabelledby,
+                    'aria-label': props.ariaLabel,
+                    'aria-invalid': props.invalid || undefined,
+                    'aria-checked': indeterminateState ? 'mixed' : undefined,
+                    onFocus,
+                    onBlur,
+                    onChange
+                },
+                getPTOptions('input')
+            );
+
+            return <input {...inputProps} />;
+        };
+
+        const hasTooltip = isNotEmpty(props.tooltip);
+
+        const input = createInputElement();
+        const box = createBoxElement();
+
+        const rootProps = mergeProps(
+            {
+                id: props.id,
+                style: props.style,
+                className: classNames(cx('root'), props.className),
+                'data-p-checked': checked,
+                'data-p-disabled': props.disabled,
+                'data-p-indeterminate': indeterminateState || undefined
+            },
+            getPTOptions('root')
+        );
+
         return (
             <ComponentProvider value={checkbox}>
                 <div ref={elementRef} {...rootProps}>
-                    {createInputElement()}
-                    {createBoxElement()}
+                    {input}
+                    {box}
                 </div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
