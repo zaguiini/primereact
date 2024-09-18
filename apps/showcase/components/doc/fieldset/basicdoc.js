@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Fieldset } from '@/components/lib/fieldset/Fieldset';
+import { Fieldset } from 'primereact/fieldset';
 
 export function BasicDoc(props) {
     const code = {

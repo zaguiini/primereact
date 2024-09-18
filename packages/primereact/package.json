@@ -61,6 +61,7 @@
         "./tooltip": "./src/tooltip/Tooltip.js",
         "./metergroup": "./src/metergroup/MeterGroup.js",
         "./divider": "./src/divider/Divider.js",
+        "./fieldset": "./src/fieldset/Fieldset.js",
         "./utils": "./src/utils/Utils.js",
         "./*": "./*"
     },

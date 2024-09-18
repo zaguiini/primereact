@@ -1,3 +1,5 @@
+'use client';
+
 import DocApiTable from '@/components/doc/common/docapitable';
 import { DocComponent } from '@/components/doc/common/doccomponent';
 import { AccessibilityDoc } from '@/components/doc/fieldset/accessibilitydoc';

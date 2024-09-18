@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Fieldset } from '@/components/lib/fieldset/Fieldset';
 import { Avatar } from 'primereact/avatar';
+import { Fieldset } from 'primereact/fieldset';
 
 export function TemplateDoc(props) {
     const legendTemplate = (

@@ -178,3 +178,5 @@ export const findCollisionPosition = (position) => {
         };
     }
 };
+
+export { default as UniqueComponentId } from './UniqueComponentId';
