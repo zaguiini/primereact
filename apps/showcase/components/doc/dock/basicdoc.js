@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Dock } from '@/components/lib/dock/Dock';
-import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { RadioButton } from 'primereact/radiobutton';
 import { useState } from 'react';
 
 export function BasicDoc(props) {
@@ -55,7 +55,7 @@ import { RadioButton } from 'primereact/radiobutton';
 import './DockDemo.css';
 
 export default function BasicDemo() {
-    const [position, setPosition] = useState('bottom');    
+    const [position, setPosition] = useState('bottom');
     const items = [
         {
             label: 'Finder',
@@ -125,7 +125,7 @@ import { RadioButton } from 'primereact/radiobutton';
 import './DockDemo.css';
 
 export default function BasicDemo() {
-    const [position, setPosition] = useState<string>('bottom');    
+    const [position, setPosition] = useState<string>('bottom');
     const items: MenuItem[] = [
         {
             label: 'Finder',
@@ -200,7 +200,7 @@ export default function BasicDemo() {
 }
 .dock-demo .p-dock {
     z-index: 1000;
-}  
+}
     `
         }
     };

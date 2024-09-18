@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { RadioButton } from 'primereact/radiobutton';
 
 export function DisabledDoc(props) {
     const code = {
@@ -8,7 +8,7 @@ export function DisabledDoc(props) {
 <RadioButton checked disabled></RadioButton>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { RadioButton } from "primereact/radiobutton";
 
 export default function DisabledDemo() {
@@ -20,7 +20,7 @@ export default function DisabledDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { RadioButton } from "primereact/radiobutton";
 
 export default function DisabledDemo() {

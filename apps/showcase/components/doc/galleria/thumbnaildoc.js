@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Galleria } from '@/components/lib/galleria/Galleria';
-import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { RadioButton } from 'primereact/radiobutton';
 import { useEffect, useState } from 'react';
 import { PhotoService } from '../../../service/PhotoService';
 
@@ -55,7 +55,7 @@ export function ThumbnailDoc(props) {
 
     const code = {
         basic: `
-<Galleria style={{ maxWidth: '640px' }} value={images} responsiveOptions={responsiveOptions} numVisible={5} 
+<Galleria style={{ maxWidth: '640px' }} value={images} responsiveOptions={responsiveOptions} numVisible={5}
     item={itemTemplate} thumbnailsPosition={position} thumbnail={thumbnailTemplate} />
         `,
         javascript: `

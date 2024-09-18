@@ -134,7 +134,7 @@ export const Checkbox = React.memo(
                     style: props.inputStyle,
                     className: classNames(cx('input'), props.inputClassName),
                     name: props.name,
-                    checked: checked,
+                    defaultChecked: checked,
                     tabIndex: props.tabIndex,
                     disabled: props.disabled,
                     readOnly: props.readOnly,

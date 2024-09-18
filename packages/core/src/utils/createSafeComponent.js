@@ -2,7 +2,7 @@ import { globalProps, useComponent } from '@primereact/core/component';
 import { useProps } from '@primereact/hooks';
 
 export const createSafeComponent = (defaultProps, style) => {
-    return (inProps, ref, state) => {
+    return (inProps, ref, state = {}) => {
         const { props, attrs } = useProps(inProps, { ...globalProps, ...defaultProps });
 
         return useComponent({ props, attrs, state, style }, ref);

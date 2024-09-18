@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { RadioButton } from 'primereact/radiobutton';
 import { useState } from 'react';
 
 export function DynamicDoc(props) {

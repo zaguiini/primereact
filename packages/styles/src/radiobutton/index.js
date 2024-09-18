@@ -119,13 +119,13 @@ const theme = ({ dt }) => `
 `;
 
 const classes = {
-    root: ({ instance, props }) => [
+    root: ({ props, state, context }) => [
         'p-radiobutton p-component',
         {
-            'p-radiobutton-checked': instance.checked,
+            'p-radiobutton-checked': state.checked,
             'p-disabled': props.disabled,
             'p-invalid': props.invalid,
-            'p-variant-filled': props.variant ? props.variant === 'filled' : instance.$primevue.config.inputStyle === 'filled' || instance.$primevue.config.inputVariant === 'filled'
+            'p-variant-filled': props.variant ? props.variant === 'filled' : context?.inputVariant === 'filled'
         }
     ],
     box: 'p-radiobutton-box',

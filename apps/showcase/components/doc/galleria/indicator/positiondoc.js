@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { Galleria } from '@/components/lib/galleria/Galleria';
-import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
 import { Checkbox } from 'primereact/checkbox';
+import { RadioButton } from 'primereact/radiobutton';
 import { useEffect, useState } from 'react';
 import { PhotoService } from '../../../../service/PhotoService';
 

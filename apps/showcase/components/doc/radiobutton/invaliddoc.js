@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { RadioButton } from '@/components/lib/radiobutton/RadioButton';
+import { RadioButton } from 'primereact/radiobutton';
 
 export function InvalidDoc(props) {
     const code = {
@@ -8,7 +8,7 @@ export function InvalidDoc(props) {
 <RadioButton invalid/>
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { RadioButton } from "primereact/radiobutton";
 
 export default function InvalidDemo() {
@@ -20,7 +20,7 @@ export default function InvalidDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { RadioButton } from "primereact/radiobutton";
 
 export default function InvalidDemo() {
