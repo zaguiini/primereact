@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Inplace, InplaceContent, InplaceDisplay } from 'primereact/inplace';
 import { useState } from 'react';
-import { Column } from '../../../components/lib/column/Column';
-import { DataTable } from '../../../components/lib/datatable/DataTable';
-import { Inplace, InplaceContent, InplaceDisplay } from '../../../components/lib/inplace/Inplace';
 import { ProductService } from '../../../service/ProductService';
 
 export function LazyDoc(props) {
@@ -38,7 +38,7 @@ import { ProductService } from './service/ProductService';
 
 export default function LazyDemo() {
     const [products, setProducts] = useState([]);
-    
+
     const onOpen = () => {
         ProductService.getProductsSmall().then(data => setProducts(data));
     }
@@ -69,7 +69,7 @@ import { ProductService } from './service/ProductService';
 
 export default function LazyDemo() {
     const [products, setProducts] = useState<any[]>([]);
-    
+
     const onOpen = () => {
         ProductService.getProductsSmall().then(data => setProducts(data));
     }
@@ -92,7 +92,7 @@ export default function LazyDemo() {
 }
         `,
         data: `
-/* ProductService */        
+/* ProductService */
 {
     id: '1000',
     code: 'f230fh0g3',

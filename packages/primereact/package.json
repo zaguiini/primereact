@@ -62,6 +62,9 @@
         "./metergroup": "./src/metergroup/MeterGroup.js",
         "./divider": "./src/divider/Divider.js",
         "./fieldset": "./src/fieldset/Fieldset.js",
+        "./column": "./src/column/Column.js",
+        "./datatable": "./src/datatable/DataTable.js",
+        "./overlayservice": "./src/overlayservice/OverlayService.js",
         "./utils": "./src/utils/Utils.js",
         "./*": "./*"
     },

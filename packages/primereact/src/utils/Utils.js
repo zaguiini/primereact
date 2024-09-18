@@ -5,6 +5,13 @@ import ObjectUtils from './ObjectUtils';
 
 export { IconUtils, mask, ObjectUtils };
 
+// @todo: move to @primeuix/utils
+export const omit = (obj, ...keys) => {
+    const copy = { ...obj };
+    keys.forEach((key) => delete copy[key]);
+    return copy;
+};
+
 // @todo: Remove this function from here
 export const flipfitCollision = (element, target, my = 'left top', at = 'left bottom', callback) => {
     if (element && target) {

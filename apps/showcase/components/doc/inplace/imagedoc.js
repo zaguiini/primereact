@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Inplace, InplaceContent, InplaceDisplay } from '../../../components/lib/inplace/Inplace';
+import { Inplace, InplaceContent, InplaceDisplay } from 'primereact/inplace';
 
 export function ImageDoc(props) {
     const code = {

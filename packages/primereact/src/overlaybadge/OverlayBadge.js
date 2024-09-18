@@ -1,6 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import { Badge } from 'primereact/badge';
+import { omit } from 'primereact/utils';
 import * as React from 'react';
 import { useOverlayBadge } from './OverlayBadge.base';
 
@@ -17,13 +18,6 @@ export const OverlayBadge = React.memo(
             },
             ptmi('root')
         );
-
-        // @todo: move to @primeuix/utils
-        const omit = (obj, ...keys) => {
-            const copy = { ...obj };
-            keys.forEach((key) => delete copy[key]);
-            return copy;
-        };
 
         return (
             <ComponentProvider value={overlaybadge}>

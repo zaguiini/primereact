@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { Inplace, InplaceContent, InplaceDisplay } from 'primereact/inplace';
+import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
-import { Inplace, InplaceContent, InplaceDisplay } from '../../../components/lib/inplace/Inplace';
-import { InputText } from '../../../components/lib/inputtext/InputText';
 
 export function InputDoc(props) {
     const [text, setText] = useState('');

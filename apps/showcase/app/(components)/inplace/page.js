@@ -1,3 +1,4 @@
+'use client';
 import DocApiTable from '@/components/doc/common/docapitable';
 import { DocComponent } from '@/components/doc/common/doccomponent';
 import { AccessibilityDoc } from '@/components/doc/inplace/accessibilitydoc';
@@ -5,7 +6,6 @@ import { BasicDoc } from '@/components/doc/inplace/basicdoc';
 import { ImageDoc } from '@/components/doc/inplace/imagedoc';
 import { ImportDoc } from '@/components/doc/inplace/importdoc';
 import { InputDoc } from '@/components/doc/inplace/inputdoc';
-import { LazyDoc } from '@/components/doc/inplace/lazydoc';
 import { Wireframe } from '@/components/doc/inplace/pt/wireframe';
 import { StyledDoc } from '@/components/doc/inplace/theming/styleddoc';
 import { TailwindDoc } from '@/components/doc/inplace/theming/tailwinddoc';
@@ -32,11 +32,11 @@ const ChipDemo = () => {
             label: 'Image',
             component: ImageDoc
         },
-        {
+        /*{
             id: 'lazy',
             label: 'Lazy',
             component: LazyDoc
-        },
+        },*/
 
         {
             id: 'accessibility',

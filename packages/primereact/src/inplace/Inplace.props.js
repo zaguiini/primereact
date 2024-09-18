@@ -13,3 +13,11 @@ export const defaultProps = {
     onToggle: null,
     children: undefined
 };
+
+export const displayDefaultProps = {
+    children: undefined
+};
+
+export const contentDefaultProps = {
+    children: undefined
+};
