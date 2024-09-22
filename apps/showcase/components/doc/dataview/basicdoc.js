@@ -1,9 +1,9 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { DataView } from '@/components/lib/dataview/DataView';
-import { Rating } from '@/components/lib/rating/Rating';
 import { classNames } from '@/components/lib/utils/Utils';
 import { Button } from 'primereact/button';
+import { Rating } from 'primereact/rating';
 import { Tag } from 'primereact/tag';
 import { useEffect, useState } from 'react';
 import { ProductService } from '../../../service/ProductService';

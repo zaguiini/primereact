@@ -1,17 +1,17 @@
 import { ComponentProvider } from '@primereact/core/component';
-import { BanIcon } from '@primereact/icons/ban';
 import { StarIcon } from '@primereact/icons/star';
 import { StarFillIcon } from '@primereact/icons/starfill';
+import { classNames, isNotEmpty, mergeProps, uuid } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
+import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
-import { IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useRating } from './Rating.base';
-import { RatingBase } from './RatingBase';
 
 export const Rating = React.memo(
     React.forwardRef((inProps, inRef) => {
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
         const [isFocusVisibleItem, setFocusVisibleItem] = React.useState(true);
+        const name = React.useRef(uuid());
 
         const elementRef = React.useRef(null);
         const state = {
@@ -22,193 +22,144 @@ export const Rating = React.memo(
         const rating = useRating(inProps, inRef, state);
         const { props, ptm, ptmi, cx, ref } = rating;
 
-        const getPTOptions = (value, key) => {
+        const getPTOptions = (key, value) => {
             return ptm(key, {
                 context: {
-                    active: value <= props.value
+                    active: value <= props.value,
+                    focused: value === focusedOptionIndex
                 }
             });
         };
 
-        const enabled = !props.disabled && !props.readOnly;
-        const tabIndex = enabled ? 0 : null;
-
-        const rate = (event, i) => {
-            if (enabled && props.onChange) {
-                props.onChange({
-                    originalEvent: event,
-                    value: i,
-                    stopPropagation: () => {
-                        event?.stopPropagation();
-                    },
-                    preventDefault: () => {
-                        event?.preventDefault();
-                    },
-                    target: {
-                        name: props.name,
-                        id: props.id,
-                        value: i
-                    }
-                });
-            }
-
-            setFocusedOptionIndex(i);
-
-            event.preventDefault();
-        };
-
-        const clear = (event) => {
-            if (enabled && props.onChange) {
-                props.onChange({
-                    originalEvent: event,
-                    value: null,
-                    stopPropagation: () => {
-                        event?.stopPropagation();
-                    },
-                    preventDefault: () => {
-                        event?.preventDefault();
-                    },
-                    target: {
-                        name: props.name,
-                        id: props.id,
-                        value: null
-                    }
-                });
-            }
-
-            event.preventDefault();
-        };
-
-        const onStarKeyDown = (event, value) => {
-            switch (event.key) {
-                case 'Enter':
-                case 'Space':
-                    rate(event, value);
-                    event.preventDefault();
-                    break;
-                case 'ArrowLeft':
-                case 'ArrowUp':
-                    event.preventDefault();
-                    rate(event, props.value - 1 < 1 ? props.stars : props.value - 1);
-                    break;
-
-                case 'ArrowRight':
-                case 'ArrowDown':
-                    event.preventDefault();
-                    rate(event, props.value + 1 > props.stars ? 1 : props.value + 1);
-                    break;
-
-                default:
-                    break;
-            }
-        };
-
         const onFocus = (event, value) => {
             setFocusedOptionIndex(value);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
             setFocusedOptionIndex(-1);
+            props.onBlur?.(event);
         };
 
-        const onCancelKeyDown = (event) => {
-            if (event.key === 'Enter') {
-                clear(event);
+        const onChange = (event, value) => {
+            onOptionSelect(event, value);
+            setFocusVisibleItem(true);
+        };
+
+        const onOptionSelect = (event, value) => {
+            if (focusedOptionIndex === value || props.value === value) {
+                setFocusedOptionIndex(-1);
+                updateModel(event, null);
+            } else {
+                setFocusedOptionIndex(value);
+                updateModel(event, value || null);
             }
         };
 
-        const createIcons = () => {
+        const updateModel = (event, value) => {
+            props.onChange?.({
+                originalEvent: event,
+                value,
+                stopPropagation: () => {
+                    event?.stopPropagation();
+                },
+                preventDefault: () => {
+                    event?.preventDefault();
+                },
+                target: {
+                    name,
+                    id: props.id,
+                    value
+                }
+            });
+        };
+
+        const starAriaLabel = (value) => {
+            return value; // @todo- Update with locale //value === 1 ? this.$primevue.config.locale.aria.star : this.$primevue.config.locale.aria.stars.replace(/{star}/g, value);
+        };
+
+        const createOptions = () => {
             return Array.from({ length: props.stars }, (_, i) => i + 1).map((value) => {
                 const active = value <= props.value;
+
                 const onIconProps = mergeProps(
                     {
                         className: cx('onIcon')
                     },
-                    getPTOptions(props.value, 'onIcon')
+                    ptm('onIcon')
                 );
                 const offIconProps = mergeProps(
                     {
                         className: cx('onIcon')
                     },
-                    getPTOptions(props.value, 'offIcon')
+                    ptm('offIcon')
                 );
+
                 const icon = active ? { type: props.onIcon || <StarFillIcon {...onIconProps} /> } : { type: props.offIcon || <StarIcon {...offIconProps} /> };
                 const content = IconUtils.getJSXIcon(icon.type, active ? { ...onIconProps } : { ...offIconProps }, { props });
 
-                const itemProps = mergeProps(
+                const hiddenOptionInputProps = mergeProps(
                     {
-                        className: cx('item', { active, focusedOptionIndex, isFocusVisibleItem, value }),
-                        'data-p-focused': value === focusedOptionIndex,
-                        tabIndex: tabIndex,
-                        onClick: (e) => rate(e, value),
-                        onKeyDown: (e) => onStarKeyDown(e, value),
+                        type: 'radio',
+                        defaultValue: value,
+                        name: name.current,
+                        checked: props.value === value,
+                        disabled: props.disabled,
+                        readOnly: props.readOnly,
+                        'aria-label': starAriaLabel(value),
                         onFocus: (e) => onFocus(e, value),
-                        onBlur: (e) => onBlur(e)
+                        onBlur,
+                        onChange: (e) => onChange(e, value)
                     },
-                    getPTOptions(props.value, 'item')
+                    ptm('hiddenOptionInput')
+                );
+
+                const hiddenOptionInputContainerProps = mergeProps(
+                    {
+                        className: 'p-hidden-accessible',
+                        'data-p-hidden-accessible': true
+                    },
+                    ptm('hiddenOptionInputContainer')
+                );
+
+                const optionProps = mergeProps(
+                    {
+                        className: cx('option', { value }),
+                        onClick: (e) => onOptionClick(e, value),
+                        'data-p-active': active,
+                        'data-p-focused': value === focusedOptionIndex
+                    },
+                    getPTOptions('option', value)
                 );
 
                 return (
-                    <div {...itemProps} key={value}>
+                    <div {...optionProps} key={value}>
+                        <span {...hiddenOptionInputContainerProps}>
+                            <input {...hiddenOptionInputProps} />
+                        </span>
                         {content}
                     </div>
                 );
             });
         };
 
-        const createCancelIcon = () => {
-            if (props.cancel) {
-                const cancelIconProps = mergeProps(
-                    {
-                        className: cx('cancelIcon')
-                    },
-                    ptm('cancelIcon')
-                );
-                const icon = props.cancelIcon || <BanIcon {...cancelIconProps} />;
-                const content = IconUtils.getJSXIcon(icon, { ...cancelIconProps, ...props.cancelIconProps }, { props });
+        const hasTooltip = isNotEmpty(props.tooltip);
 
-                const cancelItemProps = mergeProps(
-                    {
-                        className: cx('cancelItem'),
-                        onClick: clear,
-                        tabIndex: tabIndex,
-                        onKeyDown: onCancelKeyDown
-                    },
-                    ptm('cancelItem')
-                );
+        const options = createOptions();
 
-                return <div {...cancelItemProps}>{content}</div>;
-            }
-
-            return null;
-        };
-
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getElement: () => elementRef.current
-        }));
-
-        const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
         const rootProps = mergeProps(
             {
                 ref: elementRef,
                 id: props.id,
-                className: classNames(props.className, cx('root')),
-                style: props.style
+                style: props.style,
+                className: classNames(cx('root'), props.className)
             },
-            RatingBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
-
-        const cancelIcon = createCancelIcon();
-        const icons = createIcons();
 
         return (
             <ComponentProvider value={rating}>
-                <div {...rootProps}>
-                    {cancelIcon}
-                    {icons}
-                </div>
+                <div {...rootProps}>{options}</div>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

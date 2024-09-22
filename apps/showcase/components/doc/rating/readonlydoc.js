@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Rating } from '@/components/lib/rating/Rating';
+import { Rating } from 'primereact/rating';
 
 export function ReadOnlyDoc(props) {
     const code = {
@@ -8,7 +8,7 @@ export function ReadOnlyDoc(props) {
 <Rating value={5} readOnly cancel={false} />
         `,
         javascript: `
-import React from 'react'; 
+import React from 'react';
 import { Rating } from "primereact/rating";
 
 export default function ReadOnlyDemo() {
@@ -20,7 +20,7 @@ export default function ReadOnlyDemo() {
 }
         `,
         typescript: `
-import React from 'react'; 
+import React from 'react';
 import { Rating } from "primereact/rating";
 
 export default function ReadOnlyDemo() {

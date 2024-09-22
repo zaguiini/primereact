@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Rating } from '@/components/lib/rating/Rating';
+import { Rating } from 'primereact/rating';
 import { useState } from 'react';
 
 export function BasicDoc(props) {

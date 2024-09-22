@@ -40,6 +40,7 @@
         "./radiobutton": "./src/radiobutton/RadioButton.js",
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
+        "./rating": "./src/rating/Rating.js",
         "./tag": "./src/tag/Tag.js",
         "./card": "./src/card/Card.js",
         "./inplace": "./src/inplace/Inplace.js",
