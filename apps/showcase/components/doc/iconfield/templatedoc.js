@@ -1,7 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { IconField } from '@/components/lib/iconfield/IconField';
 import { InputIcon } from '@/components/lib/inputicon/InputIcon';
+import { IconField } from 'primereact/iconfield';
 import { InputText } from 'primereact/inputtext';
 
 export function TemplateDoc(props) {
