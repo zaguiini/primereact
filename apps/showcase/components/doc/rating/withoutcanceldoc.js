@@ -48,7 +48,7 @@ export default function WithoutCancelDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <Rating value={value} onChange={(e) => setValue(e.value)} cancel={false} />
+                <Rating value={value} onChange={(e) => setValue(e.value)} />
             </div>
             <DocSectionCode code={code} />
         </>

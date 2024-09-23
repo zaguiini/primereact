@@ -41,7 +41,7 @@ export default function DisabledDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <Rating value={5} disabled cancel={false} />
+                <Rating value={5} disabled />
             </div>
             <DocSectionCode code={code} />
         </>

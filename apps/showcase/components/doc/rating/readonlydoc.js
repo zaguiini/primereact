@@ -41,7 +41,7 @@ export default function ReadOnlyDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <Rating value={5} readOnly cancel={false} />
+                <Rating value={5} readOnly />
             </div>
             <DocSectionCode code={code} />
         </>

@@ -19,7 +19,7 @@ export const withComponentStyle = (callback) => {
 
                 return computedStyle ? _load(minifyCSS(computedStyle), { name, ...options }) : {};
             },
-            loadCSS(options = {}) {
+            loadCSS(css, options = {}) {
                 return this.load(css, options);
             },
             loadTheme(options = {}) {

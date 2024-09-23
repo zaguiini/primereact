@@ -3,8 +3,10 @@ import { createContext, useContext } from 'react';
 
 export const ComponentContext = createContext(undefined);
 // @todo: 'use client';
+
 export const ComponentProvider = (options) => {
     const parent = useContext(ComponentContext);
+
     const getProps = () => {
         return undefined;
     };
@@ -14,7 +16,7 @@ export const ComponentProvider = (options) => {
         ...options.value,
         $pc: {
             ...parent?.$pc,
-            [`$pc${options.value.name}`]: options.value
+            [`$pc${options?.value?.name}`]: options.value
         }
         //[`$pc${options.value.name}`]: options.value,
         //$parentInstance: options.value

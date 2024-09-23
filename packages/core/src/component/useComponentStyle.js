@@ -252,7 +252,7 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
         };
 
         _load();
-        _themeChangeListener(_load);
+        //_themeChangeListener(_load);
     };
 
     const _loadGlobalStyles = () => {
@@ -271,6 +271,7 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
 
     const _loadThemeStyles = () => {
         if ($isUnstyled) return;
+
         // common
         if (!Theme.isStyleNameLoaded('common')) {
             const { primitive, semantic } = $style?.getCommonTheme() || {}; // @todo

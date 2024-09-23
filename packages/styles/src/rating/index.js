@@ -52,11 +52,11 @@ const classes = {
             'p-disabled': props.disabled
         }
     ],
-    option: ({ instance, props, value }) => [
+    option: ({ props, state, value }) => [
         'p-rating-option',
         {
-            'p-rating-option-active': value <= props.modelValue,
-            'p-focus-visible': value === instance.focusedOptionIndex && instance.isFocusVisibleItem
+            'p-rating-option-active': value <= props.value,
+            'p-focus-visible': value === state.focusedOptionIndex && state.isFocusVisibleItem
         }
     ],
     onIcon: 'p-rating-icon p-rating-on-icon',

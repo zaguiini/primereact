@@ -37,13 +37,22 @@ export const Rating = React.memo(
         };
 
         const onBlur = (event) => {
-            setFocusedOptionIndex(-1);
+            //setFocusedOptionIndex(-1);
             props.onBlur?.(event);
         };
 
         const onChange = (event, value) => {
             onOptionSelect(event, value);
             setFocusVisibleItem(true);
+        };
+
+        const onOptionClick = (event, value) => {
+            if (!props.readOnly && !props.disabled) {
+                //onOptionSelect(event, value);
+                //setFocusVisibleItem(false);
+                //const firstFocusableEl = getFirstFocusableElement(event.currentTarget);
+                //firstFocusableEl && focus(firstFocusableEl);
+            }
         };
 
         const onOptionSelect = (event, value) => {
@@ -133,7 +142,7 @@ export const Rating = React.memo(
                 );
 
                 return (
-                    <div {...optionProps} key={value}>
+                    <div key={value} {...optionProps}>
                         <span {...hiddenOptionInputContainerProps}>
                             <input {...hiddenOptionInputProps} />
                         </span>
