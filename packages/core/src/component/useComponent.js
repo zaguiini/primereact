@@ -3,11 +3,11 @@ import { ComponentContext } from './Component.context';
 import { useComponentPT } from './useComponentPT';
 import { useComponentStyle } from './useComponentStyle';
 
-export const useComponent = ({ props, attrs, state, style }, inRef) => {
+export const useComponent = ({ props, attrs, state, style, ...rest }, inRef) => {
     const ref = React.useRef(inRef); // @todo
     const parent = React.useContext(ComponentContext); // @todo
-    const ptx = useComponentPT({ props, attrs, state }, ref);
-    const stx = useComponentStyle({ props, attrs, state, style }, ref);
+    const ptx = useComponentPT({ props, attrs, state, ...rest }, ref);
+    const stx = useComponentStyle({ props, attrs, state, style, ...rest }, ref);
     const instance = {
         ref,
         name: props.__TYPE,
@@ -18,7 +18,8 @@ export const useComponent = ({ props, attrs, state, style }, inRef) => {
         parent, // @todo
         //[`$pc${options.value.name}`]: options.value,
         ...ptx,
-        ...stx
+        ...stx,
+        ...rest
     };
 
     // @todo: refactor for styleclass

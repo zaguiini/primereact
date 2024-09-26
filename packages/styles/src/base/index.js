@@ -3,12 +3,11 @@ const theme = ({ dt }) => `
     box-sizing: border-box;
 }
 
-/* Non vue overlay animations */
+/* Non react overlay animations */
 .p-connected-overlay {
     opacity: 0;
     transform: scaleY(0.8);
-    transition: transform 0.12s cubic-bezier(0, 0, 0.2, 1),
-        opacity 0.12s cubic-bezier(0, 0, 0.2, 1);
+    transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
 }
 
 .p-connected-overlay-visible {
@@ -19,47 +18,57 @@ const theme = ({ dt }) => `
 .p-connected-overlay-hidden {
     opacity: 0;
     transform: scaleY(1);
-    transition: opacity 0.1s linear;
+    transition: opacity .1s linear;
 }
 
-/* Vue based overlay animations */
-.p-connected-overlay-enter-from {
+/* React based overlay animations */
+.p-connected-overlay-enter {
     opacity: 0;
     transform: scaleY(0.8);
 }
 
-.p-connected-overlay-leave-to {
-    opacity: 0;
-}
-
 .p-connected-overlay-enter-active {
-    transition: transform 0.12s cubic-bezier(0, 0, 0.2, 1),
-        opacity 0.12s cubic-bezier(0, 0, 0.2, 1);
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
 }
 
-.p-connected-overlay-leave-active {
-    transition: opacity 0.1s linear;
+.p-connected-overlay-enter-done {
+    transform: none;
+}
+
+.p-connected-overlay-exit {
+    opacity: 1;
+}
+
+.p-connected-overlay-exit-active {
+    opacity: 0;
+    transition: opacity .1s linear;
 }
 
 /* Toggleable Content */
-.p-toggleable-content-enter-from,
-.p-toggleable-content-leave-to {
+.p-toggleable-content-enter {
     max-height: 0;
-}
-
-.p-toggleable-content-enter-to,
-.p-toggleable-content-leave-from {
-    max-height: 1000px;
-}
-
-.p-toggleable-content-leave-active {
-    overflow: hidden;
-    transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
 }
 
 .p-toggleable-content-enter-active {
     overflow: hidden;
+    max-height: 1000px;
     transition: max-height 1s ease-in-out;
+}
+
+.p-toggleable-content-enter-done {
+    transform: none;
+}
+
+.p-toggleable-content-exit {
+    max-height: 1000px;
+}
+
+.p-toggleable-content-exit-active {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
 }
 
 .p-disabled,

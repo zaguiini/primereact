@@ -198,7 +198,7 @@ const classes = {
         {
             'p-disabled': props.disabled,
             'p-invalid': props.invalid,
-            'p-variant-filled': props.variant ? props.variant === 'filled' : instance.$primevue.config.inputStyle === 'filled' || instance.$primevue.config.inputVariant === 'filled',
+            'p-variant-filled': props.variant ? props.variant === 'filled' : instance.$primereactConfig.inputVariant === 'filled', // @todo
             'p-focus': state.focused,
             'p-inputwrapper-filled': instance.hasSelectedOption,
             'p-inputwrapper-focus': state.focused || state.overlayVisible,
@@ -210,7 +210,7 @@ const classes = {
         'p-select-label',
         {
             'p-placeholder': !props.editable && instance.label === props.placeholder,
-            'p-select-label-empty': !props.editable && !instance.$slots['value'] && (instance.label === 'p-emptylabel' || instance.label.length === 0)
+            'p-select-label-empty': !props.editable && !props.valueTemplate && (instance.label === 'p-emptylabel' || instance.label.length === 0)
         }
     ],
     clearIcon: 'p-select-clear-icon',

@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
+import { Dropdown } from 'primereact/dropdown';
 import { useState } from 'react';
 
 export function FilterDoc(props) {
@@ -18,7 +18,7 @@ export function FilterDoc(props) {
         { name: 'United States', code: 'US' }
     ];
 
-    const selectedCountryTemplate = (option, props) => {
+    const selectedCountryTemplate = (option, select) => {
         if (option) {
             return (
                 <div className="flex items-center">
@@ -28,10 +28,10 @@ export function FilterDoc(props) {
             );
         }
 
-        return <span>{props.placeholder}</span>;
+        return <span>{select.props.placeholder}</span>;
     };
 
-    const countryOptionTemplate = (option) => {
+    const countryOptionTemplate = ({ option }) => {
         return (
             <div className="flex items-center">
                 <img alt={option.name} src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px' }} />
@@ -42,7 +42,7 @@ export function FilterDoc(props) {
 
     const code = {
         basic: `
-<Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country" 
+<Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country"
     filter valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" />
         `,
         javascript: `
@@ -88,9 +88,9 @@ export default function FilterDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country" 
+            <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country"
                 filter valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" />
-        </div>    
+        </div>
     )
 }
         `,
@@ -142,9 +142,9 @@ export default function FilterDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCountry} onChange={(e: DropdownChangeEvent) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country" 
+            <Dropdown value={selectedCountry} onChange={(e: DropdownChangeEvent) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country"
                 filter valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" />
-        </div>    
+        </div>
     )
 }
         `
@@ -167,7 +167,7 @@ export default function FilterDemo() {
                     filter
                     showClear
                     valueTemplate={selectedCountryTemplate}
-                    itemTemplate={countryOptionTemplate}
+                    optionTemplate={countryOptionTemplate}
                     className="w-full md:w-56"
                 />
             </div>

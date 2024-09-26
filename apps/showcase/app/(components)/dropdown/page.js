@@ -1,3 +1,4 @@
+'use client';
 import DocApiTable from '@/components/doc/common/docapitable';
 import { DocComponent } from '@/components/doc/common/doccomponent';
 import { AccessibilityDoc } from '@/components/doc/dropdown/accessibilitydoc';
@@ -15,7 +16,6 @@ import { InvalidDoc } from '@/components/doc/dropdown/invaliddoc';
 import { LazyVirtualScrollDoc } from '@/components/doc/dropdown/lazyvirtualscrolldoc';
 import { LoadingDoc } from '@/components/doc/dropdown/loadingdoc';
 import { Wireframe } from '@/components/doc/dropdown/pt/wireframe';
-import { TemplateDoc } from '@/components/doc/dropdown/templatedoc';
 import { StyledDoc } from '@/components/doc/dropdown/theming/styleddoc';
 import { TailwindDoc } from '@/components/doc/dropdown/theming/tailwinddoc';
 import { VirtualScrollDoc } from '@/components/doc/dropdown/virtualscrolldoc';
@@ -47,11 +47,11 @@ const DropdownDemo = () => {
             label: 'Group',
             component: GroupDoc
         },
-        {
+        /*{
             id: 'template',
             label: 'Template',
             component: TemplateDoc
-        },
+        },*/
         {
             id: 'filter',
             label: 'Filter',

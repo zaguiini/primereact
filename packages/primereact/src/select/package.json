@@ -1,0 +1,6 @@
+{
+    "main": "./Select.js",
+    "module": "./Select.js",
+    "types": "./Select.d.ts",
+    "sideEffects": false
+}

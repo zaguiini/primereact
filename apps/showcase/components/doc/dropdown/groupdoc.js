@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
+import { Dropdown } from 'primereact/dropdown';
 import { useState } from 'react';
 
 export function GroupDoc(props) {
@@ -49,7 +49,7 @@ export function GroupDoc(props) {
 
     const code = {
         basic: `
-<Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={groupedCities} optionLabel="label" 
+<Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={groupedCities} optionLabel="label"
     optionGroupLabel="label" optionGroupChildren="items" optionGroupTemplate={groupedItemTemplate} className="w-full md:w-56" placeholder="Select a City" />
         `,
         javascript: `
@@ -102,7 +102,7 @@ export default function GroupedDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={groupedCities} optionLabel="label" 
+            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={groupedCities} optionLabel="label"
                 optionGroupLabel="label" optionGroupChildren="items" optionGroupTemplate={groupedItemTemplate} className="w-full md:w-56" placeholder="Select a City" />
         </div>
     )
@@ -115,7 +115,7 @@ import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 interface City {
     label: string;
     value: string;
-} 
+}
 
 interface Country {
     label: string;
@@ -166,7 +166,7 @@ export default function GroupedDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCity} onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)} options={groupedCities} optionLabel="label" 
+            <Dropdown value={selectedCity} onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)} options={groupedCities} optionLabel="label"
                 optionGroupLabel="label" optionGroupChildren="items" optionGroupTemplate={groupedItemTemplate} className="w-full md:w-56" placeholder="Select a City" />
         </div>
     )

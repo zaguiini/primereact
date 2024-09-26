@@ -14,9 +14,10 @@ export const ComponentProvider = (options) => {
     const value = {
         getProps,
         ...options.value,
+        // @todo: Refactor
         $pc: {
             ...parent?.$pc,
-            [`$pc${options?.value?.name}`]: options.value
+            [`${options?.value?.name}`]: options.value
         }
         //[`$pc${options.value.name}`]: options.value,
         //$parentInstance: options.value

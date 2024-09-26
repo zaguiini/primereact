@@ -6,7 +6,7 @@ import { useFluid } from './Fluid.base';
 export const Fluid = React.memo(
     React.forwardRef((inProps, inRef) => {
         const fluid = useFluid(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = fluid;
+        const { props, ptmi, cx, ref } = fluid;
 
         const rootProps = mergeProps(
             {

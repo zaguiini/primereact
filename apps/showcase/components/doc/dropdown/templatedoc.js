@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
-import { ChevronDownIcon } from '@/components/lib/icons/chevrondown';
-import { ChevronRightIcon } from '@/components/lib/icons/chevronright';
+import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { ChevronRightIcon } from '@primereact/icons/chevronright';
+import { Dropdown } from 'primereact/dropdown';
 import { useState } from 'react';
 
 export function TemplateDoc(props) {
@@ -58,11 +58,11 @@ export function TemplateDoc(props) {
 
     const code = {
         basic: `
-<Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country" 
+<Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country"
     valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" panelFooterTemplate={panelFooterTemplate}
     dropdownIcon={(opts) => {
         return opts.iconProps['data-pr-overlay-visible'] ? <ChevronRightIcon {...opts.iconProps} /> : <ChevronDownIcon {...opts.iconProps} />;
-    }} 
+    }}
 />
         `,
         javascript: `
@@ -124,12 +124,12 @@ export default function TemplateDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country" 
-                valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" panelFooterTemplate={panelFooterTemplate} 
+            <Dropdown value={selectedCountry} onChange={(e) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country"
+                valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" panelFooterTemplate={panelFooterTemplate}
                 dropdownIcon={(opts) => {
                     return opts.iconProps['data-pr-overlay-visible'] ? <ChevronRightIcon {...opts.iconProps} /> : <ChevronDownIcon {...opts.iconProps} />;
                 }}/>
-        </div>    
+        </div>
     )
 }
         `,
@@ -197,12 +197,12 @@ export default function TemplateDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCountry} onChange={(e: DropdownChangeEvent) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country" 
-                valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" panelFooterTemplate={panelFooterTemplate} 
+            <Dropdown value={selectedCountry} onChange={(e: DropdownChangeEvent) => setSelectedCountry(e.value)} options={countries} optionLabel="name" placeholder="Select a Country"
+                valueTemplate={selectedCountryTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-56" panelFooterTemplate={panelFooterTemplate}
                 dropdownIcon={(opts) => {
                     return opts.iconProps['data-pr-overlay-visible'] ? <ChevronRightIcon {...opts.iconProps} /> : <ChevronDownIcon {...opts.iconProps} />;
                 }}/>/>
-        </div>    
+        </div>
     )
 }
         `

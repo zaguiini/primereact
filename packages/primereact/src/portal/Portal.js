@@ -1,7 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
 import { PrimeReactContext } from '@primereact/core/config';
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
-import { isClient, resolve } from '@primeuix/utils';
+import { getTargetElement, isClient, resolve } from '@primeuix/utils';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { usePortal } from './Portal.base';
@@ -31,7 +31,7 @@ export const Portal = React.memo((inProps) => {
     const element = props.element || props.children;
 
     if (element && mountedState) {
-        const appendTo = resolve(props.appendTo || config?.appendTo) || document.body;
+        const appendTo = getTargetElement(resolve(props.appendTo || config?.appendTo)) || document.body;
         const content = appendTo === 'self' ? element : ReactDOM.createPortal(element, appendTo);
 
         return <ComponentProvider value={portal}>{content}</ComponentProvider>;

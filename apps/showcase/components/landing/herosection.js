@@ -1,7 +1,6 @@
 import AppContentContext from '@/components/layout/appcontentcontext';
 import { Calendar } from '@/components/lib/calendar/Calendar';
 import { Chart } from '@/components/lib/chart/Chart';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
 import { InputNumber } from '@/components/lib/inputnumber/InputNumber';
 import { InputSwitch } from '@/components/lib/inputswitch/InputSwitch';
 import { TabMenu } from '@/components/lib/tabmenu/TabMenu';
@@ -9,6 +8,7 @@ import Link from 'next/link';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { Chip } from 'primereact/chip';
+import { Dropdown } from 'primereact/dropdown';
 import { RadioButton } from 'primereact/radiobutton';
 import { SelectButton } from 'primereact/selectbutton';
 import { Slider } from 'primereact/slider';

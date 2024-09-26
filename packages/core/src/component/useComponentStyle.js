@@ -201,7 +201,7 @@ function useCSS(cssMap = {}) {
     //return rule;
 }
 
-export const useComponentStyle = withComponentStyle(({ props, attrs, state, style, $style }, ref) => {
+export const useComponentStyle = withComponentStyle(({ props, attrs, state, style, $style, ...rest }, ref) => {
     const config = React.useContext(PrimeReactContext);
     const parent = React.useContext(ComponentContext);
     const name = props.__TYPE;
@@ -212,15 +212,18 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
         props,
         attrs,
         state,
-        parent
+        parent,
+        $primereactConfig: config,
+        ...rest
     };
     // @todo
     const $params = {
-        instance: ref,
+        instance,
         props,
         state,
         attrs,
-        parent
+        parent,
+        $primereactConfig: config
     };
 
     // computed values

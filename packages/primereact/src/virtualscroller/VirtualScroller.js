@@ -1,25 +1,25 @@
 import { ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '@primereact/hooks';
 import { SpinnerIcon } from '@primereact/icons/spinner';
+import { classNames, findSingle, getHeight, getWidth, isVisible, mergeProps, resolve } from '@primeuix/utils';
+import { IconUtils, ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
-import { DomHandler, IconUtils, ObjectUtils, classNames } from '../utils/Utils';
 import { useVirtualScroller } from './VirtualScroller.base';
-import { VirtualScrollerBase } from './VirtualScrollerBase';
 
 export const VirtualScroller = React.memo(
     React.forwardRef((inProps, inRef) => {
         const prevProps = usePrevious(inProps) || {};
 
-        const vertical = props.orientation === 'vertical';
-        const horizontal = props.orientation === 'horizontal';
-        const both = props.orientation === 'both';
+        const vertical = inProps.orientation === 'vertical';
+        const horizontal = inProps.orientation === 'horizontal';
+        const both = inProps.orientation === 'both';
 
         const [firstState, setFirstState] = React.useState(both ? { rows: 0, cols: 0 } : 0);
         const [lastState, setLastState] = React.useState(both ? { rows: 0, cols: 0 } : 0);
         const [pageState, setPageState] = React.useState(0);
         const [numItemsInViewportState, setNumItemsInViewportState] = React.useState(both ? { rows: 0, cols: 0 } : 0);
-        const [numToleratedItemsState, setNumToleratedItemsState] = React.useState(props.numToleratedItems);
-        const [loadingState, setLoadingState] = React.useState(props.loading || false);
+        const [numToleratedItemsState, setNumToleratedItemsState] = React.useState(inProps.numToleratedItems);
+        const [loadingState, setLoadingState] = React.useState(inProps.loading || false);
         const [loaderArrState, setLoaderArrState] = React.useState([]);
         const state = {
             first: firstState,
@@ -62,7 +62,7 @@ export const VirtualScroller = React.memo(
         };
 
         const setContentElement = (element) => {
-            contentRef.current = element || contentRef.current || DomHandler.findSingle(elementRef.current, '.p-virtualscroller-content');
+            contentRef.current = element || contentRef.current || findSingle(elementRef.current, '.p-virtualscroller-content');
         };
 
         const isPageChanged = (first) => {
@@ -226,12 +226,12 @@ export const VirtualScroller = React.memo(
                         contentRef.current.style.position = 'relative';
                         elementRef.current.style.contain = 'none';
 
-                        /*const [contentWidth, contentHeight] = [DomHandler.getWidth(contentRef.current), DomHandler.getHeight(contentRef.current)];
+                        /*const [contentWidth, contentHeight] = [getWidth(contentRef.current), getHeight(contentRef.current)];
 
                         contentWidth !== defaultContentWidth.current && (elementRef.current.style.width = '');
                         contentHeight !== defaultContentHeight.current && (elementRef.current.style.height = '');*/
 
-                        const [width, height] = [DomHandler.getWidth(elementRef.current), DomHandler.getHeight(elementRef.current)];
+                        const [width, height] = [getWidth(elementRef.current), getHeight(elementRef.current)];
 
                         (both || horizontal) && (elementRef.current.style.width = (width < defaultWidth.current ? width : props.scrollWidth || defaultWidth.current) + 'px');
                         (both || vertical) && (elementRef.current.style.height = (height < defaultHeight.current ? height : props.scrollHeight || defaultHeight.current) + 'px');
@@ -461,7 +461,7 @@ export const VirtualScroller = React.memo(
 
             resizeTimeout.current = setTimeout(() => {
                 if (elementRef.current) {
-                    const [width, height] = [DomHandler.getWidth(elementRef.current), DomHandler.getHeight(elementRef.current)];
+                    const [width, height] = [getWidth(elementRef.current), getHeight(elementRef.current)];
                     const [isDiffWidth, isDiffHeight] = [width !== defaultWidth.current, height !== defaultHeight.current];
                     const reinit = both ? isDiffWidth || isDiffHeight : horizontal ? isDiffWidth : vertical ? isDiffHeight : false;
 
@@ -469,8 +469,8 @@ export const VirtualScroller = React.memo(
                         setNumToleratedItemsState(props.numToleratedItems);
                         defaultWidth.current = width;
                         defaultHeight.current = height;
-                        defaultContentWidth.current = DomHandler.getWidth(contentRef.current);
-                        defaultContentHeight.current = DomHandler.getHeight(contentRef.current);
+                        defaultContentWidth.current = getWidth(contentRef.current);
+                        defaultContentHeight.current = getHeight(contentRef.current);
                     }
                 }
             }, props.resizeDelay);
@@ -523,16 +523,16 @@ export const VirtualScroller = React.memo(
         };
 
         const viewInit = () => {
-            if (elementRef.current && DomHandler.isVisible(elementRef.current)) {
+            if (!props.disabled && elementRef.current && isVisible(elementRef.current)) {
                 setContentElement(contentRef.current);
                 init();
                 bindWindowResizeListener();
                 bindOrientationChangeListener();
 
-                defaultWidth.current = DomHandler.getWidth(elementRef.current);
-                defaultHeight.current = DomHandler.getHeight(elementRef.current);
-                defaultContentWidth.current = DomHandler.getWidth(contentRef.current);
-                defaultContentHeight.current = DomHandler.getHeight(contentRef.current);
+                defaultWidth.current = getWidth(elementRef.current);
+                defaultHeight.current = getHeight(elementRef.current);
+                defaultContentWidth.current = getWidth(contentRef.current);
+                defaultContentHeight.current = getHeight(contentRef.current);
             }
         };
 
@@ -553,18 +553,24 @@ export const VirtualScroller = React.memo(
         }, [props.itemSize, props.scrollHeight, props.scrollWidth]);
 
         useUpdateEffect(() => {
+            if (props.disabled) return;
+
             if (props.numToleratedItems !== numToleratedItemsState) {
                 setNumToleratedItemsState(props.numToleratedItems);
             }
         }, [props.numToleratedItems]);
 
         useUpdateEffect(() => {
+            if (props.disabled) return;
+
             if (props.numToleratedItems === numToleratedItemsState) {
                 init(); // reinit after resizing
             }
         }, [numToleratedItemsState]);
 
         useUpdateEffect(() => {
+            if (props.disabled) return;
+
             // Check if the previous/current rows array exists
             const prevRowsExist = prevProps.items !== undefined && prevProps.items !== null;
             const currentRowsExist = props.items !== undefined && props.items !== null;
@@ -602,6 +608,8 @@ export const VirtualScroller = React.memo(
         });
 
         useUpdateEffect(() => {
+            if (props.disabled) return;
+
             lastScrollPos.current = both ? { top: 0, left: 0 } : 0;
         }, [props.orientation]);
 
@@ -616,7 +624,7 @@ export const VirtualScroller = React.memo(
 
         const createLoaderItem = (index, extOptions = {}) => {
             const options = loaderOptions(index, extOptions);
-            const content = ObjectUtils.getJSXElement(props.loadingTemplate, options);
+            const content = resolve(props.loadingTemplate, options);
 
             return <React.Fragment key={index}>{content}</React.Fragment>;
         };
@@ -650,7 +658,7 @@ export const VirtualScroller = React.memo(
                         props
                     };
 
-                    content = ObjectUtils.getJSXElement(props.loaderIconTemplate, defaultContentOptions);
+                    content = resolve(props.loaderIconTemplate, defaultContentOptions);
                 }
 
                 const loaderProps = mergeProps(
@@ -685,7 +693,7 @@ export const VirtualScroller = React.memo(
 
         const createItem = (item, index) => {
             const options = getOptions(index);
-            const content = ObjectUtils.getJSXElement(props.itemTemplate, item, options);
+            const content = resolve(props.itemTemplate, item, options);
 
             return <React.Fragment key={options.index}>{content}</React.Fragment>;
         };
@@ -697,8 +705,8 @@ export const VirtualScroller = React.memo(
         };
 
         const createContent = () => {
-            const items = createItems();
-            const className = classNames('p-virtualscroller-content', { 'p-virtualscroller-loading': loadingState });
+            const items = props.disabled ? props.items.map(createItem) : createItems();
+            const className = !props.disabled && classNames('p-virtualscroller-content', { 'p-virtualscroller-loading': loadingState });
             const contentProps = mergeProps(
                 {
                     ref: contentRef,
@@ -717,7 +725,7 @@ export const VirtualScroller = React.memo(
                     contentRef: (el) => (contentRef.current = ObjectUtils.getRefElement(el)),
                     spacerRef: (el) => (spacerRef.current = ObjectUtils.getRefElement(el)),
                     stickyRef: (el) => (stickyRef.current = ObjectUtils.getRefElement(el)),
-                    items: loadedItems(),
+                    items: props.disabled ? props.items : loadedItems(),
                     getItemOptions: (index) => getOptions(index),
                     children: items,
                     element: content,
@@ -733,14 +741,14 @@ export const VirtualScroller = React.memo(
                     both
                 };
 
-                return ObjectUtils.getJSXElement(props.contentTemplate, defaultOptions);
+                return resolve(props.contentTemplate, defaultOptions);
             }
 
             return content;
         };
 
         if (props.disabled) {
-            const content = ObjectUtils.getJSXElement(props.contentTemplate, { items: props.items, rows: props.items, columns: props.columns });
+            const content = createContent();
 
             return (
                 <React.Fragment>
@@ -771,8 +779,7 @@ export const VirtualScroller = React.memo(
                 style: props.style,
                 onScroll: (e) => onScroll(e)
             },
-            VirtualScrollerBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
 
         return (

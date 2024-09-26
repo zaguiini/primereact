@@ -1,3 +1,3 @@
-import { EventBus } from '../utils/Utils';
+import { EventBus } from '@primeuix/utils';
 
 export const OverlayService = EventBus();

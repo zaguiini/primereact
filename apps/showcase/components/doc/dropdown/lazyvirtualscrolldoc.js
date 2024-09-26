@@ -1,8 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
-import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { Dropdown } from 'primereact/dropdown';
+import { useRef, useState } from 'react';
 
 export function LazyVirtualScrollDoc(props) {
     const [selectedItem, setSelectedItem] = useState(null);
@@ -36,7 +35,7 @@ export function LazyVirtualScrollDoc(props) {
 
     const code = {
         basic: `
-<Dropdown value={selectedItem} onChange={(e) => setSelectedItem(e.value)} options={items} virtualScrollerOptions={{ itemSize: 38 }} 
+<Dropdown value={selectedItem} onChange={(e) => setSelectedItem(e.value)} options={items} virtualScrollerOptions={{ itemSize: 38 }}
     placeholder="Select Item" className="w-full md:w-56" />
         `,
         javascript: `
@@ -150,7 +149,7 @@ export default function LazyVirtualScrollDemo() {
                     options={items.current}
                     placeholder="Select Item"
                     className="w-full md:w-56"
-                    virtualScrollerOptions={{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }}
+                    virtualScrollerProps={{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }}
                 />
             </div>
             <DocSectionCode code={code} />

@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
+import { Dropdown } from 'primereact/dropdown';
 import { useState } from 'react';
 
 export function BasicDoc(props) {
@@ -15,7 +15,7 @@ export function BasicDoc(props) {
 
     const code = {
         basic: `
-<Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+<Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name"
     placeholder="Select a City" className="w-full md:w-56" />
         `,
         javascript: `
@@ -34,7 +34,7 @@ export default function BasicDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+            <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name"
                 placeholder="Select a City" className="w-full md:w-56" />
         </div>
     )
@@ -61,7 +61,7 @@ export default function BasicDemo() {
 
     return (
         <div className="card flex justify-center">
-            <Dropdown value={selectedCity} onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
+            <Dropdown value={selectedCity} onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)} options={cities} optionLabel="name"
                 placeholder="Select a City" className="w-full md:w-56" />
         </div>
     )

@@ -1,8 +1,8 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { CascadeSelect } from '@/components/lib/cascadeselect/CascadeSelect';
-import { FloatLabel } from '@/components/lib/floatlabel/FloatLabel';
 import Link from 'next/link';
+import { FloatLabel } from 'primereact/floatlabel';
 import { useState } from 'react';
 
 export function FloatLabelDoc(props) {
@@ -85,7 +85,7 @@ export function FloatLabelDoc(props) {
     const code = {
         basic: `
 <FloatLabel>
-    <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries} 
+    <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries}
         optionLabel="cname" optionGroupLabel="name" optionGroupChildren={['states', 'cities']}
         className="w-full md:w-56" breakpoint="767px" style={{ minWidth: '14rem' }} />
     <label htmlFor="cs-city">City</label>
@@ -178,7 +178,7 @@ export default function FloatLabelDemo() {
     return (
         <div className="card flex justify-center">
             <FloatLabel>
-                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries} 
+                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={countries}
                     optionLabel="cname" optionGroupLabel="name" optionGroupChildren={['states', 'cities']}
                     className="w-full md:w-56" breakpoint="767px" style={{ minWidth: '14rem' }} />
                 <label htmlFor="cs-city">City</label>
@@ -290,7 +290,7 @@ export default function FloatLabelDemo() {
     return (
         <div className="card flex justify-center">
             <FloatLabel>
-                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e: CascadeSelectChangeEvent) => setSelectedCity(e.value)} options={countries} 
+                <CascadeSelect inputId="cs-city" value={selectedCity} onChange={(e: CascadeSelectChangeEvent) => setSelectedCity(e.value)} options={countries}
                     optionLabel="cname" optionGroupLabel="name" optionGroupChildren={['states', 'cities']}
                     className="w-full md:w-56" breakpoint="767px" style={{ minWidth: '14rem' }} />
                 <label htmlFor="cs-city">City</label>
