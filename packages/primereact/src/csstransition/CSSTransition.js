@@ -1,54 +1,59 @@
 import { ComponentProvider } from '@primereact/core/component';
 import { PrimeReactContext } from '@primereact/core/config';
 import { useUpdateEffect } from '@primereact/hooks';
-import { ObjectUtils } from 'primereact/utils';
+import { toElement } from '@primeuix/utils';
 import * as React from 'react';
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group';
 import { useCSSTransition } from './CSSTransition.base';
 
 export const CSSTransition = React.forwardRef((inProps, inRef) => {
-    const context = React.useContext(PrimeReactContext);
+    const config = React.useContext(PrimeReactContext);
     const csstransition = useCSSTransition(inProps, inRef);
+
+    // It supports all the props of react-transition-group/CSSTransition so everything is in props object of instance.
+    csstransition.props = { ...csstransition.props, ...csstransition.attrs };
+    csstransition.attrs = {};
+
     const { props } = csstransition;
 
-    const disabled = props.disabled || (props.options && props.options.disabled) || !context?.cssTransition;
+    const disabled = props.disabled || (props.options && props.options.disabled) || !config?.cssTransition;
 
     const onEnter = (node, isAppearing) => {
-        inProps.onEnter && inProps.onEnter(node, isAppearing); // component
-        inProps.options && inProps.options.onEnter && inProps.options.onEnter(node, isAppearing); // user option
+        props.onEnter?.(node, isAppearing); // component
+        props.options?.onEnter?.(node, isAppearing); // user option
     };
 
     const onEntering = (node, isAppearing) => {
-        inProps.onEntering && inProps.onEntering(node, isAppearing); // component
-        inProps.options && inProps.options.onEntering && inProps.options.onEntering(node, isAppearing); // user option
+        props.onEntering?.(node, isAppearing); // component
+        props.options?.onEntering?.(node, isAppearing); // user option
     };
 
     const onEntered = (node, isAppearing) => {
-        inProps.onEntered && inProps.onEntered(node, isAppearing); // component
-        inProps.options && inProps.options.onEntered && inProps.options.onEntered(node, isAppearing); // user option
+        props.onEntered?.(node, isAppearing); // component
+        props.options?.onEntered?.(node, isAppearing); // user option
     };
 
     const onExit = (node) => {
-        inProps.onExit && inProps.onExit(node); // component
-        inProps.options && inProps.options.onExit && inProps.options.onExit(node); // user option
+        props.onExit?.(node); // component
+        props.options?.onExit?.(node); // user option
     };
 
     const onExiting = (node) => {
-        inProps.onExiting && inProps.onExiting(node); // component
-        inProps.options && inProps.options.onExiting && inProps.options.onExiting(node); // user option
+        props.onExiting?.(node); // component
+        props.options?.onExiting?.(node); // user option
     };
 
     const onExited = (node) => {
-        inProps.onExited && inProps.onExited(node); // component
-        inProps.options && inProps.options.onExited && inProps.options.onExited(node); // user option
+        props.onExited?.(node); // component
+        props.options?.onExited?.(node); // user option
     };
 
     useUpdateEffect(() => {
         if (disabled) {
             // no animation
-            const node = ObjectUtils.getRefElement(inProps.nodeRef);
+            const node = toElement(props.nodeRef);
 
-            if (inProps.in) {
+            if (props.in) {
                 onEnter(node, true);
                 onEntering(node, true);
                 onEntered(node, true);
@@ -58,19 +63,19 @@ export const CSSTransition = React.forwardRef((inProps, inRef) => {
                 onExited(node);
             }
         }
-    }, [inProps.in]);
+    }, [props.in]);
 
     if (disabled) {
-        return inProps.in ? inProps.children : null;
+        return props.in ? props.children : null;
     }
 
-    const immutableProps = { nodeRef: inProps.nodeRef, in: inProps.in, onEnter, onEntering, onEntered, onExit, onExiting, onExited };
-    const mutableProps = { classNames: inProps.classNames, timeout: inProps.timeout, unmountOnExit: inProps.unmountOnExit };
-    const mergedProps = { ...mutableProps, ...(inProps.options || {}), ...immutableProps };
+    const immutableProps = { nodeRef: props.nodeRef, in: props.in, onEnter, onEntering, onEntered, onExit, onExiting, onExited };
+    const mutableProps = { classNames: props.classNames, timeout: props.timeout, unmountOnExit: props.unmountOnExit };
+    const mergedProps = { ...mutableProps, ...(props.options || {}), ...immutableProps };
 
     return (
         <ComponentProvider value={csstransition}>
-            <ReactCSSTransition {...mergedProps}>{inProps.children}</ReactCSSTransition>
+            <ReactCSSTransition {...mergedProps}>{props.children}</ReactCSSTransition>
         </ComponentProvider>
     );
 });

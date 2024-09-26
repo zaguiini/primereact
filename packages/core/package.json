@@ -45,7 +45,8 @@
     "dependencies": {
         "@primeuix/styled": "^0.0.6",
         "@primeuix/utils": "^0.0.6",
-        "@primereact/hooks": "workspace:*"
+        "@primereact/hooks": "workspace:*",
+        "@primereact/styles": "workspace:*"
     },
     "peerDependencies": {
         "react": ">=18.0.0"

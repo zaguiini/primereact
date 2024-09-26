@@ -176,7 +176,7 @@ export const SelectOverlay = React.memo(
             const content = resolve(props.optionTemplate, { option, selected, index }) || <span {...optionLabelProps}>{label}</span>;
 
             const checkmarkKey = selected ? 'optionCheckIcon' : 'optionBlankIcon';
-            const checkmark = <Icon pIf={props.checkmark} as={selected ? CheckIcon : BlankIcon} {...mergeProps({ className: cx(checkmarkKey) }, ptm(checkmarkKey))} />;
+            const checkmark = <Icon pIf={props.checkmark} as={selected ? <CheckIcon /> : <BlankIcon />} {...mergeProps({ className: cx(checkmarkKey) }, ptm(checkmarkKey))} />;
 
             const optionProps = mergeProps(
                 {
@@ -302,7 +302,7 @@ export const SelectOverlay = React.memo(
                                 pt={ptm('pcFilter')}
                             />
                             <InputIcon unstyled={props.unstyled} pt={ptm('pcFilterIconContainer')}>
-                                <Icon as={props.filterIcon || SearchIcon} {...ptm('filterIcon')} />
+                                <Icon as={props.filterIcon || <SearchIcon />} {...ptm('filterIcon')} />
                             </InputIcon>
                         </IconField>
                         <span {...hiddenFilterResultProps}>{filterResultMessageText}</span>

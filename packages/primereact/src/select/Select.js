@@ -74,7 +74,7 @@ export const Select = React.memo(
         const createClearIcon = () => {
             const clearIconProps = mergeProps({ ref: clearIconRef, className: cx('clearIcon'), onClick: onClearClick, 'data-pc-section': 'clearicon' }, ptm('clearIcon'));
 
-            return <Icon pIf={isClearIconVisible} as={props.clearIcon || TimesIcon} {...clearIconProps} />;
+            return <Icon pIf={isClearIconVisible} as={props.clearIcon || <TimesIcon />} {...clearIconProps} />;
         };
 
         const createLabel = () => {

@@ -77,7 +77,6 @@ export const Icon = React.forwardRef((inProps, inRef) => {
 
     const icon = useIcon(inProps, inRef);
     const { as, pIf, instance = icon, children, options = {}, className, ...rest } = inProps || {};
-
     const IconComponent = isString(as) ? <i /> : resolve(as, { instance, ...rest, ...options });
 
     if (React.isValidElement(IconComponent)) {

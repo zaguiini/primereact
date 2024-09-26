@@ -474,10 +474,10 @@ export const useSelect = withComponent(({ props, attrs, parent, ref }) => {
             !overlayVisible && show();
         }
     };
-    const onOverlayEnter = (el) => {
-        ZIndex.set('overlay', el, config.zIndex.overlay);
+    const onOverlayEnter = () => {
+        ZIndex.set('overlay', overlayRef.current, config.zIndex.overlay);
 
-        addStyle(el, { position: 'absolute', top: '0', left: '0' });
+        addStyle(overlayRef.current, { position: 'absolute', top: '0', left: '0' });
         alignOverlay();
         scrollInView();
 
@@ -494,8 +494,8 @@ export const useSelect = withComponent(({ props, attrs, parent, ref }) => {
         props.autoFilterFocus && focus(focusInputRef.current);
         props.onHide?.();
     };
-    const onOverlayExited = (el) => {
-        ZIndex.clear(el);
+    const onOverlayExited = () => {
+        ZIndex.clear(overlayRef.current);
     };
     const alignOverlay = () => {
         utils_alignOverlay(overlayRef.current, elementRef.current, props.appendTo || config.appendTo);

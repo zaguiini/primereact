@@ -38,7 +38,7 @@ export function GroupDoc(props) {
         }
     ];
 
-    const groupedItemTemplate = (option) => {
+    const groupedItemTemplate = ({ option }) => {
         return (
             <div className="flex items-center">
                 <img alt={option.label} src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px' }} />

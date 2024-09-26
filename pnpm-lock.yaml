@@ -105,6 +105,9 @@ importers:
       '@primereact/hooks':
         specifier: workspace:*
         version: link:../hooks
+      '@primereact/styles':
+        specifier: workspace:*
+        version: link:../styles
       '@primeuix/styled':
         specifier: ^0.0.6
         version: 0.0.6

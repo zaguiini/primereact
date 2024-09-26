@@ -1,4 +1,3 @@
 export const defaultProps = {
-    __TYPE: 'CSSTransition',
-    children: undefined
+    __TYPE: 'CSSTransition'
 };
