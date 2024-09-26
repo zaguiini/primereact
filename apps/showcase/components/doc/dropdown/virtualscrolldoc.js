@@ -65,7 +65,7 @@ export default function VirtualScrollDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-center">
-                <Dropdown value={selectedItem} onChange={(e) => setSelectedItem(e.value)} optionLabel="label" options={items} virtualScrollerProps={{ itemSize: 38 }} placeholder="Select Item" className="w-full md:w-56" />
+                <Dropdown value={selectedItem} onChange={(e) => setSelectedItem(e.value)} optionLabel="label" options={items} virtualScrollerOptions={{ itemSize: 38 }} placeholder="Select Item" className="w-full md:w-56" />
             </div>
             <DocSectionCode code={code} />
         </>

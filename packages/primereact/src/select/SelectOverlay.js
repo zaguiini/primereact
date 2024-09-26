@@ -240,15 +240,15 @@ export const SelectOverlay = React.memo(
                 ptm('listContainer')
             );
 
-            const onLazyLoad = (event) => props.virtualScrollerOptions.onLazyLoad({ ...event, ...{ filter: props.filterValue } });
+            const onLazyLoad = (event) => props.virtualScrollerOptions.onLazyLoad?.({ ...event, ...{ filter: props.filterValue } });
 
             return (
                 <div {...listContainerProps}>
                     <VirtualScroller
-                        {...props.virtualScrollerProps}
+                        {...props.virtualScrollerOptions}
                         ref={virtualScrollerRef}
                         items={visibleOptions}
-                        style={{ ...props.virtualScrollerProps?.style, ...{ height: props.scrollHeight } }}
+                        style={{ ...props.virtualScrollerOptions?.style, ...{ height: props.scrollHeight } }}
                         tabIndex={-1}
                         disabled={virtualScrollerDisabled}
                         autoSize={true}

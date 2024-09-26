@@ -714,7 +714,7 @@ export const useSelect = withComponent(({ props, attrs, parent, ref }) => {
         return props.showClear && props.value != null && isNotEmpty(props.options);
     }, []);
     const virtualScrollerDisabled = React.useMemo(() => {
-        return !props.virtualScrollerProps;
+        return !props.virtualScrollerOptions;
     }, []);
     const hasFluid = React.useMemo(() => {
         return isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;

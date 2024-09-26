@@ -1,5 +1,5 @@
 import { useComponent, withComponent } from '@primereact/core/component';
-import { classNames, isEmpty, isString, resolve } from '@primeuix/utils';
+import { classNames, isEmpty, isNotEmpty, isString, mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
 
 const style = {
@@ -39,40 +39,53 @@ const style = {
     `
 };
 
-export const useIcon = withComponent(({ props, attrs, ref }) => {
-    const instance = useComponent({ props, attrs, style }, ref);
+export const useIcon = withComponent(
+    ({ props, attrs, ref }) => {
+        const instance = useComponent({ props, attrs, style }, ref);
 
-    const pti = () => {
-        const isLabelEmpty = isEmpty(props.label);
+        const pti = () => {
+            const isLabelEmpty = isEmpty(props.label);
+
+            return mergeProps(
+                {
+                    ...(!instance.isUnstyled && {
+                        className: classNames([
+                            'p-icon',
+                            {
+                                'p-icon-spin': props.spin
+                            }
+                        ])
+                    }),
+                    role: !isLabelEmpty ? 'img' : undefined,
+                    'aria-label': !isLabelEmpty ? props.label : undefined,
+                    'aria-hidden': isEmpty(attrs.tabIndex) && isLabelEmpty
+                },
+                attrs
+            );
+        };
 
         return {
-            ...(!instance.isUnstyled && {
-                className: classNames([
-                    'p-icon',
-                    {
-                        'p-icon-spin': props.spin
-                    }
-                ])
-            }),
-            role: !isLabelEmpty ? 'img' : undefined,
-            'aria-label': !isLabelEmpty ? props.label : undefined,
-            'aria-hidden': isEmpty(attrs.tabIndex) && isLabelEmpty,
-            ...attrs
+            ...instance,
+            pti
         };
-    };
-
-    return {
-        ...instance,
-        pti
-    };
-}, {});
+    },
+    { spin: false }
+);
 
 export const Icon = React.forwardRef((inProps, inRef) => {
     if (inProps.pIf === false) return null;
 
     const icon = useIcon(inProps, inRef);
-    const { as, pIf, instance = icon, children, options, className, ...rest } = inProps || {};
-    const IconComponent = isString(as) ? <i className={classNames(className, as)} /> : resolve(as, { instance, ...rest, ...options });
-    // @todo: update
-    return IconComponent ? <IconComponent {...rest} /> : null;
+    const { as, pIf, instance = icon, children, options = {}, className, ...rest } = inProps || {};
+
+    const IconComponent = isString(as) ? <i /> : resolve(as, { instance, ...rest, ...options });
+
+    if (React.isValidElement(IconComponent)) {
+        return React.cloneElement(IconComponent, {
+            className: classNames(className, isString(as) && as),
+            ...rest
+        });
+    }
+
+    return isNotEmpty(IconComponent) ? <IconComponent /> : null;
 });

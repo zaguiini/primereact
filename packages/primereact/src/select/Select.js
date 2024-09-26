@@ -1,6 +1,7 @@
 import { ComponentProvider } from '@primereact/core/component';
 import { Icon } from '@primereact/icons/base';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
+import { SpinnerIcon } from '@primereact/icons/spinner';
 import { TimesIcon } from '@primereact/icons/times';
 import { classNames, isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
@@ -64,8 +65,8 @@ export const Select = React.memo(
 
             return (
                 <div {...dropdownProps}>
-                    {/*<Icon pIf={props.loading} as={props.loadingIcon || <SpinnerIcon spin />} {...loadingIconProps} />*/}
-                    <Icon pIf={!props.loading} as={props.dropdownIcon || ChevronDownIcon} {...dropdownIconProps} />
+                    <Icon pIf={props.loading} as={props.loadingIcon || <SpinnerIcon spin />} {...loadingIconProps} />
+                    <Icon pIf={!props.loading} as={props.dropdownIcon || <ChevronDownIcon />} {...dropdownIconProps} />
                 </div>
             );
         };

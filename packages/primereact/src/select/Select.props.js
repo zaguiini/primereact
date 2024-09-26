@@ -54,7 +54,7 @@ export const defaultProps = {
     tooltip: null,
     tooltipProps: null,
     transitionOptions: null,
-    virtualScrollerProps: undefined,
+    virtualScrollerOptions: undefined,
     // templates
     valueTemplate: undefined,
     header: undefined,

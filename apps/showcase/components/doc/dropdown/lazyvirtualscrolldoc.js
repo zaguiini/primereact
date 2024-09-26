@@ -147,9 +147,10 @@ export default function LazyVirtualScrollDemo() {
                     value={selectedItem}
                     onChange={(e) => setSelectedItem(e.value)}
                     options={items.current}
+                    optionLabel="label"
                     placeholder="Select Item"
                     className="w-full md:w-56"
-                    virtualScrollerProps={{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }}
+                    virtualScrollerOptions={{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }}
                 />
             </div>
             <DocSectionCode code={code} />
