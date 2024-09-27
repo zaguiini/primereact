@@ -115,7 +115,7 @@ export const Select = React.memo(
                 return <input type="text" {...inputProps} />;
             }
 
-            const content = resolve(props.valueTemplate, selectedOption, select) || (labelText === 'p-emptylabel' ? <>&nbsp;</> : labelText || 'empty');
+            const content = resolve(props.valueTemplate, selectedOption, select) || (labelText === 'p-emptylabel' ? <>&nbsp;</> : (labelText ?? 'empty'));
 
             return <span {...commonLabelProps}>{content}</span>;
         };
