@@ -1,8 +1,5 @@
 export const defaultProps = {
     __TYPE: 'Checkbox',
-    id: null,
-    style: null,
-    className: null,
     checked: false, // @todo - modelValue
     binary: true, // @todo - ask default value
     value: null,
@@ -25,6 +22,5 @@ export const defaultProps = {
     icon: null,
     onChange: null,
     tooltip: null,
-    tooltipOptions: null,
-    children: undefined
+    tooltipOptions: null
 };

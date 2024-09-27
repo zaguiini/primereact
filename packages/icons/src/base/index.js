@@ -75,7 +75,8 @@ export const useIcon = withComponent(
 export const Icon = React.forwardRef((inProps, inRef) => {
     if (inProps.pIf === false) return null;
 
-    const icon = useIcon(inProps, inRef);
+    // @todo
+    const icon = useIcon(inProps, inRef); // const context = React.useContext(ComponentContext) || {};
     const { as, pIf, instance = icon, children, options = {}, className, ...rest } = inProps || {};
     const IconComponent = isString(as) ? <i /> : resolve(as, { instance, ...rest, ...options });
 
