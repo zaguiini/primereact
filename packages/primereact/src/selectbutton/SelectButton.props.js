@@ -1,24 +1,17 @@
 export const defaultProps = {
     __TYPE: 'SelectButton',
-    id: null,
-    style: null,
-    className: null,
     value: null,
     options: null,
     optionLabel: null,
     optionValue: null,
     optionDisabled: null,
-    tabIndex: null,
-    multiple: false,
-    invalid: false,
-    //unselectable: true,
+    multiple: undefined,
     allowEmpty: true,
+    invalid: false,
     disabled: false,
     dataKey: null,
     tooltip: null,
     tooltipOptions: null,
-    //itemTemplate: null,
     optionTemplate: null,
-    onChange: null,
-    children: undefined
+    onChange: null
 };
