@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { Icon } from '@primereact/icons/base';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -135,13 +135,13 @@ export const Select = React.memo(
 
         return (
             <ComponentProvider value={select}>
-                <div {...rootProps} ref={elementRef}>
+                <Component pIf={props.pIf} as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {label}
                     {clearIcon}
                     {dropdown}
                     <SelectOverlay select={select} />
-                </div>
-                {isNotEmpty(props.tooltip) && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipProps} />}
+                </Component>
+                <Tooltip pIf={props.pIf || isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipProps} />
             </ComponentProvider>
         );
     })
