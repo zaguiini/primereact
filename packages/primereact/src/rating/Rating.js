@@ -1,84 +1,38 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
+import { Icon } from '@primereact/icons/base';
 import { StarIcon } from '@primereact/icons/star';
 import { StarFillIcon } from '@primereact/icons/starfill';
-import { classNames, isNotEmpty, mergeProps, uuid } from '@primeuix/utils';
+import { isNotEmpty, mergeProps } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
-import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
 import { useRating } from './Rating.base';
 
 export const Rating = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
-        const [isFocusVisibleItem, setFocusVisibleItem] = React.useState(true);
-        const name = React.useRef(uuid());
-
-        const elementRef = React.useRef(null);
-        const state = {
-            focusedOptionIndex,
-            isFocusVisibleItem
-        };
-
-        const rating = useRating(inProps, inRef, state);
-        const { props, ptm, ptmi, cx, ref } = rating;
+        const rating = useRating(inProps, inRef);
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // values
+            starName,
+            // element refs
+            elementRef,
+            // methods
+            onOptionClick,
+            onChange,
+            onFocus,
+            onBlur
+        } = rating;
 
         const getPTOptions = (key, value) => {
             return ptm(key, {
                 context: {
                     active: value <= props.value,
-                    focused: value === focusedOptionIndex
-                }
-            });
-        };
-
-        const onFocus = (event, value) => {
-            setFocusedOptionIndex(value);
-            props.onFocus?.(event);
-        };
-
-        const onBlur = (event) => {
-            //setFocusedOptionIndex(-1);
-            props.onBlur?.(event);
-        };
-
-        const onChange = (event, value) => {
-            onOptionSelect(event, value);
-            setFocusVisibleItem(true);
-        };
-
-        const onOptionClick = (event, value) => {
-            if (!props.readOnly && !props.disabled) {
-                //onOptionSelect(event, value);
-                //setFocusVisibleItem(false);
-                //const firstFocusableEl = getFirstFocusableElement(event.currentTarget);
-                //firstFocusableEl && focus(firstFocusableEl);
-            }
-        };
-
-        const onOptionSelect = (event, value) => {
-            if (focusedOptionIndex === value || props.value === value) {
-                setFocusedOptionIndex(-1);
-                updateModel(event, null);
-            } else {
-                setFocusedOptionIndex(value);
-                updateModel(event, value || null);
-            }
-        };
-
-        const updateModel = (event, value) => {
-            props.onChange?.({
-                originalEvent: event,
-                value,
-                stopPropagation: () => {
-                    event?.stopPropagation();
-                },
-                preventDefault: () => {
-                    event?.preventDefault();
-                },
-                target: {
-                    name,
-                    id: props.id,
-                    value
+                    focused: value === state.focusedOptionIndex
                 }
             });
         };
@@ -99,26 +53,23 @@ export const Rating = React.memo(
                 );
                 const offIconProps = mergeProps(
                     {
-                        className: cx('onIcon')
+                        className: cx('offIcon')
                     },
                     ptm('offIcon')
                 );
-
-                const icon = active ? { type: props.onIcon || <StarFillIcon {...onIconProps} /> } : { type: props.offIcon || <StarIcon {...offIconProps} /> };
-                const content = IconUtils.getJSXIcon(icon.type, active ? { ...onIconProps } : { ...offIconProps }, { props });
 
                 const hiddenOptionInputProps = mergeProps(
                     {
                         type: 'radio',
                         defaultValue: value,
-                        name: name.current,
+                        name: starName,
                         checked: props.value === value,
                         disabled: props.disabled,
                         readOnly: props.readOnly,
                         'aria-label': starAriaLabel(value),
-                        onFocus: (e) => onFocus(e, value),
+                        onFocus: (event) => onFocus(event, value),
                         onBlur,
-                        onChange: (e) => onChange(e, value)
+                        onChange: (event) => onChange(event, value)
                     },
                     ptm('hiddenOptionInput')
                 );
@@ -134,9 +85,9 @@ export const Rating = React.memo(
                 const optionProps = mergeProps(
                     {
                         className: cx('option', { value }),
-                        onClick: (e) => onOptionClick(e, value),
+                        onClick: (event) => onOptionClick(event, value),
                         'data-p-active': active,
-                        'data-p-focused': value === focusedOptionIndex
+                        'data-p-focused': value === state.focusedOptionIndex
                     },
                     getPTOptions('option', value)
                 );
@@ -146,30 +97,29 @@ export const Rating = React.memo(
                         <span {...hiddenOptionInputContainerProps}>
                             <input {...hiddenOptionInputProps} />
                         </span>
-                        {content}
+                        <Icon pIf={active} as={props.onIcon || <StarFillIcon />} {...onIconProps} />
+                        <Icon pIf={!active} as={props.offIcon || <StarIcon />} {...offIconProps} />
                     </div>
                 );
             });
         };
 
-        const hasTooltip = isNotEmpty(props.tooltip);
-
         const options = createOptions();
 
         const rootProps = mergeProps(
             {
-                ref: elementRef,
-                id: props.id,
-                style: props.style,
-                className: classNames(cx('root'), props.className)
+                id,
+                className: cx('root')
             },
             ptmi('root')
         );
 
         return (
-            <ComponentProvider value={rating}>
-                <div {...rootProps}>{options}</div>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+            <ComponentProvider pIf={props.pIf} value={rating}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {options}
+                </Component>
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

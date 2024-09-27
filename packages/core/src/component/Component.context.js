@@ -6,14 +6,17 @@ export const ComponentContext = createContext(undefined);
 
 export const ComponentProvider = (options) => {
     const parent = useContext(ComponentContext);
+    const { pIf = true, value, children } = options;
 
-    const value = {
-        ...options.value,
+    if (!pIf) return null;
+
+    const instance = {
+        ...value,
         $pc: {
             ...parent?.$pc,
-            [`${options?.value?.name}`]: options.value
+            [`${value?.name}`]: value
         }
     };
 
-    return <ComponentContext.Provider value={value}>{options.children}</ComponentContext.Provider>;
+    return <ComponentContext.Provider value={instance}>{children}</ComponentContext.Provider>;
 };

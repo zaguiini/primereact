@@ -21,6 +21,7 @@ import {
     ZIndex
 } from '@primeuix/utils';
 import { OverlayService } from 'primereact/overlayservice';
+import { toValue } from 'primereact/utils';
 import * as React from 'react';
 import { defaultProps } from './Select.props';
 
@@ -743,7 +744,7 @@ export const useSelect = withComponent(
         return {
             state,
             // refs
-            searchValue,
+            searchValue: toValue(searchValue),
             // element refs
             elementRef,
             focusInputRef,

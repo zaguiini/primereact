@@ -16,6 +16,7 @@ export const useRadioButton = withComponent(
         // element refs
         const inputRef = React.useRef(null);
 
+        // methods
         const onChange = (event) => {
             if (props.disabled || props.readOnly) {
                 return;
@@ -53,15 +54,14 @@ export const useRadioButton = withComponent(
                 focus(inputRef.current);
             }
         };
-
         const onFocus = (event) => {
             props.onFocus?.(event);
         };
-
         const onBlur = (event) => {
             props.onBlur?.(event);
         };
 
+        // effects
         useMountEffect(() => {
             if (props.autoFocus) {
                 focus(inputRef.current, props.autoFocus);

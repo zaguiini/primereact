@@ -96,12 +96,12 @@ export const RadioButton = React.memo(
         );
 
         return (
-            <ComponentProvider value={radiobutton}>
-                <Component pIf={props.pIf} as={props.as || 'div'} {...rootProps} ref={elementRef}>
+            <ComponentProvider pIf={props.pIf} value={radiobutton}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {input}
                     {box}
                 </Component>
-                <Tooltip pIf={props.pIf || isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

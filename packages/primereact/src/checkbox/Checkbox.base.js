@@ -67,21 +67,19 @@ export const useCheckbox = withComponent(
                 focus(inputRef.current);
             }
         };
-
         const onFocus = (event) => {
             props.onFocus?.(event);
         };
-
         const onBlur = (event) => {
             props.onBlur?.(event);
         };
 
+        // effects
         useMountEffect(() => {
             if (props.autoFocus) {
                 focus(inputRef.current, props.autoFocus);
             }
         });
-
         React.useEffect(() => {
             setIndeterminate(props.indeterminate);
         }, [props.indeterminate]);

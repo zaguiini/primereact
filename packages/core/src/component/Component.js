@@ -4,18 +4,20 @@ import { ComponentContext } from './Component.context';
 
 // @todo: add omit(inProps, ['pIf']);
 export const Component = React.forwardRef((inProps, ref) => {
+    const context = React.useContext(ComponentContext);
+
     if (inProps.pIf === false) return null;
 
-    const context = React.useContext(ComponentContext);
     const { as, pIf, instance = context, children, options, ...rest } = inProps || {};
 
     return as ? React.createElement(as, { ref, ...rest }, resolve(children, { instance, ...rest, ...options })) : null; // @todo: check params
 });
 
 export const Slot = React.forwardRef((inProps, ref) => {
+    const context = React.useContext(ComponentContext);
+
     if (inProps.pIf === false) return null;
 
-    const context = React.useContext(ComponentContext);
     const { name, pIf, instance = context, children, render, ...rest } = inProps || {};
     const content = resolve(instance?.$slots?.[name] || instance?.props?.[name], { instance, default: children, ...rest });
 
@@ -24,9 +26,10 @@ export const Slot = React.forwardRef((inProps, ref) => {
 });
 
 export const Template = React.forwardRef((inProps, ref) => {
+    const context = React.useContext(ComponentContext) || {};
+
     if (inProps.pIf === false) return null;
 
-    const context = React.useContext(ComponentContext) || {};
     const { slot, pFor, instance = context || {}, children } = inProps || {};
 
     if (slot) {

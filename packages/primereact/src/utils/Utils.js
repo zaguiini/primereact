@@ -1,4 +1,4 @@
-import { getOuterHeight, getOuterWidth, getViewport, getWindowScrollLeft, getWindowScrollTop, isFunction } from '@primeuix/utils';
+import { getOuterHeight, getOuterWidth, getViewport, getWindowScrollLeft, getWindowScrollTop, isFunction, resolve } from '@primeuix/utils';
 import IconUtils from './IconUtils';
 import { mask } from './Mask';
 import ObjectUtils from './ObjectUtils';
@@ -11,6 +11,20 @@ export const omit = (obj, ...keys) => {
     keys.forEach((key) => delete copy[key]);
     return copy;
 };
+export function toValue(value) {
+    if (value && typeof value === 'object') {
+        if (value.hasOwnProperty('current')) {
+            // For React
+            return value.current;
+        } else if (value.hasOwnProperty('value')) {
+            // For Vue
+            return value.value;
+        }
+    }
+
+    // For Angular signals and functions usage
+    return resolve(value);
+}
 
 // @todo: Remove this function from here
 export const flipfitCollision = (element, target, my = 'left top', at = 'left bottom', callback) => {

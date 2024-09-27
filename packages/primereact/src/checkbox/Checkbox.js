@@ -104,12 +104,12 @@ export const Checkbox = React.memo(
         );
 
         return (
-            <ComponentProvider value={checkbox}>
-                <Component pIf={props.pIf} as={props.as || 'div'} {...rootProps} ref={elementRef}>
+            <ComponentProvider pIf={props.pIf} value={checkbox}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {input}
                     {box}
                 </Component>
-                <Tooltip pIf={props.pIf || isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

@@ -134,14 +134,14 @@ export const Select = React.memo(
         );
 
         return (
-            <ComponentProvider value={select}>
-                <Component pIf={props.pIf} as={props.as || 'div'} {...rootProps} ref={elementRef}>
+            <ComponentProvider pIf={props.pIf} value={select}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {label}
                     {clearIcon}
                     {dropdown}
                     <SelectOverlay select={select} />
                 </Component>
-                <Tooltip pIf={props.pIf || isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipProps} />
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipProps} />
             </ComponentProvider>
         );
     })
