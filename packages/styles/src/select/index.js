@@ -193,12 +193,12 @@ input.p-select-label {
 `;
 
 const classes = {
-    root: ({ instance, props, state }) => [
+    root: ({ instance, props, state, $primereact }) => [
         'p-select p-component p-inputwrapper',
         {
             'p-disabled': props.disabled,
             'p-invalid': props.invalid,
-            'p-variant-filled': props.variant ? props.variant === 'filled' : instance.$primereactConfig.inputVariant === 'filled', // @todo
+            'p-variant-filled': props.variant ? props.variant === 'filled' : $primereact.config.inputVariant === 'filled', // @todo
             'p-focus': state.focused,
             'p-inputwrapper-filled': instance.hasSelectedOption,
             'p-inputwrapper-focus': state.focused || state.overlayVisible,

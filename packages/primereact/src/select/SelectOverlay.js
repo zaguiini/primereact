@@ -16,11 +16,11 @@ export const SelectOverlay = React.memo(
     React.forwardRef((inProps, inRef) => {
         const { select } = inProps;
         const {
+            id,
             props,
             state,
             ptm,
             cx,
-            id,
             // element refs
             overlayRef,
             filterInputRef,

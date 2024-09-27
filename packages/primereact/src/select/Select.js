@@ -18,7 +18,6 @@ export const Select = React.memo(
             ptm,
             ptmi,
             cx,
-            ref,
             id,
             // element refs
             elementRef,

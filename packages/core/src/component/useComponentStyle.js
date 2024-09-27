@@ -68,7 +68,9 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
         attrs,
         state,
         parent,
-        $primereact: config,
+        $primereact: {
+            config
+        },
         ...rest
     };
     // @todo
@@ -78,7 +80,9 @@ export const useComponentStyle = withComponentStyle(({ props, attrs, state, styl
         state,
         attrs,
         parent,
-        $primereact: config
+        $primereact: {
+            config
+        }
     };
 
     // computed values
