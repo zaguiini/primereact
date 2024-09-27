@@ -1,8 +1,5 @@
 export const defaultProps = {
     __TYPE: 'ToggleButton',
-    id: null,
-    style: null,
-    className: null,
     checked: false,
     onIcon: null,
     offIcon: null,
@@ -11,9 +8,9 @@ export const defaultProps = {
     iconPos: 'left',
     invalid: false,
     disabled: false,
-    readonly: false,
+    readOnly: false,
     tooltip: null,
     tooltipOptions: null,
-    onChange: null,
-    children: undefined
+    iconTemplate: null,
+    onChange: null
 };

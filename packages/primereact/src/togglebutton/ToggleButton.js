@@ -1,5 +1,6 @@
-import { ComponentProvider } from '@primereact/core/component';
-import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
+import { Component, ComponentProvider } from '@primereact/core/component';
+import { Icon } from '@primereact/icons/base';
+import { isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { Ripple } from 'primereact/ripple';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
@@ -8,38 +9,27 @@ import { useToggleButton } from './ToggleButton.base';
 export const ToggleButton = React.memo(
     React.forwardRef((inProps, inRef) => {
         const togglebutton = useToggleButton(inProps, inRef);
-        const { props, attrs, ptm, ptmi, cx, ref } = togglebutton;
-
-        const hasLabel = isNotEmpty(props.onLabel) && isNotEmpty(props.offLabel);
-        const label = hasLabel ? (props.checked ? props.onLabel : props.offLabel) : '&nbsp;';
-        const hasTooltip = isNotEmpty(props.tooltip);
-
-        const onChange = (e) => {
-            if (!props.disabled && !props.readonly) {
-                props.onChange?.({
-                    originalEvent: e,
-                    value: !props.checked,
-                    stopPropagation: () => {
-                        e.stopPropagation();
-                    },
-                    preventDefault: () => {
-                        e.preventDefault();
-                    },
-                    target: {
-                        name: attrs.name,
-                        id: props.id,
-                        value: !props.checked
-                    }
-                });
-            }
-        };
+        const {
+            props,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            // methods
+            onClick,
+            // computed
+            active,
+            label
+        } = togglebutton;
 
         const getPTOptions = (key) => {
             const _ptm = key === 'root' ? ptmi : ptm;
 
             return _ptm(key, {
                 context: {
-                    active: props.checked,
+                    active,
                     disabled: props.disabled
                 }
             });
@@ -57,15 +47,17 @@ export const ToggleButton = React.memo(
         };
 
         const createIcon = () => {
-            if (props.onIcon || props.offIcon) {
+            const icon = resolve(props.iconTemplate, { active, togglebutton }) || active ? props.onIcon : props.offIcon;
+
+            if (icon) {
                 const iconProps = mergeProps(
                     {
-                        className: classNames(props.checked ? props.onIcon : props.offIcon, cx('icon'))
+                        className: cx('icon')
                     },
                     getPTOptions('icon')
                 );
 
-                return <span {...iconProps} />;
+                return <Icon as={icon} {...iconProps} />;
             }
 
             return null;
@@ -94,28 +86,25 @@ export const ToggleButton = React.memo(
 
         const rootProps = mergeProps(
             {
-                ref,
+                id,
                 type: 'button',
-                style: props.style,
-                className: classNames(cx('root'), props.className),
+                className: cx('root'),
                 disabled: props.disabled,
-                'aria-pressed': props.checked,
-                onClick: onChange
-            },
-            getPTOptions('root'),
-            {
-                'data-p-checked': props.checked,
+                'aria-pressed': active,
+                onClick,
+                'data-p-checked': active,
                 'data-p-disabled': props.disabled
-            }
+            },
+            getPTOptions('root')
         );
 
         return (
-            <ComponentProvider value={togglebutton}>
-                <button {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={togglebutton}>
+                <Component as={props.as || 'button'} {...rootProps} ref={elementRef}>
                     {content}
                     <Ripple />
-                </button>
-                {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                </Component>
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })
