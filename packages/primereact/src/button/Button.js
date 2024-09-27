@@ -11,7 +11,31 @@ import { useButton } from './Button.base';
 export const Button = React.memo(
     React.forwardRef((inProps, inRef) => {
         const button = useButton(inProps, inRef);
-        const { props, attrs, ptm, ptmi, cx, ref } = button;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible
+        } = button;
 
         const disabled = props.disabled || props.loading;
         const defaultAriaLabel = props.label ? props.label + (props.badge ? ' ' + props.badge : '') : attrs['aria-label'];
@@ -112,7 +136,7 @@ export const Button = React.memo(
                     {content}
                     <Ripple />
                 </Component>
-                {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

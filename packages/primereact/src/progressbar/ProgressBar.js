@@ -6,7 +6,35 @@ import { useProgressBar } from './ProgressBar.base';
 export const ProgressBar = React.memo(
     React.forwardRef((inProps, inRef) => {
         const progressbar = useProgressBar(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = progressbar;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = progressbar;
 
         const createLabel = () => {
             if (props.showValue && isNotEmpty(props.value)) {

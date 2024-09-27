@@ -6,7 +6,36 @@ import { useProgressSpinner } from './ProgressSpinner.base';
 export const ProgressSpinner = React.memo(
     React.forwardRef((inProps, inRef) => {
         const progressspinner = useProgressSpinner(inProps, inRef);
-        const { props, ptm, ptmi, cx, sx, ref } = progressspinner;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            sx,
+            ref
+        } = progressspinner;
 
         const circleProps = mergeProps(
             {

@@ -9,7 +9,35 @@ import { InputSwitchBase } from './InputSwitchBase';
 export const InputSwitch = React.memo(
     React.forwardRef((inProps, inRef) => {
         const inputswitch = useInputSwitch(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = inputswitch;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = inputswitch;
 
         const elementRef = React.useRef(null);
         const inputRef = React.useRef(props.inputRef);
@@ -111,7 +139,7 @@ export const InputSwitch = React.memo(
                     <input ref={inputRef} {...inputProps} />
                     <span {...sliderProps} />
                 </Component>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

@@ -19,7 +19,35 @@ export const InputNumber = React.memo(
         };
 
         const inputnumber = useInputNumber(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = inputnumber;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = inputnumber;
 
         const elementRef = React.useRef(null);
         const inputRef = React.useRef(null);
@@ -1309,7 +1337,7 @@ export const InputNumber = React.memo(
                     {inputElement}
                     {buttonGroup}
                 </Component>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

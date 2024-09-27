@@ -7,7 +7,36 @@ import { useSlider } from './Slider.base';
 export const Slider = React.memo(
     React.forwardRef((inProps, inRef) => {
         const slider = useSlider(inProps, inRef);
-        const { props, ptm, ptmi, cx, sx, ref } = slider;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            sx,
+            ref
+        } = slider;
 
         // @todo: Implement getRangeStyle
         const getRangeStyle = () => {

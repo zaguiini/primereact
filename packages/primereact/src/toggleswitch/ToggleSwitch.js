@@ -7,7 +7,36 @@ import { useToggleSwitch } from './ToggleSwitch.base';
 export const ToggleSwitch = React.memo(
     React.forwardRef((inProps, inRef) => {
         const toggleswitch = useToggleSwitch(inProps, inRef);
-        const { props, ptm, ptmi, cx, sx, ref } = toggleswitch;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            sx,
+            ref
+        } = toggleswitch;
 
         const inputRef = React.useRef(props.inputRef);
         const checked = props.checked === props.trueValue;
@@ -110,7 +139,7 @@ export const ToggleSwitch = React.memo(
                     <input {...inputProps} />
                     <span {...sliderProps} />
                 </Component>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

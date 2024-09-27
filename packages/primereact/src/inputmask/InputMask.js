@@ -24,7 +24,35 @@ export const InputMask = React.memo(
         const androidChrome = React.useRef(false);
 
         const inputmask = useInputMask(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = inputmask;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = inputmask;
 
         const caret = (first, last) => {
             let range;

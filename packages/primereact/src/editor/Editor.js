@@ -17,7 +17,35 @@ const QuillJS = (function () {
 export const Editor = React.memo(
     React.forwardRef((inProps, inRef) => {
         const editor = useEditor(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = editor;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = editor;
 
         const elementRef = React.useRef(null);
         const contentRef = React.useRef(null);

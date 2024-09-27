@@ -10,7 +10,35 @@ import { MessageBase } from './MessageBase';
 export const Message = React.memo(
     React.forwardRef((inProps, inRef) => {
         const message = useMessage(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = message;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = message;
 
         const elementRef = React.useRef(null);
 

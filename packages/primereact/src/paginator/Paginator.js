@@ -16,7 +16,35 @@ import { RowsPerPageDropdown } from './RowsPerPageDropdown';
 export const Paginator = React.memo(
     React.forwardRef((inProps, inRef) => {
         const paginator = usePaginator(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = paginator;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = paginator;
 
         const elementRef = React.useRef(null);
         const page = Math.floor(props.first / props.rows);

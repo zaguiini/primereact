@@ -15,7 +15,35 @@ export const Knob = React.memo(
         const [minRadians] = React.useState((4 * Math_PI) / 3);
         const [maxRadians] = React.useState(-Math_PI / 3);
         const knob = useKnob(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = knob;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = knob;
 
         const enabled = !props.disabled && !props.readOnly;
 

@@ -25,7 +25,35 @@ export const Menu = React.memo(
         };
 
         const menu = useMenu(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = menu;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = menu;
 
         const getMenuItemPTOptions = (key, menuContext) => {
             return ptm(key, { context: menuContext });

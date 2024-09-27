@@ -6,7 +6,34 @@ import { useFluid } from './Fluid.base';
 export const Fluid = React.memo(
     React.forwardRef((inProps, inRef) => {
         const fluid = useFluid(inProps, inRef);
-        const { props, ptmi, cx, ref } = fluid;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptmi,
+            cx,
+            ref
+        } = fluid;
 
         const rootProps = mergeProps(
             {

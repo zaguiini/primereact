@@ -8,7 +8,31 @@ import { useInputText } from './InputText.base';
 export const InputText = React.memo(
     React.forwardRef((inProps, inRef) => {
         const inputtext = useInputText(inProps, inRef);
-        const { props, attrs, ptm, ptmi, cx, ref } = inputtext;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible
+        } = inputtext;
 
         const pcFluid = {}; // @todo: check Fluid component
 
@@ -77,7 +101,7 @@ export const InputText = React.memo(
         return (
             <ComponentProvider pIf={props.pIf} value={inputtext}>
                 <Component as={props.as || 'input'} {...rootProps} ref={elementRef} />
-                {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

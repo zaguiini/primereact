@@ -7,7 +7,35 @@ export const Ripple = React.memo(
     React.forwardRef((inProps, inRef) => {
         const [isMounted, setMounted] = React.useState(false);
         const ripple = useRipple(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = ripple;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = ripple;
         const inkRef = React.useRef(null);
         const targetRef = React.useRef(null);
         // @todo

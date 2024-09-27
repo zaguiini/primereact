@@ -409,7 +409,7 @@ export const HeaderCell = React.memo((props) => {
                     {resizer}
                     {header}
                 </th>
-                {hasTooltip && <Tooltip target={elementRef} content={headerTooltip} pt={getColumnPTOptions('tooltip')} unstyled={props.unstyled} {...headerTooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={headerTooltip} pt={getColumnPTOptions('tooltip')} unstyled={props.unstyled} {...headerTooltipOptions} />}
             </>
         );
     };

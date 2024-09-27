@@ -17,7 +17,35 @@ const ChartJS = (function () {
 const PrimeReactChart = React.memo(
     React.forwardRef((inProps, inRef) => {
         const chart = useChart(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = chart;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = chart;
 
         const elementRef = React.useRef(null);
         const chartRef = React.useRef(null);

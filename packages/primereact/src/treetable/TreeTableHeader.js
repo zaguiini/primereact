@@ -368,7 +368,7 @@ export const TreeTableHeader = React.memo((props) => {
                     {resizer}
                     {header}
                 </th>
-                {hasTooltip && <Tooltip target={headerCellRef} content={headerTooltip} {...getColumnProp(column, 'headerTooltipOptions')} unstyled={props.unstyled} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={headerCellRef} content={headerTooltip} {...getColumnProp(column, 'headerTooltipOptions')} unstyled={props.unstyled} />}
             </React.Fragment>
         );
     };

@@ -8,7 +8,35 @@ import { OrganizationChartNode } from './OrganizationChartNode';
 export const OrganizationChart = React.memo(
     React.forwardRef((inProps, inRef) => {
         const organizationchart = useOrganizationChart(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = organizationchart;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = organizationchart;
 
         const elementRef = React.useRef(null);
         const root = props.value && props.value.length ? props.value[0] : null;

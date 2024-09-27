@@ -6,7 +6,31 @@ import { useBadge } from './Badge.base';
 export const Badge = React.memo(
     React.forwardRef((inProps, inRef) => {
         const badge = useBadge(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = badge;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible
+        } = badge;
 
         const rootProps = mergeProps(
             {

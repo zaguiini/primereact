@@ -915,7 +915,7 @@ export const ListBox = React.memo(
                     <div {...wrapperProps}>{list}</div>
                     <span {...hiddenLastElement} />
                 </Component>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptCallbacks.ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptCallbacks.ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

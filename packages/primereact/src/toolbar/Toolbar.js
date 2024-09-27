@@ -7,7 +7,35 @@ import { ToolbarBase } from './ToolbarBase';
 export const Toolbar = React.memo(
     React.forwardRef((inProps, inRef) => {
         const toolbar = useToolbar(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = toolbar;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = toolbar;
 
         const elementRef = React.useRef(null);
         const start = ObjectUtils.getJSXElement(props.left || props.start, props);

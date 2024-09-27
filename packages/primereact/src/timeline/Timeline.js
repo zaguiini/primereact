@@ -7,7 +7,35 @@ import { TimelineBase } from './TimelineBase';
 export const Timeline = React.memo(
     React.forwardRef((inProps, inRef) => {
         const timeline = useTimeline(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = timeline;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = timeline;
 
         const getPTOptions = (key, index) => {
             return ptm(key, {

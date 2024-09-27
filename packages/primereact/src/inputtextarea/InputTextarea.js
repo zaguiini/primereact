@@ -9,7 +9,35 @@ import { InputTextareaBase } from './InputTextareaBase';
 export const InputTextarea = React.memo(
     React.forwardRef((inProps, inRef) => {
         const inputtextarea = useInputTextarea(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = inputtextarea;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = inputtextarea;
 
         const elementRef = React.useRef(ref);
         const cachedScrollHeight = React.useRef(0);
@@ -131,7 +159,7 @@ export const InputTextarea = React.memo(
         return (
             <ComponentProvider pIf={props.pIf} value={inputtextarea}>
                 <Component as={props.as || 'textarea'} {...rootProps} ref={elementRef} />
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

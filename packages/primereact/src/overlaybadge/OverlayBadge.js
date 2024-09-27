@@ -8,7 +8,35 @@ import { useOverlayBadge } from './OverlayBadge.base';
 export const OverlayBadge = React.memo(
     React.forwardRef((inProps, inRef) => {
         const overlaybadge = useOverlayBadge(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = overlaybadge;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = overlaybadge;
 
         const rootProps = mergeProps(
             {

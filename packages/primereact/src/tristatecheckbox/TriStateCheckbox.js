@@ -12,7 +12,35 @@ import { TriStateCheckboxBase } from './TriStateCheckboxBase';
 export const TriStateCheckbox = React.memo(
     React.forwardRef((inProps, inRef) => {
         const tristatecheckbox = useTriStateCheckbox(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = tristatecheckbox;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = tristatecheckbox;
 
         const elementRef = React.useRef(null);
 
@@ -160,7 +188,7 @@ export const TriStateCheckbox = React.memo(
                     <span {...srOnlyAriaProps}>{ariaValueLabel}</span>
                     <div {...boxProps}>{checkIcon}</div>
                 </Component>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

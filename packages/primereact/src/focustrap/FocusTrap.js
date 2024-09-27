@@ -11,7 +11,35 @@ export const FocusTrap = React.memo(
         const lastFocusableElementRef = React.useRef(null);
 
         const focustrap = useFocusTrap(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = focustrap;
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            clearIconRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onEditableInput,
+            onContainerClick,
+            onClearClick,
+            // computed
+            selectedOption,
+            label: labelText,
+            editableInputValue,
+            focusedOptionId,
+            isClearIconVisible,
+            ptm,
+            ptmi,
+            cx,
+            ref
+        } = focustrap;
 
         React.useImperativeHandle(ref, () => ({
             props,

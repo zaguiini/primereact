@@ -454,7 +454,7 @@ export const Chips = React.memo(
                 <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {list}
                 </Component>
-                {hasTooltip && <Tooltip target={inputRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={inputRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

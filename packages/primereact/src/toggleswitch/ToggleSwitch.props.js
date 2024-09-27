@@ -1,8 +1,5 @@
 export const defaultProps = {
     __TYPE: 'ToggleSwitch',
-    id: null,
-    style: null,
-    className: null,
     checked: false,
     trueValue: true,
     falseValue: false,
@@ -20,6 +17,5 @@ export const defaultProps = {
     tooltip: null,
     tooltipOptions: null,
     ariaLabel: null,
-    ariaLabelledby: null,
-    children: undefined
+    ariaLabelledby: null
 };
