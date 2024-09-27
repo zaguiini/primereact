@@ -4,6 +4,7 @@
         "source.organizeImports": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "javascript.referencesCodeLens.enabled": true,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
