@@ -1,8 +1,5 @@
 export const defaultProps = {
     __TYPE: 'RadioButton',
-    id: null,
-    style: null,
-    className: null,
     value: null,
     checked: false,
     binary: true, // @todo: ask about this
@@ -20,8 +17,8 @@ export const defaultProps = {
     ariaLabelledBy: null,
     autoFocus: false,
     onChange: null,
-    onClick: null,
+    onFocus: null,
+    onBlur: null,
     tooltip: null,
-    tooltipOptions: null,
-    children: undefined
+    tooltipOptions: null
 };

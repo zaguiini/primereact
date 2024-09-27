@@ -1,6 +1,5 @@
-import { ComponentProvider } from '@primereact/core/component';
-import { useMountEffect } from '@primereact/hooks';
-import { classNames, focus, isNotEmpty, mergeProps } from '@primeuix/utils';
+import { Component, ComponentProvider } from '@primereact/core/component';
+import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
 import { useRadioButton } from './RadioButton.base';
@@ -8,77 +7,32 @@ import { useRadioButton } from './RadioButton.base';
 export const RadioButton = React.memo(
     React.forwardRef((inProps, inRef) => {
         const radiobutton = useRadioButton(inProps, inRef);
-        const { props, ptm, ptmi, cx, ref } = radiobutton;
-
-        const checked = props.checked != null && (props.binary ? !!props.checked : equals(props.checked, props.value));
-        // add checked state to the radiobutton instance
-        radiobutton.state.checked = checked;
-
-        const elementRef = React.useRef(null);
-        const inputRef = React.useRef(props.inputRef);
+        const {
+            props,
+            state,
+            ptm,
+            ptmi,
+            cx,
+            id,
+            // element refs
+            elementRef,
+            inputRef,
+            // methods
+            onChange,
+            onFocus,
+            onBlur
+        } = radiobutton;
 
         const getPTOptions = (key) => {
             const _ptm = key === 'root' ? ptmi : ptm;
 
             return _ptm(key, {
                 context: {
-                    checked,
+                    checked: state.checked,
                     disabled: props.disabled
                 }
             });
         };
-
-        const onChange = (event) => {
-            if (props.disabled || props.readonly) {
-                return;
-            }
-
-            const newValue = props.binary ? !checked : props.value;
-
-            if (props.onChange) {
-                const eventData = {
-                    originalEvent: event,
-                    value: props.value,
-                    checked: newValue,
-                    stopPropagation: () => {
-                        event?.stopPropagation();
-                    },
-                    preventDefault: () => {
-                        event?.preventDefault();
-                    },
-                    target: {
-                        type: 'radio',
-                        name: props.name,
-                        id: props.id,
-                        value: props.value,
-                        checked: newValue
-                    }
-                };
-
-                props?.onChange?.(eventData);
-
-                // do not continue if the user defined click wants to prevent
-                if (event.defaultPrevented) {
-                    return;
-                }
-
-                focus(inputRef.current);
-            }
-        };
-
-        const onFocus = (event) => {
-            props?.onFocus?.(event);
-        };
-
-        const onBlur = (event) => {
-            props?.onBlur?.(event);
-        };
-
-        useMountEffect(() => {
-            if (props.autoFocus) {
-                focus(inputRef.current, props.autoFocus);
-            }
-        });
 
         const createBoxElement = () => {
             const iconProps = mergeProps(
@@ -105,13 +59,12 @@ export const RadioButton = React.memo(
         const createInputElement = () => {
             const inputProps = mergeProps(
                 {
-                    ref: inputRef,
                     id: props.inputId,
                     type: 'radio',
                     style: props.inputStyle,
                     className: classNames(cx('input'), props.inputClassName),
                     name: props.name,
-                    defaultChecked: checked,
+                    defaultChecked: state.checked,
                     tabIndex: props.tabIndex,
                     disabled: props.disabled,
                     readOnly: props.readOnly,
@@ -126,20 +79,17 @@ export const RadioButton = React.memo(
                 getPTOptions('input')
             );
 
-            return <input {...inputProps} />;
+            return <input {...inputProps} ref={inputRef} />;
         };
-
-        const hasTooltip = isNotEmpty(props.tooltip);
 
         const input = createInputElement();
         const box = createBoxElement();
 
         const rootProps = mergeProps(
             {
-                id: props.id,
-                style: props.style,
+                id,
                 className: classNames(cx('root'), props.className),
-                'data-p-checked': checked,
+                'data-p-checked': state.checked,
                 'data-p-disabled': props.disabled
             },
             getPTOptions('root')
@@ -147,11 +97,11 @@ export const RadioButton = React.memo(
 
         return (
             <ComponentProvider value={radiobutton}>
-                <div ref={elementRef} {...rootProps}>
+                <Component pIf={props.pIf} as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {input}
                     {box}
-                </div>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+                </Component>
+                <Tooltip pIf={props.pIf || isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

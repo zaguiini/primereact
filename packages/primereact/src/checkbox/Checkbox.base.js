@@ -6,7 +6,7 @@ import * as React from 'react';
 import { defaultProps } from './Checkbox.props';
 
 export const useCheckbox = withComponent(
-    ({ props }) => {
+    ({ props, id }) => {
         // states
         const [indeterminate, setIndeterminate] = React.useState(props.indeterminate);
         const checked = indeterminate ? false : props.binary ? props.checked === props.trueValue : contains(props.value, props.checked);
@@ -51,13 +51,13 @@ export const useCheckbox = withComponent(
                     target: {
                         type: 'checkbox',
                         name: props.name,
-                        id: props.id,
+                        id,
                         value: props.value,
                         checked: newValue
                     }
                 };
 
-                props?.onChange?.(eventData);
+                props.onChange?.(eventData);
 
                 // do not continue if the user defined click wants to prevent
                 if (event.defaultPrevented) {
@@ -69,11 +69,11 @@ export const useCheckbox = withComponent(
         };
 
         const onFocus = (event) => {
-            props?.onFocus?.(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
-            props?.onBlur?.(event);
+            props.onBlur?.(event);
         };
 
         useMountEffect(() => {
