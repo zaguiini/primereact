@@ -1,5 +1,5 @@
-import { createSafeComponent } from '@primereact/core/utils';
+import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/floatlabel';
 import { defaultProps } from './FloatLabel.props';
 
-export const useFloatLabel = createSafeComponent(defaultProps, style);
+export const useFloatLabel = withComponent(() => {}, defaultProps, style);
