@@ -1,10 +1,10 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputIcon } from '@/components/lib/inputicon/InputIcon';
 import { SplitButton } from '@/components/lib/splitbutton/SplitButton';
 import { Toolbar } from '@/components/lib/toolbar/Toolbar';
 import { Button } from 'primereact/button';
 import { IconField } from 'primereact/iconfield';
+import { InputIcon } from 'primereact/inputicon';
 import { InputText } from 'primereact/inputtext';
 import React from 'react';
 

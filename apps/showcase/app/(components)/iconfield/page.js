@@ -1,11 +1,11 @@
-import React from 'react';
+'use client';
 import DocApiTable from '@/components/doc/common/docapitable';
 import { DocComponent } from '@/components/doc/common/doccomponent';
-import { ImportDoc } from '@/components/doc/iconfield/importdoc';
-import { BasicDoc } from '@/components/doc/iconfield/basicdoc';
-import { TemplateDoc } from '@/components/doc/iconfield/templatedoc';
 import { AccessibilityDoc } from '@/components/doc/iconfield/accessibilitydoc';
+import { BasicDoc } from '@/components/doc/iconfield/basicdoc';
+import { ImportDoc } from '@/components/doc/iconfield/importdoc';
 import { Wireframe } from '@/components/doc/iconfield/pt/wireframe';
+import { TemplateDoc } from '@/components/doc/iconfield/templatedoc';
 import { StyledDoc } from '@/components/doc/iconfield/theming/styleddoc';
 import { TailwindDoc } from '@/components/doc/iconfield/theming/tailwinddoc';
 
