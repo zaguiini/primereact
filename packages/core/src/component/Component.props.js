@@ -1,4 +1,5 @@
 export const globalProps = {
+    pIf: true,
     pt: undefined,
     ptOptions: undefined,
     unstyled: undefined,
@@ -7,5 +8,5 @@ export const globalProps = {
 };
 
 export const defaultProps = {
-    is: undefined
+    as: undefined
 };

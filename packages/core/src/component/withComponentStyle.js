@@ -4,6 +4,7 @@ import { minifyCSS, resolve } from '@primeuix/utils/object';
 import * as React from 'react';
 
 export const withComponentStyle = (callback) => {
+    // (inInstance, ref) @todo
     return (options, ref) => {
         const { name = 'base', css, theme } = options?.style || {};
         const config = React.useContext(PrimeReactContext);

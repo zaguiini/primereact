@@ -1,6 +1,7 @@
 import { resolve } from '@primeuix/utils/object';
 import * as React from 'react';
 
+// @todo - remove
 export const createSafeContext = (defaultValue = null) => {
     const Context = React.createContext(defaultValue);
 
