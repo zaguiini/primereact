@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMergeProps } from '@primereact/hooks';
 import { BarsIcon } from '@primereact/icons/bars';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -331,15 +331,15 @@ export const DataView = React.memo(
         );
 
         return (
-            <ComponentProvider value={dataview}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={dataview}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {loader}
                     {header}
                     {topPaginator}
                     {content}
                     {bottomPaginator}
                     {footer}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

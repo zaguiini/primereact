@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useButtonGroup } from './ButtonGroup.base';
@@ -18,8 +18,10 @@ export const ButtonGroup = React.memo(
         );
 
         return (
-            <ComponentProvider value={buttongroup}>
-                <span {...rootProps}>{props.children}</span>
+            <ComponentProvider pIf={props.pIf} value={buttongroup}>
+                <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
+                    {props.children}
+                </Component>
             </ComponentProvider>
         );
     })

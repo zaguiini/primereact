@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
 import { ChevronRightIcon } from '@primereact/icons/chevronright';
@@ -575,15 +575,15 @@ export const TabView = React.forwardRef((inProps, inRef) => {
     const nextButton = createNextButton();
 
     return (
-        <ComponentProvider value={tabview}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={tabview}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 <div {...navContainerProps}>
                     {prevButton}
                     {navigator}
                     {nextButton}
                 </div>
                 {content}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

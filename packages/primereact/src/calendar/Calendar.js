@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, usePrevious, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CalendarIcon } from '@primereact/icons/calendar';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
@@ -4372,8 +4372,8 @@ export const Calendar = React.memo(
         );
 
         return (
-            <ComponentProvider value={calendar}>
-                <span ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={calendar}>
+                <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
                     {content}
                     <CalendarPanel
                         hostName="Calendar"
@@ -4402,7 +4402,7 @@ export const Calendar = React.memo(
                         {buttonBar}
                         {footer}
                     </CalendarPanel>
-                </span>
+                </Component>
             </ComponentProvider>
         );
     })

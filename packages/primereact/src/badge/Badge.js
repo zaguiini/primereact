@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useBadge } from './Badge.base';
@@ -18,8 +18,10 @@ export const Badge = React.memo(
         );
 
         return (
-            <ComponentProvider value={badge}>
-                <span {...rootProps}>{props.value}</span>
+            <ComponentProvider pIf={props.pIf} value={badge}>
+                <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
+                    {props.value}
+                </Component>
             </ComponentProvider>
         );
     })

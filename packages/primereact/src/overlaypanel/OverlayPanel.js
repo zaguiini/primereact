@@ -309,7 +309,7 @@ export const OverlayPanel = React.forwardRef((inProps, inRef) => {
     const element = createElement();
 
     return (
-        <ComponentProvider value={overlaypanel}>
+        <ComponentProvider pIf={props.pIf} value={overlaypanel}>
             <Portal element={element} appendTo={props.appendTo} />
         </ComponentProvider>
     );

@@ -163,7 +163,7 @@ export const Toast = React.memo(
 
         return <Portal element={element} appendTo={props.appendTo} />;*/
 
-        return <ComponentProvider value={toast}></ComponentProvider>;
+        return <ComponentProvider pIf={props.pIf} value={toast}></ComponentProvider>;
     })
 );
 

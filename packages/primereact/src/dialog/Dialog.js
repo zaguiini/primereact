@@ -694,7 +694,7 @@ export const Dialog = React.forwardRef((inProps, inRef) => {
         }
 
         const rootElement = (
-            <ComponentProvider value={dialog}>
+            <ComponentProvider pIf={props.pIf} value={dialog}>
                 <div {...maskProps}>
                     <CSSTransition nodeRef={dialogRef} {...transitionProps}>
                         <div {...rootProps}>

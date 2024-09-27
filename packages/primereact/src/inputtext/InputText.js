@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { addClass, classNames, isEmpty, isNotEmpty, mergeProps, removeClass } from '@primeuix/utils';
 import { KeyFilter } from 'primereact/keyfilter';
 import { Tooltip } from 'primereact/tooltip';
@@ -75,8 +75,8 @@ export const InputText = React.memo(
         );
 
         return (
-            <ComponentProvider value={inputtext}>
-                <input {...rootProps} />
+            <ComponentProvider pIf={props.pIf} value={inputtext}>
+                <Component as={props.as || 'input'} {...rootProps} ref={elementRef} />
                 {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

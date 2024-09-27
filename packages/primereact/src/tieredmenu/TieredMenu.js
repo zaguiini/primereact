@@ -739,7 +739,11 @@ export const TieredMenu = React.memo(
 
         const element = createElement();
 
-        return <ComponentProvider value={tieredmenu}>{props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}</ComponentProvider>;
+        return (
+            <ComponentProvider pIf={props.pIf} value={tieredmenu}>
+                {props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}
+            </ComponentProvider>
+        );
     })
 );
 

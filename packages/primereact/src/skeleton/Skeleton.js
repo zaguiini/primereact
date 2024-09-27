@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useSkeleton } from './Skeleton.base';
@@ -21,8 +21,8 @@ export const Skeleton = React.memo(
         );
 
         return (
-            <ComponentProvider value={skeleton}>
-                <div {...rootProps} />
+            <ComponentProvider pIf={props.pIf} value={skeleton}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef} />
             </ComponentProvider>
         );
     })

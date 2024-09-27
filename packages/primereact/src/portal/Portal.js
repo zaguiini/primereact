@@ -34,7 +34,11 @@ export const Portal = React.memo((inProps) => {
         const appendTo = getTargetElement(resolve(props.appendTo || config?.appendTo)) || document.body;
         const content = appendTo === 'self' ? element : ReactDOM.createPortal(element, appendTo);
 
-        return <ComponentProvider value={portal}>{content}</ComponentProvider>;
+        return (
+            <ComponentProvider pIf={props.pIf} value={portal}>
+                {content}
+            </ComponentProvider>
+        );
     }
 
     return null;

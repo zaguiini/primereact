@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useProgressBar } from './ProgressBar.base';
@@ -65,8 +65,10 @@ export const ProgressBar = React.memo(
         );
 
         return (
-            <ComponentProvider value={progressbar}>
-                <div {...rootProps}>{content}</div>
+            <ComponentProvider pIf={props.pIf} value={progressbar}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {content}
+                </Component>
             </ComponentProvider>
         );
     })

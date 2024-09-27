@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { useRef } from 'react';
@@ -253,6 +253,7 @@ export const Editor = React.memo(
         const content = <div {...contentProps} />;
         const rootProps = mergeProps(
             {
+                id,
                 className: classNames(props.className, cx('root'))
             },
             EditorBase.getOtherProps(props),
@@ -260,11 +261,11 @@ export const Editor = React.memo(
         );
 
         return (
-            <ComponentProvider value={editor}>
-                <div id={props.id} ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={editor}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {header}
                     {content}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

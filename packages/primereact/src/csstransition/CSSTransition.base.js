@@ -1,4 +1,10 @@
-import { createSafeComponent } from '@primereact/core/utils';
+import { withComponent } from '@primereact/core/component';
 import { defaultProps } from './CSSTransition.props';
 
-export const useCSSTransition = createSafeComponent(defaultProps);
+export const useCSSTransition = withComponent(
+    ({ elementRef, id, props, parent, $primereact }) => {
+        //@todo
+    },
+    defaultProps,
+    style
+);

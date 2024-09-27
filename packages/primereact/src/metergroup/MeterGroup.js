@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { ObjectUtils } from '../utils/Utils';
@@ -153,14 +153,14 @@ export const MeterGroup = React.forwardRef((inProps, inRef) => {
     };
 
     return (
-        <ComponentProvider value={metergroup}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={metergroup}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 {labelPosition === 'start' && labelElement}
                 {start && ObjectUtils.getJSXElement(start, templateProps)}
                 {createMeters()}
                 {end && ObjectUtils.getJSXElement(end, templateProps)}
                 {labelPosition === 'end' && labelElement}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

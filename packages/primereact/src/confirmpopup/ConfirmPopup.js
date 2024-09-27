@@ -403,7 +403,7 @@ export const ConfirmPopup = React.memo(
         const element = inProps?.content ? createTemplateElement() : createElement();
 
         return (
-            <ComponentProvider value={confirmpopup}>
+            <ComponentProvider pIf={props.pIf} value={confirmpopup}>
                 <Portal element={element} appendTo={getPropValue('appendTo')} visible={getPropValue('visible')} />
             </ComponentProvider>
         );

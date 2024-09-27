@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import * as React from 'react';
 import { classNames, ObjectUtils } from '../utils/Utils';
 import { useTimeline } from './Timeline.base';
@@ -100,8 +100,10 @@ export const Timeline = React.memo(
         );
 
         return (
-            <ComponentProvider value={timeline}>
-                <div {...rootProps}>{events}</div>
+            <ComponentProvider pIf={props.pIf} value={timeline}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {events}
+                </Component>
             </ComponentProvider>
         );
     })

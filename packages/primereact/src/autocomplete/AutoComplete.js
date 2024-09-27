@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -742,8 +742,8 @@ export const AutoComplete = React.memo(
         );
 
         return (
-            <ComponentProvider value={autocomplete}>
-                <span {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={autocomplete}>
+                <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
                     {input}
                     {loader}
                     {dropdown}
@@ -768,7 +768,7 @@ export const AutoComplete = React.memo(
                         cx={cx}
                         sx={sx}
                     />
-                </span>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

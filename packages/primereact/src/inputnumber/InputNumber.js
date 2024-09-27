@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { AngleDownIcon } from '@primereact/icons/angledown';
 import { AngleUpIcon } from '@primereact/icons/angleup';
@@ -1304,11 +1304,11 @@ export const InputNumber = React.memo(
         );
 
         return (
-            <ComponentProvider value={inputnumber}>
-                <span ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={inputnumber}>
+                <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
                     {inputElement}
                     {buttonGroup}
-                </span>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

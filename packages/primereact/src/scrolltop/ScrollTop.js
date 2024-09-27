@@ -96,7 +96,7 @@ export const ScrollTop = React.memo(
         );
 
         return (
-            <ComponentProvider value={scrolltop}>
+            <ComponentProvider pIf={props.pIf} value={scrolltop}>
                 <CSSTransition nodeRef={scrollElementRef} {...transitionProps}>
                     <Button
                         ref={scrollElementRef}

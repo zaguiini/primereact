@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener } from '@primereact/hooks';
 import { classNames, isFunction, isString, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
@@ -282,14 +282,14 @@ export const Knob = React.memo(
         );
 
         return (
-            <ComponentProvider value={knob}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={knob}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <svg {...svgProps}>
                         <path {...rangeProps} />
                         <path {...valueProps} />
                         {text}
                     </svg>
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

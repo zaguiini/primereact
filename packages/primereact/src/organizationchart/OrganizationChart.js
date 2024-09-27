@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import * as React from 'react';
 import { classNames, DomHandler } from '../utils/Utils';
 import { useOrganizationChart } from './OrganizationChart.base';
@@ -85,8 +85,8 @@ export const OrganizationChart = React.memo(
         );
 
         return (
-            <ComponentProvider value={organizationchart}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={organizationchart}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <OrganizationChartNode
                         hostName="OrganizationChart"
                         node={root}
@@ -99,7 +99,7 @@ export const OrganizationChart = React.memo(
                         cx={cx}
                         sx={sx}
                     />
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
@@ -105,11 +105,11 @@ export const ToggleSwitch = React.memo(
         );
 
         return (
-            <ComponentProvider value={toggleswitch}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={toggleswitch}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <input {...inputProps} />
                     <span {...sliderProps} />
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

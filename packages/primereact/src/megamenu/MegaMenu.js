@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMatchMedia, useMountEffect, useResizeListener, useUpdateEffect } from '@primereact/hooks';
 import { AngleDownIcon } from '@primereact/icons/angledown';
 import { AngleRightIcon } from '@primereact/icons/angleright';
@@ -1293,13 +1293,13 @@ export const MegaMenu = React.memo(
         const menuButton = createMenuButton();
 
         return (
-            <ComponentProvider value={megamenu}>
-                <div id={props.id} ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={megamenu}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {start}
                     {menuButton}
                     {menu}
                     {end}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

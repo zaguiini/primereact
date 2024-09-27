@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
@@ -313,8 +313,10 @@ export const Steps = React.memo(
         const items = createItems();
 
         return (
-            <ComponentProvider value={steps}>
-                <nav {...rootProps}>{items}</nav>
+            <ComponentProvider pIf={props.pIf} value={steps}>
+                <Component as={props.as || 'nav'} {...rootProps} ref={elementRef}>
+                    {items}
+                </Component>
             </ComponentProvider>
         );
     })

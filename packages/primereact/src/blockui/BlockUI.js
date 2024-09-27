@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { PrimeReactContext } from '@primereact/core/config';
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { addClass, blockBodyScroll, classNames, hasCSSAnimation, mergeProps, resolve, unblockBodyScroll, ZIndex } from '@primeuix/utils';
@@ -129,11 +129,11 @@ export const BlockUI = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={blockui}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={blockui}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 {props.children}
                 {mask}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

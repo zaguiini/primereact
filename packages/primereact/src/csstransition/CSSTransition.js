@@ -74,7 +74,7 @@ export const CSSTransition = React.forwardRef((inProps, inRef) => {
     const mergedProps = { ...mutableProps, ...(props.options || {}), ...immutableProps };
 
     return (
-        <ComponentProvider value={csstransition}>
+        <ComponentProvider pIf={props.pIf} value={csstransition}>
             <ReactCSSTransition {...mergedProps}>{props.children}</ReactCSSTransition>
         </ComponentProvider>
     );

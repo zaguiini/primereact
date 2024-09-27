@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener } from '@primereact/hooks';
 import { classNames, getWindowScrollLeft, getWindowScrollTop, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
@@ -366,8 +366,10 @@ export const Slider = React.memo(
         );
 
         return (
-            <ComponentProvider value={slider}>
-                <div {...rootProps}>{content}</div>
+            <ComponentProvider pIf={props.pIf} value={slider}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {content}
+                </Component>
             </ComponentProvider>
         );
     })

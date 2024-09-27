@@ -299,7 +299,7 @@ export const Sidebar = React.forwardRef((inProps, inRef) => {
         const element = inProps?.content ? createTemplateElement() : createElement();
 
         return (
-            <ComponentProvider value={sidebar}>
+            <ComponentProvider pIf={props.pIf} value={sidebar}>
                 <Portal element={element} appendTo={props.appendTo} visible />
             </ComponentProvider>
         );

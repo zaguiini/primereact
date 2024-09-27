@@ -253,7 +253,7 @@ export const ConfirmDialog = React.memo(
         const element = createElement();
 
         return (
-            <ComponentProvider value={confirmdialog}>
+            <ComponentProvider pIf={props.pIf} value={confirmdialog}>
                 <Portal element={element} appendTo={getPropValue('appendTo')} />
             </ComponentProvider>
         );

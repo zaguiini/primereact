@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { ToggleButton } from 'primereact/togglebutton';
 import { Tooltip } from 'primereact/tooltip';
@@ -57,9 +57,9 @@ export const SelectButton = React.memo(
 
         return (
             <ComponentProvider pIf={props.pIf} value={selectbutton}>
-                <div {...rootProps} ref={elementRef}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {options}
-                </div>
+                </Component>
                 <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );

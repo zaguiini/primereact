@@ -728,7 +728,7 @@ export const FileUpload = React.memo(
             );
 
             return (
-                <ComponentProvider value={fileupload}>
+                <ComponentProvider pIf={props.pIf} value={fileupload}>
                     <div {...rootProps}>
                         <Messages ref={messagesRef} pt={ptm('message')} __parentMetadata={{ parent: metaData }} />
                         <span {...basicButtonProps}>

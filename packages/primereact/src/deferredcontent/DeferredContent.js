@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { useDeferredContent } from './DeferredContent.base';
@@ -68,8 +68,10 @@ export const DeferredContent = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={deferredcontent}>
-            <div {...rootProps}>{loadedState && props.children}</div>
+        <ComponentProvider pIf={props.pIf} value={deferredcontent}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                {loadedState && props.children}
+            </Component>
         </ComponentProvider>
     );
 });

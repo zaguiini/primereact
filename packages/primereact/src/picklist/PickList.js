@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import PrimeReact, { FilterService } from '../api/Api';
@@ -605,8 +605,8 @@ export const PickList = React.memo(
         );
 
         return (
-            <ComponentProvider value={picklist}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={picklist}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {props.showSourceControls && (
                         <PickListControls
                             hostName="PickList"
@@ -737,7 +737,7 @@ export const PickList = React.memo(
                             metaData={metaData}
                         />
                     )}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ArrowDownIcon } from '@primereact/icons/arrowdown';
 import { ArrowUpIcon } from '@primereact/icons/arrowup';
@@ -1436,8 +1436,8 @@ export const TreeTable = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={treetable}>
-            <div ref={elementRef} {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={treetable}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 {loader}
                 {headerFacet}
                 {paginatorTop}
@@ -1447,7 +1447,7 @@ export const TreeTable = React.forwardRef((inProps, inRef) => {
                 {resizeHelper}
                 {reorderIndicatorUp}
                 {reorderIndicatorDown}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

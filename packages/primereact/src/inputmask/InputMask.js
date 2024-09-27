@@ -624,7 +624,7 @@ export const InputMask = React.memo(
         const className = classNames(props.className, cx('root', { context }));
 
         return (
-            <ComponentProvider value={inputmask}>
+            <ComponentProvider pIf={props.pIf} value={inputmask}>
                 <InputText
                     ref={elementRef}
                     autoFocus={props.autoFocus}

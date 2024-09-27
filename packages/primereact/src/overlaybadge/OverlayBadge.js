@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import { Badge } from 'primereact/badge';
 import { omit } from 'primereact/utils';
@@ -20,11 +20,11 @@ export const OverlayBadge = React.memo(
         );
 
         return (
-            <ComponentProvider value={overlaybadge}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={overlaybadge}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {props.children}
                     <Badge {...omit(props, 'children')} pt={ptm('pcBadge')} />
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

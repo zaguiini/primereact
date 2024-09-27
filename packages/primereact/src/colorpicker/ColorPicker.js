@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { OverlayService } from 'primereact/overlayservice';
 import { Tooltip } from 'primereact/tooltip';
@@ -643,8 +643,8 @@ export const ColorPicker = React.memo(
         );
 
         return (
-            <ComponentProvider value={colorpicker}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={colorpicker}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {input}
                     <ColorPickerPanel
                         hostName="ColorPicker"
@@ -666,7 +666,7 @@ export const ColorPicker = React.memo(
                     >
                         {content}
                     </ColorPickerPanel>
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

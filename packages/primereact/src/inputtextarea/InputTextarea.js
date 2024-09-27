@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { KeyFilter } from 'primereact/keyfilter';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
@@ -129,8 +129,8 @@ export const InputTextarea = React.memo(
         );
 
         return (
-            <ComponentProvider value={inputtextarea}>
-                <textarea {...rootProps} />
+            <ComponentProvider pIf={props.pIf} value={inputtextarea}>
+                <Component as={props.as || 'textarea'} {...rootProps} ref={elementRef} />
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

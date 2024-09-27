@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { BarsIcon } from '@primereact/icons/bars';
 import * as React from 'react';
@@ -680,13 +680,13 @@ export const Menubar = React.memo(
         );
 
         return (
-            <ComponentProvider value={menubar}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={menubar}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {start}
                     {menuButton}
                     {submenu}
                     {end}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

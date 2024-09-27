@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { localeOption } from '../api/Api';
@@ -242,12 +242,12 @@ export const DataScroller = React.memo(
         );
 
         return (
-            <ComponentProvider value={datascroller}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={datascroller}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {header}
                     {content}
                     {footer}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

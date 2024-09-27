@@ -201,7 +201,11 @@ export const StyleClass = React.forwardRef((inProps, inRef) => {
         destroy();
     });
 
-    return <ComponentProvider value={styleclass}>{props.children}</ComponentProvider>;
+    return (
+        <ComponentProvider pIf={props.pIf} value={styleclass}>
+            {props.children}
+        </ComponentProvider>
+    );
 });
 
 StyleClass.displayName = 'StyleClass';

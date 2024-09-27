@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
@@ -106,11 +106,11 @@ export const InputSwitch = React.memo(
         );
 
         return (
-            <ComponentProvider value={inputswitch}>
-                <div id={props.id} ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={inputswitch}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <input ref={inputRef} {...inputProps} />
                     <span {...sliderProps} />
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

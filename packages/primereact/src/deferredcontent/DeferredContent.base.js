@@ -1,5 +1,11 @@
-import { createSafeComponent } from '@primereact/core/utils';
+import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/deferredcontent';
 import { defaultProps } from './DeferredContent.props';
 
-export const useDeferredContent = createSafeComponent(defaultProps, style);
+export const useDeferredContent = withComponent(
+    ({ elementRef, id, props, parent, $primereact }) => {
+        //@todo
+    },
+    defaultProps,
+    style
+);

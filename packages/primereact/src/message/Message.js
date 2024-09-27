@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { CheckIcon } from '@primereact/icons/check';
 import { ExclamationTriangleIcon } from '@primereact/icons/exclamationtriangle';
 import { InfoCircleIcon } from '@primereact/icons/infocircle';
@@ -86,10 +86,10 @@ export const Message = React.memo(
         );
 
         return (
-            <ComponentProvider value={message}>
-                <div id={props.id} ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={message}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {content}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

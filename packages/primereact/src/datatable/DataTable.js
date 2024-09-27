@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ArrowDownIcon } from '@primereact/icons/arrowdown';
 import { ArrowUpIcon } from '@primereact/icons/arrowup';
@@ -2026,8 +2026,8 @@ export const DataTable = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={datatable}>
-            <div ref={elementRef} {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={datatable}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 {loader}
                 {header}
                 {paginatorTop}
@@ -2036,7 +2036,7 @@ export const DataTable = React.forwardRef((inProps, inRef) => {
                 {footer}
                 {resizeHelper}
                 {reorderIndicators}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

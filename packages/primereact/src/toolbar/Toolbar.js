@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import * as React from 'react';
 import { ObjectUtils, classNames } from '../utils/Utils';
 import { useToolbar } from './Toolbar.base';
@@ -53,12 +53,12 @@ export const Toolbar = React.memo(
         );
 
         return (
-            <ComponentProvider value={toolbar}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={toolbar}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <div {...startProps}>{start}</div>
                     <div {...centerProps}>{center}</div>
                     <div {...endProps}>{end}</div>
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

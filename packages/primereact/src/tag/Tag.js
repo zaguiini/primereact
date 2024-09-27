@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
@@ -35,11 +35,11 @@ export const Tag = React.forwardRef((inProps, inRef) => {
     const label = props.children || (props.value && <span {...labelProps}>{props.value}</span>);
 
     return (
-        <ComponentProvider value={tag}>
-            <span {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={tag}>
+            <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
                 {icon}
                 {label}
-            </span>
+            </Component>
         </ComponentProvider>
     );
 });

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import PrimeReact, { FilterService } from '../api/Api';
@@ -430,8 +430,8 @@ export const OrderList = React.memo(
         );
 
         return (
-            <ComponentProvider value={orderlist}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={orderlist}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <OrderListControls
                         hostName="OrderList"
                         value={visibleList}
@@ -481,7 +481,7 @@ export const OrderList = React.memo(
                         cx={cx}
                         changeFocusedOptionIndex={changeFocusedOptionIndex}
                     />
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

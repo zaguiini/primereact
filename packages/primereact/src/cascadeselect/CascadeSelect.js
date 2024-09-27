@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -473,12 +473,12 @@ export const CascadeSelect = React.memo(
             );
 
             return (
-                <div {...rootProps}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {keyboardHelper}
                     {labelElement}
                     {dropdownIcon}
                     {overlay}
-                </div>
+                </Component>
             );
         };
 
@@ -487,7 +487,7 @@ export const CascadeSelect = React.memo(
         const ariaProps = ObjectUtils.reduceKeys(otherProps, DomHandler.ARIA_PROPS);
         const element = createElement();
 
-        return <ComponentProvider value={cascadeselect}>{element}</ComponentProvider>;
+        return <ComponentProvider pIf={props.pIf} value={cascadeselect}>{element}</ComponentProvider>;
     })
 );
 

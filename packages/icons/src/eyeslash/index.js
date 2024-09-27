@@ -6,7 +6,7 @@ export const EyeSlashIcon = React.forwardRef((inProps, inRef) => {
     const icon = useIcon(inProps, inRef);
 
     return (
-        <ComponentProvider value={icon}>
+        <ComponentProvider pIf={props.pIf} value={icon}>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" {...icon.pti()}>
                 <path
                     fillRule="evenodd"

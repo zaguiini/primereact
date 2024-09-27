@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useUnmountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { classNames } from '../utils/Utils';
@@ -108,10 +108,10 @@ const PrimeReactChart = React.memo(
         );
 
         return (
-            <ComponentProvider value={chart}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={chart}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <canvas {...canvasProps} />
-                </div>
+                </Component>
             </ComponentProvider>
         );
     }),

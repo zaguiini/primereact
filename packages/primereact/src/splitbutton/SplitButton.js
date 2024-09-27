@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useUnmountEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { Button } from 'primereact/button';
@@ -135,8 +135,8 @@ export const SplitButton = React.memo(
         );
 
         return (
-            <ComponentProvider value={splitbutton}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={splitbutton}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <Button
                         ref={defaultButtonRef}
                         type="button"
@@ -201,7 +201,7 @@ export const SplitButton = React.memo(
                         onHide={onMenuHide}
                         pt={ptm('menu')}
                     />
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { Checkbox } from 'primereact/checkbox';
 import { Tooltip } from 'primereact/tooltip';
@@ -191,11 +191,11 @@ export const MultiStateCheckbox = React.memo(
         );
 
         return (
-            <ComponentProvider value={multiselectcheckbox}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={multiselectcheckbox}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <Checkbox {...checkboxProps} />
                     {focusedState && <span {...srOnlyAriaProps}>{ariaValueLabel}</span>}
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

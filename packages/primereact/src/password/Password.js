@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useGlobalOnEscapeKey, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { EyeIcon } from '@primereact/icons/eye';
 import { EyeSlashIcon } from '@primereact/icons/eyeslash';
@@ -482,11 +482,11 @@ export const Password = React.memo(
         }
 
         return (
-            <ComponentProvider value={password}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={password}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {input}
                     {panel}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import { InputTextarea } from 'primereact/inputtextarea';
@@ -556,11 +556,11 @@ export const Mention = React.memo(
         );
 
         return (
-            <ComponentProvider value={mention}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={mention}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <InputTextarea {...inputMentionProps} />
                     {panel}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMergeProps, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { ChevronLeftIcon } from '@primereact/icons/chevronleft';
@@ -810,15 +810,15 @@ export const Carousel = React.memo(
         );
 
         return (
-            <ComponentProvider value={carousel}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={carousel}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {header}
                     <div {...contentProps}>
                         {content}
                         {indicators}
                     </div>
                     {footer}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useUpdateEffect } from '@primereact/hooks';
 import { SearchIcon } from '@primereact/icons/search';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -643,13 +643,13 @@ export const Tree = React.memo(
         );
 
         return (
-            <ComponentProvider value={tree}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={tree}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {loader}
                     {header}
                     {content}
                     {footer}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

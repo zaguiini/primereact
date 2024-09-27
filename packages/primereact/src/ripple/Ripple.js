@@ -111,7 +111,7 @@ export const Ripple = React.memo(
         );
 
         return (
-            <ComponentProvider value={ripple}>
+            <ComponentProvider pIf={props.pIf} value={ripple}>
                 <span role="presentation" ref={inkRef} {...rootProps} onAnimationEnd={onAnimationEnd} />
             </ComponentProvider>
         );

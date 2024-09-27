@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useProgressSpinner } from './ProgressSpinner.base';
@@ -43,12 +43,12 @@ export const ProgressSpinner = React.memo(
         );
 
         return (
-            <ComponentProvider value={progressspinner}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={progressspinner}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <svg {...spinProps}>
                         <circle {...circleProps} />
                     </svg>
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

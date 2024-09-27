@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
@@ -213,11 +213,11 @@ export const Fieldset = React.forwardRef((inProps, inRef) => {
     const content = createContent();
 
     return (
-        <ComponentProvider value={fieldset}>
-            <fieldset {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={fieldset}>
+            <Component as={props.as || 'fieldset'} {...rootProps} ref={elementRef}>
                 {legend}
                 {content}
-            </fieldset>
+            </Component>
         </ComponentProvider>
     );
 });

@@ -241,7 +241,11 @@ export const SlideMenu = React.memo(
 
         const element = createElement();
 
-        return <ComponentProvider value={slidemenu}>{props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}</ComponentProvider>;
+        return (
+            <ComponentProvider pIf={props.pIf} value={slidemenu}>
+                {props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}
+            </ComponentProvider>
+        );
     })
 );
 

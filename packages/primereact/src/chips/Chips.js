@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { TimesCircleIcon } from '@primereact/icons/timescircle';
 import { KeyFilter } from 'primereact/keyfilter';
@@ -450,8 +450,10 @@ export const Chips = React.memo(
         );
 
         return (
-            <ComponentProvider value={chips}>
-                <div {...rootProps}>{list}</div>
+            <ComponentProvider pIf={props.pIf} value={chips}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {list}
+                </Component>
                 {hasTooltip && <Tooltip target={inputRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

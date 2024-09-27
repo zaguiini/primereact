@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useUpdateEffect } from '@primereact/hooks';
 import { InputText } from 'primereact/inputtext';
 import React, { useRef, useState } from 'react';
@@ -219,7 +219,7 @@ export const InputOtp = React.memo(
             return inputElements;
         };
 
-        const rootElementProps = mergeProps(
+        const rootProps = mergeProps(
             {
                 className: cx('root'),
                 ref: elementRef,
@@ -229,7 +229,9 @@ export const InputOtp = React.memo(
         );
 
         return (
-            <ComponentProvider value={inputotp}><div {...rootElementProps}>{createInputElements(props.length)}</div></ComponentProvider>
+            <ComponentProvider pIf={props.pIf} value={inputotp}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>{createInputElements(props.length)}</Component>
+            </ComponentProvider>
     })
 );
 

@@ -746,7 +746,7 @@ export const ContextMenu = React.memo(
         const element = createContextMenu();
 
         return (
-            <ComponentProvider value={contextmenu}>
+            <ComponentProvider pIf={props.pIf} value={contextmenu}>
                 <Portal element={element} appendTo={props.appendTo} />
             </ComponentProvider>
         );

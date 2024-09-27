@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUnmountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { DomHandler, UniqueComponentId, classNames } from '../utils/Utils';
@@ -340,8 +340,8 @@ export const ScrollPanel = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={scrollpanel}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={scrollpanel}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 <div {...wrapperProps}>
                     <div ref={contentRef} {...contentProps}>
                         {props.children}
@@ -349,7 +349,7 @@ export const ScrollPanel = React.forwardRef((inProps, inRef) => {
                 </div>
                 <div {...barXProps} />
                 <div {...barYProps} />
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

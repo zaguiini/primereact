@@ -331,7 +331,11 @@ export const Galleria = React.memo(
                 return <Portal element={galleriaWrapper} />;
             }
 
-            return <ComponentProvider value={galleria}>{element}</ComponentProvider>;
+            return (
+                <ComponentProvider pIf={props.pIf} value={galleria}>
+                    {element}
+                </ComponentProvider>
+            );
         };
 
         return ObjectUtils.isNotEmpty(props.value) && createGalleria();

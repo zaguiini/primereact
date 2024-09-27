@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { IconUtils } from 'primereact/utils';
 import * as React from 'react';
@@ -76,8 +76,10 @@ export const Avatar = React.forwardRef((inProps, inRef) => {
     const content = props.children ? resolve(props.children, props) : createContent();
 
     return (
-        <ComponentProvider value={avatar}>
-            <div {...rootProps}>{content}</div>
+        <ComponentProvider pIf={props.pIf} value={avatar}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                {content}
+            </Component>
         </ComponentProvider>
     );
 });

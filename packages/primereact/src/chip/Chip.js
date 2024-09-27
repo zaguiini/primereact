@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { TimesCircleIcon } from '@primereact/icons/timescircle';
 import { classNames, mergeProps } from '@primeuix/utils';
 import { IconUtils, ObjectUtils } from 'primereact/utils';
@@ -104,12 +104,20 @@ export const Chip = React.memo(
                 ptmi('root')
             );
 
-            return <div {...rootProps}>{content}</div>;
+            return (
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {content}
+                </Component>
+            );
         };
 
         const element = visibleState ? createElement() : null;
 
-        return <ComponentProvider value={chip}>{element}</ComponentProvider>;
+        return (
+            <ComponentProvider pIf={props.pIf} value={chip}>
+                {element}
+            </ComponentProvider>
+        );
     })
 );
 

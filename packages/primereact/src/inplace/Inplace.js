@@ -29,7 +29,7 @@ export const InplaceDisplay = (inProps) => {
     );
 
     return (
-        <ComponentProvider value={inplaceDisplay}>
+        <ComponentProvider pIf={props.pIf} value={inplaceDisplay}>
             <Component pIf={!parent?.state?.active} as="div" children={props.children} {...rootProps} />
         </ComponentProvider>
     );
@@ -48,7 +48,7 @@ export const InplaceContent = (inProps) => {
     );
 
     return (
-        <ComponentProvider value={inplaceContent}>
+        <ComponentProvider pIf={props.pIf} value={inplaceContent}>
             <Component pIf={!!parent?.state?.active} as="div" children={props.children} options={{ close: parent?.ref?.current?.close }} {...rootProps} />
         </ComponentProvider>
     );
@@ -117,7 +117,7 @@ export const Inplace = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={inplace}>
+        <ComponentProvider pIf={props.pIf} value={inplace}>
             <div {...rootProps}>{props.children}</div>
         </ComponentProvider>
     );

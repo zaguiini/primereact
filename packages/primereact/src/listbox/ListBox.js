@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { Tooltip } from 'primereact/tooltip';
 import { VirtualScroller } from 'primereact/virtualscroller';
@@ -908,13 +908,13 @@ export const ListBox = React.memo(
         );
 
         return (
-            <ComponentProvider value={listbox}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={listbox}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <span {...hiddenFirstElement} />
                     {header}
                     <div {...wrapperProps}>{list}</div>
                     <span {...hiddenLastElement} />
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptCallbacks.ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

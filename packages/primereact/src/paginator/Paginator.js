@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { ObjectUtils, classNames } from '../utils/Utils';
@@ -308,12 +308,12 @@ export const Paginator = React.memo(
         );
 
         return (
-            <ComponentProvider value={paginator}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={paginator}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {leftElement}
                     {elements}
                     {rightElement}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

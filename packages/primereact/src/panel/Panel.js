@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
@@ -253,12 +253,12 @@ export const Panel = React.forwardRef((inProps, inRef) => {
     const footer = createFooter();
 
     return (
-        <ComponentProvider value={panel}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={panel}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 {header}
                 {content}
                 {footer}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

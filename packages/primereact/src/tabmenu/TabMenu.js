@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
@@ -330,13 +330,13 @@ export const TabMenu = React.memo(
             );
 
             return (
-                <ComponentProvider value={tabmenu}>
-                    <div {...rootProps}>
+                <ComponentProvider pIf={props.pIf} value={tabmenu}>
+                    <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                         <ul {...menuProps}>
                             {items}
                             <li {...inkbarProps} />
                         </ul>
-                    </div>
+                    </Component>
                 </ComponentProvider>
             );
         }

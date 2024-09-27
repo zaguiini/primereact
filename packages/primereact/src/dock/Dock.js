@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { Ripple } from 'primereact/ripple';
 import * as React from 'react';
@@ -324,6 +324,7 @@ export const Dock = React.memo(
         const footer = createFooter();
         const rootProps = mergeProps(
             {
+                id,
                 className: classNames(props.className, cx('root')),
                 style: props.style
             },
@@ -339,14 +340,14 @@ export const Dock = React.memo(
         );
 
         return (
-            <ComponentProvider value={dock}>
-                <div id={props.id} ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={dock}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <div {...containerProps}>
                         {header}
                         {list}
                         {footer}
                     </div>
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

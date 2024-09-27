@@ -490,7 +490,11 @@ export const Menu = React.memo(
 
         const element = createElement();
 
-        return <ComponentProvider value={menu}>{props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}</ComponentProvider>;
+        return (
+            <ComponentProvider pIf={props.pIf} value={menu}>
+                {props.popup ? <Portal element={element} appendTo={props.appendTo} /> : element}
+            </ComponentProvider>
+        );
     })
 );
 

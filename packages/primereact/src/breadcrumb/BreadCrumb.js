@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { ChevronRightIcon } from '@primereact/icons/chevronright';
 import * as React from 'react';
@@ -256,14 +256,14 @@ export const BreadCrumb = React.memo(
         );
 
         return (
-            <ComponentProvider value={breadcrumb}>
-                <nav {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={breadcrumb}>
+                <Component as={props.as || 'nav'} {...rootProps} ref={elementRef}>
                     <ol {...menuProps}>
                         {home}
                         {home && !!items?.length && separator}
                         {items}
                     </ol>
-                </nav>
+                </Component>
             </ComponentProvider>
         );
     })

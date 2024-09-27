@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect, usePrevious, useResizeListener, useUpdateEffect } from '@primereact/hooks';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import { classNames, findSingle, getHeight, getWidth, isVisible, mergeProps, resolve } from '@primeuix/utils';
@@ -783,12 +783,12 @@ export const VirtualScroller = React.memo(
         );
 
         return (
-            <ComponentProvider value={virtualscroller}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={virtualscroller}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {content}
                     {spacer}
                     {loader}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

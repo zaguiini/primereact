@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, focus, mergeProps } from '@primeuix/utils';
 import { TerminalService } from 'primereact/terminalservice';
 import * as React from 'react';
@@ -205,12 +205,12 @@ export const Terminal = React.memo(
         );
 
         return (
-            <ComponentProvider value={terminal}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={terminal}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {welcomeMessage}
                     {content}
                     {prompt}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

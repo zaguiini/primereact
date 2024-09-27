@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SpinnerIcon } from '@primereact/icons/spinner';
@@ -1085,8 +1085,8 @@ export const MultiSelect = React.memo(
         );
 
         return (
-            <ComponentProvider value={multiselect}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={multiselect}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <div {...hiddenInputWrapperProps}>
                         <input {...inputProps} readOnly />
                     </div>
@@ -1143,7 +1143,7 @@ export const MultiSelect = React.memo(
                         metaData={metaData}
                         changeFocusedOptionIndex={changeFocusedOptionIndex}
                     />
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

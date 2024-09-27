@@ -1,5 +1,11 @@
-import { createSafeComponent } from '@primereact/core/utils';
+import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/fluid';
 import { defaultProps } from './Fluid.props';
 
-export const useFluid = createSafeComponent(defaultProps, style);
+export const useFluid = withComponent(
+    ({ elementRef, id, props, parent, $primereact }) => {
+        //@todo
+    },
+    defaultProps,
+    style
+);

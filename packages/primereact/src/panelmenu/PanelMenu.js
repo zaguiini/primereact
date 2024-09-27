@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { ChevronRightIcon } from '@primereact/icons/chevronright';
@@ -436,8 +436,10 @@ export const PanelMenu = React.memo(
         );
 
         return (
-            <ComponentProvider value={panelmenu}>
-                <div {...rootProps}>{panels}</div>
+            <ComponentProvider pIf={props.pIf} value={panelmenu}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {panels}
+                </Component>
             </ComponentProvider>
         );
     })

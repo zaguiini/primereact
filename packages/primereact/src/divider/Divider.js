@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useDivider } from './Divider.base';
@@ -35,10 +35,10 @@ export const Divider = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={divider}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={divider}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 <div {...contentProps}>{props.children}</div>
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

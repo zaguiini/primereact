@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
@@ -105,8 +105,8 @@ export const Messages = React.memo(
         );
 
         return (
-            <ComponentProvider value={messages}>
-                <div ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={messages}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <TransitionGroup>
                         {messagesState &&
                             messagesState.map((message, index) => {
@@ -119,7 +119,7 @@ export const Messages = React.memo(
                                 );
                             })}
                     </TransitionGroup>
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

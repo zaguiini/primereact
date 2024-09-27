@@ -17,7 +17,7 @@ export const Row = (inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={row}>
+        <ComponentProvider pIf={props.pIf} value={row}>
             <tr {...rootProps}>{props.children}</tr>
         </ComponentProvider>
     );

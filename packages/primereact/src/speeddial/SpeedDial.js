@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
@@ -597,11 +597,11 @@ export const SpeedDial = React.memo(
         );
 
         return (
-            <ComponentProvider value={speeddial}>
-                <div ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={speeddial}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {button}
                     {list}
-                </div>
+                </Component>
                 {mask}
             </ComponentProvider>
         );

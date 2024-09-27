@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useAvatarGroup } from './AvatarGroup.base';
@@ -17,8 +17,10 @@ export const AvatarGroup = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={avatargroup}>
-            <div {...rootProps}>{props.children}</div>
+        <ComponentProvider pIf={props.pIf} value={avatargroup}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                {props.children}
+            </Component>
         </ComponentProvider>
     );
 });

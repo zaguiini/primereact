@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { ChevronDownIcon } from '@primereact/icons/chevrondown';
 import { SearchIcon } from '@primereact/icons/search';
@@ -873,8 +873,8 @@ export const TreeSelect = React.memo(
         const footer = createFooter();
 
         return (
-            <ComponentProvider value={treeselect}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={treeselect}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {keyboardHelper}
                     {labelElement}
                     {clearIcon}
@@ -904,7 +904,7 @@ export const TreeSelect = React.memo(
                         {content}
                     </TreeSelectPanel>
                     {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

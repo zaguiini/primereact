@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useUnmountEffect } from '@primereact/hooks';
 import { DownloadIcon } from '@primereact/icons/download';
 import { EyeIcon } from '@primereact/icons/eye';
@@ -386,12 +386,12 @@ export const Image = React.memo(
         );
 
         return (
-            <ComponentProvider value={image}>
-                <span {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={image}>
+                <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
                     {image}
                     {preview}
                     {maskVisibleState && <Portal element={element} appendTo={document.body} />}
-                </span>
+                </Component>
             </ComponentProvider>
         );
     })

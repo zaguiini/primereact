@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useEventListener, useMountEffect } from '@primereact/hooks';
 import * as React from 'react';
 import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
@@ -471,10 +471,10 @@ export const Splitter = React.memo(
         const panels = createPanels();
 
         return (
-            <ComponentProvider value={splitter}>
-                <div ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={splitter}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {panels}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

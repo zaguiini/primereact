@@ -1,5 +1,11 @@
-import { createSafeComponent } from '@primereact/core/utils';
+import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/divider';
 import { defaultProps } from './Divider.props';
 
-export const useDivider = createSafeComponent(defaultProps, style);
+export const useDivider = withComponent(
+    ({ elementRef, id, props, parent, $primereact }) => {
+        //@todo
+    },
+    defaultProps,
+    style
+);

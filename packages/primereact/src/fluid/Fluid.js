@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useFluid } from './Fluid.base';
@@ -17,8 +17,10 @@ export const Fluid = React.memo(
         );
 
         return (
-            <ComponentProvider value={fluid}>
-                <div {...rootProps}>{props.children}</div>
+            <ComponentProvider pIf={props.pIf} value={fluid}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
+                    {props.children}
+                </Component>
             </ComponentProvider>
         );
     })

@@ -104,7 +104,7 @@ export const FocusTrap = React.memo(
             }
 
             return (
-                <ComponentProvider value={focustrap}>
+                <ComponentProvider pIf={props.pIf} value={focustrap}>
                     {firstFocusableElement}
                     {props.children}
                     {lastFocusableElement}

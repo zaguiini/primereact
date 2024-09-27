@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import { classNames, isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { Badge } from 'primereact/badge';
@@ -107,11 +107,11 @@ export const Button = React.memo(
         );
 
         return (
-            <ComponentProvider value={button}>
-                <button {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={button}>
+                <Component as={props.as || 'button'} {...rootProps} ref={elementRef}>
                     {content}
                     <Ripple />
-                </button>
+                </Component>
                 {hasTooltip && <Tooltip target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

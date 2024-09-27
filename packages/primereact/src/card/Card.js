@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { classNames, mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
 import { useCard } from './Card.base';
@@ -111,11 +111,11 @@ export const Card = React.forwardRef((inProps, inRef) => {
     );
 
     return (
-        <ComponentProvider value={card}>
-            <div {...rootProps}>
+        <ComponentProvider pIf={props.pIf} value={card}>
+            <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                 {header}
                 {body}
-            </div>
+            </Component>
         </ComponentProvider>
     );
 });

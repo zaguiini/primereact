@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
 import { CSSTransition } from 'primereact/csstransition';
 import React from 'react';
@@ -337,13 +337,13 @@ export const Stepper = React.memo(
         );
 
         return (
-            <ComponentProvider value={stepper}>
-                <div {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={stepper}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     {start && <div {...startProps}>{start}</div>}
                     {props.orientation === 'horizontal' && createHorizontal()}
                     {props.orientation === 'vertical' && createVertical()}
                     {end && <div {...endProps}>{end}</div>}
-                </div>
+                </Component>
             </ComponentProvider>
         );
     })

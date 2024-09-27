@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { useMountEffect } from '@primereact/hooks';
 import { CheckIcon } from '@primereact/icons/check';
 import { TimesIcon } from '@primereact/icons/times';
@@ -154,12 +154,12 @@ export const TriStateCheckbox = React.memo(
         );
 
         return (
-            <ComponentProvider value={tristatecheckbox}>
-                <div id={props.id} ref={elementRef} {...rootProps}>
+            <ComponentProvider pIf={props.pIf} value={tristatecheckbox}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <input {...inputProps} />
                     <span {...srOnlyAriaProps}>{ariaValueLabel}</span>
                     <div {...boxProps}>{checkIcon}</div>
-                </div>
+                </Component>
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </ComponentProvider>
         );

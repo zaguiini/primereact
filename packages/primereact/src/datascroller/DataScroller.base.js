@@ -1,5 +1,11 @@
-import { createSafeComponent } from '@primereact/core/utils';
+import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/datascroller';
 import { defaultProps } from './DataScroller.props';
 
-export const useDataScroller = createSafeComponent(defaultProps, style);
+export const useDataScroller = withComponent(
+    ({ elementRef, id, props, parent, $primereact }) => {
+        //@todo
+    },
+    defaultProps,
+    style
+);

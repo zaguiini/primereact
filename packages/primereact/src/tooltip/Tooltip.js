@@ -1,4 +1,4 @@
-import { ComponentProvider } from '@primereact/core/component';
+import { Component, ComponentProvider } from '@primereact/core/component';
 import { PrimeReactContext } from '@primereact/core/config';
 import { ESC_KEY_HANDLING_PRIORITIES, useGlobalOnEscapeKey, useMountEffect, useOverlayScrollListener, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { addClass, classNames, find, getOuterHeight, getOuterWidth, isElement, isTouchDevice, mergeProps, removeClass, ZIndex } from '@primeuix/utils';
@@ -518,12 +518,12 @@ export const Tooltip = React.memo(
             );
 
             return (
-                <div ref={elementRef} {...rootProps}>
+                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
                     <div {...arrowProps} />
                     <div ref={textRef} {...textProps}>
                         {empty && props.children}
                     </div>
-                </div>
+                </Component>
             );
         };
 
@@ -531,7 +531,7 @@ export const Tooltip = React.memo(
             const element = createElement();
 
             return (
-                <ComponentProvider value={tooltip}>
+                <ComponentProvider pIf={props.pIf} value={tooltip}>
                     <Portal element={element} appendTo={props.appendTo} visible />
                 </ComponentProvider>
             );
