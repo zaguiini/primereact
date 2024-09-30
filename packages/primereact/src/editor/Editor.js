@@ -1,209 +1,22 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { useMountEffect, useUpdateEffect } from '@primereact/hooks';
+import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
-import { useRef } from 'react';
-import { DomHandler, classNames } from '../utils/Utils';
 import { useEditor } from './Editor.base';
-import { EditorBase } from './EditorBase';
-
-const QuillJS = (function () {
-    try {
-        return Quill;
-    } catch {
-        return null;
-    }
-})();
 
 export const Editor = React.memo(
     React.forwardRef((inProps, inRef) => {
         const editor = useEditor(inProps, inRef);
         const {
             props,
-            state,
             ptm,
             ptmi,
             cx,
             id,
             // element refs
             elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
-            // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible,
-            ptm,
-            ptmi,
-            cx,
-            ref
+            contentRef,
+            toolbarRef
         } = editor;
-
-        const elementRef = React.useRef(null);
-        const contentRef = React.useRef(null);
-        const toolbarRef = React.useRef(null);
-        const quill = React.useRef(null);
-        const isQuillLoaded = React.useRef(false);
-
-        const [quillCreated, setQuillCreated] = React.useState(false);
-
-        useMountEffect(() => {
-            if (!isQuillLoaded.current) {
-                const configuration = {
-                    modules: {
-                        toolbar: props.showHeader ? toolbarRef.current : false,
-                        ...props.modules
-                    },
-                    placeholder: props.placeholder,
-                    readOnly: props.readOnly,
-                    theme: props.theme,
-                    formats: props.formats
-                };
-
-                if (QuillJS) {
-                    // GitHub #3097 loaded by script only
-                    initQuill(new Quill(contentRef.current, configuration));
-                } else {
-                    import('quill').then((module) => {
-                        if (module && DomHandler.isExist(contentRef.current)) {
-                            let quillInstance;
-
-                            if (module.default) {
-                                // webpack
-                                quillInstance = new module.default(contentRef.current, configuration);
-                            } else {
-                                // parceljs
-                                quillInstance = new module(contentRef.current, configuration);
-                            }
-
-                            initQuill(quillInstance);
-                        }
-                    });
-                }
-
-                isQuillLoaded.current = true;
-            }
-        });
-
-        const onTextChange = (delta, oldContents, source) => {
-            let firstChild = contentRef.current.children[0];
-            let html = firstChild ? firstChild.innerHTML : null;
-            let text = quill.current.getText();
-
-            if (html === '<p><br></p>') {
-                html = null;
-            }
-
-            // GitHub #2271 prevent infinite loop on clipboard paste of HTML
-            if (source === 'api') {
-                const htmlValue = contentRef.current.children[0];
-                const editorValue = document.createElement('div');
-
-                editorValue.innerHTML = props.value || '';
-
-                // this is necessary because Quill rearranged style elements
-                if (DomHandler.isEqualElement(htmlValue, editorValue)) {
-                    return;
-                }
-            }
-
-            if (props.maxLength) {
-                const length = quill.current.getLength();
-
-                if (length > props.maxLength) {
-                    quill.current.deleteText(props.maxLength, length);
-                }
-            }
-
-            if (props.onTextChange) {
-                props.onTextChange({
-                    htmlValue: html,
-                    textValue: text,
-                    delta: delta,
-                    source: source
-                });
-            }
-        };
-
-        const onSelectionChange = (range, oldRange, source) => {
-            if (props.onSelectionChange) {
-                props.onSelectionChange({
-                    range: range,
-                    oldRange: oldRange,
-                    source: source
-                });
-            }
-        };
-
-        const initValue = useRef(props.value);
-
-        initValue.current = props.value;
-
-        const initQuill = (quillInstance) => {
-            quill.current = quillInstance;
-
-            if (initValue.current) {
-                quillInstance.setContents(
-                    quillInstance.clipboard.convert({
-                        html: initValue.current,
-                        text: ''
-                    })
-                );
-            }
-
-            setQuillCreated(true);
-        };
-
-        useUpdateEffect(() => {
-            if (quillCreated) {
-                quill.current.on('text-change', onTextChange);
-                quill.current.on('selection-change', onSelectionChange);
-
-                return () => {
-                    quill.current.off('text-change', onTextChange);
-                    quill.current.off('selection-change', onSelectionChange);
-                };
-            }
-        });
-
-        useUpdateEffect(() => {
-            if (quillCreated) {
-                if (quill.current && quill.current.getModule('toolbar')) {
-                    props.onLoad && props.onLoad(quill.current);
-                }
-            }
-        }, [quillCreated]);
-
-        useUpdateEffect(() => {
-            if (quill.current && !quill.current.hasFocus()) {
-                if (props.value) {
-                    quill.current.setContents(
-                        quill.current.clipboard.convert({
-                            html: props.value,
-                            text: ''
-                        })
-                    );
-                } else {
-                    quill.current.setText('');
-                }
-            }
-        }, [props.value]);
-
-        React.useImperativeHandle(ref, () => ({
-            props,
-            getQuill: () => quill.current,
-            getElement: () => elementRef.current,
-            getContent: () => contentRef.current,
-            getToolbar: () => toolbarRef.current
-        }));
 
         const createToolbarHeader = () => {
             const toolbarProps = mergeProps(
@@ -220,7 +33,7 @@ export const Editor = React.memo(
                 return <div {...toolbarProps}>{props.headerTemplate}</div>;
             }
 
-            const getMergeProps = (params, key) => mergeProps(params && { ...params }, ptm(key));
+            const getMergeProps = (params, key) => mergeProps(params, ptm(key));
 
             const formatsProps = mergeProps({ className: 'ql-formats' }, ptm('formats'));
 
@@ -269,23 +82,26 @@ export const Editor = React.memo(
             );
         };
 
+        const createContent = () => {
+            const contentProps = mergeProps(
+                {
+                    className: cx('content')
+                },
+                ptm('content')
+            );
+
+            return <div {...contentProps} ref={contentRef} />;
+        };
+
         const header = createToolbarHeader();
-        const contentProps = mergeProps(
-            {
-                ref: contentRef,
-                className: cx('content'),
-                style: props.style
-            },
-            ptm('content')
-        );
-        const content = <div {...contentProps} />;
+        const content = createContent();
+
         const rootProps = mergeProps(
             {
                 id,
-                className: classNames(props.className, cx('root'))
+                className: cx('root')
             },
-            EditorBase.getOtherProps(props),
-            ptm('root')
+            ptmi('root')
         );
 
         return (
