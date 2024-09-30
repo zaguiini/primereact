@@ -1,0 +1,6 @@
+{
+    "main": "./InputGroupAddon.js",
+    "module": "./InputGroupAddon.js",
+    "types": "./InputGroupAddon.d.ts",
+    "sideEffects": false
+}

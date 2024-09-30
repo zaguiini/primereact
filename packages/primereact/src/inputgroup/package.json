@@ -1,0 +1,6 @@
+{
+    "main": "./InputGroup.js",
+    "module": "./InputGroup.js",
+    "types": "./InputGroup.d.ts",
+    "sideEffects": false
+}

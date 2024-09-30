@@ -9,37 +9,19 @@ export const ToggleSwitch = React.memo(
         const toggleswitch = useToggleSwitch(inProps, inRef);
         const {
             props,
-            state,
             ptm,
             ptmi,
             cx,
             id,
             // element refs
             elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
+            // methods,
+            onChange,
             onFocus,
             onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
             // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible,
-            ptm,
-            ptmi,
-            cx,
-            sx,
-            ref
+            checked
         } = toggleswitch;
-
-        const inputRef = React.useRef(props.inputRef);
-        const checked = props.checked === props.trueValue;
 
         const getPTOptions = (key) => {
             const _ptm = key === 'root' ? ptmi : ptm;
@@ -52,45 +34,6 @@ export const ToggleSwitch = React.memo(
             });
         };
 
-        const onChange = (event) => {
-            if (props.onChange) {
-                const value = checked ? props.falseValue : props.trueValue;
-
-                props.onChange({
-                    originalEvent: event,
-                    value,
-                    stopPropagation: () => {
-                        event?.stopPropagation();
-                    },
-                    preventDefault: () => {
-                        event?.preventDefault();
-                    },
-                    target: {
-                        name: props.name,
-                        id: props.id,
-                        value
-                    }
-                });
-            }
-        };
-
-        const onFocus = (event) => {
-            props?.onFocus?.(event);
-        };
-
-        const onBlur = (event) => {
-            props?.onBlur?.(event);
-        };
-
-        React.useImperativeHandle(ref, () => ({
-            props,
-            focus: () => focus(inputRef.current),
-            getElement: () => elementRef.current,
-            getInput: () => inputRef.current
-        }));
-
-        const hasTooltip = isNotEmpty(props.tooltip);
-
         const sliderProps = mergeProps(
             {
                 className: cx('slider')
@@ -100,33 +43,31 @@ export const ToggleSwitch = React.memo(
 
         const inputProps = mergeProps(
             {
-                ref: inputRef,
-                type: 'checkbox',
                 id: props.inputId,
-                name: props.name,
-                checked: checked,
-                onChange: onChange,
-                onFocus: onFocus,
-                onBlur: onBlur,
-                disabled: props.disabled,
-                role: 'switch',
-                tabIndex: props.tabIndex,
-                'aria-checked': checked,
+                type: 'checkbox',
                 style: props.inputStyle,
                 className: classNames(cx('input'), props.inputClassName),
+                checked: checked,
+                tabIndex: props.tabIndex,
+                disabled: props.disabled,
+                readOnly: props.readOnly,
+                role: 'switch',
+                'aria-checked': checked,
                 'aria-labelledby': props.ariaLabelledby,
                 'aria-label': props.ariaLabel,
-                'aria-invalid': props.invalid || undefined
+                'aria-invalid': props.invalid || undefined,
+                onChange: onChange,
+                onFocus: onFocus,
+                onBlur: onBlur
             },
             getPTOptions('input')
         );
 
         const rootProps = mergeProps(
             {
-                ref,
-                id: props.id,
-                style: { ...props.style, ...sx('root') },
-                className: classNames(cx('root'), props.className),
+                id,
+                style: sx('root'),
+                className: cx('root'),
                 'data-p-checked': checked,
                 'data-p-disabled': props.disabled
             },
