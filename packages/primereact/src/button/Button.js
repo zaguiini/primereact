@@ -136,7 +136,7 @@ export const Button = React.memo(
                     {content}
                     <Ripple />
                 </Component>
-                <Tooltip pIf={isNotEmpty(props.tooltip)} target={ref} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
+                <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>
         );
     })

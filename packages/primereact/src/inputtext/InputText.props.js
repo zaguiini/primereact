@@ -1,7 +1,5 @@
 export const defaultProps = {
     __TYPE: 'InputText',
-    style: null,
-    className: null,
     size: null,
     invalid: false,
     variant: null,
@@ -13,6 +11,5 @@ export const defaultProps = {
     onBeforeInput: null,
     onInput: null,
     onKeyDown: null,
-    onPaste: null,
-    children: undefined
+    onPaste: null
 };
