@@ -1,8 +1,5 @@
 export const defaultProps = {
     __TYPE: 'Slider',
-    id: null,
-    style: null,
-    className: null,
     value: null,
     min: 0,
     max: 100,
@@ -14,6 +11,5 @@ export const defaultProps = {
     ariaLabel: null,
     ariaLabelledby: null,
     onChange: null,
-    onSlideEnd: null,
-    children: undefined
+    onSlideEnd: null
 };
