@@ -2,12 +2,12 @@ import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
-import { InputTextarea } from './InputTextarea';
+import { Textarea } from './Textarea';
 
-describe('InputTextarea', () => {
+describe('Textarea', () => {
     test('when textarea is enabled then textarea accepts data entry and have filled state', async () => {
         // Arrange
-        const { container } = render(<InputTextarea />);
+        const { container } = render(<Textarea />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -21,7 +21,7 @@ describe('InputTextarea', () => {
     test('when textarea is is autosizing and has rows and columns it is rendered correctly', () => {
         // Arrange
         const blurOn = jest.fn();
-        const { container } = render(<InputTextarea autoResize rows={3} cols={12} onBlur={blurOn} />);
+        const { container } = render(<Textarea autoResize rows={3} cols={12} onBlur={blurOn} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -33,7 +33,7 @@ describe('InputTextarea', () => {
     });
     test('when input is blank it should not have filled state', async () => {
         // Arrange
-        const { container } = render(<InputTextarea disabled={false} />);
+        const { container } = render(<Textarea disabled={false} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -45,7 +45,7 @@ describe('InputTextarea', () => {
     });
     test('when input is is set for validation only', async () => {
         // Arrange
-        const { container } = render(<InputTextarea validateOnly keyfilter={'alpha'} />);
+        const { container } = render(<Textarea validateOnly keyfilter={'alpha'} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -56,7 +56,7 @@ describe('InputTextarea', () => {
     });
     test('when input is disabled it should render as disabled', async () => {
         // Arrange
-        const { container } = render(<InputTextarea disabled />);
+        const { container } = render(<Textarea disabled />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -70,7 +70,7 @@ describe('InputTextarea', () => {
         // Arrange
         const keydownOn = jest.fn();
         const keyupOn = jest.fn();
-        const { container } = render(<InputTextarea keyfilter="int" onKeyDown={keydownOn} onKeyUp={keyupOn} autoResize />);
+        const { container } = render(<Textarea keyfilter="int" onKeyDown={keydownOn} onKeyUp={keyupOn} autoResize />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -84,7 +84,7 @@ describe('InputTextarea', () => {
     test('when input is using keyfilter for integers do not accept alphabetic input', async () => {
         // Arrange
         const keydownOn = jest.fn();
-        const { container } = render(<InputTextarea keyfilter="int" onKeyDown={keydownOn} />);
+        const { container } = render(<Textarea keyfilter="int" onKeyDown={keydownOn} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -97,7 +97,7 @@ describe('InputTextarea', () => {
     test('when input is using keyfilter for alphabetic accept paste of alphabetic values', async () => {
         // Arrange
         const pasteOn = jest.fn();
-        const { container } = render(<InputTextarea keyfilter="alpha" onPaste={pasteOn} />);
+        const { container } = render(<Textarea keyfilter="alpha" onPaste={pasteOn} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -111,7 +111,7 @@ describe('InputTextarea', () => {
     test('when input is using keyfilter for alphabetic do not accept paste of integer values', async () => {
         // Arrange
         const pasteOn = jest.fn();
-        const { container } = render(<InputTextarea keyfilter="alpha" onPaste={pasteOn} />);
+        const { container } = render(<Textarea keyfilter="alpha" onPaste={pasteOn} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act
@@ -126,7 +126,7 @@ describe('InputTextarea', () => {
         // Arrange
         const inputOn = jest.fn();
         const ref = React.createRef();
-        const { container } = render(<InputTextarea ref={ref} onInput={inputOn} />);
+        const { container } = render(<Textarea ref={ref} onInput={inputOn} />);
         const input = container.getElementsByTagName('textarea')[0];
 
         // Act

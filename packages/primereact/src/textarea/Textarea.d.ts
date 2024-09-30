@@ -11,7 +11,7 @@ import { TooltipPassThroughOptions } from 'primereact/tooltip';
 import { TooltipOptions } from 'primereact/tooltipoptions';
 import * as React from 'react';
 import { ComponentHooks } from '../componentbase/componentbase';
-import { KeyFilterType } from '../keyfilter';
+import { KeyFilterType } from '../keyfilter/KeyFilterOptions';
 import { PassThroughOptions } from '../passthrough';
 import { PassThroughType } from '../utils/utils';
 

@@ -1,0 +1,6 @@
+{
+    "main": "./Textarea.js",
+    "module": "./Textarea.js",
+    "types": "./Textarea.d.ts",
+    "sideEffects": false
+}

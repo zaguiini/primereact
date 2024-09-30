@@ -1,6 +1,0 @@
-{
-    "main": "./InputTextarea.js",
-    "module": "./InputTextarea.js",
-    "types": "./InputTextarea.d.ts",
-    "sideEffects": false
-}
