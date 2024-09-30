@@ -1,8 +1,6 @@
 export const defaultProps = {
     __TYPE: 'InputOtp',
-    __parentMetadata: null,
-    className: null,
-    modelValue: false,
+    value: undefined,
     invalid: false,
     disabled: false,
     readOnly: false,
@@ -10,5 +8,8 @@ export const defaultProps = {
     tabIndex: null,
     length: 4,
     mask: false,
-    integerOnly: false
+    integerOnly: false,
+    onChange: null,
+    onFocus: null,
+    onBlur: null
 };

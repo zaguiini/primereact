@@ -7,7 +7,7 @@ export const useToggleSwitch = withComponent(
         // methods
         const onChange = (event) => {
             if (!props.disabled && !props.readOnly) {
-                const newValue = checked ? props.falseValue : props.trueValue;
+                const value = checked ? props.falseValue : props.trueValue;
 
                 props.onChange?.({
                     originalEvent: event,
