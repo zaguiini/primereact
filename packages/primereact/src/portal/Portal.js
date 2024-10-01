@@ -30,6 +30,10 @@ export const Portal = React.memo((inProps) => {
 
     const element = props.element || props.children;
 
+    if (props.disabled) {
+        return element;
+    }
+
     if (element && mountedState) {
         const appendTo = getTargetElement(resolve(props.appendTo || config?.appendTo)) || document.body;
         const content = appendTo === 'self' ? element : ReactDOM.createPortal(element, appendTo);
