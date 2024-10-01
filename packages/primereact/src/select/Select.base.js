@@ -1,6 +1,6 @@
 import { FilterService } from '@primereact/core/api';
 import { withComponent } from '@primereact/core/component';
-import { useEventListener, useMountEffect, useOverlayListener, useUpdateEffect } from '@primereact/hooks';
+import { useEventListener, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { style } from '@primereact/styles/select';
 import {
     addStyle,
@@ -71,8 +71,7 @@ export const useSelect = withComponent(
             type: 'click',
             listener: () => {
                 focus(focusInputRef.current);
-            },
-            when: !props.editable
+            }
         });
 
         // methods
@@ -736,10 +735,15 @@ export const useSelect = withComponent(
             if (overlayVisible) {
                 // @todo
                 scrollInView(focusedOptionIndex);
+                alignOverlay();
             }
 
             //isModelValueChanged.current = false;
         }, [focusedOptionIndex, overlayVisible]);
+
+        useUnmountEffect(() => {
+            ZIndex.clear(overlayRef.current);
+        });
 
         return {
             state,

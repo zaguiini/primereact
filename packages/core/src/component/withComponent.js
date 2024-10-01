@@ -26,6 +26,7 @@ export const withComponent = (callback, defaultProps, style) => {
             state,
             style,
             parent,
+            $el: toValue(elementRef),
             $primereact: {
                 config
             },
