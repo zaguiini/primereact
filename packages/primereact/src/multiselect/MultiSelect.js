@@ -1,1148 +1,203 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
-import { ChevronDownIcon } from '@primereact/icons/chevrondown';
-import { SpinnerIcon } from '@primereact/icons/spinner';
-import { TimesIcon } from '@primereact/icons/times';
-import { TimesCircleIcon } from '@primereact/icons/timescircle';
-import { OverlayService } from 'primereact/overlayservice';
+import { isEmpty, isNotEmpty, mergeProps } from '@primeuix/utils';
 import { Tooltip } from 'primereact/tooltip';
 import * as React from 'react';
-import PrimeReact, { FilterService, localeOption } from '../api/Api';
-import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { useMultiSelect } from './MultiSelect.base';
-import { MultiSelectBase } from './MultiSelectBase';
-import { MultiSelectPanel } from './MultiSelectPanel';
 
 export const MultiSelect = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(null);
-        const [clicked, setClicked] = React.useState(false);
-        const [filterState, setFilterState] = React.useState('');
-        const [startRangeIndex, setStartRangeIndex] = React.useState(-1);
-        const [focusedState, setFocusedState] = React.useState(false);
-        const [overlayVisibleState, setOverlayVisibleState] = React.useState(props.inline);
-        const elementRef = React.useRef(null);
-        const searchValue = React.useRef(null);
-        const searchTimeout = React.useRef(null);
-        const firstHiddenFocusableElementOnOverlay = React.useRef(null);
-        const lastHiddenFocusableElementOnOverlay = React.useRef(null);
-        const inputRef = React.useRef(props.inputRef);
-        const labelRef = React.useRef(null);
-        const overlayRef = React.useRef(null);
-        const hasFilter = filterState && filterState.trim().length > 0;
-        const empty = ObjectUtils.isEmpty(props.value);
-        const equalityKey = props.optionValue ? null : props.dataKey;
-        const state = {
-            filterState: filterState,
-            focused: focusedState,
-            overlayVisible: overlayVisibleState
-        };
-
-        const multiselect = useMultiSelect(inProps, inRef, state);
-        const { props, ptm, ptmi, cx, ref } = multiselect;
-
-        const [bindOverlayListener, unbindOverlayListener] = useOverlayListener({
-            target: elementRef,
-            overlay: overlayRef,
-            listener: (event, { type, valid }) => {
-                if (valid) {
-                    if (type === 'outside') {
-                        !isClearClicked(event) && !isSelectAllClicked(event) && hide();
-                    } else {
-                        hide();
-                    }
-                }
-            },
-            when: overlayVisibleState
-        });
-
-        const onFirstHiddenFocus = (event) => {
-            const focusableEl = event.relatedTarget === inputRef.current ? DomHandler.getFirstFocusableElement(overlayRef.current, ':not([data-p-hidden-focusable="true"])') : inputRef.current;
-
-            DomHandler.focus(focusableEl);
-        };
-
-        const onLastHiddenFocus = (event) => {
-            const focusableEl = event.relatedTarget === inputRef.current ? DomHandler.getLastFocusableElement(overlayRef.current, ':not([data-p-hidden-focusable="true"])') : inputRef.current;
-
-            DomHandler.focus(focusableEl);
-        };
-
-        const onPanelClick = (event) => {
-            OverlayService.emit('overlay-click', {
-                originalEvent: event,
-                target: elementRef.current
-            });
-        };
-
-        const allowOptionSelect = () => {
-            return !props.selectionLimit || !props.value || (props.value && props.value.length < props.selectionLimit);
-        };
-
-        const findNextSelectedOptionIndex = (index) => {
-            const matchedOptionIndex = hasSelectedOption() && index < visibleOptions.length - 1 ? visibleOptions.slice(index + 1).findIndex((option) => isValidSelectedOption(option)) : -1;
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : -1;
-        };
-
-        const findPrevSelectedOptionIndex = (index) => {
-            const matchedOptionIndex = hasSelectedOption() && index > 0 ? ObjectUtils.findLastIndex(visibleOptions.slice(0, index), (option) => isValidSelectedOption(option)) : -1;
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex : -1;
-        };
-
-        const findNearestSelectedOptionIndex = (index, firstCheckUp = false) => {
-            let matchedOptionIndex = -1;
-
-            if (hasSelectedOption()) {
-                if (firstCheckUp) {
-                    matchedOptionIndex = findPrevSelectedOptionIndex(index);
-                    matchedOptionIndex = matchedOptionIndex === -1 ? findNextSelectedOptionIndex(index) : matchedOptionIndex;
-                } else {
-                    matchedOptionIndex = findNextSelectedOptionIndex(index);
-                    matchedOptionIndex = matchedOptionIndex === -1 ? findPrevSelectedOptionIndex(index) : matchedOptionIndex;
-                }
-            }
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex : index;
-        };
-
-        const onOptionSelectRange = (event, start = -1, end = -1) => {
-            start === -1 && (start = findNearestSelectedOptionIndex(end, true));
-            end === -1 && (end = findNearestSelectedOptionIndex(start));
-
-            if (start !== -1 && end !== -1) {
-                const rangeStart = Math.min(start, end);
-                const rangeEnd = Math.max(start, end);
-                const value = visibleOptions
-                    .slice(rangeStart, rangeEnd + 1)
-                    .filter((option) => isValidOption(option))
-                    .map((option) => getOptionValue(option));
-
-                updateModel(event, value, value);
-            }
-        };
-
-        const onOptionSelect = (event, option, index = -1) => {
-            if (props.disabled || isOptionDisabled(option)) {
-                return;
-            }
-
-            let selected = isSelected(option);
-            let value = null;
-
-            if (selected) {
-                value = props.value.filter((val) => !ObjectUtils.equals(val, getOptionValue(option), equalityKey));
-            } else {
-                value = [...(props.value || []), getOptionValue(option)];
-            }
-
-            updateModel(event, value, option);
-            index !== -1 && setFocusedOptionIndex(index);
-        };
-
-        const onClick = (event) => {
-            if (!props.inline && !props.disabled && !props.loading && !isPanelClicked(event) && !isClearClicked(event)) {
-                overlayVisibleState ? hide() : show();
-                DomHandler.focus(inputRef.current);
-                event.preventDefault();
-            }
-
-            setClicked(true);
-        };
-
-        const onArrowDownKey = (event) => {
-            if (!overlayVisibleState) {
-                show();
-                props.editable && changeFocusedOptionIndex(event, findSelectedOptionIndex());
-            } else {
-                const optionIndex = focusedOptionIndex !== -1 ? findNextOptionIndex(focusedOptionIndex) : clicked ? findFirstOptionIndex() : findFirstFocusedOptionIndex();
-
-                if (event.shiftKey) {
-                    onOptionSelectRange(event, startRangeIndex, optionIndex);
-                }
-
-                changeFocusedOptionIndex(event, optionIndex);
-            }
-
-            event.preventDefault();
-        };
-
-        const onArrowUpKey = (event, pressedInInputText = false) => {
-            if (event.altKey && !pressedInInputText) {
-                if (focusedOptionIndex !== -1) {
-                    onOptionSelect(event, visibleOptions[focusedOptionIndex]);
-                }
-
-                overlayVisibleState && hide();
-                event.preventDefault();
-            } else {
-                const optionIndex = focusedOptionIndex !== -1 ? findPrevOptionIndex(focusedOptionIndex) : clicked ? findLastOptionIndex() : findLastFocusedOptionIndex();
-
-                changeFocusedOptionIndex(event, optionIndex);
-
-                !overlayVisibleState && show();
-                event.preventDefault();
-            }
-        };
-
-        const onEnterKey = (event) => {
-            if (!overlayVisibleState) {
-                setFocusedOptionIndex(-1);
-                onArrowDownKey(event);
-            } else if (focusedOptionIndex !== -1) {
-                if (event.shiftKey) {
-                    onOptionSelectRange(event, focusedOptionIndex);
-                } else {
-                    onOptionSelect(event, visibleOptions[focusedOptionIndex]);
-                }
-            }
-
-            event.preventDefault();
-        };
-
-        const onHomeKey = (event, pressedInInputText = false) => {
-            const { currentTarget } = event;
-
-            if (pressedInInputText) {
-                const len = currentTarget.value.length;
-
-                currentTarget.setSelectionRange(0, event.shiftKey ? len : 0);
-                setFocusedOptionIndex(-1);
-            } else {
-                let metaKey = event.metaKey || event.ctrlKey;
-                let optionIndex = findFirstOptionIndex();
-
-                if (event.shiftKey && metaKey) {
-                    onOptionSelectRange(event, optionIndex, startRangeIndex);
-                }
-
-                changeFocusedOptionIndex(event, optionIndex);
-
-                !overlayVisibleState && show();
-            }
-
-            event.preventDefault();
-        };
-
-        const onEndKey = (event, pressedInInputText = false) => {
-            const { currentTarget } = event;
-
-            if (pressedInInputText) {
-                const len = currentTarget.value.length;
-
-                currentTarget.setSelectionRange(event.shiftKey ? 0 : len, len);
-                focusedOptionIndex = -1;
-            } else {
-                let metaKey = event.metaKey || event.ctrlKey;
-                let optionIndex = findLastOptionIndex();
-
-                if (event.shiftKey && metaKey) {
-                    onOptionSelectRange(event, startRangeIndex, optionIndex);
-                }
-
-                changeFocusedOptionIndex(event, optionIndex);
-
-                !overlayVisibleState && show();
-            }
-
-            event.preventDefault();
-        };
-
-        const onPageUpKey = (event) => {
-            event.preventDefault();
-        };
-
-        const onPageDownKey = (event) => {
-            event.preventDefault();
-        };
-
-        const onTabKey = (event, pressedInInputText = false) => {
-            if (!pressedInInputText) {
-                if (overlayVisibleState && hasFocusableElements()) {
-                    DomHandler.focus(event.shiftKey ? lastHiddenFocusableElementOnOverlay.current : firstHiddenFocusableElementOnOverlay.current);
-
-                    event.preventDefault();
-                } else {
-                    if (focusedOptionIndex !== -1) {
-                        onOptionSelect(event, visibleOptions[focusedOptionIndex]);
-                    }
-
-                    overlayVisibleState && hide(filter);
-                }
-            }
-        };
-
-        const onShiftKey = () => {
-            setStartRangeIndex(focusedOptionIndex);
-        };
-
-        const onKeyDown = (event) => {
-            const metaKey = event.metaKey || event.ctrlKey;
-
-            switch (event.code) {
-                case 'ArrowUp':
-                    if (props.inline) {
-                        break;
-                    }
-
-                    onArrowUpKey(event);
-                    break;
-
-                case 'ArrowDown':
-                    if (props.inline) {
-                        break;
-                    }
-
-                    onArrowDownKey(event);
-
-                    break;
-
-                case 'Space':
-                case 'NumpadEnter':
-                case 'Enter':
-                    if (props.inline) {
-                        break;
-                    }
-
-                    onEnterKey(event);
-                    break;
-
-                case 'Home':
-                    if (props.inline) {
-                        break;
-                    }
-
-                    onHomeKey(event);
-                    event.preventDefault();
-                    break;
-
-                case 'End':
-                    if (props.inline) {
-                        break;
-                    }
-
-                    onEndKey(event);
-                    event.preventDefault();
-                    break;
-
-                case 'PageDown':
-                    onPageDownKey(event);
-                    break;
-
-                case 'PageUp':
-                    onPageUpKey(event);
-                    break;
-
-                case 'Escape':
-                    if (props.inline) {
-                        break;
-                    }
-
-                    hide();
-                    break;
-
-                case 'Tab':
-                    onTabKey(event);
-                    break;
-
-                case 'ShiftLeft':
-                case 'ShiftRight':
-                    onShiftKey(event);
-                    break;
-
-                default:
-                    if (event.code === 'KeyA' && metaKey) {
-                        const value = visibleOptions.filter((option) => isValidOption(option)).map((option) => getOptionValue(option));
-
-                        updateModel(event, value, value);
-
-                        event.preventDefault();
-                        break;
-                    }
-
-                    if (!metaKey && ObjectUtils.isPrintableCharacter(event.key)) {
-                        !overlayVisibleState && show();
-                        searchOptions(event);
-                        event.preventDefault();
-                    }
-
-                    break;
-            }
-
-            setClicked(false);
-        };
-
-        const onSelectAll = (event) => {
-            if (props.onSelectAll) {
-                props.onSelectAll(event);
-            } else {
-                let value = null;
-
-                if (event.checked) {
-                    value = [];
-
-                    if (visibleOptions) {
-                        const selectedOptions = visibleOptions.filter((option) => isOptionDisabled(option) && isSelected(option));
-
-                        value = selectedOptions.map((option) => getOptionValue(option));
-                    }
-                } else if (visibleOptions) {
-                    const options = visibleOptions.filter((option) => !isOptionDisabled(option) || isSelected(option));
-
-                    if (props.optionGroupLabel) {
-                        value = [];
-                        options.forEach(
-                            (optionGroup) =>
-                                (value = [
-                                    ...value,
-                                    ...getOptionGroupChildren(optionGroup)
-                                        .filter((option) => !isOptionDisabled(option))
-                                        .map((option) => getOptionValue(option))
-                                ])
-                        );
-                    } else {
-                        value = options.map((option) => getOptionValue(option));
-                    }
-                }
-
-                // make sure not to exceed the selection limit
-                if (props.selectionLimit && value && value.length) {
-                    value = value.slice(0, props.selectionLimit);
-                }
-
-                updateModel(event.originalEvent, value, value);
-            }
-        };
-
-        const updateModel = (event, value, selectedOption) => {
-            if (props.onChange) {
-                props.onChange({
-                    originalEvent: event,
-                    value,
-                    selectedOption,
-                    stopPropagation: () => {
-                        event?.stopPropagation();
-                    },
-                    preventDefault: () => {
-                        event?.preventDefault();
-                    },
-                    target: {
-                        name: props.name,
-                        id: props.id,
-                        value
-                    }
-                });
-                DomHandler.focus(inputRef.current);
-            }
-        };
-
-        const onFilterInputChange = (event) => {
-            const filter = event.query;
-
-            setFilterState(filter);
-
-            if (props.onFilter) {
-                props.onFilter({
-                    originalEvent: event,
-                    filter
-                });
-            }
-        };
-
-        const resetFilter = () => {
-            setFilterState('');
-            props.onFilter && props.onFilter({ filter: '' });
-        };
-
-        const scrollInView = (event) => {
-            if (!overlayVisibleState) {
-                return;
-            }
-
-            let focusedItem;
-
-            if (event) {
-                focusedItem = event.currentTarget;
-            } else {
-                focusedItem = DomHandler.findSingle(overlayRef.current, 'li[data-p-highlight="true"]');
-            }
-
-            if (focusedItem && focusedItem.scrollIntoView) {
-                focusedItem.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-            }
-        };
-
-        const show = () => {
-            setOverlayVisibleState(true);
-            setFocusedOptionIndex(focusedOptionIndex !== -1 ? focusedOptionIndex : props.autoOptionFocus ? findFirstFocusedOptionIndex() : findSelectedOptionIndex());
-            DomHandler.focus(inputRef.current);
-        };
-
-        const hide = () => {
-            setFocusedOptionIndex(-1);
-            setOverlayVisibleState(false);
-            setClicked(false);
-        };
-
-        const onOverlayEnter = (callback) => {
-            ZIndexUtils.set('overlay', overlayRef.current, (context && context.autoZIndex) || PrimeReact.autoZIndex, (context && context.zIndex.overlay) || PrimeReact.zIndex.overlay);
-            DomHandler.addStyles(overlayRef.current, { position: 'absolute', top: '0', left: '0' });
-            alignOverlay();
-            scrollInView();
-            callback && callback();
-        };
-
-        const onOverlayEntered = (callback) => {
-            callback && callback();
-            bindOverlayListener();
-            props.onShow && props.onShow();
-        };
-
-        const onOverlayExit = () => {
-            unbindOverlayListener();
-        };
-
-        const onOverlayExited = () => {
-            if (props.filter && props.resetFilterOnHide) {
-                resetFilter();
-            }
-
-            ZIndexUtils.clear(overlayRef.current);
-
-            props.onHide && props.onHide();
-        };
-
-        const alignOverlay = () => {
-            DomHandler.alignOverlay(overlayRef.current, labelRef.current.parentElement, props.appendTo || (context && context.appendTo) || PrimeReact.appendTo);
-        };
-
-        const isClearClicked = (event) => {
-            return DomHandler.getAttribute(event.target, 'data-pc-section') === 'clearicon';
-        };
-
-        const isSelectAllClicked = (event) => {
-            return DomHandler.getAttribute(event.target, 'data-pc-section') === 'headercheckboxcontainer';
-        };
-
-        const isPanelClicked = (event) => {
-            return overlayRef.current && overlayRef.current.contains(event.target);
-        };
-
-        const onCloseClick = (event) => {
-            hide();
-            DomHandler.focus(inputRef.current);
-            event.preventDefault();
-            event.stopPropagation();
-        };
-
-        const getSelectedOptionIndex = () => {
-            if (props.value != null && props.options) {
-                if (props.optionGroupLabel) {
-                    let groupIndex = 0;
-                    const optionIndex = props.options.findIndex((optionGroup, i) => (groupIndex = i) && findOptionIndexInList(props.value, getOptionGroupChildren(optionGroup)) !== -1);
-
-                    return optionIndex !== -1 ? { group: groupIndex, option: optionIndex } : -1;
-                }
-
-                return findOptionIndexInList(props.value, props.options);
-            }
-
-            return -1;
-        };
-
-        const findOptionIndexInList = (value, list) => {
-            return list.findIndex((item) => value.some((val) => ObjectUtils.equals(val, getOptionValue(item), equalityKey)));
-        };
-
-        const isEquals = (value1, value2) => {
-            return ObjectUtils.equals(value1, value2, equalityKey);
-        };
-
-        const isSelected = (option) => {
-            if (props.value) {
-                const optionValue = getOptionValue(option);
-                const isUsed = isOptionValueUsed(option);
-
-                return props.value.some((val) => ObjectUtils.equals(isUsed ? val : getOptionValue(val), optionValue, equalityKey));
-            }
-
-            return false;
-        };
-
-        const getLabelByValue = (val) => {
-            let option;
-
-            if (props.options) {
-                if (props.optionGroupLabel) {
-                    for (let optionGroup of props.options) {
-                        option = findOptionByValue(val, getOptionGroupChildren(optionGroup));
-
-                        if (option) {
-                            break;
-                        }
-                    }
-                } else {
-                    option = findOptionByValue(val, props.options);
-
-                    if (ObjectUtils.isEmpty(option)) {
-                        option = findOptionByValue(val, props.value);
-                    }
-                }
-            }
-
-            return option ? getOptionLabel(option) : null;
-        };
-
-        const findOptionByValue = (val, list) => {
-            return list.find((option) => ObjectUtils.equals(getOptionValue(option), val, equalityKey));
-        };
-
-        const onFocus = (event) => {
-            setFocusedState(true);
-            props.onFocus && props.onFocus(event);
-        };
-
-        const onBlur = (event) => {
-            setFocusedState(false);
-            props.onBlur && props.onBlur(event);
-        };
-
-        const isAllSelected = () => {
-            if (props.onSelectAll) {
-                return props.selectAll;
-            }
-
-            if (ObjectUtils.isEmpty(visibleOptions)) {
-                return false;
-            }
-
-            const options = visibleOptions.filter((option) => !isOptionDisabled(option));
-
-            if (props.optionGroupLabel) {
-                let areAllSelected = true;
-
-                for (let optionGroup of options) {
-                    const visibleOptionsGroupChildren = getOptionGroupChildren(optionGroup).filter((option) => !isOptionDisabled(option));
-
-                    if (visibleOptionsGroupChildren.some((option) => !isSelected(option)) === true) {
-                        areAllSelected = false;
-                    }
-                }
-
-                return areAllSelected;
-            }
-
-            return !options.some((option) => !isSelected(option));
-        };
-
-        const getOptionLabel = (option) => {
-            return props.optionLabel ? ObjectUtils.resolveFieldData(option, props.optionLabel) : option && option.label !== undefined ? option.label : option;
-        };
-
-        const getOptionValue = (option) => {
-            if (props.useOptionAsValue) {
-                return option;
-            }
-
-            if (props.optionValue) {
-                const data = ObjectUtils.resolveFieldData(option, props.optionValue);
-
-                return data !== null ? data : option;
-            }
-
-            return option && option.value !== undefined ? option.value : option;
-        };
-
-        const getOptionRenderKey = (option) => {
-            return props.dataKey ? ObjectUtils.resolveFieldData(option, props.dataKey) : getOptionLabel(option);
-        };
-
-        const getOptionGroupRenderKey = (optionGroup) => {
-            return ObjectUtils.resolveFieldData(optionGroup, props.optionGroupLabel);
-        };
-
-        const getOptionGroupLabel = (optionGroup) => {
-            return ObjectUtils.resolveFieldData(optionGroup, props.optionGroupLabel);
-        };
-
-        const getOptionGroupChildren = (optionGroup) => {
-            return ObjectUtils.resolveFieldData(optionGroup, props.optionGroupChildren);
-        };
-
-        const isOptionDisabled = (option) => {
-            // disable if we have hit our selection limit
-            if (!allowOptionSelect() && !isSelected(option)) {
-                return true;
-            }
-
-            // check if custom optionDisabled function is being used
-            const { optionDisabled } = props;
-
-            if (optionDisabled) {
-                return ObjectUtils.isFunction(optionDisabled) ? optionDisabled(option) : ObjectUtils.resolveFieldData(option, optionDisabled);
-            }
-
-            // fallback to the option itself disabled value
-            return option && (option.disabled ?? false);
-        };
-
-        const isOptionValueUsed = (option) => {
-            return (!props.useOptionAsValue && props.optionValue) || (option && option.value !== undefined);
-        };
-
-        const isOptionGroup = (option) => {
-            return props.optionGroupLabel && option.optionGroup && option.group;
-        };
-
-        const hasSelectedOption = () => {
-            return ObjectUtils.isNotEmpty(props.value);
-        };
-
-        const hasFocusableElements = () => {
-            return DomHandler.getFocusableElements(overlayRef.current, ':not([data-p-hidden-focusable="true"])').length > 0;
-        };
-
-        const isOptionMatched = (option) => {
-            return isValidOption(option) && getOptionLabel(option)?.toLocaleLowerCase(props.filterLocale).startsWith(searchValue.current.toLocaleLowerCase(props.filterLocale));
-        };
-
-        const isValidOption = (option) => {
-            return ObjectUtils.isNotEmpty(option) && !(isOptionDisabled(option) || isOptionGroup(option));
-        };
-
-        const isValidSelectedOption = (option) => {
-            return isValidOption(option) && isSelected(option);
-        };
-
-        const findSelectedOptionIndex = () => {
-            if (hasSelectedOption()) {
-                for (let index = props.value.length - 1; index >= 0; index--) {
-                    const value = props.value[index];
-                    const matchedOptionIndex = visibleOptions.findIndex((option) => isValidSelectedOption(option) && isEquals(value, getOptionValue(option)));
-
-                    if (matchedOptionIndex > -1) {
-                        return matchedOptionIndex;
-                    }
-                }
-            }
-
-            return -1;
-        };
-
-        const findFirstFocusedOptionIndex = () => {
-            const selectedIndex = findSelectedOptionIndex();
-
-            return selectedIndex < 0 ? findFirstOptionIndex() : selectedIndex;
-        };
-
-        const findLastFocusedOptionIndex = () => {
-            const selectedIndex = findSelectedOptionIndex();
-
-            return selectedIndex < 0 ? findLastOptionIndex() : selectedIndex;
-        };
-
-        const findFirstOptionIndex = () => {
-            return visibleOptions.findIndex((option) => isValidOption(option));
-        };
-
-        const findLastOptionIndex = () => {
-            return ObjectUtils.findLastIndex(visibleOptions, (option) => isValidOption(option));
-        };
-
-        const findNextOptionIndex = (index) => {
-            const matchedOptionIndex = index < visibleOptions.length - 1 ? visibleOptions.slice(index + 1).findIndex((option) => isValidOption(option)) : -1;
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
-        };
-
-        const findPrevOptionIndex = (index) => {
-            const matchedOptionIndex = index > 0 ? ObjectUtils.findLastIndex(visibleOptions.slice(0, index), (option) => isValidOption(option)) : -1;
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex : index;
-        };
-
-        const searchOptions = (event) => {
-            searchValue.current = (searchValue.current || '') + event.key;
-
-            let optionIndex = -1;
-
-            if (ObjectUtils.isNotEmpty(searchValue.current)) {
-                if (focusedOptionIndex !== -1) {
-                    optionIndex = visibleOptions.slice(focusedOptionIndex).findIndex((option) => isOptionMatched(option));
-                    optionIndex = optionIndex === -1 ? visibleOptions.slice(0, focusedOptionIndex).findIndex((option) => isOptionMatched(option)) : optionIndex + focusedOptionIndex;
-                } else {
-                    optionIndex = visibleOptions.findIndex((option) => isOptionMatched(option));
-                }
-
-                if (optionIndex === -1 && focusedOptionIndex === -1) {
-                    optionIndex = findFirstFocusedOptionIndex();
-                }
-
-                if (optionIndex !== -1) {
-                    changeFocusedOptionIndex(event, optionIndex);
-                }
-            }
-
-            if (searchTimeout.current) {
-                clearTimeout(searchTimeout.current);
-            }
-
-            searchTimeout.current = setTimeout(() => {
-                searchValue.current = '';
-                searchTimeout.current = null;
-            }, 500);
-        };
-
-        const changeFocusedOptionIndex = (event, index) => {
-            if (focusedOptionIndex !== index) {
-                setFocusedOptionIndex(index);
-                scrollInView(event);
-
-                if (props.selectOnFocus) {
-                    onOptionSelect(event, visibleOptions[index], false);
-                }
-            }
-        };
-
-        const removeChip = (event, item) => {
-            event.stopPropagation();
-
-            const value = props.value.filter((val) => !ObjectUtils.equals(val, item, equalityKey));
-
-            if (props.onRemove) {
-                props.onRemove({
-                    originalEvent: event,
-                    value
-                });
-            }
-
-            updateModel(event, value, item);
-        };
-
-        const getSelectedItemsLabel = () => {
-            const pattern = /{(.*?)}/;
-            const selectedItemsLabel = props.selectedItemsLabel || localeOption('selectionMessage');
-
-            if (pattern.test(selectedItemsLabel)) {
-                return selectedItemsLabel.replace(selectedItemsLabel.match(pattern)[0], props.value.length + '');
-            }
-
-            return selectedItemsLabel;
-        };
-
-        const getLabel = () => {
-            let label;
-
-            if (!empty && !props.fixedPlaceholder) {
-                if (ObjectUtils.isNotEmpty(props.maxSelectedLabels) && props.value.length > props.maxSelectedLabels) {
-                    return getSelectedItemsLabel();
-                }
-
-                if (ObjectUtils.isArray(props.value)) {
-                    return props.value.reduce((acc, value, index) => acc + (index !== 0 ? ', ' : '') + getLabelByValue(value), '');
-                }
-
-                return '';
-            }
-
-            return label;
-        };
-
-        const getLabelContent = () => {
-            if (props.selectedItemTemplate) {
-                if (!empty) {
-                    if (ObjectUtils.isNotEmpty(props.maxSelectedLabels) && props.value.length > props.maxSelectedLabels) {
-                        return getSelectedItemsLabel();
-                    }
-
-                    return props.value.map((val, index) => {
-                        const item = ObjectUtils.getJSXElement(props.selectedItemTemplate, val);
-
-                        return <React.Fragment key={index}>{item}</React.Fragment>;
-                    });
-                }
-
-                return ObjectUtils.getJSXElement(props.selectedItemTemplate);
-            }
-
-            if (props.display === 'chip' && !empty) {
-                const value = props.value.slice(0, props.maxSelectedLabels || props.value.length);
-
-                return value.map((val, i) => {
-                    const context = {
-                        context: {
-                            value: val,
-                            index: i
-                        }
-                    };
-                    const label = getLabelByValue(val);
-                    const labelKey = label + '_' + i;
-                    const iconProps = mergeProps(
-                        {
-                            className: cx('removeTokenIcon'),
-                            onClick: (e) => removeChip(e, val)
-                        },
-                        ptm('removeTokenIcon', context)
-                    );
-                    const icon = !props.disabled && (props.removeIcon ? IconUtils.getJSXIcon(props.removeIcon, { ...iconProps }, { props }) : <TimesCircleIcon {...iconProps} />);
-
-                    const tokenProps = mergeProps(
-                        {
-                            className: cx('token')
-                        },
-                        ptm('token', context)
-                    );
-
-                    const tokenLabelProps = mergeProps(
-                        {
-                            className: cx('tokenLabel')
-                        },
-                        ptm('tokenLabel', context)
-                    );
-
-                    return (
-                        <div {...tokenProps} key={labelKey}>
-                            <span {...tokenLabelProps}>{label}</span>
-                            {icon}
-                        </div>
-                    );
-                });
-            }
-
-            return getLabel();
-        };
-
-        const getVisibleOptions = () => {
-            if (hasFilter) {
-                const filterValue = filterState.trim().toLocaleLowerCase(props.filterLocale);
-                const searchFields = props.filterBy ? props.filterBy.split(',') : [props.optionLabel || 'label'];
-
-                if (props.optionGroupLabel) {
-                    let filteredGroups = [];
-
-                    for (let optgroup of props.options) {
-                        let filteredSubOptions = FilterService.filter(getOptionGroupChildren(optgroup), searchFields, filterValue, props.filterMatchMode, props.filterLocale);
-
-                        if (filteredSubOptions && filteredSubOptions.length) {
-                            filteredGroups.push({ ...optgroup, ...{ [props.optionGroupChildren]: filteredSubOptions } });
-                        }
-                    }
-
-                    return filteredGroups;
-                }
-
-                return FilterService.filter(props.options, searchFields, filterValue, props.filterMatchMode, props.filterLocale);
-            }
-
-            return props.options;
-        };
-
-        React.useImperativeHandle(ref, () => ({
+        const multiselect = useMultiSelect(inProps, inRef);
+        const {
             props,
-            show,
-            hide,
-            focus: () => DomHandler.focus(inputRef.current),
-            getElement: () => elementRef.current,
-            getOverlay: () => overlayRef.current,
-            getInput: () => inputRef.current
-        }));
+            state,
+            ptm,
+            ptmi,
+            cx,
+            sx,
+            id,
+            // element refs
+            elementRef,
+            focusInputRef,
+            // methods
+            onFocus,
+            onBlur,
+            onKeyDown,
+            onContainerClick,
+            getLabelByValue,
+            removeOption,
+            // computed
+            label: labelText,
+            chipSelectedItems,
+            focusedOptionId
+        } = multiselect;
 
-        useMountEffect(() => {
-            alignOverlay();
-        });
-
-        React.useEffect(() => {
-            ObjectUtils.combinedRefs(inputRef, props.inputRef);
-        }, [inputRef, props.inputRef]);
-
-        React.useEffect(() => {
-            setTimeout(() => {
-                props.overlayVisible ? show() : hide();
-            }, 100);
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [props.overlayVisible]);
-
-        useUpdateEffect(() => {
-            if (overlayVisibleState && filterState && hasFilter) {
-                alignOverlay();
-            }
-        }, [overlayVisibleState, filterState, hasFilter]);
-
-        useUnmountEffect(() => {
-            ZIndexUtils.clear(overlayRef.current);
-        });
-
-        const createClearIcon = () => {
-            const clearIconProps = mergeProps(
+        const createDropdown = () => {
+            const dropdownIconProps = mergeProps(
                 {
-                    className: cx('clearIcon'),
-                    onClick: (e) => updateModel(e, [], [])
+                    className: cx('dropdownIcon'),
+                    'aria-hidden': true
                 },
-                ptm('clearIcon')
+                ptm('dropdownIcon')
             );
 
-            const icon = props.clearIcon || <TimesIcon {...clearIconProps} />;
-            const clearIcon = IconUtils.getJSXIcon(icon, { ...clearIconProps }, { props });
+            const loadingIconProps = mergeProps(
+                {
+                    className: classNames(cx('loadingIcon'), props.loadingIcon && 'p-spin'),
+                    'aria-hidden': true
+                },
+                ptm('loadingIcon')
+            );
 
-            if (!empty && props.showClear && !props.disabled) {
-                return clearIcon;
+            const dropdownProps = mergeProps(
+                {
+                    className: cx('dropdown')
+                },
+                ptm('dropdown')
+            );
+
+            return (
+                <div {...dropdownProps}>
+                    <Icon pIf={props.loading} as={props.loadingIcon || <SpinnerIcon spin />} {...loadingIconProps} />
+                    <Icon pIf={!props.loading} as={props.dropdownIcon || <ChevronDownIcon />} {...dropdownIconProps} />
+                </div>
+            );
+        };
+
+        const createChip = (option, index, label) => {
+            const chipIcon = resolve(props.chipIcon, { option, index, className: cx('chipIcon'), removeCallback: (event) => removeOption(event, index), instance: autocomplete });
+
+            return (
+                resolve(props.chipTemplate, { option, index, removeCallback: (event) => removeOption(event, option), instance: autocomplete }) || (
+                    <Chip className={cx('pcChip')} label={label} removeIcon={chipIcon} removable unstyled={props.unstyled} onRemove={(event) => removeOption(event, option)} pt={ptm('pcChip')} />
+                )
+            );
+        };
+
+        const createLabelValue = () => {
+            if (props.display === 'comma') {
+                return labelText ?? 'empty';
+            } else if (props.display === 'chip') {
+                let content = null;
+
+                if (chipSelectedItems) {
+                    content = <span>{labelText}</span>;
+                } else {
+                    content = props.value.map((option, i) => {
+                        const label = getLabelByValue(option);
+
+                        const chip = createChip(option, i, label);
+
+                        const chipItemProps = mergeProps(
+                            {
+                                id: `${id}_chip_option_${i}`,
+                                className: cx('chipItem', { i }),
+                                role: 'option',
+                                'aria-label': label,
+                                'aria-selected': true,
+                                'aria-setsize': props.value.length,
+                                'aria-posinset': i + 1
+                            },
+                            ptm('chipItem')
+                        );
+
+                        return (
+                            <span {...chipItemProps} key={`${i}_${label}`}>
+                                {chip}
+                            </span>
+                        );
+                    });
+                }
+                return (
+                    <>
+                        {content}
+                        {isEmpty(props.value) ? <>{placeholder || 'empty'}</> : null}
+                    </>
+                );
             }
 
             return null;
         };
 
         const createLabel = () => {
-            const content = getLabelContent();
+            const labelValue = resolve(valueTemplate, { value: props.value, instance: multiselect }) || createLabelValue();
 
+            const labelProps = mergeProps(
+                {
+                    className: cx('label')
+                },
+                ptm('label')
+            );
             const labelContainerProps = mergeProps(
                 {
-                    ref: labelRef,
                     className: cx('labelContainer')
                 },
                 ptm('labelContainer')
             );
-
-            const labelProps = mergeProps(
-                {
-                    className: cx('label', { empty })
-                },
-                ptm('label')
-            );
-
             return (
                 <div {...labelContainerProps}>
-                    <div {...labelProps}>{content || props.placeholder || props.emptyMessage || 'empty'}</div>
+                    <div {...labelProps}>{labelValue}</div>
                 </div>
             );
         };
 
-        const visibleOptions = getVisibleOptions();
+        const createHiddenInput = () => {
+            const hiddenInputProps = mergeProps(
+                {
+                    id: props.inputId,
+                    type: 'text',
+                    readOnly: true,
+                    disabled: props.disabled,
+                    placeholder: props.placeholder,
+                    tabIndex: !props.disabled ? props.tabIndex : -1,
+                    role: 'combobox',
+                    'aria-label': props.ariaLabel,
+                    'aria-labelledby': props.ariaLabelledby,
+                    'aria-haspopup': 'listbox',
+                    'aria-expanded': state.overlayVisible,
+                    'aria-controls': `${id}_list`,
+                    'aria-activedescendant': state.focused ? focusedOptionId : undefined,
+                    'aria-invalid': props.invalid || undefined,
+                    onFocus,
+                    onBlur,
+                    onKeyDown
+                },
+                ptm('hiddenInput')
+            );
+            const hiddenInputContainerProps = mergeProps(
+                {
+                    className: 'p-hidden-accessible',
+                    'data-p-hidden-accessible': true
+                },
+                ptm('hiddenInputContainer')
+            );
+            return (
+                <div {...hiddenInputContainerProps}>
+                    <input {...hiddenInputProps} ref={focusInputRef} />
+                </div>
+            );
+        };
 
-        const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
-        const otherProps = MultiSelectBase.getOtherProps(props);
-        const ariaProps = ObjectUtils.reduceKeys(otherProps, DomHandler.ARIA_PROPS);
-
-        const triggerIconProps = mergeProps(
-            {
-                className: cx('triggerIcon')
-            },
-            ptm('triggerIcon')
-        );
-
-        const triggerProps = mergeProps(
-            {
-                className: cx('trigger')
-            },
-            ptm('trigger')
-        );
-
-        const loadingIcon = props.loadingIcon ? IconUtils.getJSXIcon(props.loadingIcon, { ...triggerIconProps }, { props }) : <SpinnerIcon spin {...triggerIconProps} />;
-        const dropdownIcon = props.dropdownIcon ? IconUtils.getJSXIcon(props.dropdownIcon, { ...triggerIconProps }, { props }) : <ChevronDownIcon {...triggerIconProps} />;
-        const triggerIcon = <div {...triggerProps}>{props.loading ? loadingIcon : dropdownIcon}</div>;
-
-        const label = !props.inline && createLabel();
-        const clearIcon = !props.inline && createClearIcon();
+        const hiddenInput = createHiddenInput();
+        const label = createLabel();
+        const dropdown = createDropdown();
 
         const rootProps = mergeProps(
             {
-                ref: elementRef,
-                id: props.id,
-                style: { ...props.style, ...sx('root') },
-                className: classNames(props.className, cx('root', { focusedState, context, overlayVisibleState })),
-                ...otherProps,
-                onClick: onClick
+                id,
+                style: sx('root'),
+                className: cx('root'),
+                onClick: onContainerClick
             },
-            MultiSelectBase.getOtherProps(props),
-            ptm('root')
-        );
-
-        const hiddenInputWrapperProps = mergeProps(
-            {
-                className: 'p-hidden-accessible',
-                'data-p-hidden-accessible': true
-            },
-            ptm('hiddenInputWrapper')
-        );
-
-        const inputProps = mergeProps(
-            {
-                ref: inputRef,
-                id: props.inputId,
-                name: props.name,
-                type: 'text',
-                onFocus: onFocus,
-                onBlur: onBlur,
-                onKeyDown: onKeyDown,
-                role: 'combobox',
-                'aria-expanded': overlayVisibleState,
-                disabled: props.disabled,
-                tabIndex: !props.disabled ? props.tabIndex : -1,
-                value: JSON.stringify(props.value),
-                ...ariaProps
-            },
-            ptm('input')
+            ptmi('root')
         );
 
         return (
             <ComponentProvider pIf={props.pIf} value={multiselect}>
                 <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
-                    <div {...hiddenInputWrapperProps}>
-                        <input {...inputProps} readOnly />
-                    </div>
-                    {!props.inline && (
-                        <>
-                            {label}
-                            {clearIcon}
-                            {triggerIcon}
-                        </>
-                    )}
-
-                    <MultiSelectPanel
-                        hostName="MultiSelect"
-                        ref={overlayRef}
-                        visibleOptions={visibleOptions}
-                        {...props}
-                        onClick={onPanelClick}
-                        onOverlayHide={hide}
-                        filterValue={filterState}
-                        focusedOptionIndex={focusedOptionIndex}
-                        onFirstHiddenFocus={onFirstHiddenFocus}
-                        onLastHiddenFocus={onLastHiddenFocus}
-                        firstHiddenFocusableElementOnOverlay={firstHiddenFocusableElementOnOverlay}
-                        lastHiddenFocusableElementOnOverlay={lastHiddenFocusableElementOnOverlay}
-                        setFocusedOptionIndex={setFocusedOptionIndex}
-                        hasFilter={hasFilter}
-                        isValidOption={isValidOption}
-                        getOptionValue={getOptionValue}
-                        updateModel={updateModel}
-                        onFilterInputChange={onFilterInputChange}
-                        resetFilter={resetFilter}
-                        onCloseClick={onCloseClick}
-                        onSelectAll={onSelectAll}
-                        getOptionLabel={getOptionLabel}
-                        getOptionRenderKey={getOptionRenderKey}
-                        isOptionDisabled={isOptionDisabled}
-                        getOptionGroupChildren={getOptionGroupChildren}
-                        getOptionGroupLabel={getOptionGroupLabel}
-                        getOptionGroupRenderKey={getOptionGroupRenderKey}
-                        isSelected={isSelected}
-                        getSelectedOptionIndex={getSelectedOptionIndex}
-                        isAllSelected={isAllSelected}
-                        onOptionSelect={onOptionSelect}
-                        allowOptionSelect={allowOptionSelect}
-                        in={overlayVisibleState}
-                        onEnter={onOverlayEnter}
-                        onEntered={onOverlayEntered}
-                        onExit={onOverlayExit}
-                        onExited={onOverlayExited}
-                        ptm={ptm}
-                        cx={cx}
-                        sx={sx}
-                        isUnstyled={isUnstyled}
-                        metaData={metaData}
-                        changeFocusedOptionIndex={changeFocusedOptionIndex}
-                    />
+                    {hiddenInput}
+                    {label}
+                    {dropdown}
+                    <MultiSelectOverlay multiselect={multiselect} />
                 </Component>
                 <Tooltip pIf={isNotEmpty(props.tooltip)} target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />
             </ComponentProvider>

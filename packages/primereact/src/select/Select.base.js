@@ -141,6 +141,7 @@ export const useSelect = withComponent(
             props.onFocus?.(event);
         };
         const onBlur = (event) => {
+            setClicked(false);
             setFocused(false);
             setFocusedOptionIndex(-1);
             searchValue.current = '';
@@ -487,7 +488,7 @@ export const useSelect = withComponent(
         const onOverlayExit = () => {
             unbindOverlayListener();
 
-            props.autoFilterFocus && focus(focusInputRef.current);
+            props.autoFilterFocus && props.filter && focus(focusInputRef.current);
             props.onHide?.();
         };
         const onOverlayExited = () => {
@@ -604,8 +605,10 @@ export const useSelect = withComponent(
         };
         const autoUpdateModel = () => {
             if (props.selectOnFocus && props.autoOptionFocus && !hasSelectedOption) {
-                setFocusedOptionIndex(findFirstFocusedOptionIndex());
-                onOptionSelect(null, visibleOptions[focusedOptionIndex], false);
+                const newFocusedOptionIndex = findFirstFocusedOptionIndex();
+
+                setFocusedOptionIndex(newFocusedOptionIndex);
+                onOptionSelect(null, visibleOptions[newFocusedOptionIndex], false);
             }
         };
         const updateModel = (event, value) => {
