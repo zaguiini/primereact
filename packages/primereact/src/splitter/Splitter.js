@@ -5,6 +5,7 @@ import { DomHandler, ObjectUtils, UniqueComponentId, classNames } from '../utils
 import { useSplitter } from './Splitter.base';
 import { SplitterBase, SplitterPanelBase } from './SplitterBase';
 
+// @todo: rewrite this component to use the new Component API
 export const SplitterPanel = () => {};
 
 export const Splitter = React.memo(

@@ -4,7 +4,62 @@ import { defaultProps } from './Fieldset.props';
 
 export const useFieldset = withComponent(
     ({ elementRef, id, props, parent, $primereact }) => {
-        //@todo
+        const [collapsedState, setCollapsedState] = React.useState(props.collapsed);
+        const collapsed = props.toggleable ? (props.onToggle ? props.collapsed : collapsedState) : false;
+        const state = {
+            collapsed
+        };
+
+        // element refs
+        const contentRef = React.useRef(null);
+
+        // methods
+        const toggle = (event) => {
+            if (!props.toggleable) {
+                return;
+            }
+
+            collapsed ? expand(event) : collapse(event);
+
+            props.onToggle?.({
+                originalEvent: event,
+                value: !collapsed
+            });
+        };
+        const expand = (event) => {
+            if (!props.onToggle) {
+                setCollapsedState(false);
+            }
+
+            props.onExpand?.(event);
+        };
+        const collapse = (event) => {
+            if (!props.onToggle) {
+                setCollapsedState(true);
+            }
+
+            props.onCollapse?.(event);
+        };
+        const onButtonClick = (event) => {
+            toggle(event);
+            event.preventDefault();
+        };
+
+        // computed
+        const buttonAriaLabel = props.toggleButtonProps?.ariaLabel ? props.toggleButtonProps.ariaLabel : isString(props.header) && props.header;
+
+        return {
+            state,
+            // element refs
+            contentRef,
+            // methods
+            toggle,
+            expand,
+            collapse,
+            onButtonClick,
+            // computed
+            buttonAriaLabel
+        };
     },
     defaultProps,
     style

@@ -1,48 +1,52 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, mergeProps, resolve } from '@primeuix/utils';
+import { mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
 import { useCard } from './Card.base';
 
 export const Card = React.forwardRef((inProps, inRef) => {
     const card = useCard(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = card;
+    const {
+        id,
+        props,
+        ptm,
+        ptmi,
+        cx,
+        // element refs
+        elementRef
+    } = card;
 
     const createCaption = () => {
-        if (props.title || props.subtitle) {
-            const subtitleProps = mergeProps(
-                {
-                    className: cx('subtitle')
-                },
-                ptm('subtitle')
-            );
+        const subtitleProps = mergeProps(
+            {
+                className: cx('subtitle')
+            },
+            ptm('subtitle')
+        );
 
-            const subtitle = props.subtitle && <div {...subtitleProps}>{resolve(props.subtitle, props)}</div>;
+        const subtitle = resolve(props.subtitleTemplate || props.subtitle, subtitleProps, card);
 
-            const titleProps = mergeProps(
-                {
-                    className: cx('title')
-                },
-                ptm('title')
-            );
+        const titleProps = mergeProps(
+            {
+                className: cx('title')
+            },
+            ptm('title')
+        );
 
-            const title = props.title && <div {...titleProps}>{resolve(props.title, props)}</div>;
+        const title = resolve(props.titleTemplate || props.title, card);
 
-            const captionProps = mergeProps(
-                {
-                    className: cx('caption')
-                },
-                ptm('caption')
-            );
+        const captionProps = mergeProps(
+            {
+                className: cx('caption')
+            },
+            ptm('caption')
+        );
 
-            return (
-                <div {...captionProps}>
-                    {title}
-                    {subtitle}
-                </div>
-            );
-        }
-
-        return null;
+        return props.title || props.subtitle ? (
+            <div {...captionProps}>
+                {title && <div {...titleProps}>{title}</div>}
+                {subtitle && <div {...subtitleProps}>{subtitle}</div>}
+            </div>
+        ) : null;
     };
 
     const createBody = () => {
@@ -53,7 +57,7 @@ export const Card = React.forwardRef((inProps, inRef) => {
             ptm('footer')
         );
 
-        const footer = props.footer && <div {...footerProps}>{resolve(props.footer, props)}</div>;
+        const footer = resolve(props.footerTemplate || props.footer, footerProps, card);
 
         const contentProps = mergeProps(
             {
@@ -62,7 +66,7 @@ export const Card = React.forwardRef((inProps, inRef) => {
             ptm('content')
         );
 
-        const children = props.children && <div {...contentProps}>{props.children}</div>;
+        const content = <div {...contentProps}>{resolve(props.template || props.children, card)}</div>;
 
         const caption = createCaption();
 
@@ -76,25 +80,23 @@ export const Card = React.forwardRef((inProps, inRef) => {
         return (
             <div {...bodyProps}>
                 {caption}
-                {children}
-                {footer}
+                {content}
+                {footer && <div {...footerProps}>{footer}</div>}
             </div>
         );
     };
 
     const createHeader = () => {
-        if (props.header) {
-            const headerProps = mergeProps(
-                {
-                    className: cx('header')
-                },
-                ptm('header')
-            );
+        const headerProps = mergeProps(
+            {
+                className: cx('header')
+            },
+            ptm('header')
+        );
 
-            return <div {...headerProps}>{resolve(props.header, props)}</div>;
-        }
+        const header = resolve(props.headerTemplate || props.header, card);
 
-        return null;
+        return header ? <div {...headerProps}>{header}</div> : null;
     };
 
     const header = createHeader();
@@ -102,10 +104,8 @@ export const Card = React.forwardRef((inProps, inRef) => {
 
     const rootProps = mergeProps(
         {
-            id: props.id,
-            ref,
-            style: props.style,
-            className: classNames(cx('root'), props.className)
+            id,
+            className: cx('root')
         },
         ptmi('root')
     );

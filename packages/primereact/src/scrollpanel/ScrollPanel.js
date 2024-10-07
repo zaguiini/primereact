@@ -5,6 +5,7 @@ import { DomHandler, UniqueComponentId, classNames } from '../utils/Utils';
 import { useScrollPanel } from './ScrollPanel.base';
 import { ScrollPanelBase } from './ScrollPanelBase';
 
+// @todo: rewrite this component to use the new component API
 export const ScrollPanel = React.forwardRef((inProps, inRef) => {
     const [idState, setIdState] = React.useState(props.id);
     const [orientationState, setOrientationState] = React.useState('vertical');

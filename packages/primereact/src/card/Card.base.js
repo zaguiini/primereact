@@ -3,8 +3,8 @@ import { style } from '@primereact/styles/card';
 import { defaultProps } from './Card.props';
 
 export const useCard = withComponent(
-    ({ elementRef, id, props, parent, $primereact }) => {
-        //@todo
+    () => {
+        // NOOP
     },
     defaultProps,
     style

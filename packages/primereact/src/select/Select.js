@@ -13,12 +13,12 @@ export const Select = React.memo(
     React.forwardRef((inProps, inRef) => {
         const select = useSelect(inProps, inRef);
         const {
+            id,
             props,
             state,
             ptm,
             ptmi,
             cx,
-            id,
             // element refs
             elementRef,
             focusInputRef,

@@ -23,5 +23,6 @@ export const defaultProps = {
     fluid: null,
     tooltip: null,
     tooltipOptions: null,
-    children: undefined
+    children: undefined,
+    labelTemplate: null
 };

@@ -3,6 +3,32 @@ import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useInplace, useInplaceContent, useInplaceDisplay } from './Inplace.base';
 
+export const Inplace = React.forwardRef((inProps, inRef) => {
+    const inplace = useInplace(inProps, inRef);
+    const {
+        id,
+        props,
+        ptmi,
+        // element refs
+        elementRef
+    } = inplace;
+
+    const rootProps = mergeProps(
+        {
+            id,
+            className: cx('root'),
+            'aria-live': 'polite'
+        },
+        ptmi('root')
+    );
+
+    return (
+        <ComponentProvider pIf={props.pIf} value={inplace}>
+            <Component as={props.as || 'div'} {...rootProps} children={props.template || props.children} ref={elementRef} />
+        </ComponentProvider>
+    );
+});
+
 export const InplaceDisplay = (inProps) => {
     const inplaceDisplay = useInplaceDisplay(inProps);
     const {
@@ -69,34 +95,8 @@ export const InplaceContent = (inProps) => {
     );
 };
 
-export const Inplace = React.forwardRef((inProps, inRef) => {
-    const inplace = useInplace(inProps, inRef);
-    const {
-        id,
-        props,
-        ptmi,
-        // element refs
-        elementRef
-    } = inplace;
-
-    const rootProps = mergeProps(
-        {
-            id,
-            className: cx('root'),
-            'aria-live': 'polite'
-        },
-        ptmi('root')
-    );
-
-    return (
-        <ComponentProvider pIf={props.pIf} value={inplace}>
-            <Component as={props.as || 'div'} {...rootProps} children={props.template || props.children} ref={elementRef} />
-        </ComponentProvider>
-    );
-});
+Inplace.displayName = 'Inplace';
 
 InplaceDisplay.displayName = 'InplaceDisplay';
 
 InplaceContent.displayName = 'InplaceContent';
-
-Inplace.displayName = 'Inplace';

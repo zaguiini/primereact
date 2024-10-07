@@ -9,10 +9,10 @@ export const defaultProps = {
     onActiveChange: null
 };
 
-export const displayDefaultProps = {
+export const defaultDisplayProps = {
     __TYPE: 'InplaceDisplay'
 };
 
-export const contentDefaultProps = {
+export const defaultContentProps = {
     __TYPE: 'InplaceContent'
 };

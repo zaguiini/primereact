@@ -1,13 +1,18 @@
 export const defaultProps = {
     __TYPE: 'Splitter',
-    className: null,
-    gutterSize: 4,
-    id: null,
-    step: 5,
     layout: 'horizontal',
-    onResizeEnd: null,
+    gutterSize: 4,
     stateKey: null,
     stateStorage: 'session',
-    style: null,
-    children: undefined
+    step: 5,
+    // events
+    onResize: null,
+    onResizeStart: null,
+    onResizeEnd: null
+};
+
+export const defaultPanelProps = {
+    __TYPE: 'SplitterPanel',
+    size: null,
+    minSize: null
 };

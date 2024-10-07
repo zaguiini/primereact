@@ -1,31 +1,19 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, mergeProps } from '@primeuix/utils';
+import { mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
 import { useDivider } from './Divider.base';
 
 export const Divider = React.forwardRef((inProps, inRef) => {
     const divider = useDivider(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref, sx } = divider;
-
-    const elementRef = React.useRef(null);
-    const horizontal = props.layout === 'horizontal';
-    const vertical = props.layout === 'vertical';
-
-    React.useImperativeHandle(ref, () => ({
+    const {
+        id,
         props,
-        getElement: () => elementRef.current
-    }));
-
-    const rootProps = mergeProps(
-        {
-            ref: elementRef,
-            style: sx('root'),
-            className: classNames(cx('root', { horizontal, vertical }), props.className),
-            'aria-orientation': props.layout,
-            role: 'separator'
-        },
-        ptmi('root')
-    );
+        ptm,
+        ptmi,
+        cx,
+        // element refs
+        elementRef
+    } = divider;
 
     const contentProps = mergeProps(
         {
@@ -34,10 +22,23 @@ export const Divider = React.forwardRef((inProps, inRef) => {
         ptm('content')
     );
 
+    const content = resolve(props.template || props.children, contentProps, divider);
+
+    const rootProps = mergeProps(
+        {
+            id,
+            style: sx('root'),
+            className: cx('root'),
+            role: 'separator',
+            'aria-orientation': props.layout
+        },
+        ptmi('root')
+    );
+
     return (
         <ComponentProvider pIf={props.pIf} value={divider}>
             <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
-                <div {...contentProps}>{props.children}</div>
+                {content && <div {...contentProps}>{content}</div>}
             </Component>
         </ComponentProvider>
     );
