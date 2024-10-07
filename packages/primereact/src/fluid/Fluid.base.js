@@ -3,8 +3,8 @@ import { style } from '@primereact/styles/fluid';
 import { defaultProps } from './Fluid.props';
 
 export const useFluid = withComponent(
-    ({ elementRef, id, props, parent, $primereact }) => {
-        //@todo
+    () => {
+        // NOOP
     },
     defaultProps,
     style

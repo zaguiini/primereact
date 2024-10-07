@@ -1,7 +1,5 @@
 export const defaultProps = {
     __TYPE: 'ScrollTop',
-    style: null,
-    className: null,
     target: 'window',
     threshold: 400,
     icon: null,
@@ -10,7 +8,9 @@ export const defaultProps = {
         rounded: true
     },
     transitionOptions: null,
+    // templates
+    iconTemplate: null,
+    // events
     onShow: null,
-    onHide: null,
-    children: undefined
+    onHide: null
 };

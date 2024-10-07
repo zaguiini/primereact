@@ -1,28 +1,27 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, mergeProps } from '@primeuix/utils';
+import { Icon } from '@primereact/icons/base';
+import { classNames, mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
-import { ObjectUtils } from '../utils/Utils';
 import { useMeterGroup } from './MeterGroup.base';
 
 export const MeterGroup = React.forwardRef((inProps, inRef) => {
     const metergroup = useMeterGroup(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = metergroup;
-
-    const { values, min, max, orientation, labelPosition, start, end, meter, labelList } = props;
-
-    let totalPercent = 0;
-    let percentages = [];
-
-    values?.map((item) => {
-        totalPercent = totalPercent + item.value;
-        percentages.push(Math.round((item.value / totalPercent) * 100));
-    });
-
-    const calculatePercentage = (meterValue = 0) => {
-        const percentageOfItem = ((meterValue - min) / (max - min)) * 100;
-
-        return Math.round(Math.max(0, Math.min(100, percentageOfItem)));
-    };
+    const {
+        id,
+        props,
+        ptm,
+        ptmi,
+        cx,
+        // element refs
+        elementRef,
+        // methods
+        percent,
+        percentValue,
+        meterCalculatedStyles,
+        // computed
+        totalPercent,
+        percentages
+    } = metergroup;
 
     const getPTOptions = (key, value, index) => {
         return ptm(key, {
@@ -33,133 +32,118 @@ export const MeterGroup = React.forwardRef((inProps, inRef) => {
         });
     };
 
+    const createMeter = (val, index) => {
+        const { value } = val;
+
+        const meterProps = mergeProps(
+            {
+                className: cx('meter'),
+                style: meterCalculatedStyles(val)
+            },
+            getPTOptions('meter', val, index)
+        );
+
+        return resolve(props.meterTemplate, { value: val, index, size: percentValue(value), totalPercent }, metergroup) || percent(value) ? <span {...meterProps} /> : null;
+    };
+
     const createMeters = () => {
-        const meters = values?.map((item, index) => {
-            const calculatedPercantage = calculatePercentage(item.value);
-            const meterInlineStyles = {
-                backgroundColor: item.color,
-                width: orientation === 'horizontal' ? calculatedPercantage + '%' : 'auto',
-                height: orientation === 'vertical' ? calculatedPercantage + '%' : 'auto'
-            };
+        const items = props.value.map(createMeter);
 
-            const meterProps = mergeProps(
-                {
-                    className: cx('meter'),
-                    style: meterInlineStyles
-                },
-                getPTOptions('meter', item, index)
-            );
-
-            if (meter || item.meterTemplate) {
-                const meterTemplateProps = mergeProps(
-                    {
-                        className: cx('meter')
-                    },
-                    getPTOptions('meter', item, index)
-                );
-
-                return ObjectUtils.getJSXElement(item.meterTemplate || meter, { ...item, percentage: calculatedPercantage, index }, meterTemplateProps);
-            }
-
-            return <span key={index} {...meterProps} />;
-        });
-
-        const meterContainerProps = mergeProps(
+        const metersProps = mergeProps(
             {
                 className: cx('meters')
             },
             ptm('meters')
         );
 
-        return <div {...meterContainerProps}>{meters}</div>;
+        return <div {...metersProps}>{items}</div>;
     };
 
-    const createLabelList = () => {
-        const labelListProps = mergeProps(
-            {
-                className: cx('labellist')
-            },
-            ptm('labellist')
-        );
+    const createLabelItem = (val, index) => {
+        const { label, value, icon, color } = val;
 
-        const labelItemProps = mergeProps(
-            {
-                className: cx('label')
-            },
-            ptm('label')
-        );
-
-        const labelProps = mergeProps(
+        const labelTextProps = mergeProps(
             {
                 className: cx('labelText')
             },
             ptm('labelText')
         );
 
+        const labelIconProps = mergeProps(
+            {
+                className: classNames(icon, cx('labelIcon')),
+                style: { color }
+            },
+            ptm('labelIcon')
+        );
+
+        const labelMakerProps = mergeProps(
+            {
+                className: cx('labelMarker'),
+                style: { backgroundColor: color }
+            },
+            ptm('labelMarker')
+        );
+
+        const labelIcon = resolve(props.labelIconTemplate, value, metergroup) || icon ? <Icon as={icon} {...labelIconProps} /> : <span {...labelMakerProps} />;
+
+        const labelProps = mergeProps(
+            {
+                className: cx('label')
+            },
+            ptm('label')
+        );
+
         return (
-            <ol {...labelListProps}>
-                {values?.map((item, index) => {
-                    const labelIconProps = mergeProps(
-                        {
-                            className: classNames(cx('labelIcon'), item.icon),
-                            style: { color: item.color }
-                        },
-                        ptm('labelIcon')
-                    );
-
-                    const labelListIconProps = mergeProps(
-                        {
-                            className: cx('labelMarker'),
-                            style: { backgroundColor: item.color }
-                        },
-                        ptm('labelMarker')
-                    );
-
-                    const labelIcon = item.icon ? <i {...labelIconProps} /> : <span {...labelListIconProps} />;
-                    const itemPercentage = calculatePercentage(item.value);
-
-                    return (
-                        <li key={index} {...labelItemProps}>
-                            {labelIcon}
-                            <span {...labelProps}>
-                                {item?.label} {`(${itemPercentage}%)`}
-                            </span>
-                        </li>
-                    );
-                })}
-            </ol>
+            <li {...labelProps} key={`${index}_label`}>
+                {labelIcon}
+                <span {...labelTextProps}>
+                    {label} {calculatePercentage(value)}
+                </span>
+            </li>
         );
     };
 
-    const labelListContent = labelList || createLabelList();
-    const labelElement = ObjectUtils.getJSXElement(labelListContent, { values, totalPercent });
+    const createLabel = () => {
+        const items = props.value.map(createLabelItem);
+
+        const labelListProps = mergeProps(
+            {
+                className: cx('labelList')
+            },
+            ptm('labelList')
+        );
+
+        return <ol {...labelListProps}>{items}</ol>;
+    };
+
+    const label = resolve(props.labelTemplate, metergroup) || createLabel();
+    const startLabel = labelPosition === 'start' && label;
+    const start = resolve(props.startTemplate, { percentages }, metergroup);
+    const meters = createMeters();
+    const end = resolve(props.endTemplate, { percentages }, metergroup);
+    const endLabel = labelPosition === 'end' && label;
 
     const rootProps = mergeProps(
         {
-            ref,
-            className: classNames(cx('root', { orientation }), props.className),
+            id,
+            className: cx('root'),
             role: 'meter',
-            'aria-valuemin': min,
-            'aria-valuemax': max,
+            'aria-valuemin': props.min,
+            'aria-valuemax': props.max,
             'aria-valuenow': totalPercent
         },
         ptmi('root')
     );
 
-    const templateProps = {
-        totalPercent,
-        percentages,
-        values
-    };
-
     return (
         <ComponentProvider pIf={props.pIf} value={metergroup}>
             <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
-                {labelPosition === 'start' && labelElement}
-                {start && ObjectUtils.getJSXElement(start, templateProps)}
-                {createMeters()}
-                {end && ObjectUtils.getJSXElement(end, templateProps)}
-                {labelPosition === 'end' && labelElement}
+                {startLabel}
+                {start}
+                {meters}
+                {end}
+                {endLabel}
             </Component>
         </ComponentProvider>
     );

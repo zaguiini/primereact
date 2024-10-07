@@ -3,8 +3,8 @@ import { style } from '@primereact/styles/progressspinner';
 import { defaultProps } from './ProgressSpinner.props';
 
 export const useProgressSpinner = withComponent(
-    ({ elementRef, id, props, parent, $primereact }) => {
-        //@todo
+    () => {
+        // NOOP
     },
     defaultProps,
     style

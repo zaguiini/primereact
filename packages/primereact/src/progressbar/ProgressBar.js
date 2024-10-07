@@ -1,5 +1,5 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, isNotEmpty, mergeProps } from '@primeuix/utils';
+import { isNotEmpty, mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useProgressBar } from './ProgressBar.base';
 
@@ -7,33 +7,13 @@ export const ProgressBar = React.memo(
     React.forwardRef((inProps, inRef) => {
         const progressbar = useProgressBar(inProps, inRef);
         const {
-            props,
-            state,
-            ptm,
-            ptmi,
-            cx,
             id,
-            // element refs
-            elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
-            // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible,
+            props,
             ptm,
             ptmi,
             cx,
-            ref
+            // element refs
+            elementRef
         } = progressbar;
 
         const createLabel = () => {
@@ -45,7 +25,7 @@ export const ProgressBar = React.memo(
                     ptm('label')
                 );
 
-                const label = props.children || props.value + props.unit;
+                const label = resolve(props.template || props.children, progressbar) || props.value + props.unit;
 
                 return <div {...labelProps}>{label}</div>;
             }
@@ -81,9 +61,8 @@ export const ProgressBar = React.memo(
 
         const rootProps = mergeProps(
             {
-                ref,
-                style: props.style,
-                className: classNames(cx('root'), props.className),
+                id,
+                className: cx('root'),
                 role: 'progressbar',
                 'aria-valuemin': '0',
                 'aria-valuenow': props.value,

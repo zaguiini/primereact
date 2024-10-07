@@ -67,7 +67,7 @@ export const useSelect = withComponent(
         });
 
         const [bindLabelClickListener, unbindLabelClickListener] = useEventListener({
-            target: `label[for="${props.inputId}"]`,
+            target: `label[for="${props.labelId}"]`,
             type: 'click',
             listener: () => {
                 focus(focusInputRef.current);

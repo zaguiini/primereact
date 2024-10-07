@@ -1,15 +1,14 @@
 export const defaultProps = {
     __TYPE: 'Avatar',
-    style: null,
-    className: null,
-    label: null,
     icon: null,
     image: null,
     imageAlt: 'avatar',
     imageFallback: 'default',
-    onImageError: null,
-    size: 'normal',
+    label: null,
     shape: 'square',
-    template: null,
-    children: undefined
+    size: 'normal',
+    // templates
+    iconTemplate: null,
+    // events
+    onImageError: null
 };

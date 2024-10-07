@@ -80,9 +80,9 @@ export const Select = React.memo(
             const commonLabelProps = mergeProps(
                 {
                     ref: focusInputRef,
-                    id: props.labelId || props.inputId,
-                    className: classNames(cx('label'), props.inputClass, props.labelClassName),
-                    style: { ...props.inputStyle, ...props.labelStyle },
+                    id: props.labelId,
+                    className: classNames(cx('label'), props.labelClassName),
+                    style: props.labelStyle,
                     tabIndex: !props.disabled ? props.tabIndex : -1,
                     role: 'combobox',
                     'aria-label': props.ariaLabel || (labelText === 'p-emptylabel' ? undefined : labelText),

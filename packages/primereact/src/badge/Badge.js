@@ -1,5 +1,5 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, mergeProps } from '@primeuix/utils';
+import { mergeProps, resolve } from '@primeuix/utils';
 import * as React from 'react';
 import { useBadge } from './Badge.base';
 
@@ -7,36 +7,20 @@ export const Badge = React.memo(
     React.forwardRef((inProps, inRef) => {
         const badge = useBadge(inProps, inRef);
         const {
+            id,
             props,
-            state,
-            ptm,
             ptmi,
             cx,
-            id,
             // element refs
-            elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
-            // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible
+            elementRef
         } = badge;
+
+        const content = resolve(props.template || props.children, badge) || props.value;
 
         const rootProps = mergeProps(
             {
-                ref,
-                style: props.style,
-                className: classNames(cx('root'), props.className)
+                id,
+                className: cx('root')
             },
             ptmi('root')
         );
@@ -44,7 +28,7 @@ export const Badge = React.memo(
         return (
             <ComponentProvider pIf={props.pIf} value={badge}>
                 <Component as={props.as || 'span'} {...rootProps} ref={elementRef}>
-                    {props.value}
+                    {content}
                 </Component>
             </ComponentProvider>
         );

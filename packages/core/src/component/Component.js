@@ -1,4 +1,4 @@
-import { isArray, isObject, resolve } from '@primeuix/utils';
+import { resolve } from '@primeuix/utils';
 import * as React from 'react';
 import { ComponentContext } from './Component.context';
 
@@ -10,9 +10,10 @@ export const Component = React.forwardRef((inProps, ref) => {
 
     const { as, pIf, instance = context, children, options, ...rest } = inProps || {};
 
-    return as ? React.createElement(as, { ref, ...rest }, resolve(children, { instance, ...rest, ...options })) : null; // @todo: check params
+    return as ? React.createElement(as, { ref, ...rest }, resolve(children, { ...rest, ...options }, instance)) : null; // @todo: check params
 });
 
+/* @todo: Remove
 export const Slot = React.forwardRef((inProps, ref) => {
     const context = React.useContext(ComponentContext);
 
@@ -40,4 +41,4 @@ export const Template = React.forwardRef((inProps, ref) => {
     }
 
     return isArray(pFor) ? pFor.map((value, index) => resolve(children, { value, index })) : isObject(pFor) ? Object.entries(pFor).map(([key, value], index) => resolve(children, { key, value, index })) : resolve(children, { instance });
-});
+});*/

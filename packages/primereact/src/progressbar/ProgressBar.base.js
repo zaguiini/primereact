@@ -3,8 +3,8 @@ import { style } from '@primereact/styles/progressbar';
 import { defaultProps } from './ProgressBar.props';
 
 export const useProgressBar = withComponent(
-    ({ elementRef, id, props, parent, $primereact }) => {
-        //@todo
+    () => {
+        // NOOP
     },
     defaultProps,
     style

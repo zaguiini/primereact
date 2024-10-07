@@ -1,19 +1,20 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, mergeProps } from '@primeuix/utils';
-import { IconUtils } from 'primereact/utils';
+import { Icon } from '@primereact/icons/base';
+import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useTag } from './Tag.base';
 
 export const Tag = React.forwardRef((inProps, inRef) => {
     const tag = useTag(inProps, inRef);
-    const { props, ptm, ptmi, cx, ref } = tag;
-
-    const iconProps = mergeProps(
-        {
-            className: cx('icon')
-        },
-        ptm('icon')
-    );
+    const {
+        id,
+        props,
+        ptm,
+        ptmi,
+        cx,
+        // element refs
+        elementRef
+    } = tag;
 
     const labelProps = mergeProps(
         {
@@ -22,17 +23,23 @@ export const Tag = React.forwardRef((inProps, inRef) => {
         ptm('label')
     );
 
+    const iconProps = mergeProps(
+        {
+            className: cx('icon')
+        },
+        ptm('icon')
+    );
+
+    const icon = resolve(props.iconTemplate, tag) || <Icon as={props.icon} {...iconProps} />;
+    const label = resolve(props.template || props.children, tag) || (props.value && <span {...labelProps}>{props.value}</span>);
+
     const rootProps = mergeProps(
         {
-            ref,
-            style: props.style,
-            className: classNames(cx('root'), props.className)
+            id,
+            className: cx('root')
         },
         ptmi('root')
     );
-
-    const icon = IconUtils.getJSXIcon(props.icon, { ...iconProps }, { props });
-    const label = props.children || (props.value && <span {...labelProps}>{props.value}</span>);
 
     return (
         <ComponentProvider pIf={props.pIf} value={tag}>

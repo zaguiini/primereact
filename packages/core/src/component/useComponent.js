@@ -3,16 +3,17 @@ import * as React from 'react';
 import { useComponentPT } from './useComponentPT';
 import { useComponentStyle } from './useComponentStyle';
 
-export const useComponent = (inInstance, inRef) => {
+export const useComponent = (inInstance, inRef, callback) => {
     const ref = React.useRef(inRef);
     const ptx = useComponentPT(inInstance, ref);
     const stx = useComponentStyle(inInstance, ref);
-
-    const instance = {
+    const common = {
         ...inInstance,
         ...ptx,
         ...stx
     };
+
+    const instance = { ...common, ...callback?.(common) };
 
     React.useImperativeHandle(ref, () => instance);
 

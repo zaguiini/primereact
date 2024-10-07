@@ -1,5 +1,5 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { classNames, mergeProps } from '@primeuix/utils';
+import { mergeProps } from '@primeuix/utils';
 import * as React from 'react';
 import { useProgressSpinner } from './ProgressSpinner.base';
 
@@ -7,34 +7,13 @@ export const ProgressSpinner = React.memo(
     React.forwardRef((inProps, inRef) => {
         const progressspinner = useProgressSpinner(inProps, inRef);
         const {
-            props,
-            state,
-            ptm,
-            ptmi,
-            cx,
             id,
-            // element refs
-            elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
-            // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible,
+            props,
             ptm,
             ptmi,
             cx,
-            sx,
-            ref
+            // element refs
+            elementRef
         } = progressspinner;
 
         const circleProps = mergeProps(
@@ -61,10 +40,8 @@ export const ProgressSpinner = React.memo(
 
         const rootProps = mergeProps(
             {
-                ref,
-                id: props.id,
-                style: props.style,
-                className: classNames(cx('root'), props.className),
+                id,
+                className: cx('root'),
                 role: 'progressbar',
                 'aria-busy': true
             },

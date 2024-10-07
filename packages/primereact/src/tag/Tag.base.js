@@ -3,8 +3,8 @@ import { style } from '@primereact/styles/tag';
 import { defaultProps } from './Tag.props';
 
 export const useTag = withComponent(
-    ({ elementRef, id, props, parent, $primereact }) => {
-        //@todo
+    () => {
+        // NOOP
     },
     defaultProps,
     style

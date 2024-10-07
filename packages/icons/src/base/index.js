@@ -79,7 +79,7 @@ export const Icon = React.forwardRef((inProps, inRef) => {
     if (inProps.pIf === false) return null;
 
     const { as, pIf, instance = icon, children, options = {}, className, ...rest } = inProps || {};
-    const IconComponent = isString(as) ? <i /> : resolve(as, { instance, ...rest, ...options });
+    const IconComponent = isString(as) ? <i /> : resolve(as, { ...rest, ...options }, instance);
 
     if (React.isValidElement(IconComponent)) {
         return React.cloneElement(IconComponent, {

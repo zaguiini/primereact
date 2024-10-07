@@ -5,6 +5,7 @@ import { ObjectUtils } from 'primereact/utils';
 import * as React from 'react';
 import { useStyleClass } from './StyleClass.base';
 
+// @todo - Rewrite this component to use the new Component API
 export const StyleClass = React.forwardRef((inProps, inRef) => {
     const styleclass = useStyleClass(inProps, inRef);
     const { props, ref } = styleclass;

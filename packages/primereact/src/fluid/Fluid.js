@@ -7,37 +7,17 @@ export const Fluid = React.memo(
     React.forwardRef((inProps, inRef) => {
         const fluid = useFluid(inProps, inRef);
         const {
-            props,
-            state,
-            ptm,
-            ptmi,
-            cx,
             id,
-            // element refs
-            elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
-            // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible,
+            props,
             ptmi,
             cx,
-            ref
+            // element refs
+            elementRef
         } = fluid;
 
         const rootProps = mergeProps(
             {
-                ref,
+                id,
                 className: cx('root')
             },
             ptmi('root')
@@ -45,9 +25,7 @@ export const Fluid = React.memo(
 
         return (
             <ComponentProvider pIf={props.pIf} value={fluid}>
-                <Component as={props.as || 'div'} {...rootProps} ref={elementRef}>
-                    {props.children}
-                </Component>
+                <Component as={props.as || 'div'} children={props.template || props.children} {...rootProps} ref={elementRef} />
             </ComponentProvider>
         );
     })

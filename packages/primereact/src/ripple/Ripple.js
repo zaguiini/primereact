@@ -3,38 +3,20 @@ import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/h
 import * as React from 'react';
 import { useRipple } from './Ripple.base';
 
+// @todo - Rewrite this component to use the new Component API
 export const Ripple = React.memo(
     React.forwardRef((inProps, inRef) => {
         const [isMounted, setMounted] = React.useState(false);
         const ripple = useRipple(inProps, inRef);
         const {
+            id,
             props,
             state,
             ptm,
             ptmi,
             cx,
-            id,
             // element refs
-            elementRef,
-            focusInputRef,
-            clearIconRef,
-            // methods
-            onFocus,
-            onBlur,
-            onKeyDown,
-            onEditableInput,
-            onContainerClick,
-            onClearClick,
-            // computed
-            selectedOption,
-            label: labelText,
-            editableInputValue,
-            focusedOptionId,
-            isClearIconVisible,
-            ptm,
-            ptmi,
-            cx,
-            ref
+            elementRef
         } = ripple;
         const inkRef = React.useRef(null);
         const targetRef = React.useRef(null);

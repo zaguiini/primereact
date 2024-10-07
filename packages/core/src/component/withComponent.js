@@ -33,6 +33,6 @@ export const withComponent = (callback, defaultProps, style) => {
             $attrSelector
         };
 
-        return useComponent({ ...instance, ...callback(instance) }, ref);
+        return useComponent(instance, ref, callback);
     };
 };

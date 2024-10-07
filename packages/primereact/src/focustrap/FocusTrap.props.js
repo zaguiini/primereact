@@ -1,4 +1,12 @@
 export const defaultProps = {
     __TYPE: 'FocusTrap',
-    children: undefined
+    autoFocus: false,
+    disabled: false,
+    tabIndex: 0,
+    autoFocusSelector: '',
+    firstFocusableSelector: '',
+    lastFocusableSelector: '',
+    // events
+    onFocusIn: undefined,
+    onFocusOut: undefined
 };

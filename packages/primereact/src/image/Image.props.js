@@ -20,7 +20,7 @@ export const defaultProps = {
     rotateLeftIcon: null,
     rotateRightIcon: null,
     src: null,
-    template: null,
+    //template: null,
     useMap: null,
     width: null,
     zoomInIcon: null,

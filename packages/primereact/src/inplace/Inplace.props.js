@@ -1,23 +1,18 @@
 export const defaultProps = {
     __TYPE: 'Inplace',
-    style: null,
-    className: null,
     active: false,
-    closable: false,
-    closeIcon: null,
     disabled: false,
     tabIndex: 0,
-    ariaLabel: null,
+    // methods
     onOpen: null,
     onClose: null,
-    onToggle: null,
-    children: undefined
+    onActiveChange: null
 };
 
 export const displayDefaultProps = {
-    children: undefined
+    __TYPE: 'InplaceDisplay'
 };
 
 export const contentDefaultProps = {
-    children: undefined
+    __TYPE: 'InplaceContent'
 };
