@@ -79,7 +79,6 @@ export const Select = React.memo(
         const createLabel = () => {
             const commonLabelProps = mergeProps(
                 {
-                    ref: focusInputRef,
                     id: props.labelId,
                     className: classNames(cx('label'), props.labelClassName),
                     style: props.labelStyle,
@@ -117,7 +116,11 @@ export const Select = React.memo(
 
             const content = resolve(props.valueTemplate, selectedOption, select) || (labelText === 'p-emptylabel' ? <>&nbsp;</> : (labelText ?? 'empty'));
 
-            return <span {...commonLabelProps}>{content}</span>;
+            return (
+                <span {...commonLabelProps} ref={focusInputRef}>
+                    {content}
+                </span>
+            );
         };
 
         const label = createLabel();

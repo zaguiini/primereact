@@ -1,18 +1,17 @@
 export const defaultProps = {
     __TYPE: 'Toast',
-    id: null,
-    style: null,
-    className: null,
-    content: null,
     baseZIndex: 0,
+    appendTo: 'self',
     position: 'top-right',
     transitionOptions: null,
-    appendTo: 'self',
+    closeIcon: null,
+    // templates
+    contentTemplate: null,
+    // events
     onClick: null,
     onRemove: null,
     onShow: null,
     onHide: null,
     onMouseEnter: null,
-    onMouseLeave: null,
-    children: undefined
+    onMouseLeave: null
 };

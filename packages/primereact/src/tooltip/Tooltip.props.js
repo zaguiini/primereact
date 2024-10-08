@@ -1,7 +1,5 @@
 export const defaultProps = {
     __TYPE: 'Tooltip',
-    style: null,
-    className: null,
     appendTo: null,
     at: null,
     autoHide: true,
@@ -13,20 +11,19 @@ export const defaultProps = {
     event: null,
     hideDelay: 0,
     hideEvent: 'mouseleave',
-    id: null,
     mouseTrack: false,
     mouseTrackLeft: 5,
     mouseTrackTop: 5,
     my: null,
-    onBeforeHide: null,
-    onBeforeShow: null,
-    onHide: null,
-    onShow: null,
     position: 'right',
     showDelay: 0,
     showEvent: 'mouseenter',
     showOnDisabled: false,
     target: null,
     updateDelay: 0,
-    children: undefined
+    // events
+    onBeforeHide: null,
+    onBeforeShow: null,
+    onHide: null,
+    onShow: null
 };
