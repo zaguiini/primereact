@@ -6,7 +6,7 @@ export const defaultProps = {
     autoZIndex: true,
     baseZIndex: 0,
     closeOnEscape: false,
-    content: null,
+    content: null, // @todo: change with children
     disabled: false,
     event: null,
     hideDelay: 0,

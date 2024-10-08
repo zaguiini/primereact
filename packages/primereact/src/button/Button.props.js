@@ -1,8 +1,5 @@
 export const defaultProps = {
     __TYPE: 'Button',
-    style: null,
-    className: null,
-    disabled: false,
     label: null,
     icon: null,
     iconPos: 'left',
@@ -22,7 +19,5 @@ export const defaultProps = {
     plain: false,
     fluid: null,
     tooltip: null,
-    tooltipOptions: null,
-    children: undefined,
-    labelTemplate: null
+    tooltipOptions: null
 };

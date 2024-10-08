@@ -9,5 +9,6 @@ export const globalProps = {
 };
 
 export const defaultProps = {
-    as: undefined
+    as: undefined,
+    asChild: false
 };

@@ -24,7 +24,7 @@ export const Tooltip = React.memo(
             onMouseLeave
         } = tooltip;
 
-        const content = isTargetContentEmpty(currentTargetRef.current) ? resolve(props.template || props.children, tooltip) : null;
+        const content = isTargetContentEmpty(currentTargetRef.current) ? resolve(props.content || props.template || props.children, tooltip) : null;
 
         const textProps = mergeProps(
             {

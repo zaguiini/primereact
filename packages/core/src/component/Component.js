@@ -8,9 +8,10 @@ export const Component = React.forwardRef((inProps, ref) => {
 
     if (inProps.pIf === false) return null;
 
-    const { as, pIf, instance = context, children, options, ...rest } = inProps || {};
+    const { as, asChild, pIf, instance = context, children, options, ...rest } = inProps || {};
+    const asComponent = asChild ? React.Fragment : as;
 
-    return as ? React.createElement(as, { ref, ...rest }, resolve(children, { ...rest, ...options }, instance)) : null; // @todo: check params
+    return asComponent ? React.createElement(asComponent, { ref, ...rest }, resolve(children, { ...rest, ...options }, instance)) : null; // @todo: check params
 });
 
 /* @todo: Remove
