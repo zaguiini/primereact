@@ -45,6 +45,7 @@
         "./skeleton": "./src/skeleton/Skeleton.js",
         "./checkbox": "./src/checkbox/Checkbox.js",
         "./radiobutton": "./src/radiobutton/RadioButton.js",
+        "./accordion": "./src/accordion/Accordion.js",
         "./chip": "./src/chip/Chip.js",
         "./button": "./src/button/Button.js",
         "./rating": "./src/rating/Rating.js",

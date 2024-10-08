@@ -1,7 +1,6 @@
 import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/rating';
-import { focus, getFirstFocusableElement, uuid } from '@primeuix/utils';
-import { toValue } from 'primereact/utils';
+import { focus, getFirstFocusableElement, toValue, uuid } from '@primeuix/utils';
 import * as React from 'react';
 import { defaultProps } from './Rating.props';
 

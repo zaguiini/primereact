@@ -57,11 +57,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/themes
       '@primeuix/styled':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       '@primeuix/utils':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       next:
         specifier: 14.2.8
         version: 14.2.8(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.78.0)
@@ -109,11 +109,11 @@ importers:
         specifier: workspace:*
         version: link:../styles
       '@primeuix/styled':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       '@primeuix/utils':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       react:
         specifier: '>=18.0.0'
         version: 18.3.1
@@ -122,8 +122,8 @@ importers:
   packages/hooks:
     dependencies:
       '@primeuix/utils':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       react:
         specifier: '>=18.0.0'
         version: 18.3.1
@@ -135,8 +135,8 @@ importers:
         specifier: workspace:*
         version: link:../core
       '@primeuix/utils':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       react:
         specifier: '>=18.0.0'
         version: 18.3.1
@@ -157,11 +157,11 @@ importers:
         specifier: workspace:*
         version: link:../styles
       '@primeuix/styled':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       '@primeuix/utils':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
       react-transition-group:
         specifier: ^4.4.2
         version: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -170,15 +170,15 @@ importers:
   packages/styles:
     dependencies:
       '@primeuix/utils':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
     publishDirectory: dist
 
   packages/themes:
     dependencies:
       '@primeuix/styled':
-        specifier: ^0.0.6
-        version: 0.0.6
+        specifier: ^0.2.0
+        version: 0.2.0
     publishDirectory: dist
 
 packages:
@@ -1011,12 +1011,12 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@primeuix/styled@0.0.6':
-    resolution: {integrity: sha512-bOya+/7WzCeF8D4N0BgGNk3Xe4F4PLEGu7V+btRlUOoEbda2uhp4nqqj2fOdzSERmjEUkkYds8dIVgVM56w1NA==}
+  '@primeuix/styled@0.2.0':
+    resolution: {integrity: sha512-3Q6bDrmwTW88tzJsFIFenC0VyXLj0+/wYw+TZnJ/4CCDfehR4WfTs4EZdpuFtYqvmbpJ6zWXAiwSCNdSYTZkyA==}
     engines: {node: '>=12.11.0'}
 
-  '@primeuix/utils@0.0.6':
-    resolution: {integrity: sha512-7RQ2/LkZpSbi08NAlfZfajqBtWFM2csimf+xk97EoQDhpouzzbHFwf6WFbAyniZC9aPGJ+m+2qgyLxvYzA0x3g==}
+  '@primeuix/utils@0.2.0':
+    resolution: {integrity: sha512-AaDIeRFlsbkVTk2s0mlEjnGSLi31X669NVwo+n+AVAnBdDiQznjipNTpHbOobVBtjOKZize74PChK6uoaSBRUw==}
     engines: {node: '>=12.11.0'}
 
   '@rtsao/scc@1.1.0':
@@ -3676,11 +3676,11 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@primeuix/styled@0.0.6':
+  '@primeuix/styled@0.2.0':
     dependencies:
-      '@primeuix/utils': 0.0.6
+      '@primeuix/utils': 0.2.0
 
-  '@primeuix/utils@0.0.6': {}
+  '@primeuix/utils@0.2.0': {}
 
   '@rtsao/scc@1.1.0': {}
 

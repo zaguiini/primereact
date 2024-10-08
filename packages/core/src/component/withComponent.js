@@ -1,5 +1,6 @@
 import { PrimeReactContext } from '@primereact/core/config';
 import { useAttrSelector, useId, useProps } from '@primereact/hooks';
+import { toValue } from '@primeuix/utils';
 import * as React from 'react';
 import { ComponentContext } from './Component.context';
 import { globalProps } from './Component.props';

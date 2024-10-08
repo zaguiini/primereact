@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Accordion, AccordionTab } from '@/components/lib/accordion/Accordion';
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { useState } from 'react';
 
 export function DynamicDoc(props) {
@@ -99,7 +99,7 @@ export default function DynamicDemo() {
             );
         });
     };
-    
+
     return (
         <div className="card">
             <Accordion>{createDynamicTabs()}</Accordion>

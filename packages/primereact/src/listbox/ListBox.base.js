@@ -1,6 +1,6 @@
 import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/listbox';
-import { equals, getFirstFocusableElement, isElement, isPrintableCharacter } from '@primeuix/utils';
+import { equals, getFirstFocusableElement, isElement, isPrintableCharacter, toValue } from '@primeuix/utils';
 import * as React from 'react';
 import { defaultProps } from './Listbox.props';
 

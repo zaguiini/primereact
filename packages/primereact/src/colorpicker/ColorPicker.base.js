@@ -1,7 +1,7 @@
 import { withComponent } from '@primereact/core/component';
 import { useEventListener, useMountEffect, useOverlayListener, useUnmountEffect } from '@primereact/hooks';
 import { style } from '@primereact/styles/colorpicker';
-import { addClass, addStyle, removeClass, alignOverlay as utils_alignOverlay, ZIndex } from '@primeuix/utils';
+import { addClass, addStyle, removeClass, toValue, alignOverlay as utils_alignOverlay, ZIndex } from '@primeuix/utils';
 import { OverlayService } from 'primereact/overlayservice';
 import { defaultProps } from './ColorPicker.props';
 

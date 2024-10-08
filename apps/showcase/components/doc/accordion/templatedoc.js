@@ -1,6 +1,6 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Accordion, AccordionTab } from '@/components/lib/accordion/Accordion';
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Avatar } from 'primereact/avatar';
 import { Badge } from 'primereact/badge';
 

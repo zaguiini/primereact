@@ -1,6 +1,7 @@
 import { withComponent } from '@primereact/core/component';
 import { useUpdateEffect } from '@primereact/hooks';
 import { style } from '@primereact/styles/editor';
+import { toValue } from '@primeuix/utils';
 import { defaultProps } from './Editor.props';
 
 const QuillJS = (function () {

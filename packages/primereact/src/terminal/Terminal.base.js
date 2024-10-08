@@ -1,6 +1,6 @@
 import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/terminal';
-import { focus } from '@primeuix/utils';
+import { focus, toValue } from '@primeuix/utils';
 import { TerminalService } from 'primereact/terminalservice';
 import * as React from 'react';
 import { defaultProps } from './Terminal.props';

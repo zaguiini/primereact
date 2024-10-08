@@ -17,11 +17,11 @@ import {
     isPrintableCharacter,
     isString,
     resolveFieldData,
+    toValue,
     alignOverlay as utils_alignOverlay,
     ZIndex
 } from '@primeuix/utils';
 import { OverlayService } from 'primereact/overlayservice';
-import { toValue } from 'primereact/utils';
 import * as React from 'react';
 import { defaultProps } from './Select.props';
 

@@ -1,6 +1,6 @@
 import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/cascadeselect';
-import { isNotEmpty } from '@primeuix/utils';
+import { isNotEmpty, toValue } from '@primeuix/utils';
 import { defaultProps } from './CascadeSelect.props';
 
 export const useCascadeSelect = withComponent(

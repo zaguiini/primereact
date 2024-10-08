@@ -1,9 +1,8 @@
 import { withComponent } from '@primereact/core/component';
 import { useEventListener, useMountEffect, useOverlayListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { style } from '@primereact/styles/multiselect';
-import { equals, getFocusableElements, alignOverlay as utils_alignOverlay } from '@primeuix/utils';
+import { equals, getFocusableElements, toValue, alignOverlay as utils_alignOverlay } from '@primeuix/utils';
 import { OverlayService } from 'primereact/overlayservice';
-import { toValue } from 'primereact/utils';
 import * as React from 'react';
 import { defaultProps } from './MultiSelect.props';
 
