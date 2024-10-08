@@ -1050,7 +1050,7 @@ export const useInputNumber = withComponent(
         const horizontal = props.showButtons && props.buttonLayout === 'horizontal';
         const vertical = props.showButtons && props.buttonLayout === 'vertical';
         const inputMode = props.inputMode || (props.mode === 'decimal' && !props.minFractionDigits ? 'numeric' : 'decimal');
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         // effects
         useMountEffect(() => {

@@ -1,4 +1,5 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
+import { Icon } from '@primereact/icons/base';
 import { SpinnerIcon } from '@primereact/icons/spinner';
 import { classNames, isNotEmpty, mergeProps, resolve } from '@primeuix/utils';
 import { Badge } from 'primereact/badge';

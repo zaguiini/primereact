@@ -771,7 +771,7 @@ export const useMultiSelect = withComponent(
         const toggleAllAriaLabel = $primereact.config.locale.aria ? $primereact.config.locale.aria[allSelected ? 'selectAll' : 'unselectAll'] : undefined;
         const listAriaLabel = $primereact.config.locale.aria ? $primereact.config.locale.aria.listLabel : undefined;
         const virtualScrollerDisabled = !props.virtualScrollerOptions;
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         // effects
         useMountEffect(() => {

@@ -1,7 +1,8 @@
 import { withComponent } from '@primereact/core/component';
-import { useOverlayScrollListener, useResizeListener } from '@primereact/hooks';
+import { useMountEffect, useOverlayScrollListener, useResizeListener, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import { style } from '@primereact/styles/tooltip';
-import { ZIndex, toValue } from '@primeuix/utils';
+import { ZIndex, isElement, toValue } from '@primeuix/utils';
+import * as React from 'react';
 import { defaultProps } from './Tooltip.props';
 
 export const useTooltip = withComponent(

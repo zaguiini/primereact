@@ -3,6 +3,7 @@ import { Icon } from '@primereact/icons/base';
 import { MinusIcon } from '@primereact/icons/minus';
 import { PlusIcon } from '@primereact/icons/plus';
 import { mergeProps, resolve } from '@primeuix/utils';
+import { Button } from 'primereact/button';
 import { CSSTransition } from 'primereact/csstransition';
 import * as React from 'react';
 import { usePanel } from './Panel.base';

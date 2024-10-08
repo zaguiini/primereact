@@ -1,5 +1,5 @@
 import { Component, ComponentProvider } from '@primereact/core/component';
-import { mergeProps } from '@primeuix/utils';
+import { mergeProps, resolve } from '@primeuix/utils';
 import { Portal } from 'primereact/portal';
 import * as React from 'react';
 import { useTooltip } from './Tooltip.base';
@@ -12,6 +12,7 @@ export const Tooltip = React.memo(
             props,
             state,
             ptm,
+            ptmi,
             cx,
             sx,
             // element refs

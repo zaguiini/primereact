@@ -3,10 +3,10 @@ export const defaultProps = {
     header: null,
     footer: null,
     title: null,
-    subtitle: null,
+    subTitle: null,
     // templates
     headerTemplate: null,
     footerTemplate: null,
     titleTemplate: null,
-    subtitleTemplate: null
+    subTitleTemplate: null
 };

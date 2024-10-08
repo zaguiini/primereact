@@ -674,7 +674,7 @@ export const useAutoComplete = withComponent(
         const focusedMultipleOptionId = focusedMultipleOptionIndex !== -1 ? `${id}_multiple_option_${focusedMultipleOptionIndex}` : null;
         const ariaSetSize = visibleOptions.filter((option) => !isOptionGroup(option)).length;
         const virtualScrollerDisabled = !props.virtualScrollerOptions;
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         // effects
         useMountEffect(() => {

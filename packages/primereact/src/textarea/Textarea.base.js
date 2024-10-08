@@ -94,7 +94,7 @@ export const useTextarea = withComponent(
         };
 
         // computed
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         // effects
         React.useEffect(() => {

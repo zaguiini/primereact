@@ -6,7 +6,7 @@ import { defaultProps } from './InputGroup.props';
 export const useInputGroup = withComponent(
     ({ props, parent }) => {
         //computed
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         return {
             // computed

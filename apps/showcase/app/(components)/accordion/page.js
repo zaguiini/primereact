@@ -1,3 +1,4 @@
+'use client';
 import { AccessibilityDoc } from '@/components/doc/accordion/accessibilitydoc';
 import { BasicDoc } from '@/components/doc/accordion/basicdoc';
 import { ControlledDoc } from '@/components/doc/accordion/controlleddoc';

@@ -8,11 +8,12 @@ export const ToggleSwitch = React.memo(
     React.forwardRef((inProps, inRef) => {
         const toggleswitch = useToggleSwitch(inProps, inRef);
         const {
+            id,
             props,
             ptm,
             ptmi,
             cx,
-            id,
+            sx,
             // element refs
             elementRef,
             // methods,

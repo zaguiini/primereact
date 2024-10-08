@@ -208,7 +208,7 @@ export const usePassword = withComponent(
 
         // computed
         const inputType = unmasked ? 'text' : 'password';
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
         const promptLabel = props.promptLabel; //|| localeOption('passwordPrompt');
         const weakLabel = props.weakLabel; //|| localeOption('weak');
         const mediumLabel = props.mediumLabel; //|| localeOption('medium');

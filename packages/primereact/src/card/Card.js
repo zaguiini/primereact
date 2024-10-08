@@ -16,14 +16,14 @@ export const Card = React.forwardRef((inProps, inRef) => {
     } = card;
 
     const createCaption = () => {
-        const subtitleProps = mergeProps(
+        const subTitleProps = mergeProps(
             {
-                className: cx('subtitle')
+                className: cx('subTitle')
             },
-            ptm('subtitle')
+            ptm('subTitle')
         );
 
-        const subtitle = resolve(props.subtitleTemplate || props.subtitle, subtitleProps, card);
+        const subTitle = resolve(props.subTitleTemplate || props.subTitle, subTitleProps, card);
 
         const titleProps = mergeProps(
             {
@@ -41,10 +41,10 @@ export const Card = React.forwardRef((inProps, inRef) => {
             ptm('caption')
         );
 
-        return props.title || props.subtitle ? (
+        return props.title || props.subTitle ? (
             <div {...captionProps}>
                 {title && <div {...titleProps}>{title}</div>}
-                {subtitle && <div {...subtitleProps}>{subtitle}</div>}
+                {subTitle && <div {...subTitleProps}>{subTitle}</div>}
             </div>
         ) : null;
     };

@@ -17,7 +17,7 @@ export const useButton = withComponent(
             'data-p-severity': props.severity
         };
         const inAttrs = mergeProps(asAttrs, a11yAttrs);
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         return {
             // computed

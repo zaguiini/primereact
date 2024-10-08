@@ -1,12 +1,9 @@
-import { ComponentProvider } from '@primereact/core/component';
-import { useMountEffect, useUnmountEffect, useUpdateEffect } from '@primereact/hooks';
 import * as React from 'react';
-import { useRipple } from './Ripple.base';
 
 // @todo - Rewrite this component to use the new Component API
 export const Ripple = React.memo(
     React.forwardRef((inProps, inRef) => {
-        const [isMounted, setMounted] = React.useState(false);
+        /*const [isMounted, setMounted] = React.useState(false);
         const ripple = useRipple(inProps, inRef);
         const {
             id,
@@ -124,7 +121,9 @@ export const Ripple = React.memo(
             <ComponentProvider pIf={props.pIf} value={ripple}>
                 <span role="presentation" ref={inkRef} {...rootProps} onAnimationEnd={onAnimationEnd} />
             </ComponentProvider>
-        );
+        );*/
+
+        return null;
     })
 );
 

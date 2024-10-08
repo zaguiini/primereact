@@ -716,7 +716,7 @@ export const useSelect = withComponent(
             return !props.virtualScrollerOptions;
         }, []);
         const hasFluid = React.useMemo(() => {
-            return isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+            return isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
         }, []);
 
         // effects

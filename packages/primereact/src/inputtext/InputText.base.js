@@ -48,7 +48,7 @@ export const useInputText = withComponent(
         };
 
         // computed
-        const hasFluid = isEmpty(props.fluid) ? !!parent.$pc.Fluid : props.fluid;
+        const hasFluid = isEmpty(props.fluid) ? !!parent?.$pc?.Fluid : props.fluid;
 
         // effects
         React.useEffect(() => {
