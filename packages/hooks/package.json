@@ -39,7 +39,7 @@
         "dev:link": "pnpm link --global && npm link"
     },
     "dependencies": {
-        "@primeuix/utils": "^0.0.6"
+        "@primeuix/utils": "^0.2.0"
     },
     "peerDependencies": {
         "react": ">=18.0.0"
