@@ -5,7 +5,7 @@ import * as React from 'react';
 import { defaultProps } from './Listbox.props';
 
 export const useListbox = withComponent(
-    ({ elementRef, id, props, parent, $primereact }) => {
+    ({ elementRef, id, props, $primereact }) => {
         // state
         const [focused, setFocused] = React.useState(false);
         const [focusedOptionIndex, setFocusedOptionIndex] = React.useState(-1);
@@ -241,7 +241,7 @@ export const useListbox = withComponent(
             if (start !== -1 && end !== -1) {
                 const rangeStart = Math.min(start, end);
                 const rangeEnd = Math.max(start, end);
-                const value = this.visibleOptions
+                const value = visibleOptions
                     .slice(rangeStart, rangeEnd + 1)
                     .filter((option) => isValidOption(option))
                     .map((option) => getOptionValue(option));
@@ -250,8 +250,13 @@ export const useListbox = withComponent(
             }
         };
         const onFilterChange = (event) => {
-            props.onFilter?.({ originalEvent: event, value: event.target.value });
+            const value = event.target.value;
+
+            setFilterValue(value);
             setFocusedOptionIndex(-1);
+            props.onFilter?.({ originalEvent: event, value });
+
+            !virtualScrollerDisabled && virtualScrollerRef.current?.scrollToIndex(0);
             startRangeIndex.current = -1;
         };
         const onFilterBlur = () => {

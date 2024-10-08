@@ -8,6 +8,7 @@ export const defaultProps = {
     tooltip: null,
     tooltipOptions: null,
     validateOnly: false,
+    // events
     onBeforeInput: null,
     onInput: null,
     onKeyDown: null,
