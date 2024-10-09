@@ -9,3 +9,15 @@ export const useAccordion = withComponent(
     defaultProps,
     style
 );
+
+export const useAccordionPanel = withComponent(({ elementRef, id, props, parent, $primereact }) => {
+    //@todo
+}, defaultProps);
+
+export const useAccordionHeader = withComponent(({ elementRef, id, props, parent, $primereact }) => {
+    //@todo
+}, defaultProps);
+
+export const useAccordionContent = withComponent(({ elementRef, id, props, parent, $primereact }) => {
+    //@todo
+}, defaultProps);
