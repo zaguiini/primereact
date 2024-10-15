@@ -11,8 +11,8 @@
     "dependencies": {
         "@primereact/hooks": "workspace:*",
         "@primereact/themes": "workspace:*",
-        "@primeuix/styled": "^0.2.0",
-        "@primeuix/utils": "^0.2.0",
+        "@primeuix/styled": "catalog:",
+        "@primeuix/utils": "catalog:",
         "next": "14.2.8",
         "primereact": "workspace:*",
         "@docsearch/react": "3.6.1"

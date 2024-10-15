@@ -1,6 +1,7 @@
 import { withComponent } from '@primereact/core/component';
 import { style } from '@primereact/styles/inputtext';
 import { isEmpty, isNotEmpty } from '@primeuix/utils';
+import * as React from 'react';
 import { defaultProps } from './InputText.props';
 
 export const useInputText = withComponent(

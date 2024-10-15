@@ -49,11 +49,12 @@
         "eslint-config-prettier": "^8",
         "typescript": "^5.5.4",
         "prettier": "^3.3.3",
-        "pnpm": "9.9.0"
+        "pnpm": "9.6.0"
     },
     "publishConfig": {
         "access": "public"
     },
+    "packageManager": "pnpm@9.6.0",
     "engines": {
         "node": ">=12.11.0"
     }

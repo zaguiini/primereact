@@ -35,7 +35,7 @@
         "dev:link": "pnpm link --global && npm link"
     },
     "dependencies": {
-        "@primeuix/utils": "^0.2.0"
+        "@primeuix/utils": "catalog:"
     },
     "engines": {
         "node": ">=12.11.0"
