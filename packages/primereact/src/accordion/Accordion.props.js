@@ -11,17 +11,20 @@ export const defaultProps = {
     onTabOpen: null,
     onTabClose: null,
     onTabChange: null,
+    onChange: null,
     children: undefined
 };
 
 export const defaultAccordionPanelProps = {
     __TYPE: 'AccordionPanel',
     value: undefined,
-    disabled: false
+    disabled: false,
+    transitionOptions: null
 };
 
 export const defaultAccordionHeaderProps = {
-    __TYPE: 'AccordionHeader'
+    __TYPE: 'AccordionHeader',
+    toggleIcon: undefined
 };
 
 export const defaultAccordionContentProps = {

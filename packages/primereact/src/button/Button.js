@@ -117,7 +117,7 @@ export const Button = React.memo(
             );
         };
 
-        const component = props.asChild ? <Component asChild={props.asChild} options={{ ref: elementRef, className: cx('root'), a11yAttrs }} /> : createButton();
+        const component = props.asChild ? <Component asChild={props.asChild} children={props.children} options={{ ref: elementRef, className: cx('root'), a11yAttrs }} /> : createButton();
 
         return (
             <ComponentProvider pIf={props.pIf} value={button}>
